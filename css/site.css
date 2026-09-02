@@ -370,3 +370,98 @@ body::after {
 ::-webkit-scrollbar { width: 10px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--blood); }
+
+/* ══ LABORATÓRIO — glassmorphism + 3D, 0 JS ═══════════════════════ */
+
+.lab-hero { min-height: 60svh; }
+
+/* energia viva atrás do vidro: gradientes animados por CSS puro */
+.glass-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 420px;
+  margin-top: 2.5rem;
+  overflow: clip;
+  border: 1px solid color-mix(in srgb, var(--ink) 10%, transparent);
+}
+
+.glass-blob {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(38% 45% at 25% 30%, var(--blood), transparent 70%),
+    radial-gradient(42% 50% at 75% 65%, var(--acid), transparent 70%),
+    radial-gradient(30% 40% at 60% 20%, var(--gold), transparent 70%);
+  filter: blur(60px);
+  animation: blob-drift 14s ease-in-out infinite alternate;
+}
+@keyframes blob-drift {
+  from { transform: rotate(-6deg) scale(1); }
+  to { transform: rotate(8deg) scale(1.18); }
+}
+
+.glass-card {
+  position: relative;
+  z-index: 1;
+  width: min(380px, 85%);
+  padding: 2.2rem;
+  text-align: center;
+  background: color-mix(in srgb, var(--ink) 7%, transparent);
+  backdrop-filter: blur(20px) saturate(1.6);
+  -webkit-backdrop-filter: blur(20px) saturate(1.6);
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  border-radius: 18px;
+  box-shadow:
+    0 24px 60px rgba(0, 0, 0, 0.55),
+    inset 0 1px 0 color-mix(in srgb, var(--ink) 35%, transparent);
+}
+.glass-card h3 {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  letter-spacing: 0.08em;
+}
+.glass-card p { margin: 0.9rem 0 1.2rem; font-size: 0.85rem; line-height: 1.6; opacity: 0.85; }
+
+/* cena 3D — perspectiva partilhada, cartões conduzidos pelo scroll */
+.scene {
+  display: grid;
+  gap: clamp(2rem, 6vw, 4rem);
+  margin-top: 3rem;
+  perspective: 1100px;
+}
+
+.card3d {
+  padding: clamp(2.5rem, 7vw, 4.5rem) 2rem;
+  text-align: center;
+  border: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  background:
+    linear-gradient(160deg, color-mix(in srgb, var(--blood) 16%, transparent), transparent 55%),
+    color-mix(in srgb, var(--ink) 4%, transparent);
+  transform-style: preserve-3d;
+  animation: flip-in linear both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 45%;
+}
+@keyframes flip-in {
+  from { transform: rotateX(58deg) translateZ(-120px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+.card3d span {
+  display: block;
+  font-size: 0.68rem;
+  letter-spacing: 0.5em;
+  color: var(--acid);
+  margin-bottom: 0.8rem;
+}
+.card3d b {
+  font-family: var(--display);
+  font-size: clamp(2rem, 6vw, 3.6rem);
+  letter-spacing: 0.04em;
+}
+.card3d:nth-child(even) { animation-name: flip-in-alt; }
+@keyframes flip-in-alt {
+  from { transform: rotateY(-52deg) translateX(-8%); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}

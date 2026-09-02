@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>C — OURO PALOP</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,700;1,500&family=IBM+Plex+Mono:wght@400&display=swap" rel="stylesheet">
+<style>
+*{margin:0;box-sizing:border-box}
+body{background:#0b0906;color:#f0e6d2;font-family:"Cormorant Garamond",Georgia,serif;overflow:hidden}
+.mono{font-family:"IBM Plex Mono",monospace}
+::selection{background:#d9a441;color:#0b0906}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.06;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+header{display:flex;justify-content:space-between;align-items:center;padding:26px 60px;border-bottom:1px solid rgba(217,164,65,.25)}
+.logo{font-size:26px;font-weight:700;letter-spacing:.35em;color:#d9a441}
+nav{display:flex;gap:30px;font-size:10px;letter-spacing:.3em;text-transform:uppercase}
+nav span{opacity:.8}
+.grid{display:grid;grid-template-columns:1.1fr .9fr;min-height:calc(100vh - 81px)}
+.left{padding:80px 60px}
+.kicker{font-size:11px;letter-spacing:.5em;color:#d9a441;text-transform:uppercase;margin-bottom:28px}
+h1{font-size:104px;line-height:.98;font-weight:500}
+h1 em{font-style:italic;color:#d9a441}
+.sub{margin-top:30px;font-size:24px;font-style:italic;color:rgba(240,230,210,.75);max-width:34ch}
+.divider{width:90px;height:1px;background:#d9a441;margin:40px 0}
+.meta{display:flex;gap:34px;font-size:10px;letter-spacing:.28em;opacity:.6;text-transform:uppercase}
+.right{position:relative;border-left:1px solid rgba(217,164,65,.25);
+background:
+ radial-gradient(120% 90% at 70% 20%, rgba(217,164,65,.16), transparent 60%),
+ linear-gradient(200deg,#171310,#0b0906)}
+.portrait{position:absolute;inset:60px 60px 130px 60px;border:1px solid rgba(217,164,65,.4);
+display:grid;place-items:center;background:
+ radial-gradient(80% 60% at 50% 30%, rgba(217,164,65,.22), transparent 70%)}
+.portrait b{font-size:120px;font-weight:700;color:rgba(217,164,65,.9);font-style:italic}
+.caption{position:absolute;left:60px;bottom:70px;font-size:10px;letter-spacing:.3em;opacity:.55;text-transform:uppercase}
+.vinyl{position:absolute;right:36px;bottom:-140px;width:380px;height:380px;border-radius:50%;
+background:repeating-radial-gradient(circle at center,#050505 0 2px,#141414 2px 4px);
+border:1px solid rgba(217,164,65,.35)}
+.vinyl::after{content:"";position:absolute;inset:41%;border-radius:50%;background:#d9a441}
+.btn{display:inline-block;margin-top:44px;padding:14px 40px;border:1px solid #d9a441;color:#d9a441;
+text-decoration:none;font-size:11px;letter-spacing:.3em;text-transform:uppercase}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">PSIKOPATA</div>
+  <nav class="mono"><span>Som</span><span>Manifesto</span><span>Produções</span><span>Universo</span><span>Entrar</span></nav>
+</header>
+<div class="grid">
+  <div class="left">
+    <div class="kicker mono">Lisboa ⇄ Maputo · Movimento Lusófono</div>
+    <h1>Começa no som.<br><em>Termina na mente.</em></h1>
+    <p class="sub">Kizomba, fado e hip hop — a língua portuguesa como ritmo comum entre dois continentes.</p>
+    <div class="divider"></div>
+    <div class="meta mono"><span>Novo álbum</span><span>Produções</span><span>Comunidade</span></div>
+    <a class="btn mono" href="#">Ouvir as produções</a>
+  </div>
+  <div class="right">
+    <div class="portrait"><b>P</b></div>
+    <div class="caption mono">Retrato oficial · 2026</div>
+    <div class="vinyl"></div>
+  </div>
+</div>
+</body>
+</html>

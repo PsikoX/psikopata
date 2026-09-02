@@ -155,6 +155,7 @@ fn build(root: &Path) {
         ("/manifesto", "MANIFESTO"),
         ("/producoes", "PRODUÇÕES"),
         ("/universo", "UNIVERSO"),
+        ("/lab", "LAB"),
         ("/entrar", "ENTRAR"),
     ];
 
