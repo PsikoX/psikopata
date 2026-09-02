@@ -109,6 +109,7 @@ fn layout(page: &Page, css: &str, nav: &[(&str, &str)]) -> String {
 <style>{css}</style>
 </head>
 <body>
+<div class="glow" aria-hidden="true"></div>
 <a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="hdr">
 <a class="logo" href="/"><span aria-hidden="true">PSIKO</span>PATA</a>
@@ -118,6 +119,7 @@ fn layout(page: &Page, css: &str, nav: &[(&str, &str)]) -> String {
 {body}
 </main>
 <footer class="ftr">
+<p><a href="/manifesto">Manifesto</a> · <a href="/producoes">Produções</a> · <a href="/lab">Lab</a></p>
 <p><span aria-hidden="true">©</span> PSIKOPATA — começa no som, termina na mente.</p>
 </footer>
 </body>
@@ -152,10 +154,9 @@ fn build(root: &Path) {
 
     let nav: Vec<(&str, &str)> = vec![
         ("/", "SOM"),
-        ("/manifesto", "MANIFESTO"),
-        ("/producoes", "PRODUÇÕES"),
+        ("/psikotica-bipolar", "PSIKOTICA BIPOLAR"),
+        ("/psikose-em-maputo", "PSIKOSE EM MAPUTO"),
         ("/universo", "UNIVERSO"),
-        ("/lab", "LAB"),
         ("/entrar", "ENTRAR"),
     ];
 
