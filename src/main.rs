@@ -103,9 +103,12 @@ fn layout(page: &Page, css: &str, nav: &[(&str, &str)]) -> String {
 <meta property="og:title" content="{title} — PSIKOPATA">
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canonical}">
+<meta property="og:image" content="https://psikopata.com/art/og.png">
 <meta property="og:locale" content="pt_PT">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#050505">
+<meta name="twitter:image" content="https://psikopata.com/art/og.png">
+<meta name="theme-color" content="#0d0a09">
+<link rel="icon" type="image/svg+xml" href="/art/sigil.svg">
 <style>{css}</style>
 </head>
 <body>
@@ -173,6 +176,7 @@ fn build(root: &Path) {
     }
 
     copy_images(&root.join("img"), &dist.join("img"));
+    copy_images(&root.join("art"), &dist.join("art"));
 
     fs::write(
         dist.join("robots.txt"),

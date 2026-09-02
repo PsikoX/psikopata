@@ -321,10 +321,25 @@ body::after {
   line-height: 1.05;
 }
 .album h3 em { font-style: italic; color: var(--ouro); }
+.album .capa {
+  display: block;
+  width: min(240px, 70%);
+  aspect-ratio: 1;
+  margin: 1.6rem auto 0;
+  border-radius: 18px;
+  border: 1px solid color-mix(in srgb, var(--ouro) 30%, transparent);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: transform 1s var(--ease), box-shadow 1s var(--ease);
+}
+.album:hover .capa, .album:focus-visible .capa {
+  transform: scale(1.04) rotate(-1deg);
+  box-shadow: 0 30px 70px rgba(0, 0, 0, 0.6),
+    0 0 40px color-mix(in srgb, var(--ouro) 25%, transparent);
+}
 .album p {
   font-size: 1.05rem;
   font-style: italic;
-  margin-top: 0.8rem;
+  margin-top: 1.2rem;
   color: color-mix(in srgb, var(--pele) 70%, transparent);
 }
 .album .listen {
@@ -343,6 +358,18 @@ body::after {
 .album:hover .listen, .album:focus-visible .listen {
   background: var(--ouro);
   color: var(--noite);
+}
+
+/* ── capa de álbum ─────────────────────────────────────────────── */
+.capa-wrap { padding-top: 0; }
+.capa-single {
+  display: block;
+  width: min(420px, 80%);
+  margin: 0 auto;
+  border-radius: 22px;
+  border: 1px solid color-mix(in srgb, var(--ouro) 35%, transparent);
+  box-shadow: 0 50px 100px rgba(0, 0, 0, 0.6),
+    0 0 80px color-mix(in srgb, var(--ouro) 15%, transparent);
 }
 
 /* ── faixas ────────────────────────────────────────────────────── */
