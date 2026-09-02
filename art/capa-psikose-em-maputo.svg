@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Capa Psikose em Maputo">
+  <defs>
+    <linearGradient id="ceu" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#120d0b"/>
+      <stop offset="55%" stop-color="#3a1f14"/>
+      <stop offset="100%" stop-color="#8a4a1f"/>
+    </linearGradient>
+    <radialGradient id="sol" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#fff2c8"/>
+      <stop offset="45%" stop-color="#e8b84b"/>
+      <stop offset="100%" stop-color="#c1440e"/>
+    </radialGradient>
+    <linearGradient id="terra" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#007168"/>
+      <stop offset="100%" stop-color="#043531"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="1000" fill="url(#ceu)"/>
+
+  <!-- sol de Maputo a arder no horizonte -->
+  <circle cx="500" cy="600" r="260" fill="url(#sol)"/>
+  <circle cx="500" cy="600" r="320" fill="none" stroke="#e8b84b" stroke-width="1.5" opacity="0.45"/>
+  <circle cx="500" cy="600" r="380" fill="none" stroke="#e8b84b" stroke-width="1" opacity="0.25"/>
+  <circle cx="500" cy="600" r="440" fill="none" stroke="#e8b84b" stroke-width="0.6" opacity="0.15"/>
+
+  <!-- fatias do sol: o calor corta -->
+  <g fill="#120d0b">
+    <rect x="240" y="560" width="520" height="10" opacity="0.55"/>
+    <rect x="240" y="600" width="520" height="14" opacity="0.7"/>
+    <rect x="240" y="648" width="520" height="20" opacity="0.85"/>
+    <rect x="240" y="706" width="520" height="28" opacity="0.95"/>
+  </g>
+
+  <!-- terra quente: verde Moçambique -->
+  <rect x="0" y="760" width="1000" height="240" fill="url(#terra)"/>
+
+  <!-- skyline de Maputo: barras negras contra o fogo -->
+  <g fill="#0d0a09">
+    <rect x="70"  y="640" width="34" height="120"/>
+    <rect x="118" y="600" width="26" height="160"/>
+    <rect x="158" y="668" width="40" height="92"/>
+    <rect x="230" y="620" width="22" height="140"/>
+    <rect x="760" y="610" width="30" height="150"/>
+    <rect x="804" y="655" width="44" height="105"/>
+    <rect x="862" y="590" width="24" height="170"/>
+    <rect x="900" y="648" width="36" height="112"/>
+  </g>
+  <!-- uma luz acesa: alguém espera -->
+  <rect x="868" y="620" width="7" height="9" fill="#ffd400"/>
+
+  <!-- psikose: três cortes rubros diagonais -->
+  <g stroke="#d8323c" stroke-width="7" stroke-linecap="round" opacity="0.9">
+    <line x1="150" y1="180" x2="330" y2="90"/>
+    <line x1="420" y1="140" x2="600" y2="230"/>
+    <line x1="700" y1="110" x2="880" y2="200"/>
+  </g>
+
+  <!-- Índico: reflexo do sol na água -->
+  <g fill="none" stroke="#e8b84b" stroke-linecap="round">
+    <path d="M320 810 C 420 800 580 820 680 810" stroke-width="3" opacity="0.5"/>
+    <path d="M360 850 C 450 842 550 858 640 850" stroke-width="2" opacity="0.35"/>
+    <path d="M400 890 C 470 884 530 896 600 890" stroke-width="1.5" opacity="0.25"/>
+  </g>
+
+  <rect width="1000" height="1000" filter="url(#grain)" fill="none"/>
+</svg>

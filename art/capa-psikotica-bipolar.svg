@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1000" width="1000" height="1000" role="img" aria-label="Capa Psikotica Bipolar">
+  <defs>
+    <linearGradient id="noite" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#101530"/>
+      <stop offset="100%" stop-color="#0d0a09"/>
+    </linearGradient>
+    <radialGradient id="lua" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#f3e2cf"/>
+      <stop offset="70%" stop-color="#e8b84b"/>
+      <stop offset="100%" stop-color="#b9832b"/>
+    </radialGradient>
+    <linearGradient id="febre" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#d8323c"/>
+      <stop offset="100%" stop-color="#7a1620"/>
+    </linearGradient>
+    <filter id="grain">
+      <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="2" result="n"/>
+      <feColorMatrix in="n" type="saturate" values="0"/>
+      <feComponentTransfer><feFuncA type="linear" slope="0.06"/></feComponentTransfer>
+      <feComposite operator="over" in2="SourceGraphic"/>
+    </filter>
+  </defs>
+
+  <rect width="1000" height="1000" fill="url(#noite)"/>
+
+  <!-- dualidade: meia-lua azul (sodade) / meia-lua rubra (febre) -->
+  <path d="M500 140 A 310 310 0 0 0 500 760 Z" fill="#0a3d91" opacity="0.85"/>
+  <path d="M500 140 A 310 310 0 0 1 500 760 Z" fill="url(#febre)" opacity="0.85"/>
+  <!-- a fronteira entre estados: onda, não linha -->
+  <path d="M500 140 C 420 280 580 380 500 450 C 420 520 580 620 500 760"
+        fill="none" stroke="#e8b84b" stroke-width="7" stroke-linecap="round"/>
+
+  <!-- cinco das dez estrelas de Cabo Verde, em arco sobre o mar -->
+  <g fill="#ffd400" opacity="0.95">
+    <path transform="translate(352 806) rotate(-25) scale(0.9)" d="M0 -16 L4.7 -4.9 L16.8 -4.9 L7 2.2 L10.9 14.5 L0 7.6 L-10.9 14.5 L-7 2.2 L-16.8 -4.9 L-4.7 -4.9 Z"/>
+    <path transform="translate(425 838) rotate(-12) scale(0.9)" d="M0 -16 L4.7 -4.9 L16.8 -4.9 L7 2.2 L10.9 14.5 L0 7.6 L-10.9 14.5 L-7 2.2 L-16.8 -4.9 L-4.7 -4.9 Z"/>
+    <path transform="translate(500 850) scale(0.9)" d="M0 -16 L4.7 -4.9 L16.8 -4.9 L7 2.2 L10.9 14.5 L0 7.6 L-10.9 14.5 L-7 2.2 L-16.8 -4.9 L-4.7 -4.9 Z"/>
+    <path transform="translate(575 838) rotate(12) scale(0.9)" d="M0 -16 L4.7 -4.9 L16.8 -4.9 L7 2.2 L10.9 14.5 L0 7.6 L-10.9 14.5 L-7 2.2 L-16.8 -4.9 L-4.7 -4.9 Z"/>
+    <path transform="translate(648 806) rotate(25) scale(0.9)" d="M0 -16 L4.7 -4.9 L16.8 -4.9 L7 2.2 L10.9 14.5 L0 7.6 L-10.9 14.5 L-7 2.2 L-16.8 -4.9 L-4.7 -4.9 Z"/>
+  </g>
+
+  <!-- ondas lentas: morna -->
+  <g fill="none" stroke="#f3e2cf" stroke-linecap="round" opacity="0.5">
+    <path d="M120 900 C 260 860 380 940 520 900 S 760 860 880 900" stroke-width="4"/>
+    <path d="M120 936 C 260 896 380 976 520 936 S 760 896 880 936" stroke-width="2.5" opacity="0.7"/>
+  </g>
+
+  <rect width="1000" height="1000" filter="url(#grain)" fill="none"/>
+</svg>
