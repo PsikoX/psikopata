@@ -170,7 +170,12 @@ fn build(root: &Path) {
     ];
 
     for page in &pages {
-        let html = layout(page, &css, &nav);
+        let mut html = layout(page, &css, &nav);
+        let base = std::env::var("PSIKO_BASE").unwrap_or_default();
+        if !base.is_empty() {
+            html = html.replace("href=\"/", &format!("href=\"{base}/"));
+            html = html.replace("src=\"/", &format!("src=\"{base}/"));
+        }
         let out = if page.slug.is_empty() {
             dist.join("index.html")
         } else {
