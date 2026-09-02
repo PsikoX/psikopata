@@ -115,7 +115,9 @@ fn layout(page: &Page, css: &str, nav: &[(&str, &str)]) -> String {
 <div class="glow" aria-hidden="true"></div>
 <a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="hdr">
-<a class="logo" href="/"><span aria-hidden="true">PSIKO</span>PATA</a>
+<a class="logo" href="/">PSIKOPATA</a>
+<input type="checkbox" id="menu" class="menu-check">
+<label for="menu" class="menu-btn" aria-label="Abrir menu"><i></i><i></i><i></i></label>
 <nav class="nav" aria-label="principal">{nav_html}</nav>
 </header>
 <main id="main">
