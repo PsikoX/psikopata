@@ -109,6 +109,10 @@ fn layout(page: &Page, css: &str, nav: &[(&str, &str)]) -> String {
 <meta name="twitter:image" content="https://psikopata.com/art/og.png">
 <meta name="theme-color" content="#0d0a09">
 <link rel="icon" type="image/svg+xml" href="/art/sigil.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>{css}</style>
 </head>
 <body>

@@ -10,6 +10,7 @@
   --rubro: #d8323c;
   --pele: #f3e2cf;
   --serif: "Cormorant Garamond", Georgia, serif;
+  --display: "Anton", "Arial Narrow", sans-serif;
   --mono: "IBM Plex Mono", ui-monospace, monospace;
   --ease: cubic-bezier(0.4, 0, 0.2, 1);
 }
@@ -83,12 +84,12 @@ body::after {
 .glow::before {
   width: 900px; height: 900px;
   top: -320px; left: -200px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--azul-cv) 55%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--azul-cv) 75%, transparent), transparent 68%);
 }
 .glow::after {
   width: 980px; height: 980px;
   bottom: -400px; right: -240px;
-  background: radial-gradient(circle, color-mix(in srgb, var(--verde-mz) 50%, transparent), transparent 65%);
+  background: radial-gradient(circle, color-mix(in srgb, var(--verde-mz) 70%, transparent), transparent 68%);
   animation-delay: -9s;
 }
 @keyframes drift {
@@ -133,9 +134,10 @@ body::after {
 }
 
 .logo {
-  font-weight: 600;
-  font-size: clamp(1rem, 2.6vw, 1.3rem);
-  letter-spacing: 0.45em;
+  font-family: var(--display);
+  font-weight: 400;
+  font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+  letter-spacing: 0.3em;
   color: var(--ouro);
   text-decoration: none;
 }
@@ -236,12 +238,15 @@ body::after {
 }
 
 .hero h1 {
-  font-size: clamp(2.8rem, 9vw, 7.5rem);
-  font-weight: 500;
-  line-height: 1.02;
+  font-family: var(--display);
+  font-size: clamp(3.4rem, 13vw, 11rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 0.95;
   animation: breathe 9s var(--ease) infinite alternate;
 }
-.hero h1 em { font-style: italic; color: var(--ouro); }
+.hero h1 em { font-style: normal; color: var(--ouro); }
 
 @keyframes breathe {
   from { opacity: 0.92; }
@@ -270,18 +275,19 @@ body::after {
   position: relative;
   z-index: 2;
   overflow: clip;
-  background: var(--rubro);
-  color: var(--noite);
-  padding: 0.8rem 0;
+  background: var(--noite);
+  border-block: 1px solid color-mix(in srgb, var(--ouro) 45%, transparent);
+  padding: 0.9rem 0;
 }
 .marquee p {
   display: flex;
   gap: 3rem;
   width: max-content;
-  font-family: var(--mono);
-  font-size: 0.8rem;
-  letter-spacing: 0.3em;
+  font-family: var(--display);
+  font-size: 1.05rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
+  color: var(--ouro);
   white-space: nowrap;
   animation: slide 26s linear infinite;
 }
@@ -338,12 +344,15 @@ body::after {
 }
 
 .sec h2 {
-  font-size: clamp(2.2rem, 6.5vw, 4.2rem);
-  font-weight: 500;
-  line-height: 1.05;
+  font-family: var(--display);
+  font-size: clamp(2.4rem, 7vw, 4.6rem);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  line-height: 1;
   margin-bottom: 1.4rem;
 }
-.sec h2 i { font-style: italic; color: var(--ouro); }
+.sec h2 i { font-style: normal; color: var(--ouro); }
 
 .sec p.lede {
   font-size: clamp(1.2rem, 2.6vw, 1.55rem);
@@ -365,7 +374,7 @@ body::after {
   display: block;
   text-decoration: none;
   color: var(--pele);
-  border-radius: 140px 140px 18px 18px;
+  border-radius: 4px;
   padding: 2.6rem 2rem 2.2rem;
   text-align: center;
   position: relative;
@@ -549,7 +558,7 @@ body::after {
 /* ── convite final ─────────────────────────────────────────────── */
 .cta-box {
   border: 1px solid color-mix(in srgb, var(--ouro) 40%, transparent);
-  border-radius: 120px 120px 24px 24px;
+  border-radius: 4px;
   padding: clamp(2.5rem, 6vw, 4.5rem);
   text-align: center;
   position: relative;
@@ -778,3 +787,36 @@ body::after {
   transform: scale(1.12);
   background: var(--rubro);
 }
+
+/* ══ PERSONAGENS — cartões editoriais ════════════════════════════ */
+.personas {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  gap: 1.2rem;
+  margin-top: 2.5rem;
+}
+.persona {
+  border: 1px solid color-mix(in srgb, var(--ouro) 22%, transparent);
+  border-radius: 4px;
+  padding: 2rem 1.8rem;
+  position: relative;
+  overflow: clip;
+  background: color-mix(in srgb, var(--ouro) 3%, transparent);
+  transition: transform 0.9s var(--ease), border-color 0.7s var(--ease), background 0.7s var(--ease);
+}
+.persona:hover { transform: translateY(-8px); border-color: var(--ouro); }
+.persona .p-simbolo {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 1.2rem;
+  color: var(--ouro);
+}
+.persona h3 { font-family: var(--display); font-weight: 400; font-size: 1.7rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.persona p { margin-top: 0.8rem; font-style: italic; font-size: 1.08rem; line-height: 1.6; color: color-mix(in srgb, var(--pele) 78%, transparent); }
+.persona small { display: block; margin-top: 1.2rem; font-family: var(--mono); font-size: 0.6rem; letter-spacing: 0.35em; text-transform: uppercase; opacity: 0.6; }
+.p-guerreira { background: linear-gradient(160deg, color-mix(in srgb, var(--verde-mz) 18%, transparent), transparent 60%); }
+.p-fadista { background: linear-gradient(160deg, color-mix(in srgb, var(--azul-cv) 18%, transparent), transparent 60%); }
+.p-leoa { background: linear-gradient(160deg, color-mix(in srgb, var(--ouro) 14%, transparent), transparent 60%); }
+.p-cesaria { background: linear-gradient(160deg, color-mix(in srgb, var(--azul-cv) 22%, transparent), transparent 60%); }
+.p-mabunda { background: linear-gradient(160deg, color-mix(in srgb, var(--rubro) 14%, transparent), transparent 60%); }
+.p-eden { background: linear-gradient(160deg, color-mix(in srgb, var(--verde-mz) 14%, transparent), transparent 60%); }
