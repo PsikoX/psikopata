@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt">
+<head>
+<meta charset="utf-8">
+<title>D — MORNAMENTA (Cabo Verde × Moçambique)</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --noite:#0d0a09;            /* preto quente */
+  --azul-cv:#0a3d91;          /* Cabo Verde: azul do mar */
+  --verde-mz:#007168;         /* Moçambique: verde da terra */
+  --ouro:#e8b84b;             /* ouro partilhado (ambas as bandeiras) */
+  --rubro:#d8323c;            /* vermelho comum às duas bandeiras */
+  --pele:#f3e2cf;             /* tom de pele quente para texto */
+}
+*{margin:0;box-sizing:border-box}
+body{background:var(--noite);color:var(--pele);font-family:"Cormorant Garamond",Georgia,serif;overflow:hidden}
+.mono{font-family:"IBM Plex Mono",monospace}
+::selection{background:var(--rubro);color:#fff}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;opacity:.05;
+background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+header{display:flex;justify-content:space-between;align-items:center;padding:24px 56px;position:relative;z-index:5}
+.logo{font-size:19px;letter-spacing:.5em;font-weight:600;color:var(--ouro)}
+nav{display:flex;gap:28px;font-size:9.5px;letter-spacing:.3em;text-transform:uppercase;opacity:.75}
+
+/* luz sensual de fundo: dois sóis — um azul CV, um verde MZ */
+.glow{position:fixed;inset:0;z-index:0;overflow:hidden}
+.glow::before{content:"";position:absolute;width:900px;height:900px;border-radius:50%;
+background:radial-gradient(circle,rgba(10,61,145,.55),transparent 65%);
+top:-300px;left:-180px;filter:blur(10px)}
+.glow::after{content:"";position:absolute;width:980px;height:980px;border-radius:50%;
+background:radial-gradient(circle,rgba(0,113,104,.5),transparent 65%);
+bottom:-380px;right:-220px;filter:blur(10px)}
+
+.hero{position:relative;z-index:2;text-align:center;padding:44px 60px 0}
+.kicker{font-size:10px;letter-spacing:.55em;text-transform:uppercase;color:var(--ouro)}
+h1{font-size:88px;line-height:1.02;font-weight:500;margin-top:18px}
+h1 em{font-style:italic;color:var(--ouro)}
+.whisper{margin-top:16px;font-size:25px;font-style:italic;color:rgba(243,226,207,.72)}
+.whisper b{color:var(--rubro);font-weight:600}
+
+/* dois altares: um álbum por país */
+.albums{position:relative;z-index:2;display:flex;gap:34px;justify-content:center;padding:46px 60px 0}
+.album{width:392px;border-radius:140px 140px 18px 18px;padding:34px 30px 30px;position:relative;overflow:hidden;
+border:1px solid rgba(232,184,75,.35);
+box-shadow:0 40px 80px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.18)}
+.album.cv{background:
+ radial-gradient(120% 80% at 50% 0%, rgba(10,61,145,.85), rgba(13,10,9,.9) 75%)}
+.album.mz{background:
+ radial-gradient(120% 80% at 50% 0%, rgba(0,113,104,.8), rgba(13,10,9,.9) 75%)}
+.album .flagline{display:flex;gap:6px;justify-content:center;margin-bottom:16px}
+.flagline i{width:26px;height:3px;border-radius:2px;display:block}
+.cv .flagline i:nth-child(1){background:#0a3d91}.cv .flagline i:nth-child(2){background:#fff}
+.cv .flagline i:nth-child(3){background:#d8323c}.cv .flagline i:nth-child(4){background:#ffd400}
+.mz .flagline i:nth-child(1){background:#007168}.mz .flagline i:nth-child(2){background:#ffd400}
+.mz .flagline i:nth-child(3){background:#d8323c}.mz .flagline i:nth-child(4){background:#111}
+.album small{display:block;font-family:"IBM Plex Mono";font-size:9px;letter-spacing:.45em;text-transform:uppercase;color:var(--ouro);text-align:center}
+.album h2{font-size:44px;font-weight:500;text-align:center;margin-top:10px;line-height:1.05}
+.album h2 em{font-style:italic;color:var(--ouro)}
+.album p{font-size:16.5px;font-style:italic;text-align:center;color:rgba(243,226,207,.7);margin-top:10px;line-height:1.5}
+.silhouette{width:150px;height:190px;margin:22px auto 0;border-radius:75px 75px 12px 12px;
+background:linear-gradient(180deg,rgba(232,184,75,.5),rgba(232,184,75,.06) 70%);
+border:1px solid rgba(232,184,75,.45);display:grid;place-items:center;
+font-size:56px;color:rgba(232,184,75,.85);font-style:italic}
+.listen{display:block;margin:22px auto 0;width:max-content;padding:10px 30px;border-radius:999px;
+border:1px solid var(--ouro);color:var(--ouro);text-decoration:none;font-family:"IBM Plex Mono";
+font-size:9.5px;letter-spacing:.35em;text-transform:uppercase}
+
+.bottom{position:relative;z-index:2;text-align:center;margin-top:38px}
+.bottom .line{width:140px;height:1px;background:linear-gradient(90deg,transparent,var(--ouro),transparent);margin:0 auto 14px}
+.bottom p{font-size:21px;font-style:italic;color:rgba(243,226,207,.6)}
+.bottom p b{color:var(--pele);font-weight:600}
+</style>
+</head>
+<body>
+<div class="glow"></div>
+<header>
+  <div class="logo">PSIKOPATA</div>
+  <nav class="mono"><span>Som</span><span>Morna</span><span>Marrabenta</span><span>Universo</span><span>Entrar</span></nav>
+</header>
+
+<div class="hero">
+  <div class="kicker mono">Cabo Verde ⇄ Moçambique · Dois álbuns, uma língua</div>
+  <h1>Um oceano.<br><em>Duas vozes.</em></h1>
+  <p class="whisper">Feito para ser sentido devagar. <b>Aproxima-te.</b></p>
+</div>
+
+<div class="albums">
+  <div class="album cv">
+    <div class="flagline"><i></i><i></i><i></i><i></i></div>
+    <small>Cabo Verde · Álbum I</small>
+    <h2>Sodade <em>Azul</em></h2>
+    <p>Morna, coladeira e o mar entre as ilhas.</p>
+    <div class="silhouette">♪</div>
+    <a class="listen" href="#">Ouvir o álbum</a>
+  </div>
+  <div class="album mz">
+    <div class="flagline"><i></i><i></i><i></i><i></i></div>
+    <small>Moçambique · Álbum II</small>
+    <h2>Marrabenta <em>de Ouro</em></h2>
+    <p>Marrabenta, ritmos urbanos e a terra quente.</p>
+    <div class="silhouette">♪</div>
+    <a class="listen" href="#">Ouvir o álbum</a>
+  </div>
+</div>
+
+<div class="bottom">
+  <div class="line"></div>
+  <p>«A beleza entra pelos olhos, <b>a música sai pela alma.»</b></p>
+</div>
+</body>
+</html>

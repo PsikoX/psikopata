@@ -7,9 +7,24 @@ Redesenho completo de psikopata.com: site artístico, provocador e tecnologicame
 
 ## 1. Visão
 
-> Um site que se sente antes de se ler. Intensidade criativa: bondade, angústia e raiva da ignorância — transformadas em arte digital.
+> Um site que se sente antes de se ler. Sensual, quente, luxuoso — como a música que anuncia.
 
-O site atual (auditoria) pesa ~22 MB, depende de 972 KB de JS, e o conteúdo é invisível para motores de busca. O novo site será o oposto: **leve como texto, denso como um álbum**.
+**Missão:** divulgar **dois álbuns** — um para **Cabo Verde**, outro para **Moçambique** — unindo os dois países num único gesto artístico. As cores vêm das duas bandeiras.
+
+**Prioridade máxima (definida pelo artista):** qualidade percebida, **sensualidade e atração feminina pelo site** (ver §3.E — é a secção mais importante deste plano).
+
+O site atual (auditoria) pesa ~22 MB, depende de 972 KB de JS, e o conteúdo é invisível para motores de busca. O novo site será o oposto: **leve como texto, quente como pele**.
+
+### Paleta — fusão Cabo Verde × Moçambique
+
+| Cor | Hex | Origem | Uso |
+|---|---|---|---|
+| Noite quente | `#0d0a09` | neutro | fundo (nunca preto puro — preto frio mata sensualidade) |
+| Azul CV | `#0a3d91` | bandeira CV | álbum I, luz de fundo |
+| Verde MZ | `#007168` | bandeira MZ | álbum II, luz de fundo |
+| Ouro | `#e8b84b` | presente em ambas as bandeiras | acento principal, tipografia especial, CTAs |
+| Rubro | `#d8323c` | presente em ambas as bandeiras | provocação pontual (Von Restorff: pouco e raro) |
+| Pele | `#f3e2cf` | neutro quente | texto (nunca branco puro — branco é clínico) |
 
 ### Princípios inegociáveis
 
@@ -74,17 +89,41 @@ A decisão científica central: **a estética não é decoração; é parte da f
 14. O hero é o pico: uma frase que provoca ("Não é música. É um movimento.").
 15. O fim é convite: CTA quente e humano no final de cada página.
 
+### 3.E — Sensualidade e atração feminina (prioridade máxima)
+
+O que a investigação e a prática de design de marcas de luxo/perfumaria dizem:
+
+| Princípio | Evidência / referência | Como aplicamos |
+|---|---|---|
+| **Calor cromático** | Tons quentes (âmbar, ouro, pele, rubro) ativam perceção de intimidade e proximidade; o preto frio e o branco clínico afastam | Fundo "noite quente" `#0d0a09`, texto cor-de-pele, acentos ouro/rubro. Nada de cinzas frios |
+| **Efeito vermelho** | Elliot & Niesta (2007): o vermelho aumenta a atratividade percebida e a sinalização de status/intenção | Rubro usado com parcimónia em lábios-visuais: CTA, sublinhados, o "b" das frases — nunca em superfícies grandes |
+| **Curvas > ângulos** | Formas arredondadas são percecionadas como femininas, orgânicas e seguras; ângulos agudos como agressivos | `border-radius` generoso (140px nos altares dos álbuns), silhuetas em arco, nada de cantos vivos |
+| **Tipografia serif itálica** | Serifas + itálico = voz sussurrada, literatura, pele; sans-serif = técnico | Cormorant Garamond itálico para tudo o que é emocional; mono só para metadados frios (datas, coords) |
+| **Movimento lento** | Velocidade baixa + easing suave = sensualidade; movimento rápido = ansiedade | Animações 0,6–1,4 s, easing `cubic-bezier(.4,0,.2,1)`, blobs de luz em drift lento (14 s) |
+| **Espaço negativo** | Luxo = espaço. Marcas de perfume usam 70%+ de vazio | Margens enormes, uma ideia por ecrã |
+| **Luz, não objetos** | Sensualidade sugere-se, não se mostra: gradientes de luz, silhuetas, véus | Glows radiais azul CV / verde MZ como "dois sóis", silhuetas em arco, véus translúcidos |
+| **Voz que sussurra** | Copywriting em segunda pessoa, imperativo suave, frases curtas | "Aproxima-te." "Feito para ser sentido devagar." — nunca gritar |
+| **Revelação progressiva** | O que se descobre devagar prende mais (curiosity gap) | Conteúdo revela-se ao scroll, álbuns como altares que se aproximam |
+
+**O que NUNCA fazer** (destrói a atração feminina e a qualidade percebida):
+- ❌ Branco puro / preto puro como cores de texto-fundo
+- ❌ Ângulos agudos, bordas finas cinzentas, estética "dashboard"
+- ❌ Movimento rápido, brusco ou saltitante
+- ❌ Sans-serif geométricas em títulos emocionais
+- ❌ Conteúdo denso sem ar; ❌ mais de um CTA a competir por ecrã
+
 ---
 
 ## 4. Direções visuais — mockups em `mockups/`
 
 | Direção | Ficheiro | Personalidade | Prós | Riscos |
 |---|---|---|---|---|
-| **A. Manifesto Brutal** | `a-manifesto-brutal.png` | Preto/vermelho, tipografia gigante, grão, marquee | Máxima provocação, identidade forte, rápido | Pode parecer "agressivo" para parceiros institucionais |
-| **B. Vidro Noir** | `b-vidro-noir.png` | Glassmorphism, gradientes cyan/violeta, cartões 3D | Tecnologia nova, futurista, contemporâneo | Estética "tech" pode diluir a alma musical |
-| **C. Ouro PALOP** | `c-ouro-palop.png` | Editorial escuro + dourado, serif, vinil | Luxo, arte, herança lusófona/africana | Menos "provocador", mais clássico |
+| **A. Manifesto Brutal** | `a-manifesto-brutal.png` | Preto/vermelho, tipografia gigante, grão, marquee | Máxima provocação, identidade forte | Agressivo; frio; oposto da sensualidade pedida |
+| **B. Vidro Noir** | `b-vidro-noir.png` | Glassmorphism, gradientes cyan/violeta, cartões 3D | Tecnologia nova, futurista | Paleta fria (cyan/violeta) não serve a missão CV×MZ |
+| **C. Ouro PALOP** | `c-ouro-palop.png` | Editorial escuro + dourado, serif, vinil | Luxo, arte, herança lusófona | Só uma cor de herança; falta Moçambique e Cabo Verde |
+| **D. Morna & Marrabenta** ⭐ | `d-morna-marrabenta.png` | Noite quente, azul CV + verde MZ como dois sóis, ouro, serif itálica, dois altares de álbuns | Cumpre TODA a missão: paleta das duas bandeiras, 2 álbuns visíveis, sensualidade editorial, atração | Requer fotografia/imagens novas de qualidade à altura |
 
-**Recomendação: híbrido A+C** — a escala brutal e a provocação de A com o dourado e a elegância serif de C (vermelho como acento de rutura, dourado como acento de herança). O glassmorphism de B fica reservado para momentos especiais (página LAB, lançamentos). Decisão final tua.
+**Recomendação: D** — é a única que cumpre a missão completa (cores CV+MZ, dois álbuns, sensualidade). Elementos de B (glass) podem entrar em momentos especiais; A fica para posters/merch, não para o site.
 
 ---
 
@@ -92,9 +131,10 @@ A decisão científica central: **a estética não é decoração; é parte da f
 
 | Página | Conteúdo | Estado |
 |---|---|---|
-| `/` | Hero provocador + manifesto curto + faixa destaque | skeleton feito |
-| `/manifesto` | As 4 fases | feito |
-| `/producoes` | Faixas (áudio TBD) + links plataformas | feito, sem áudio |
+| `/` | Hero sensual + os dois álbuns como altares (CV × MZ) | skeleton feito; mockup D aprovado = reconstruir |
+| `/sodade-azul` | Álbum I — Cabo Verde: faixas, história, cores CV | por criar |
+| `/marrabenta-de-ouro` | Álbum II — Moçambique: faixas, história, cores MZ | por criar |
+| `/manifesto` | As 4 fases | feito (revestir com paleta nova) |
 | `/universo` | Galeria das personagens (imagens novas) | feito, sem imagens |
 | `/lab` | Demonstração técnica (glass + 3D) | feito |
 | `/entrar` | Comunidade: WhatsApp, Substack, TikTok | feito |
@@ -120,7 +160,8 @@ Sem formulários (decidido). Sem analytics (decidido).
 
 ## 7. Decisões pendentes (preciso de ti)
 
-1. **Direção visual**: A, B, C ou híbrido A+C?
-2. **Produção das novas imagens**: quem as faz e qual a direção (fotografia tua, ilustração, AI com pós-produção)?
-3. **Áudio**: prévias 30 s / faixas completas / só links para plataformas?
-4. **Autorização GitHub**: o código `E8B4-5021` em github.com/login/device continua por usar — sem ele não consigo fazer push do CI.
+1. **Direção visual**: confirmas a **D (Morna & Marrabenta)**?
+2. **Nomes dos álbuns**: "Sodade Azul" (CV) e "Marrabenta de Ouro" (MZ) são placeholders — quais os nomes reais?
+3. **Produção das novas imagens**: quem as faz e qual a direção (fotografia tua, ilustração, AI com pós-produção)?
+4. **Áudio**: prévias 30 s / faixas completas / só links para plataformas?
+5. **Autorização GitHub**: o código `E8B4-5021` em github.com/login/device continua por usar — sem ele não consigo fazer push do CI.
