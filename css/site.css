@@ -1,0 +1,372 @@
+/* PSIKOPATA — 0 JS. Toda a interação é CSS puro. */
+
+:root {
+  --bg: #050505;
+  --ink: #f2ede4;
+  --blood: #ff2a1f;
+  --gold: #d9a441;
+  --acid: #c8ff2a;
+  --mono: "IBM Plex Mono", ui-monospace, monospace;
+  --display: "Archivo Black", "Arial Black", sans-serif;
+  --serif: "Cormorant Garamond", Georgia, serif;
+}
+
+@font-face {
+  font-family: "Archivo Black";
+  src: local("Archivo Black");
+  font-display: swap;
+}
+
+* { box-sizing: border-box; margin: 0; }
+
+html {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--mono);
+  scroll-behavior: smooth;
+  scrollbar-color: var(--blood) var(--bg);
+}
+
+::selection { background: var(--blood); color: var(--bg); }
+
+body {
+  min-height: 100svh;
+  overflow-x: clip;
+}
+
+/* ── grão de filme sobre tudo, sem imagens externas ───────────── */
+body::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 999;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation: grain 0.9s steps(4) infinite;
+}
+
+@keyframes grain {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-2%, 3%); }
+  50% { transform: translate(3%, -2%); }
+  75% { transform: translate(-3%, -3%); }
+  100% { transform: translate(2%, 2%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body::after { animation: none; }
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001s !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001s !important;
+  }
+}
+
+.skip {
+  position: absolute;
+  left: -999px;
+  z-index: 1000;
+  background: var(--acid);
+  color: var(--bg);
+  padding: 0.6rem 1rem;
+}
+.skip:focus { left: 1rem; top: 1rem; }
+
+/* ── header ────────────────────────────────────────────────────── */
+.hdr {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.9rem clamp(1rem, 4vw, 3rem);
+  background: color-mix(in srgb, var(--bg) 85%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.logo {
+  font-family: var(--display);
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  letter-spacing: 0.06em;
+  color: var(--ink);
+  text-decoration: none;
+}
+.logo span { color: var(--blood); }
+
+.nav { display: flex; gap: clamp(0.8rem, 2.5vw, 2rem); flex-wrap: wrap; }
+.nav a {
+  color: var(--ink);
+  text-decoration: none;
+  font-size: 0.75rem;
+  letter-spacing: 0.22em;
+  padding: 0.3rem 0;
+  position: relative;
+}
+.nav a::after {
+  content: "";
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 100%; height: 2px;
+  background: var(--blood);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.35s cubic-bezier(0.7, 0, 0.2, 1);
+}
+.nav a:hover::after,
+.nav a:focus-visible::after,
+.nav a[aria-current]::after { transform: scaleX(1); transform-origin: left; }
+.nav a[aria-current] { color: var(--blood); }
+
+/* ── hero ──────────────────────────────────────────────────────── */
+.hero {
+  min-height: calc(100svh - 64px);
+  display: grid;
+  place-content: center;
+  text-align: center;
+  padding: 2rem 1rem;
+  position: relative;
+}
+
+.hero h1 {
+  font-family: var(--display);
+  font-size: clamp(3.2rem, 15vw, 13rem);
+  line-height: 0.85;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  animation: flicker 4s linear infinite;
+}
+
+.hero h1 em {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 2px var(--blood);
+}
+
+@keyframes flicker {
+  0%, 92%, 96%, 100% { opacity: 1; }
+  93%, 95% { opacity: 0.55; }
+}
+
+.tagline {
+  margin-top: 1.6rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.1rem, 3vw, 1.7rem);
+  color: color-mix(in srgb, var(--ink) 75%, transparent);
+}
+.tagline b { color: var(--acid); font-weight: 500; }
+
+.hero .coords {
+  margin-top: 2.4rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  color: color-mix(in srgb, var(--ink) 45%, transparent);
+}
+
+/* seta de scroll — pura decoração CSS */
+.hero::before {
+  content: "";
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  width: 1px;
+  height: 56px;
+  background: linear-gradient(var(--blood), transparent);
+  animation: drip 1.6s ease-in-out infinite;
+}
+@keyframes drip {
+  from { transform: scaleY(0); transform-origin: top; }
+  50% { transform: scaleY(1); transform-origin: top; }
+  51% { transform-origin: bottom; }
+  to { transform: scaleY(0); transform-origin: bottom; }
+}
+
+/* ── marquee provocador ────────────────────────────────────────── */
+.marquee {
+  overflow: clip;
+  border-block: 1px solid color-mix(in srgb, var(--ink) 15%, transparent);
+  padding: 0.7rem 0;
+  background: var(--blood);
+  color: var(--bg);
+}
+.marquee p {
+  display: flex;
+  gap: 3rem;
+  width: max-content;
+  font-family: var(--display);
+  font-size: clamp(0.9rem, 2.4vw, 1.4rem);
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+  animation: slide 18s linear infinite;
+}
+@keyframes slide { to { transform: translateX(-50%); } }
+
+/* ── secções + revelação por scroll (0 JS: animation-timeline) ── */
+.sec {
+  padding: clamp(4rem, 10vw, 9rem) clamp(1rem, 6vw, 6rem);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.sec > * {
+  animation: rise both;
+  animation-timeline: view();
+  animation-range: entry 0% entry 45%;
+}
+@keyframes rise {
+  from { opacity: 0; transform: translateY(48px); }
+  to { opacity: 1; transform: none; }
+}
+
+.sec h2 {
+  font-family: var(--display);
+  font-size: clamp(2rem, 7vw, 4.5rem);
+  text-transform: uppercase;
+  line-height: 0.95;
+  margin-bottom: 1.6rem;
+}
+.sec h2 i {
+  font-style: normal;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--ink);
+}
+
+.sec p.lede {
+  font-family: var(--serif);
+  font-size: clamp(1.15rem, 2.6vw, 1.6rem);
+  line-height: 1.5;
+  max-width: 42ch;
+}
+
+/* ── faixas de áudio ───────────────────────────────────────────── */
+.tracks { list-style: none; padding: 0; margin-top: 2.5rem; display: grid; gap: 1rem; }
+.tracks li {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1.2rem;
+  align-items: center;
+  border: 1px solid color-mix(in srgb, var(--ink) 14%, transparent);
+  padding: 1rem 1.2rem;
+  transition: border-color 0.3s, background 0.3s, transform 0.3s;
+}
+.tracks li:hover {
+  border-color: var(--blood);
+  background: color-mix(in srgb, var(--blood) 7%, transparent);
+  transform: translateX(6px);
+}
+.tracks .num {
+  font-family: var(--display);
+  font-size: 1.6rem;
+  color: var(--blood);
+}
+.tracks .t-title { font-family: var(--display); letter-spacing: 0.04em; }
+.tracks .t-meta { font-size: 0.7rem; letter-spacing: 0.25em; opacity: 0.55; margin-top: 0.3rem; }
+.tracks audio { width: 100%; margin-top: 0.6rem; height: 32px; }
+
+/* ── grelha universo ───────────────────────────────────────────── */
+.grid {
+  display: grid;
+  gap: 4px;
+  grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
+  margin-top: 2.5rem;
+}
+.grid figure {
+  position: relative;
+  aspect-ratio: 1;
+  overflow: clip;
+}
+.grid img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) contrast(1.15);
+  transition: filter 0.5s, scale 0.5s;
+}
+.grid figure:hover img { filter: grayscale(0); scale: 1.05; }
+.grid figcaption {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.5rem 0.8rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.85));
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.grid figure:hover figcaption { opacity: 1; }
+
+/* ── manifesto em blocos ───────────────────────────────────────── */
+.creed { display: grid; gap: 2.5rem; margin-top: 3rem; }
+.creed article {
+  border-left: 3px solid var(--blood);
+  padding-left: 1.4rem;
+}
+.creed h3 {
+  font-family: var(--display);
+  font-size: clamp(1.2rem, 3.4vw, 2rem);
+  text-transform: uppercase;
+}
+.creed p { margin-top: 0.7rem; max-width: 55ch; line-height: 1.7; opacity: 0.8; }
+.creed article:nth-child(even) { border-color: var(--acid); margin-left: clamp(0px, 8vw, 120px); }
+.creed article:nth-child(3n) { border-color: var(--gold); margin-left: clamp(0px, 4vw, 60px); }
+
+/* ── entrar / CTA ──────────────────────────────────────────────── */
+.cta-box {
+  border: 1px solid var(--ink);
+  padding: clamp(2rem, 6vw, 4rem);
+  text-align: center;
+  position: relative;
+}
+.cta-box::before {
+  content: "★";
+  position: absolute;
+  top: -0.8rem; left: 50%;
+  translate: -50% 0;
+  background: var(--bg);
+  padding: 0 1rem;
+  color: var(--blood);
+}
+
+.btn {
+  display: inline-block;
+  margin: 1.4rem 0.5rem 0;
+  padding: 1rem 2.2rem;
+  font-family: var(--display);
+  font-size: 0.95rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-decoration: none;
+  color: var(--bg);
+  background: var(--ink);
+  border: 2px solid var(--ink);
+  transition: background 0.25s, color 0.25s, translate 0.25s;
+}
+.btn:hover, .btn:focus-visible {
+  background: transparent;
+  color: var(--ink);
+  translate: 0 -3px;
+}
+.btn.alt { background: var(--blood); border-color: var(--blood); color: var(--ink); }
+.btn.alt:hover, .btn.alt:focus-visible { background: transparent; color: var(--blood); }
+
+/* ── footer ────────────────────────────────────────────────────── */
+.ftr {
+  padding: 3rem clamp(1rem, 6vw, 6rem);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 12%, transparent);
+  font-size: 0.7rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  text-align: center;
+}
+
+/* ── scrollbar custom (webkit) ─────────────────────────────────── */
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--blood); }
