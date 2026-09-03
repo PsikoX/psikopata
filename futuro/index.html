@@ -100,12 +100,15 @@ body:has(.em) { overflow-x: clip; }
 </style>
 
 <div class="em">
-  <section class="em-hero">
-    <img src="/psikopata/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="Psikopata">
-    <div class="em-hero-copy">
-      <h1>PSIKO<em>PATA</em></h1>
-      <a class="em-btn" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Ouvir agora</a>
-      <a class="em-btn ghost" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
+  <section class="em-hero" style="display:grid;place-items:center;min-height:72vh;background: radial-gradient(90% 80% at 50% 0%, rgba(114,47,55,.32), transparent 60%), radial-gradient(70% 60% at 85% 90%, rgba(201,107,122,.14), transparent 55%), #0a0a0a;">
+    <!-- glassmorphism copiado de https://css.glass e https://hype4.academy/tools/glassmorphism-generator -->
+    <div class="em-hero-copy" style="display:grid;place-items:center;text-align:center;">
+      <div class="glass-hero" style="background: rgba(26,26,26,0.45); box-shadow: 0 0 1rem 0 rgba(0,0,0,0.35); backdrop-filter: blur(1rem); -webkit-backdrop-filter: blur(1rem); border: 1px solid rgba(255,255,255,0.12); border-top: 1px solid rgba(255,255,255,0.18); border-left: 1px solid rgba(255,255,255,0.14); -webkit-backdrop-filter: blur(14px); border-radius: 16px; border: 1px solid rgba(255,255,255,0.12); padding: 42px 36px; max-width: 680px; width: calc(100% - 32px);">
+        <p style="font-family:'Oswald',sans-serif;letter-spacing:.34em;text-transform:uppercase;font-size:.62rem;color:rgba(255,255,255,.72);margin:0 0 14px">Artista · Compositor · Produtor Lusófono</p>
+        <h1 style="margin:0 0 10px">PSIKO<em>PATA</em></h1>
+        <p style="color:#ccc;font-size:1.02rem;margin:0 0 18px">Morna, marrabenta, kizomba. Sente antes de entender.</p>
+        <p style="margin:0"><a class="em-btn" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">Ouvir agora</a> <a class="em-btn ghost" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a></p>
+      </div>
     </div>
   </section>
 
@@ -180,6 +183,24 @@ body:has(.em) { overflow-x: clip; }
   </div>
 
   
+  
+  <section class="em-sec" id="albuns">
+    <h2>Álbuns</h2>
+    <p style="color:#ccc;max-width:60ch;margin:-8px 0 24px">Dois atos, dois países. Escolhe por onde entrar.</p>
+    <div class="em-grid" style="grid-template-columns: repeat(2, 1fr);">
+      <a class="em-card" href="/psikopata/psikotica-bipolar" style="background:#1a1a1a;border:1px solid rgba(114,47,55,.22);padding:18px">
+        <span class="em-card-media" style="aspect-ratio:1;background:#000"><img src="/psikopata/art/capa-psikotica-bipolar.svg" alt="Capa Psikotica Bipolar" loading="lazy"></span>
+        <span class="em-card-t">Psikotica Bipolar — Álbum I</span>
+        <span class="em-card-y" style="display:block;margin-top:6px;line-height:1.6;white-space:normal">Cabo Verde. Morna e coladeira — o mar entre as ilhas. Praia · Mindelo · São Vicente.</span>
+      </a>
+      <a class="em-card" href="/psikopata/psikose-em-maputo" style="background:#1a1a1a;border:1px solid rgba(114,47,55,.22);padding:18px">
+        <span class="em-card-media" style="aspect-ratio:1;background:#000"><img src="/psikopata/art/capa-psikose-em-maputo.svg" alt="Capa Psikose em Maputo" loading="lazy"></span>
+        <span class="em-card-t">Psikose em Maputo — Álbum II</span>
+        <span class="em-card-y" style="display:block;margin-top:6px;line-height:1.6;white-space:normal">Moçambique. Marrabenta e ritmos urbanos. Maputo · Polana · Costa do Índico.</span>
+      </a>
+    </div>
+  </section>
+
   <section class="em-sec" id="manifesto">
     <h2>Manifesto</h2>
     <p style="color:#ccc;max-width:60ch;margin:-8px 0 24px">O nome "Psikopata" é intensidade criativa. Não é loucura — é recusar o silêncio.</p>
