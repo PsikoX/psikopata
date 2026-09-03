@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Artista · Compositor · Produtor Lusófono — PSIKOPATA</title>
-<meta name="description" content="Psikopata — artista de música lusófona. Dois álbuns: Psikotica Bipolar (Cabo Verde) e Psikose em Maputo (Moçambique). Morna, marrabenta, kizomba. Ouve agora.">
+<title>Psikopata — Artista Lusófono — PSIKOPATA</title>
+<meta name="description" content="Psikopata — morna, marrabenta, kizomba. Dois álbuns: Psikotica Bipolar e Psikose em Maputo.">
 <link rel="canonical" href="https://psikopata.com/">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Artista · Compositor · Produtor Lusófono — PSIKOPATA">
-<meta property="og:description" content="Psikopata — artista de música lusófona. Dois álbuns: Psikotica Bipolar (Cabo Verde) e Psikose em Maputo (Moçambique). Morna, marrabenta, kizomba. Ouve agora.">
+<meta property="og:title" content="Psikopata — Artista Lusófono — PSIKOPATA">
+<meta property="og:description" content="Psikopata — morna, marrabenta, kizomba. Dois álbuns: Psikotica Bipolar e Psikose em Maputo.">
 <meta property="og:url" content="https://psikopata.com/">
 <meta property="og:image" content="https://psikopata.com/art/og.png">
 <meta property="og:locale" content="pt_PT">
@@ -32,124 +32,159 @@
 <nav class="nav" aria-label="principal"><a href="/psikopata/" aria-current="page">SOM</a><a href="/psikopata/psikotica-bipolar">PSIKOTICA BIPOLAR</a><a href="/psikopata/psikose-em-maputo">PSIKOSE EM MAPUTO</a><a href="/psikopata/universo">UNIVERSO</a><a href="/psikopata/entrar">ENTRAR</a></nav>
 </header>
 <main id="main">
-<section class="hero">
-  <p class="kicker">Artista · Compositor · Produtor Lusófono</p>
-  <h1>PSIKO<em>PATA</em></h1>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap">
+<style>
+body:has(.em) { background: #111; }
+body:has(.em) header, body:has(.em) .site-header { background: #000 !important; border-bottom: 1px solid #222 !important; }
+body:has(.em) header a, body:has(.em) .site-header a { color: #fff !important; font-family: "Oswald", sans-serif !important; text-transform: uppercase; letter-spacing: .18em; }
+body:has(.em) footer { background: #000 !important; }
+body:has(.em) .glow { display: none !important; }
 
-  <div class="stage" aria-hidden="true">
-    <div class="vinyl"><i></i></div>
-    <div class="eq"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
-  </div>
+.em { --red: #722f37; --bg: #111; --white: #fff; --gray: #ccc;
+  background: var(--bg); color: var(--white);
+  font-family: "Oswald", "Helvetica Neue", sans-serif;
+  margin: 0 -100vw; padding: 0 100vw; /* full-bleed dentro do layout */
+}
+.em * { border-radius: 0 !important; box-shadow: none !important; text-shadow: none !important; }
+.em h1, .em h2, .em h3 { text-transform: uppercase; font-family: "Anton", "Oswald", sans-serif; letter-spacing: .01em; }
 
-  <p class="whisper">Morna, marrabenta, kizomba. <b>Sente antes de entender.</b></p>
-  <p>
-    <a class="btn alt" href="#musica">Ouvir agora</a>
-    <a class="btn" href="#videos">Ver vídeos</a>
-  </p>
-  <p class="coords">Praia · Mindelo — Maputo · Lisboa</p>
-</section>
+.em-hero { position: relative; min-height: 62vh; max-height: 78vh; height: 70vh; display: flex; align-items: flex-end; overflow: hidden; background: #000; }
+.em-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(35%) contrast(1.08); }
+.em-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.15) 100%); }
+.em-hero-copy { position: relative; z-index: 2; padding: 0 24px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
+.em-hero-copy h1 { font-size: clamp(3.4rem, 9vw, 7.5rem); line-height: .92; margin: 0 0 18px; }
+.em-hero-copy h1 em { font-style: normal; color: var(--red); }
 
-<div class="marquee" aria-hidden="true">
-  <p>Novo álbum · Psikotica Bipolar · Cabo Verde — Psikose em Maputo · Moçambique · Novo álbum · Psikotica Bipolar · Cabo Verde — Psikose em Maputo · Moçambique ·&nbsp;</p>
-</div>
+.em-btn { display: inline-block; min-height: 3rem; line-height: 3rem; padding: 0 28px; margin: 0 10px 10px 0;
+  background: var(--red); color: #fff; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; font-weight: 600;
+  text-decoration: none; border: 2px solid var(--red); transition: background .2s, color .2s; }
+.em-btn:hover { background: #fff; color: #000; border-color: #fff; }
+.em-btn.ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.em-btn.ghost:hover { background: #fff; color: #000; }
+.em-btn:active { transform: scale(.97); }
 
-<section class="sec" id="lancamento">
-  <h2>Último <i>lançamento</i></h2>
-  <div class="release">
-    <img class="release-capa" src="/psikopata/art/capa-psikotica-bipolar.svg" alt="Capa do álbum Psikotica Bipolar" width="1000" height="1000" fetchpriority="high">
-    <div>
-      <p class="kicker">Cabo Verde · Álbum I</p>
-      <h3>Psikotica <em>Bipolar</em></h3>
-      <p class="lede">Entre a sodade e a febre. Batuku, morna e coladeira — o mar entre as ilhas.</p>
-      <p>
-        <a class="btn" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
-        <a class="btn" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">Apple Music</a>
-        <a class="btn" href="https://youtube.com/@psikopata7" rel="noopener">YouTube</a>
-      </p>
+.em-sec { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+.em-sec > h2 { font-size: clamp(1.6rem, 3.4vw, 2.7rem); margin: 0 0 24px; display: flex; align-items: center; gap: 16px; }
+.em-sec > h2::after { content: ""; height: 2px; background: var(--red); flex: 1; }
+.em-alt { background: #000; }
+.em-alt .em-sec { }
+
+.em-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 900px) { .em-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+.em-card { display: block; text-decoration: none; color: var(--white); }
+.em-card-media { display: block; position: relative; aspect-ratio: 1; overflow: hidden; background: #000; }
+.em-card-media.em-169 { aspect-ratio: 16/9; }
+.em-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .2s ease, opacity .2s ease; }
+.em-card:hover .em-card-media img { transform: scale(1.04); opacity: .82; }
+.em-card-t { display: block; margin-top: 10px; text-transform: uppercase; font-weight: 600; font-size: .92rem; letter-spacing: .08em; }
+.em-card:hover .em-card-t { color: var(--red); }
+.em-card-y { display: block; color: var(--gray); font-size: .78rem; letter-spacing: .14em; margin-top: 2px; }
+.em-play { position: absolute; inset: 0; display: grid; place-items: center; font-style: normal; color: #fff; font-size: 2rem; background: rgba(0,0,0,.35); opacity: 0; transition: opacity .2s; }
+.em-card:hover .em-play { opacity: 1; }
+
+.em-news { max-width: 900px; }
+.em-news p { color: var(--gray); font-size: 1.05rem; line-height: 1.7; font-weight: 400; }
+.em-news p b { color: #fff; }
+
+.em-foot { background: #000; border-top: 1px solid #222; padding: 40px 24px; text-align: center; }
+.em-foot a { color: #fff; text-transform: uppercase; letter-spacing: .2em; font-size: .78rem; text-decoration: none; margin: 0 14px; }
+.em-foot a:hover { color: var(--red); }
+.em-foot small { display: block; margin-top: 18px; color: #666; letter-spacing: .12em; }
+</style>
+
+<div class="em">
+  <section class="em-hero">
+    <img src="/psikopata/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="Psikopata">
+    <div class="em-hero-copy">
+      <h1>PSIKO<em>PATA</em></h1>
+      <a class="em-btn" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Ouvir agora</a>
+      <a class="em-btn ghost" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
     </div>
-  </div>
-</section>
+  </section>
 
-<section class="sec" id="musica">
-  <h2>Música</h2>
-  <p class="lede">Dois altares, uma devoção. Escolhe por onde entrar.</p>
+  <section class="em-sec">
+    <h2>Música</h2>
+    <div class="em-grid">
+    <a class="em-card" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="PsikoAmor Kuka Estrelinha" loading="lazy"></span>
+      <span class="em-card-t">PsikoAmor Kuka Estrelinha</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikodor-ursinha-grita-essa-dor-single/6775902707" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/psikodor-ursinha-grita-essa-dor-single.jpg" alt="PsikoDor Ursinha Grita Essa Dor" loading="lazy"></span>
+      <span class="em-card-t">PsikoDor Ursinha Grita Essa Dor</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikodor-obrigado-ursinha-single/6777503390" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/psikodor-obrigado-ursinha-single.jpg" alt="PsikoDor Obrigado Ursinha" loading="lazy"></span>
+      <span class="em-card-t">PsikoDor Obrigado Ursinha</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/clara-fica-calma-psikoamor-single/6774783598" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/clara-fica-calma-psikoamor-single.jpg" alt="Clara Fica Calma (PsikoAmor)" loading="lazy"></span>
+      <span class="em-card-t">Clara Fica Calma (PsikoAmor)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cabo-verde-paicv-batuku-di-vitoria-single/6770539924" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/cabo-verde-paicv-batuku-di-vitoria-sin.jpg" alt="CABO VERDE PAICV (BATUKU DI VITORIA)" loading="lazy"></span>
+      <span class="em-card-t">CABO VERDE PAICV (BATUKU DI VITORIA)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cabo-verde-gdp-di-banana-single/6769995001" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/cabo-verde-gdp-di-banana-single.jpg" alt="CABO VERDE (GDP DI BANANA)" loading="lazy"></span>
+      <span class="em-card-t">CABO VERDE (GDP DI BANANA)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikotchu-psikotchon-amapiano-single/6768428069" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/psikotchu-psikotchon-amapiano-single.jpg" alt="PSIKOTCHU PSIKOTCHON (amapiano)" loading="lazy"></span>
+      <span class="em-card-t">PSIKOTCHU PSIKOTCHON (amapiano)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cotonete-ta-decola-single/1894463712" rel="noopener">
+      <span class="em-card-media"><img src="/psikopata/art/covers/cotonete-ta-decola-single.jpg" alt="Cotonete Ta Decola" loading="lazy"></span>
+      <span class="em-card-t">Cotonete Ta Decola</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    </div>
+  </section>
 
-  <div class="albums">
-    <a class="album cv" href="/psikopata/psikotica-bipolar">
-      <span class="flagline" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <small>Cabo Verde · Álbum I</small>
-      <h3>Psikotica <em>Bipolar</em></h3>
-      <img class="capa" src="/psikopata/art/capa-psikotica-bipolar.svg" alt="Capa Psikotica Bipolar" width="1000" height="1000" loading="lazy">
-      <span class="listen">Ouvir o álbum</span>
+  <div class="em-alt">
+  <section class="em-sec">
+    <h2>Vídeos</h2>
+    <div class="em-grid">
+    <a class="em-card" href="https://www.youtube.com/watch?v=VKCilwZyDAE" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/VKCilwZyDAE/maxresdefault.jpg" alt="SOM" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">SOM</span>
     </a>
-    <a class="album mz" href="/psikopata/psikose-em-maputo">
-      <span class="flagline" aria-hidden="true"><i></i><i></i><i></i><i></i></span>
-      <small>Moçambique · Álbum II</small>
-      <h3>Psikose <em>em Maputo</em></h3>
-      <img class="capa" src="/psikopata/art/capa-psikose-em-maputo.svg" alt="Capa Psikose em Maputo" width="1000" height="1000" loading="lazy">
-      <span class="listen">Ouvir o álbum</span>
+    <a class="em-card" href="https://www.youtube.com/watch?v=nKhLUheegBw" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/nKhLUheegBw/maxresdefault.jpg" alt="PSIKOTICA BIPOLAR" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">PSIKOTICA BIPOLAR</span>
     </a>
+    <a class="em-card" href="https://www.youtube.com/watch?v=dPRk7ISeGGw" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/dPRk7ISeGGw/maxresdefault.jpg" alt="PSIKOSE EM MAPUTO" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">PSIKOSE EM MAPUTO</span>
+    </a>
+    <a class="em-card" href="https://www.youtube.com/watch?v=e75ym9PPEFU" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/e75ym9PPEFU/maxresdefault.jpg" alt="UNIVERSO" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">UNIVERSO</span>
+    </a>
+    </div>
+  </section>
   </div>
 
-  <h2 style="margin-top:4rem">Singles</h2>
-  <div class="singles">
-    <a class="single" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">
-      <img src="https://i.ytimg.com/vi/VKCilwZyDAE/maxresdefault.jpg" alt="Capa do single Cotonete Ta Decola" width="1280" height="720" loading="lazy">
-      <b>Cotonete Ta Decola</b><small>Single · 2026</small>
-    </a>
-    <a class="single" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">
-      <img src="https://i.ytimg.com/vi/dPRk7ISeGGw/maxresdefault.jpg" alt="Capa do single Batuku di Vitória" width="1280" height="720" loading="lazy">
-      <b>Batuku di Vitória</b><small>Cabo Verde · 2026</small>
-    </a>
-    <a class="single" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">
-      <img src="https://i.ytimg.com/vi/nKhLUheegBw/maxresdefault.jpg" alt="Capa do single PSIKOTCHU PSIKOTCHON" width="1280" height="720" loading="lazy">
-      <b>PSIKOTCHU PSIKOTCHON</b><small>Amapiano · 2026</small>
-    </a>
-    <a class="single" href="https://music.apple.com/us/artist/psikopata/1879089410" rel="noopener">
-      <img src="https://i.ytimg.com/vi/e75ym9PPEFU/maxresdefault.jpg" alt="Capa do single PsikoAmor" width="1280" height="720" loading="lazy">
-      <b>PsikoAmor</b><small>Single · 2026</small>
-    </a>
-  </div>
-</section>
+  <section class="em-sec em-news">
+    <h2>Sobre</h2>
+    <p><b>Psikopata</b> cruza morna, marrabenta e amapiano numa linguagem própria — de Cabo Verde para Moçambique e para o mundo. Este layout é um clone adaptado do eminem.com: preto cru, branco, um vermelho, tipografia condensada em caixa alta. Sem gradientes, sem vidro, sem plástico.</p>
+  </section>
 
-<section class="sec" id="videos">
-  <h2>Vídeos</h2>
-  <p class="lede">Vê a música a acontecer.</p>
-  <div class="vgrid">
-    <a class="video" href="https://youtu.be/VKCilwZyDAE" rel="noopener">
-      <img src="https://i.ytimg.com/vi/VKCilwZyDAE/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
-    <a class="video" href="https://youtu.be/dPRk7ISeGGw" rel="noopener">
-      <img src="https://i.ytimg.com/vi/dPRk7ISeGGw/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
-    <a class="video" href="https://youtu.be/nKhLUheegBw" rel="noopener">
-      <img src="https://i.ytimg.com/vi/nKhLUheegBw/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
-    <a class="video" href="https://youtu.be/e75ym9PPEFU" rel="noopener">
-      <img src="https://i.ytimg.com/vi/e75ym9PPEFU/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
-    <a class="video" href="https://youtu.be/35EsyhxYaV8" rel="noopener">
-      <img src="https://i.ytimg.com/vi/35EsyhxYaV8/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
-    <a class="video" href="https://youtu.be/DN2xE8vDH28" rel="noopener">
-      <img src="https://i.ytimg.com/vi/DN2xE8vDH28/maxresdefault.jpg" alt="Vídeo de Psikopata no YouTube" width="1280" height="720" loading="lazy">
-      <span class="play" aria-hidden="true"></span>
-    </a>
+  <div class="em-foot">
+    <a href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Apple Music</a>
+    <a href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
+    <a href="https://www.youtube.com/watch?v=VKCilwZyDAE" rel="noopener">YouTube</a>
+    <a href="https://wa.me/351966951104" rel="noopener">WhatsApp</a>
+    <small>© 2026 PSIKOPATA · clone adaptado de eminem.com</small>
   </div>
-</section>
-
-<section class="sec">
-  <div class="cta-box">
-    <h2>A beleza entra pelos olhos,<br><i>a música sai pela alma.</i></h2>
-    <a class="btn alt" href="https://wa.me/351966695104" rel="noopener">Entrar na comunidade</a>
-    <a class="btn" href="/psikopata/entrar">Todas as portas</a>
-  </div>
-</section>
+</div>
 
 </main>
 <footer class="ftr">
