@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Futuro — Laboratório de efeitos — PSIKOPATA</title>
-<meta name="description" content="Demonstração dos efeitos visuais candidatos ao novo site Psikopata.">
+<title>Futuro — proposta Eminem clone — PSIKOPATA</title>
+<meta name="description" content="Clone adaptado do eminem.com para Psikopata.">
 <link rel="canonical" href="https://psikopata.com/futuro">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Futuro — Laboratório de efeitos — PSIKOPATA">
-<meta property="og:description" content="Demonstração dos efeitos visuais candidatos ao novo site Psikopata.">
+<meta property="og:title" content="Futuro — proposta Eminem clone — PSIKOPATA">
+<meta property="og:description" content="Clone adaptado do eminem.com para Psikopata.">
 <meta property="og:url" content="https://psikopata.com/futuro">
 <meta property="og:image" content="https://psikopata.com/art/og.png">
 <meta property="og:locale" content="pt_PT">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://psikopata.com/art/og.png">
 <meta name="theme-color" content="#0d0a09">
-<link rel="icon" type="image/svg+xml" href="/psikopata/art/sigil.svg">
+<link rel="icon" type="image/svg+xml" href="/art/sigil.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Anton&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500;1,600&family=IBM+Plex+Mono:wght@400;500&display=swap">
@@ -26,92 +26,169 @@
 <div class="glow" aria-hidden="true"></div>
 <a class="skip" href="#main">Saltar para o conteúdo</a>
 <header class="hdr">
-<a class="logo" href="/psikopata/">PSIKOPATA</a>
+<a class="logo" href="/">PSIKOPATA</a>
 <input type="checkbox" id="menu" class="menu-check">
 <label for="menu" class="menu-btn" aria-label="Abrir menu"><i></i><i></i><i></i></label>
-<nav class="nav" aria-label="principal"><a href="/psikopata/">SOM</a><a href="/psikopata/psikotica-bipolar">PSIKOTICA BIPOLAR</a><a href="/psikopata/psikose-em-maputo">PSIKOSE EM MAPUTO</a><a href="/psikopata/universo">UNIVERSO</a><a href="/psikopata/entrar">ENTRAR</a></nav>
+<nav class="nav" aria-label="principal"><a href="/">SOM</a><a href="/psikotica-bipolar">PSIKOTICA BIPOLAR</a><a href="/psikose-em-maputo">PSIKOSE EM MAPUTO</a><a href="/universo">UNIVERSO</a><a href="/entrar">ENTRAR</a></nav>
 </header>
 <main id="main">
-<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
-<filter id="lg" color-interpolation-filters="sRGB" x="0%" y="0%" width="100%" height="100%">
-  <feTurbulence type="fractalNoise" baseFrequency="0.012 0.012" numOctaves="2" seed="7" result="n"/>
-  <feDisplacementMap in="SourceGraphic" in2="n" scale="26" xChannelSelector="R" yChannelSelector="G"/>
-</filter>
-</defs></svg>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&display=swap">
+<style>
+body:has(.em) { background: #111; }
+body:has(.em) header, body:has(.em) .site-header { background: #000 !important; border-bottom: 1px solid #222 !important; }
+body:has(.em) header a, body:has(.em) .site-header a { color: #fff !important; font-family: "Oswald", sans-serif !important; text-transform: uppercase; letter-spacing: .18em; }
+body:has(.em) footer { background: #000 !important; }
+body:has(.em) .glow { display: none !important; }
 
-<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
-<div class="grain" aria-hidden="true"></div>
+.em { --red: #ee1c24; --bg: #111; --white: #fff; --gray: #ccc;
+  background: var(--bg); color: var(--white);
+  font-family: "Oswald", "Helvetica Neue", sans-serif;
+  margin: 0 -100vw; padding: 0 100vw; /* full-bleed dentro do layout */
+}
+.em * { border-radius: 0 !important; box-shadow: none !important; text-shadow: none !important; }
+.em h1, .em h2, .em h3 { text-transform: uppercase; font-family: "Anton", "Oswald", sans-serif; letter-spacing: .01em; }
 
-<section class="hero5">
-  <span class="orb" style="width:120px;height:120px;top:16%;left:12%"></span>
-  <span class="orb" style="width:64px;height:64px;top:30%;right:14%;animation-delay:-3s"></span>
-  <span class="orb" style="width:36px;height:36px;bottom:22%;left:22%;animation-delay:-5s"></span>
-  <p class="pill glass-pill"><i></i>Laboratório de efeitos · 0 JS</p>
-  <h1 class="giant shine">PSIKOPATA</h1>
-  <p class="sub">Aurora · liquid glass · 3D · shimmer · conic · marquee.<br>Tudo CSS puro, copiado das melhores referências da net.</p>
-  <div class="now glass conic">
-    <span class="now-art"><img src="/psikopata/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="Capa PsikoAmor Kuka Estrelinha"></span>
-    <div>
-      <small>Último lançamento · 2026.06.03</small>
-      <b>PsikoAmor Kuka Estrelinha</b>
-      <audio controls preload="none" src="https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/98/4e/c6/984ec672-419f-6722-fa75-b75a52bed233/mzaf_12389797388104577988.plus.aac.p.m4a"></audio>
-      <p class="now-links">
-        <a class="btn alt" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Apple Music</a>
-        <a class="btn ghost" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
-      </p>
+.em-hero { position: relative; min-height: 62vh; max-height: 78vh; height: 70vh; display: flex; align-items: flex-end; overflow: hidden; background: #000; }
+.em-hero img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 20%; filter: grayscale(35%) contrast(1.08); }
+.em-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.25) 45%, rgba(0,0,0,.15) 100%); }
+.em-hero-copy { position: relative; z-index: 2; padding: 0 24px 40px; max-width: 1200px; margin: 0 auto; width: 100%; }
+.em-hero-copy h1 { font-size: clamp(3.4rem, 9vw, 7.5rem); line-height: .92; margin: 0 0 18px; }
+.em-hero-copy h1 em { font-style: normal; color: var(--red); }
+
+.em-btn { display: inline-block; min-height: 3rem; line-height: 3rem; padding: 0 28px; margin: 0 10px 10px 0;
+  background: var(--red); color: #fff; text-transform: uppercase; letter-spacing: .22em; font-size: .8rem; font-weight: 600;
+  text-decoration: none; border: 2px solid var(--red); transition: background .2s, color .2s; }
+.em-btn:hover { background: #fff; color: #000; border-color: #fff; }
+.em-btn.ghost { background: transparent; color: #fff; border: 2px solid #fff; }
+.em-btn.ghost:hover { background: #fff; color: #000; }
+.em-btn:active { transform: scale(.97); }
+
+.em-sec { max-width: 1200px; margin: 0 auto; padding: 48px 24px; }
+.em-sec > h2 { font-size: clamp(1.6rem, 3.4vw, 2.7rem); margin: 0 0 24px; display: flex; align-items: center; gap: 16px; }
+.em-sec > h2::after { content: ""; height: 2px; background: var(--red); flex: 1; }
+.em-alt { background: #000; }
+.em-alt .em-sec { }
+
+.em-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; }
+@media (max-width: 900px) { .em-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; } }
+.em-card { display: block; text-decoration: none; color: var(--white); }
+.em-card-media { display: block; position: relative; aspect-ratio: 1; overflow: hidden; background: #000; }
+.em-card-media.em-169 { aspect-ratio: 16/9; }
+.em-card-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transition: transform .2s ease, opacity .2s ease; }
+.em-card:hover .em-card-media img { transform: scale(1.04); opacity: .82; }
+.em-card-t { display: block; margin-top: 10px; text-transform: uppercase; font-weight: 600; font-size: .92rem; letter-spacing: .08em; }
+.em-card:hover .em-card-t { color: var(--red); }
+.em-card-y { display: block; color: var(--gray); font-size: .78rem; letter-spacing: .14em; margin-top: 2px; }
+.em-play { position: absolute; inset: 0; display: grid; place-items: center; font-style: normal; color: #fff; font-size: 2rem; background: rgba(0,0,0,.35); opacity: 0; transition: opacity .2s; }
+.em-card:hover .em-play { opacity: 1; }
+
+.em-news { max-width: 900px; }
+.em-news p { color: var(--gray); font-size: 1.05rem; line-height: 1.7; font-weight: 400; }
+.em-news p b { color: #fff; }
+
+.em-foot { background: #000; border-top: 1px solid #222; padding: 40px 24px; text-align: center; }
+.em-foot a { color: #fff; text-transform: uppercase; letter-spacing: .2em; font-size: .78rem; text-decoration: none; margin: 0 14px; }
+.em-foot a:hover { color: var(--red); }
+.em-foot small { display: block; margin-top: 18px; color: #666; letter-spacing: .12em; }
+</style>
+
+<div class="em">
+  <section class="em-hero">
+    <img src="/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="Psikopata">
+    <div class="em-hero-copy">
+      <h1>PSIKO<em>PATA</em></h1>
+      <a class="em-btn" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Ouvir agora</a>
+      <a class="em-btn ghost" href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
     </div>
+  </section>
+
+  <section class="em-sec">
+    <h2>Música</h2>
+    <div class="em-grid">
+    <a class="em-card" href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/psikoamor-kuka-estrelinha-single.jpg" alt="PsikoAmor Kuka Estrelinha" loading="lazy"></span>
+      <span class="em-card-t">PsikoAmor Kuka Estrelinha</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikodor-ursinha-grita-essa-dor-single/6775902707" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/psikodor-ursinha-grita-essa-dor-single.jpg" alt="PsikoDor Ursinha Grita Essa Dor" loading="lazy"></span>
+      <span class="em-card-t">PsikoDor Ursinha Grita Essa Dor</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikodor-obrigado-ursinha-single/6777503390" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/psikodor-obrigado-ursinha-single.jpg" alt="PsikoDor Obrigado Ursinha" loading="lazy"></span>
+      <span class="em-card-t">PsikoDor Obrigado Ursinha</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/clara-fica-calma-psikoamor-single/6774783598" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/clara-fica-calma-psikoamor-single.jpg" alt="Clara Fica Calma (PsikoAmor)" loading="lazy"></span>
+      <span class="em-card-t">Clara Fica Calma (PsikoAmor)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cabo-verde-paicv-batuku-di-vitoria-single/6770539924" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/cabo-verde-paicv-batuku-di-vitoria-sin.jpg" alt="CABO VERDE PAICV (BATUKU DI VITORIA)" loading="lazy"></span>
+      <span class="em-card-t">CABO VERDE PAICV (BATUKU DI VITORIA)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cabo-verde-gdp-di-banana-single/6769995001" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/cabo-verde-gdp-di-banana-single.jpg" alt="CABO VERDE (GDP DI BANANA)" loading="lazy"></span>
+      <span class="em-card-t">CABO VERDE (GDP DI BANANA)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/psikotchu-psikotchon-amapiano-single/6768428069" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/psikotchu-psikotchon-amapiano-single.jpg" alt="PSIKOTCHU PSIKOTCHON (amapiano)" loading="lazy"></span>
+      <span class="em-card-t">PSIKOTCHU PSIKOTCHON (amapiano)</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    <a class="em-card" href="https://music.apple.com/us/album/cotonete-ta-decola-single/1894463712" rel="noopener">
+      <span class="em-card-media"><img src="/art/covers/cotonete-ta-decola-single.jpg" alt="Cotonete Ta Decola" loading="lazy"></span>
+      <span class="em-card-t">Cotonete Ta Decola</span>
+      <span class="em-card-y">2026</span>
+    </a>
+    </div>
+  </section>
+
+  <div class="em-alt">
+  <section class="em-sec">
+    <h2>Vídeos</h2>
+    <div class="em-grid">
+    <a class="em-card" href="https://www.youtube.com/watch?v=VKCilwZyDAE" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/VKCilwZyDAE/hqdefault.jpg" alt="SOM" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">SOM</span>
+    </a>
+    <a class="em-card" href="https://www.youtube.com/watch?v=nKhLUheegBw" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/nKhLUheegBw/hqdefault.jpg" alt="PSIKOTICA BIPOLAR" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">PSIKOTICA BIPOLAR</span>
+    </a>
+    <a class="em-card" href="https://www.youtube.com/watch?v=dPRk7ISeGGw" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/dPRk7ISeGGw/hqdefault.jpg" alt="PSIKOSE EM MAPUTO" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">PSIKOSE EM MAPUTO</span>
+    </a>
+    <a class="em-card" href="https://www.youtube.com/watch?v=e75ym9PPEFU" rel="noopener">
+      <span class="em-card-media em-169"><img src="https://i.ytimg.com/vi/e75ym9PPEFU/hqdefault.jpg" alt="UNIVERSO" loading="lazy"><i class="em-play">&#9654;</i></span>
+      <span class="em-card-t">UNIVERSO</span>
+    </a>
+    </div>
+  </section>
   </div>
-</section>
 
-<div class="marquee" aria-hidden="true"><div class="mq-track"><span>MORNA · MARRABENTA · KIZOMBA · AMAPIANO · BATUKU · FUNANÁ ·&nbsp;</span><span>MORNA · MARRABENTA · KIZOMBA · AMAPIANO · BATUKU · FUNANÁ ·&nbsp;</span></div></div>
+  <section class="em-sec em-news">
+    <h2>Sobre</h2>
+    <p><b>Psikopata</b> cruza morna, marrabenta e amapiano numa linguagem própria — de Cabo Verde para Moçambique e para o mundo. Este layout é um clone adaptado do eminem.com: preto cru, branco, um vermelho, tipografia condensada em caixa alta. Sem gradientes, sem vidro, sem plástico.</p>
+  </section>
 
-<section class="sec" id="fx">
-  <h2>Os <i>efeitos</i></h2>
-  <div class="fx-grid">
-    <div class="fx glass tilt">
-      <small>01 · 3D tilt + glare</small>
-      <b>Passa o dedo</b>
-      <p>O cartão inclina em perspetiva com reflexo de luz, como vidro físico.</p>
-    </div>
-    <div class="fx glass">
-      <small>02 · Liquid glass</small>
-      <b class="shine">Refração real</b>
-      <p>backdrop-filter + SVG feDisplacementMap — o efeito Apple WWDC25.</p>
-    </div>
-    <div class="fx glass conic2">
-      <small>03 · Borda conic</small>
-      <b>Luz a girar</b>
-      <p>Borda de gradiente cónico animada com @property.</p>
-    </div>
-    <div class="fx glass">
-      <small>04 · Shimmer</small>
-      <b class="shine">Texto com brilho</b>
-      <p>Gradiente animado a atravessar o texto, em loop.</p>
-    </div>
-    <div class="fx glass">
-      <small>05 · Aurora</small>
-      <b>Fundo vivo</b>
-      <p>Três blobs de cor desfocados a respirar atrás de tudo.</p>
-    </div>
-    <div class="fx glass tilt">
-      <small>06 · Grain</small>
-      <b>Película de filme</b>
-      <p>Ruído SVG em overlay fixo — textura cinematográfica.</p>
-    </div>
+  <div class="em-foot">
+    <a href="https://music.apple.com/us/album/psikoamor-kuka-estrelinha-single/6776935675" rel="noopener">Apple Music</a>
+    <a href="https://open.spotify.com/artist/3Wug0ZUuXPIMSoW5QjR4Ey" rel="noopener">Spotify</a>
+    <a href="https://www.youtube.com/watch?v=VKCilwZyDAE" rel="noopener">YouTube</a>
+    <a href="https://wa.me/351966951104" rel="noopener">WhatsApp</a>
+    <small>© 2026 PSIKOPATA · clone adaptado de eminem.com</small>
   </div>
-</section>
-
-<section class="sec">
-  <div class="cta-box glass">
-    <h2 class="shine">Qual destes entra no site?</h2>
-    <a class="btn alt" href="https://wa.me/351966695104" rel="noopener">Diz-me no WhatsApp</a>
-    <a class="btn" href="/psikopata/">Voltar ao site atual</a>
-  </div>
-</section>
+</div>
 
 </main>
 <footer class="ftr">
-<p><a href="/psikopata/manifesto">Manifesto</a> · <a href="/psikopata/producoes">Produções</a> · <a href="/psikopata/lab">Lab</a></p>
+<p><a href="/manifesto">Manifesto</a> · <a href="/producoes">Produções</a> · <a href="/lab">Lab</a></p>
 <p><span aria-hidden="true">©</span> PSIKOPATA — começa no som, termina na mente.</p>
 </footer>
 </body>
