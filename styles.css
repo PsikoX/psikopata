@@ -41,7 +41,7 @@ main { width: min(100% - 2rem, 88rem); margin: 1.5rem auto 0; }
 .hero-shade { position: absolute; z-index: -1; inset: 0; background: linear-gradient(90deg, rgba(12, 2, 42, 0.97) 0%, rgba(19, 3, 55, 0.78) 42%, rgba(25, 4, 58, 0.12) 77%), linear-gradient(0deg, rgba(8, 2, 29, 0.78), transparent 45%); }
 .hero-copy { width: min(72%, 47rem); padding: clamp(4rem, 8vw, 8rem) clamp(1.5rem, 5vw, 4rem); }
 .eyebrow, .panel-heading p, .track-label, .section-number { margin: 0; color: var(--pink-soft); font-size: 0.72rem; font-weight: 850; letter-spacing: 0.22em; text-transform: uppercase; }
-.hero h1 { margin: 0.85rem 0 0; font-family: var(--display); font-size: clamp(4rem, 9.5vw, 8.6rem); font-weight: 900; letter-spacing: -0.035em; line-height: 0.78; text-transform: uppercase; text-shadow: 0 0.2rem 1.5rem rgba(6, 0, 23, 0.45); }
+.hero h1 { margin: 0.85rem 0 0; font-family: var(--display); font-size: clamp(4rem, 9.5vw, 8.6rem); font-weight: 900; letter-spacing: -0.035em; line-height: 0.96; text-transform: uppercase; text-shadow: 0 0.2rem 1.5rem rgba(6, 0, 23, 0.45); }
 .hero h1 span { color: transparent; background: linear-gradient(90deg, #fff 0 33%, var(--pink) 33% 68%, var(--cyan) 68%); -webkit-background-clip: text; background-clip: text; }
 .intro { max-width: 34rem; margin: 2rem 0 0; color: #d2c9e7; font-size: clamp(1rem, 1.8vw, 1.15rem); line-height: 1.7; }
 .primary-button { min-height: 3.2rem; margin-top: 2rem; padding: 0.9rem 1.6rem; }

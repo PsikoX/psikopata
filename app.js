@@ -28,7 +28,7 @@ const updateTimeline = () => {
 const showPlayingState = (isPlaying) => {
   player.classList.toggle('is-playing', isPlaying);
   playButton.setAttribute('aria-pressed', String(isPlaying));
-  playButton.setAttribute('aria-label', isPlaying ? 'Pausar Psicopapa' : 'Reproduzir Psicopapa');
+  playButton.setAttribute('aria-label', isPlaying ? 'Pausar Psikopapa' : 'Reproduzir Psikopapa');
 };
 
 playButton.addEventListener('click', async () => {
