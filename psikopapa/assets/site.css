@@ -2763,7 +2763,18 @@ h1,h2,h3,.identity-name {
 }
 
 .fer-section {
-  background:radial-gradient(ellipse at center,#080708db,transparent 80%);
+  border-block:1px solid #a34e63a6;
+  background:radial-gradient(ellipse at 50% 40%,#5b112a9c,#1d0a15d9 53%,#080708 88%);
+  box-shadow:inset 0 0 75px #8c19302e;
+}
+
+@supports(background-clip:text) {
+  .fer-word {
+    background:linear-gradient(145deg,#fff4e6 16%,#d8b39e 46%,#fff0dd 67%,#bb7c81 95%);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+  }
 }
 
 .cinematic-universe > .section-space::before {
@@ -3009,17 +3020,17 @@ h1,h2,h3,.identity-name {
     }
   }
 
-  @supports(timeline-scope:--fer) and (animation-timeline:view()) {
+  @supports(timeline-scope:--closing) and (animation-timeline:view()) {
     .cinematic-universe {
-      timeline-scope:--fer;
+      timeline-scope:--closing;
     }
-    .fer-section {
-      view-timeline-name:--fer;
+    .seven-section {
+      view-timeline-name:--closing;
       view-timeline-axis:block;
     }
     .smoke-atmosphere,.smoke-live {
       animation:atmosphere-rest linear forwards;
-      animation-timeline:--fer;
+      animation-timeline:--closing;
       animation-range:entry 0% cover 38%;
     }
     @keyframes atmosphere-rest {
@@ -3080,54 +3091,64 @@ h1,h2,h3,.identity-name {
   }
 }
 
-/* FER appears at the entrance; its full story still unfolds later. */
+/* FER leads the experience without hiding the faces in the cover. */
 .hero-fer {
   position:absolute;
   z-index:4;
-  top:22px;
+  top:20px;
   left:20px;
-  max-width:calc(100% - 40px);
-  min-height:52px;
-  display:inline-flex;
+  width:min(470px,calc(100% - 40px));
+  min-height:100px;
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr) auto;
   align-items:center;
-  gap:10px;
-  padding:7px 12px;
+  gap:12px;
+  padding:12px 17px;
   color:var(--paper);
-  background:#080708d9;
-  border:1px solid #dbac8c8a;
-  box-shadow:0 6px 22px #08070870;
-  transition:border-color .2s,background-color .2s;
+  background:linear-gradient(110deg,#080708f5,#310d1dda 64%,#080708e8);
+  border:1px solid #d7b88ac9;
+  border-left:3px solid var(--gold);
+  box-shadow:0 10px 32px #080708b8,0 0 30px #b31c3940;
+  transition:border-color .2s,box-shadow .2s;
 }
 
 .hero-fer:hover,.hero-fer:focus-visible {
   border-color:var(--red);
-  background:#210d16;
+  box-shadow:0 10px 36px #080708d9,0 0 38px #b31c3970;
 }
 
 .hero-fer strong {
   font-family:var(--display);
-  font-size:2rem;
+  font-size:clamp(3.75rem,7vw,5.5rem);
   font-weight:500;
-  line-height:1;
-  letter-spacing:.035em;
-  color:var(--gold);
+  line-height:.9;
+  letter-spacing:-.055em;
+  color:#f5dfc7;
+  text-shadow:0 0 18px #b31c397a;
 }
 
 .hero-fer-terms {
-  display:flex;
-  flex-wrap:wrap;
-  align-items:center;
-  gap:0 5px;
-  font-size:.625rem;
+  display:grid;
+  gap:2px;
+  min-width:0;
+  font-size:.75rem;
   font-weight:600;
-  letter-spacing:.045em;
-  line-height:1.4;
+  letter-spacing:.075em;
+  line-height:1.3;
+  color:var(--silver);
 }
 
-.hero-fer-terms span+span::before {
-  content:'·';
-  margin-right:5px;
-  color:var(--red);
+.hero-fer-terms span {
+  overflow-wrap:anywhere;
+}
+
+.hero-fer-arrow {
+  align-self:end;
+  color:var(--gold);
+  font-size:.625rem;
+  font-weight:700;
+  letter-spacing:.08em;
+  line-height:1;
 }
 
 .hero-note {
@@ -3215,10 +3236,19 @@ h1,h2,h3,.identity-name {
     mask-image:linear-gradient(180deg,#000 50%,transparent 64%);
   }
   .hero-fer {
-    top:8px;
+    position:relative;
+    top:auto;
+    left:auto;
+    width:calc(100% - 40px);
+    margin:clamp(195px,60vw,257px) auto 0;
+    gap:9px;
+    padding:12px 13px;
+  }
+  .hero-fer strong {
+    font-size:clamp(2.75rem,15vw,4.75rem);
   }
   .hero-content {
-    padding-top:clamp(255px,70vw,305px);
+    padding-top:18px;
     padding-bottom:25px;
   }
   .hero-kicker {
@@ -3286,7 +3316,7 @@ h1,h2,h3,.identity-name {
     max-width:330px;
     margin-inline:auto;
     gap:0;
-    font-size:.625rem;
+    font-size:.6875rem;
     letter-spacing:.07em;
   }
   .fer-meaning span {
@@ -3346,6 +3376,6 @@ h1,h2,h3,.identity-name {
     left:max(56px,calc((100vw - 1264px)/2));
   }
   .hero-content {
-    padding-top:128px;
+    padding-top:177px;
   }
 }
