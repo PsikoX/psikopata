@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /psikopata/psikopapa/
+Sitemap: https://psikox.github.io/psikopata/psikopapa/sitemap.xml
