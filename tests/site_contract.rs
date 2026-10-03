@@ -255,9 +255,34 @@ fn unknown_audio_and_social_urls_do_not_become_pretend_actions() {
     );
     assert_eq!(
         doc.select(&select(".availability")).count(),
-        content::TRACKS.iter().filter(|t| t.audio.is_none()).count()
+        content::TRACKS
+            .iter()
+            .filter(|t| {
+                t.audio.is_none()
+                    && t.spotify.is_none()
+                    && t.apple_music.is_none()
+                    && t.youtube.is_none()
+            })
+            .count()
     );
     assert_eq!(doc.select(&select(".seven-slots li")).count(), 7);
+    let community = doc.select(&select(".community-access")).next().unwrap();
+    assert_eq!(community.select(&select(".whatsapp-mark")).count(), 1);
+    assert_eq!(
+        community
+            .select(&select(".community-whatsapp-link"))
+            .count(),
+        usize::from(content::COMMUNITY_WHATSAPP.is_some())
+    );
+    assert_eq!(
+        doc.select(&select(".track-platforms a")).count(),
+        content::TRACKS
+            .iter()
+            .map(|track| usize::from(track.spotify.is_some())
+                + usize::from(track.apple_music.is_some())
+                + usize::from(track.youtube.is_some()))
+            .sum::<usize>()
+    );
 }
 
 #[test]
@@ -387,6 +412,7 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
     }
     let css = prefix_local_urls(styles::CSS, &config.base_path);
     assert!(css.contains("url('/psikopata/psikopapa/assets/fonts/"));
+    assert!(css.contains("url('/psikopata/psikopapa/assets/icons/whatsapp.svg')"));
     assert!(!css.contains("url('/assets/"));
     for invalid in [
         "psikopapa",

@@ -1,0 +1,8 @@
+WhatsApp icon silhouette from Simple Icons:
+https://github.com/simple-icons/simple-icons/blob/develop/icons/whatsapp.svg
+
+Simple Icons distributes its icon artwork under CC0 1.0:
+https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md
+
+WhatsApp remains a trademark of its owner. This site uses the icon only to
+identify the destination of the community link.

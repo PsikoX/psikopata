@@ -17,6 +17,12 @@ pub struct Track {
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
+pub struct Release {
+    pub title: &'static str,
+    pub apple_music: &'static str,
+}
+
+#[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub struct Muse {
     pub name: &'static str,
     pub image: Image,

@@ -53,4 +53,6 @@ Os eventos originais estão em `qa/performance-report.json`. O LCP foi calculado
 
 ## Dados pendentes
 
-Áudios, URLs oficiais das plataformas e canal de contacto não foram fornecidos. A interface comunica essas ausências. Não foram criadas biografias, inscrições, disponibilidade comercial ou confirmações de ações externas.
+As quatro faixas e o perfil Apple Music do artista foram confirmados no catálogo Apple Music Venezuela. Áudios locais, links Spotify/YouTube Music, convite real da comunidade WhatsApp, fotografia do grupo e canal de contacto não foram fornecidos. O cartão de comunidade mostra uma imagem editorial identificada como tal e comunica que o acesso é por convite. Não foram criadas biografias, inscrições, disponibilidade comercial ou confirmações de ações externas.
+
+Após a inclusão do teaser musical mobile, Seeta, lançamentos e cartão de comunidade, repetiu-se a auditoria em Chromium com JavaScript desativado: 320, 360, 390, 430, 768, 1024, 1440 e 1920 px sem overflow ou recursos falhados. A verificação a 200% de texto no viewport de 390 px também passou. Houve uma regressão inicial de overflow no link Seeta; a largura do link foi corrigida antes deste resultado final.

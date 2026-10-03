@@ -46,7 +46,6 @@ pub fn Footer() -> Element {
                 div { class: "social-links", "aria-label": "Plataformas musicales y sociales",
                     for (label, url) in content::SOCIAL_LINKS {
                         if let Some(href) = url { ExternalLink { href: *href, label: *label } }
-                        else { span { class: "unavailable-link", title: "Enlace oficial todavía no disponible", "{label}" } }
                     }
                 }
             }

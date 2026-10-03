@@ -7,7 +7,7 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.2012044064937803,
+    "isolated_video_change_fraction": 0.20030834914611007,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
@@ -32,8 +32,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-mobile.webp"
     ],
-    "texture_transform_after": "matrix(1.06887, 0.0236098, -0.0236098, 1.06887, 11.6462, -32.6351)",
-    "texture_transform_before": "matrix(1.04873, 0.00824857, -0.00824857, 1.04873, 4.14755, -14.6654)",
+    "texture_transform_after": "matrix(1.06929, 0.0239321, -0.0239321, 1.06929, 11.8005, -33.005)",
+    "texture_transform_before": "matrix(1.04974, 0.00899567, -0.00899567, 1.04974, 4.51887, -15.5553)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-mobile.mp4"
     ],
@@ -56,7 +56,7 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.12438582467359446,
+    "isolated_video_change_fraction": 0.10968292033040235,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
@@ -81,8 +81,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-desktop.webp"
     ],
-    "texture_transform_after": "matrix(1.07283, 0.0267179, -0.0267179, 1.07283, 48.4814, -42.8819)",
-    "texture_transform_before": "matrix(1.05345, 0.0117801, -0.0117801, 1.05345, 21.7726, -22.343)",
+    "texture_transform_after": "matrix(1.0725, 0.0264526, -0.0264526, 1.0725, 48.0152, -42.5234)",
+    "texture_transform_before": "matrix(1.05298, 0.0114248, -0.0114248, 1.05298, 21.1254, -21.8453)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-desktop.mp4"
     ],

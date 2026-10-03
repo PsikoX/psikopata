@@ -1,5 +1,5 @@
 use crate::{
-    components::{BrandName, ResponsiveImage, SectionHeading, SectionLabel},
+    components::{BrandName, ExternalLink, ResponsiveImage, SectionHeading, SectionLabel},
     content,
 };
 use dioxus::prelude::*;
@@ -25,6 +25,11 @@ pub fn Muses() -> Element {
                     }
                 }
                 p { class: "muses-closing", "{content::copy::MUSES_CLOSING[0]}" em { "{content::copy::MUSES_CLOSING[1]}" } }
+                aside { class: "seeta-mention", "aria-label": "Seeta Live",
+                    p { class: "eyebrow", "{content::copy::SEETA_LABEL}" }
+                    div { h3 { "{content::copy::SEETA_HEADING}" } p { "{content::copy::SEETA_DESCRIPTION}" } }
+                    ExternalLink { href: content::SEETA_GOOGLE_PLAY, label: content::copy::SEETA_ACTION }
+                }
             }
         }
     }

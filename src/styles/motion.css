@@ -218,8 +218,9 @@
   top:0;
   left:8%;
   right:8%;
-  height:1px;
-  background:linear-gradient(90deg,transparent,#c7a49a24,transparent);
+  height:2px;
+  background:linear-gradient(90deg,transparent,#84253d5c 28%,#d7b88a8c 50%,#84253d5c 72%,transparent);
+  opacity:.7;
   pointer-events:none;
 }
 
@@ -332,6 +333,20 @@
 }
 
 @media(prefers-reduced-motion:no-preference) {
+  .site-header .brand .brand-name {
+    animation:brand-light 1.05s .18s ease-out both;
+  }
+  .hero-fer {
+    animation:fer-arrival .7s .18s cubic-bezier(.16,1,.3,1) both;
+  }
+  @keyframes brand-light {
+    from { background-position:100% 50%; }
+    to { background-position:0 50%; }
+  }
+  @keyframes fer-arrival {
+    from { opacity:.5; translate:0 -10px; }
+    to { opacity:1; translate:0 0; }
+  }
   .smoke-field {
     will-change:transform;
   }
@@ -408,6 +423,16 @@
       animation-timeline:view();
       animation-range:entry 0% entry 90%;
     }
+    .seeta-mention,.more-releases,.community-access {
+      animation:chapter-arrival linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 50%;
+    }
+    .cinematic-universe > .section-space::before {
+      animation:section-seam linear both;
+      animation-timeline:view();
+      animation-range:entry 0% entry 38%;
+    }
     @keyframes opening-depth {
       from { translate:0 0; scale:1; }
       to { translate:0 34px; scale:1.04; }
@@ -423,6 +448,10 @@
     @keyframes line-arrival {
       from { opacity:.4; translate:0 18px; }
       to { opacity:1; translate:0 0; }
+    }
+    @keyframes section-seam {
+      from { opacity:.15; transform:scaleX(.4); }
+      to { opacity:.7; transform:scaleX(1); }
     }
   }
 

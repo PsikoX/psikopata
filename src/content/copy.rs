@@ -42,6 +42,8 @@ pub const MUSIC: SectionCopy = SectionCopy {
     paragraphs: &["PSIKOPAPA crea música para ellas."],
 };
 pub const MUSIC_NOTE: &str = "ESTA CANCIÓN FUE CREADA PARA ELLA.";
+pub const MORE_RELEASES: &str = "MÁS MÚSICA DE PSIKOPAPA";
+pub const MUSIC_ARTIST_LINK: &str = "VER TODOS LOS LANZAMIENTOS";
 pub const AUDIO_UNAVAILABLE: &str = "Audio no disponible en el sitio.";
 pub const TRACK_STORY_OPENING: &str = "Una canción lleva su nombre:";
 pub const TRACK_STORY_CLOSING: &str = "Belleza, identidad y música dentro del mismo universo.";
@@ -105,6 +107,15 @@ pub const COMMUNITY: SectionCopy = SectionCopy {
 pub const COMMUNITY_MANIFESTO: [&str; 2] = ["QUIEN APRENDE,", "ENSEÑA."];
 pub const COMMUNITY_ACTIONS: &[&str] =
     &["Aprender", "Preguntar", "Crear", "Colaborar", "Participar"];
+pub const SEETA_LABEL: &str = "UN GUIÑO EN LA PORTADA";
+pub const SEETA_HEADING: &str = "El universo también aparece en vivo.";
+pub const SEETA_DESCRIPTION: &str = "¿Viste Seeta Live en la portada de Zoe? Seeta es una app social latina con video, conversación y salas en vivo.";
+pub const SEETA_ACTION: &str = "CONOCER SEETA EN GOOGLE PLAY";
+pub const COMMUNITY_WHATSAPP_LABEL: &str = "COMUNIDAD / WHATSAPP";
+pub const COMMUNITY_WHATSAPP_HEADING: &str = "La conversación sigue entre nosotras.";
+pub const COMMUNITY_WHATSAPP_BODY: &str = "Pregunta, comparte y crea con la comunidad PSIKOPAPA.";
+pub const COMMUNITY_WHATSAPP_ACTION: &str = "ENTRAR A LA COMUNIDAD";
+pub const COMMUNITY_WHATSAPP_PENDING: &str = "Acceso por invitación. Enlace oficial próximamente.";
 pub const SEVEN: SectionCopy = SectionCopy {
     label: "EL PRIMER CAPÍTULO",
     heading: &[Line::emphasized("LAS ", "7", "")],

@@ -1,4 +1,4 @@
-use crate::models::{Chapter, Image, Muse, NavLink, Track};
+use crate::models::{Chapter, Image, Muse, NavLink, Release, Track};
 
 pub mod copy;
 
@@ -36,13 +36,13 @@ pub const MUSES: &[Muse] = &[
         name: "Karen",
         image: KAREN,
         track_id: "karen-mi-amor",
-        track_title: "Karen mi amor",
+        track_title: "Karen",
     },
     Muse {
         name: "Zoe",
         image: ZOE_ALTERNATE,
         track_id: "zoe-la-cortada",
-        track_title: "Zoe la cortada",
+        track_title: "Zoe (La Cortada)",
     },
 ];
 
@@ -51,25 +51,42 @@ pub const MUSES: &[Muse] = &[
 pub const TRACKS: &[Track] = &[
     Track {
         id: "karen-mi-amor",
-        title: "Karen mi amor",
+        title: "Karen",
         muse: "Karen",
         cover: KAREN,
         audio: None,
         spotify: None,
-        apple_music: None,
+        apple_music: Some("https://music.apple.com/ve/album/karen/6816570213?i=6816570214"),
         youtube: None,
     },
     Track {
         id: "zoe-la-cortada",
-        title: "Zoe la cortada",
+        title: "Zoe (La Cortada)",
         muse: "Zoe",
         cover: ZOE,
         audio: None,
         spotify: None,
-        apple_music: None,
+        apple_music: Some(
+            "https://music.apple.com/ve/album/zoe-la-cortada/6818815810?i=6818815811",
+        ),
         youtube: None,
     },
 ];
+
+pub const OTHER_RELEASES: &[Release] = &[
+    Release {
+        title: "Gata 4x4",
+        apple_music: "https://music.apple.com/ve/album/gata-4x4/6816570049?i=6816570050",
+    },
+    Release {
+        title: "Flaquita (Casados por Error)",
+        apple_music: "https://music.apple.com/ve/album/flaquita-casados-por-error/6816570112?i=6816570113",
+    },
+];
+
+pub const APPLE_MUSIC_ARTIST: &str = "https://music.apple.com/ve/artist/psikopapa/6816504681";
+pub const SEETA_GOOGLE_PLAY: &str =
+    "https://play.google.com/store/apps/details?id=com.mztech.seeta&hl=es_VE";
 
 pub const TOP_NAV: &[NavLink] = &[
     NavLink {
@@ -211,12 +228,13 @@ pub const FER_CHAPTERS: &[Chapter] = &[
 // Set the real contact and social URLs here, then regenerate the site.
 pub const CONTACT_EMAIL: Option<&str> = None;
 pub const CONTACT_WHATSAPP: Option<&str> = None;
+pub const COMMUNITY_WHATSAPP: Option<&str> = None;
 pub const SOCIAL_LINKS: &[(&str, Option<&str>)] = &[
     ("Instagram", None),
     ("TikTok", None),
     ("YouTube", None),
     ("Spotify", None),
-    ("Apple Music", None),
+    ("Apple Music", Some(APPLE_MUSIC_ARTIST)),
 ];
 pub const SMOKE_TEXTURE_DESKTOP: &str = "/assets/atmosphere/cover-smoke-desktop.webp";
 pub const SMOKE_TEXTURE_MOBILE: &str = "/assets/atmosphere/cover-smoke-mobile.webp";
