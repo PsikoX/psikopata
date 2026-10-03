@@ -15,6 +15,7 @@ pub fn Hero() -> Element {
                 span { class: "hero-fer-terms",
                     for chapter in content::FER_CHAPTERS { span { "{chapter.title}" } }
                 }
+                span { class: "hero-fer-arrow", "aria-hidden": "true", "VER" }
             }
             div { class: "container hero-content",
                 p { class: "hero-kicker", span { "aria-hidden": "true", "✦" } "{content::copy::HERO_KICKER}" }

@@ -13,8 +13,8 @@ pub fn Home() -> Element {
     rsx! {
         div { class: "cinematic-universe",
             SmokeAtmosphere {}
-            Hero {} Universe {} Muses {} Music {} AlterEgo {} Creation {}
-            Education {} Community {} FerReveal {} Contact {}
+            Hero {} FerReveal {} Universe {} Muses {} Music {} AlterEgo {}
+            Creation {} Education {} Community {} Contact {}
         }
     }
 }

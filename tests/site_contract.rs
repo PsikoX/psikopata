@@ -183,7 +183,7 @@ fn all_images_have_real_assets_dimensions_and_text_alternatives() {
 }
 
 #[test]
-fn fer_is_intact_and_comes_after_beauty_music_and_education() {
+fn fer_is_intact_and_follows_the_opening() {
     assert_eq!(
         content::FER_CHAPTERS
             .iter()
@@ -192,8 +192,11 @@ fn fer_is_intact_and_comes_after_beauty_music_and_education() {
         vec![("F", "FETICHE"), ("E", "EDUCACIÓN"), ("R", "RELIGIÓN")]
     );
     let html = render_page(Route::Home, SiteConfig::new("").unwrap());
+    assert!(html.find("id=\"hero-title\"").unwrap() < html.find("id=\"fer\"").unwrap());
     let mut previous = 0;
     for id in [
+        "fer",
+        "universo",
         "muses",
         "music",
         "alter-ego",
@@ -201,7 +204,6 @@ fn fer_is_intact_and_comes_after_beauty_music_and_education() {
         "education",
         "community",
         "las-7",
-        "fer",
     ] {
         let position = html.find(&format!("id=\"{id}\"")).unwrap();
         assert!(position > previous, "narrative order at {id}");

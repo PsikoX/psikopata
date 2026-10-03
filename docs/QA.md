@@ -7,14 +7,14 @@
 - `cargo run --release --locked --bin build-site`: build de produção concluído.
 - HTML: um H1 por página, linguagem `es-VE`, títulos distintos, descriptions, Open Graph, Twitter/X e canonical configurados.
 - Todos os destinos internos e assets referenciados existem; IDs e títulos acessíveis são consistentes.
-- FER preserva FETICHE, EDUCACIÓN e RELIGIÓN, depois de beleza, música e educação.
+- FER preserva FETICHE, EDUCACIÓN e RELIGIÓN, com destaque no hero e secção própria imediatamente a seguir.
 - Nenhum script, iframe, atributo de evento ou URL `javascript:` foi gerado.
 
 ## Chromium
 
 A auditoria em Rust utiliza comandos nativos DOM, Accessibility, Input, Emulation, Network, Media e PerformanceTimeline. Não utiliza `Runtime.evaluate` nem helpers JavaScript.
 
-Foram verificados o início a 320, 390, 768, 1024, 1440 e 1920 px e FER a 390 e 1440 px, com JavaScript desativado e movimento reduzido:
+Foram verificados o início a 320, 360, 390, 430, 768, 1024, 1440 e 1920 px e a página FER a 390 e 1440 px, com JavaScript desativado e movimento reduzido:
 
 - Nenhum overflow horizontal, request de script ou recurso com resposta HTTP de erro.
 - Nenhum link ou botão sem nome na árvore acessível consultada.
@@ -34,9 +34,9 @@ Executado `tools/browser-audit --motion`, com JavaScript desativado, a 390×844 
 - Uma captura adicional congelou as duas texturas CSS para isolar o movimento real do vídeo. Após dois segundos, cerca de **19,75%** dos pixels amostrados nas margens mudaram no mobile e **10,42%** no desktop. A contagem usa uma diferença RGB somada de pelo menos 18 e exclui o header e a scrollbar.
 - Space no checkbox ocultou o vídeo, congelou as texturas e desativou as restantes animações CSS. Os pixels do conteúdo ficaram estáveis após a pausa. A reativação por teclado voltou a mostrar o vídeo e a mover as texturas.
 - Com movimento reduzido, não ocorreram requests MP4; o fumo ficou estático e o controlo de pausa oculto.
-- Cormorant Garamond LightItalic confirmou o itálico real do hero. A revelação das imagens abriu e a atmosfera ficou mais discreta na chegada ao FER.
+- Cormorant Garamond LightItalic confirmou o itálico real do hero. A revelação das imagens abriu; a atmosfera permanece intensa no FER inicial e fica mais discreta perto de LAS 7.
 - Nenhum overflow horizontal ou request de JavaScript nas duas larguras.
-- Foram inspecionadas as capturas do hero, Muses, Educação e FER em mobile e desktop para verificar tonalidade, continuidade e leitura.
+- Foram inspecionadas as capturas do hero, FER inicial, Muses e Educação em mobile e desktop para verificar tonalidade, continuidade e leitura.
 
 Relatório: `qa/motion-report.json`. O vídeo mobile tem 442 285 bytes; o desktop, 789 665 bytes. Há apenas um vídeo para toda a página. A preparação e licença constam de `ASSETS.md`.
 

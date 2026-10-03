@@ -668,6 +668,13 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             .style(".smoke-atmosphere", "opacity")?
             .parse::<f64>()?;
         browser.current_viewport(&format!("continuity-{width}-fer.png"))?;
+        let closing = browser.node("#seven-title")?;
+        browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":closing}))?;
+        thread::sleep(Duration::from_millis(250));
+        let opacity_closing = browser
+            .style(".smoke-atmosphere", "opacity")?
+            .parse::<f64>()?;
+        browser.current_viewport(&format!("continuity-{width}-closing.png"))?;
 
         let toggle = browser.node("#pause-motion")?;
         browser.call("DOM.focus", json!({"nodeId":toggle}))?;
@@ -692,10 +699,10 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             .events
             .iter()
             .any(|e| e["method"] == "Network.requestWillBeSent" && e["params"]["type"] == "Script");
-        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"smoke_opacity_before_fer":opacity_before,"smoke_opacity_at_fer":opacity_fer,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
+        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
         println!(
             "{}",
-            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer})
+            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
         );
         reports.push(report);
         if !moving
@@ -711,7 +718,8 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             || italic != "italic"
             || overflow
             || !no_scripts
-            || opacity_fer >= opacity_before
+            || opacity_closing >= opacity_before
+            || opacity_fer < opacity_closing
         {
             fs::write(
                 output_path("motion-report.json"),

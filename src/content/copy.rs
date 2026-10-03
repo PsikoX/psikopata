@@ -125,7 +125,7 @@ pub const SEVEN: SectionCopy = SectionCopy {
 };
 pub const SEVEN_PROMISE: [&str; 3] = ["Siete mujeres.", "Siete historias.", "Un experimento."];
 pub const SEVEN_CLOSING: &str = "El comienzo se escribe juntas.";
-pub const FER_LABEL: &str = "AHORA, LA PREGUNTA";
+pub const FER_LABEL: &str = "EL CONCEPTO";
 pub const FER_QUESTION: &str = "¿Qué coño es este concepto?";
 pub const FER_STATUS: &str = "UN PROYECTO EN DESARROLLO.";
 pub const FER_HEADING: &[Line] = &[

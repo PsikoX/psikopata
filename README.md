@@ -1,6 +1,6 @@
 # PSIKOPAPA
 
-Website oficial de PSIKOPAPA, com uma narrativa em três atos: desejo, curiosidade e descoberta de **FER — Fetiche, Educação e Religião**.
+Website oficial de PSIKOPAPA. **FER — Fetiche, Educação e Religião** aparece na entrada e tem uma secção própria logo depois do hero; as restantes áreas desenvolvem o universo da agência.
 
 A aplicação é escrita em Rust. Dioxus compõe as páginas e `dioxus-ssr` gera HTML estático durante o build. O artefacto publicado contém HTML, CSS, imagens, fontes e vídeo local; não contém JavaScript, runtime WASM, hidratação ou serviços externos de frontend. A preview local também é Rust, através de Axum.
 
@@ -74,7 +74,7 @@ O gerador valida o domínio antes de gerar canonical, Open Graph e sitemap. Um b
 
 As rotas são `/`, `/fer/` e `404.html`. A navegação entre secções utiliza âncoras nativas. Os disclosures de navegação, música e contacto usam `details`/`summary`; o estado pertence ao navegador e não necessita de código de cliente. As animações usam CSS, com alternativas estáticas e suporte a movimento reduzido. `src/styles/motion.css` concentra a atmosfera, as máscaras editoriais, o parallax e as transições entre páginas.
 
-O início prolonga o fumo das capas num fundo partilhado por todas as secções. Uma textura gerada com as referências originais conserva os filamentos e o vermelho luminoso; duas camadas reutilizam a imagem com movimento CSS. Um único vídeo local adiciona curls reais sobre as margens da fotografia, abaixo dos textos. O navegador escolhe o WebP e o MP4 adequados ao viewport através de fontes nativas. O checkbox “PAUSAR EFECTOS” oculta o vídeo, congela as texturas no ponto atual e desativa as restantes animações CSS. Movimento reduzido mantém a textura estática sem solicitar MP4. O foco permanece no viewport, e o footer reserva espaço para o controlo. A intensidade diminui na chegada ao FER nos browsers com suporte às timelines CSS usadas. Os conteúdos continuam visíveis sem esse suporte. O URL do CSS inclui uma impressão do seu conteúdo para carregar o estilo atualizado após cada publicação.
+O início prolonga o fumo das capas num fundo partilhado por todas as secções. Uma textura gerada com as referências originais conserva os filamentos e o vermelho luminoso; duas camadas reutilizam a imagem com movimento CSS. Um único vídeo local adiciona curls reais sobre as margens da fotografia, abaixo dos textos. O navegador escolhe o WebP e o MP4 adequados ao viewport através de fontes nativas. O checkbox “PAUSAR EFECTOS” oculta o vídeo, congela as texturas no ponto atual e desativa as restantes animações CSS. Movimento reduzido mantém a textura estática sem solicitar MP4. O foco permanece no viewport, e o footer reserva espaço para o controlo. A intensidade diminui perto de LAS 7 nos browsers com suporte às timelines CSS usadas. Os conteúdos continuam visíveis sem esse suporte. O URL do CSS inclui uma impressão do seu conteúdo para carregar o estilo atualizado após cada publicação.
 
 ## Conteúdo e fontes reais
 
