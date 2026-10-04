@@ -3323,19 +3323,24 @@ h1,h2,h3,.identity-name {
   }
 }
 
-/* A short, mobile-first editorial story. The motion follows material artwork. */
+@font-face { font-family:FerBodoni; src:url('/psikopata/psikopapa/assets/fonts/bodoni-moda-latin.woff2') format('woff2'); font-style:normal; font-weight:400 600; font-display:swap; }
+@font-face { font-family:FerBodoni; src:url('/psikopata/psikopapa/assets/fonts/bodoni-moda-italic-latin.woff2') format('woff2'); font-style:italic; font-weight:400; font-display:swap; }
+/* The approved compositions become real type, real links and distinct scenes. */
 .fer-experience {
   position:relative;
   isolation:isolate;
   overflow:clip;
   --fer-ink:#090608;
   --fer-brass:#c29a68;
+  --display:FerBodoni,Georgia,serif;
+  --fer-copy:Cormorant,Georgia,serif;
   background:var(--fer-ink);
 }
 .fer-experience .smoke-atmosphere { opacity:.5; }
 .fer-experience > section { position:relative; z-index:1; }
 .fer-experience h1,.fer-experience h2,.fer-experience h3 { letter-spacing:-.035em; }
-.fer-experience h2 { font-size:clamp(2.65rem,11vw,5.4rem); line-height:1; }
+.fer-experience h2 { font-size:clamp(2.1rem,9vw,4.4rem); line-height:1.1; }
+.fer-experience .fer-glyph { font-weight:400; letter-spacing:-.02em; }
 .fer-experience em { color:#eac39c; }
 .fer-experience .section-label { justify-content:center; margin-bottom:18px; color:#e4cfb7; font-size:.65rem; }
 .fer-experience .chapter-number { color:#d3a774; font-size:.65rem; }
@@ -3352,12 +3357,15 @@ h1,h2,h3,.identity-name {
   text-align:center;
   background:radial-gradient(ellipse at 50% 70%,#51102085,transparent 70%),linear-gradient(180deg,#09060888,#250a1499 72%,#09060800);
 }
-.fer-opening-inner { max-width:860px; }
+.fer-opening-grid { display:grid; gap:30px; }
+.fer-opening-copy { min-width:0; max-width:640px; margin:auto; }
+.fer-opening-art { width:min(100%,560px); margin:auto; }
+.fer-opening-art figcaption { padding:16px 3px 0; color:#e0b887; font-size:.63rem; letter-spacing:.12em; }
 .fer-sum { display:flex; align-items:baseline; justify-content:center; gap:.09em; font:italic clamp(4.3rem,20vw,8rem)/1 var(--display); }
 .fer-plus { color:#d7b482; font:400 .48em/1 var(--display); }
-.fer-opening h1 { margin:24px auto 0; font-size:clamp(2.1rem,11.4vw,5.9rem); line-height:.94; }
+.fer-opening h1 { margin:24px auto 0; font-size:clamp(1.9rem,9.5vw,4.2rem); line-height:1.04; letter-spacing:-.04em; }
 .fer-opening h1 em { display:inline-block; }
-.fer-opening-summary { max-width:45ch; margin:28px auto 0; font-size:1rem; line-height:1.85; color:#f4e4da; text-wrap:pretty; }
+.fer-opening-summary { max-width:35ch; margin:25px auto 0; font:400 1.4rem/1.48 var(--fer-copy); color:#f4e4da; text-wrap:pretty; }
 .fer-opening-brand { margin-top:26px; color:#ddc3a4; font-size:.64rem; font-weight:600; letter-spacing:.17em; }
 .fer-opening-brand .brand-name { font-size:inherit; }
 .fer-opening-actions { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:25px; }
@@ -3366,19 +3374,19 @@ h1,h2,h3,.identity-name {
 .fer-community-link:hover { color:#fff0d9; text-decoration:underline; text-underline-offset:5px; }
 
 /* Each definition occupies one editorial row, with no separate halo graphic. */
-.fer-forces-grid { display:grid; gap:26px; }
-.fer-vertices { width:min(100%,500px); margin-inline:auto; }
-.fer-vertices figcaption,.fer-convergence-figure figcaption { margin-top:16px; font-size:.6rem; letter-spacing:.13em; text-align:center; color:#dac0a2; }
+.fer-forces-grid { width:min(100%,960px); margin:auto; }
+.fer-convergence-figure figcaption { margin-top:16px; font-size:.6rem; letter-spacing:.13em; text-align:center; color:#dac0a2; }
 .fer-force-list { min-width:0; }
-.fer-force { display:grid; grid-template-columns:58px minmax(0,1fr); gap:17px; padding-block:22px; border-top:1px solid #ad875650; --force-color:var(--fer-f); }
+.fer-force { display:grid; grid-template-columns:50px minmax(0,1fr) 88px; column-gap:12px; align-items:center; padding-block:24px; border-top:1px solid #b4936170; --force-color:var(--fer-f); }
 .fer-force:last-child { border-bottom:1px solid #ad875650; }
 .fer-force-1 { --force-color:var(--fer-e); }
 .fer-force-2 { --force-color:var(--fer-r); }
-.fer-force-letter { align-self:start; padding-top:6px; color:var(--force-color); font:italic 5.4rem/.85 var(--display); }
-.fer-force h3 { font-size:1.55rem; line-height:1; color:var(--force-color); letter-spacing:.02em; }
+.fer-force-letter { color:var(--force-color); font:italic 4.4rem/1 var(--display); }
+.fer-force h3 { font-size:1.22rem; line-height:1.1; color:var(--force-color); letter-spacing:.025em; }
 .fer-force-role { margin-top:5px; color:#e0c7aa; font-size:.58rem; letter-spacing:.18em; }
-.fer-force-meaning { margin-top:10px; font-size:.89rem; line-height:1.75; color:#f0e1d5; }
-.fer-force-declaration { margin-top:8px; color:var(--force-color); font:italic 1.65rem/1.1 var(--display); }
+.fer-force-meaning { margin-top:8px; font:400 1.3rem/1.42 var(--fer-copy); color:#f0e1d5; }
+.fer-force-copy { min-width:0; overflow-wrap:anywhere; }
+.fer-force-declaration { margin:0; padding-left:12px; border-left:1px solid #b4936170; color:var(--force-color); font:italic 1.13rem/1.5 var(--display); text-align:center; }
 
 /* Union is demonstrated by the seal; prosperity has several human expressions. */
 .fer-union { background:linear-gradient(180deg,#09060800,#2d111b66 55%,#09060800); }
@@ -3386,22 +3394,31 @@ h1,h2,h3,.identity-name {
 .fer-convergence-figure { width:min(100%,580px); margin-inline:auto; }
 .fer-union-result { width:min(100%,500px); margin-inline:auto; }
 .fer-result-name { color:#e5c08e; font-size:.7rem; letter-spacing:.21em; }
-.fer-union-result h3 { margin-top:16px; font-size:clamp(2.6rem,10vw,4.6rem); line-height:1.02; }
-.fer-union-result > p:last-of-type { max-width:37ch; margin-top:22px; font-size:.95rem; color:#ecd9ca; }
+.fer-union-result h3 { margin-top:16px; font-size:clamp(2rem,7vw,3.3rem); line-height:1.15; }
+.fer-union-result > p:last-of-type { max-width:35ch; margin-top:22px; font:400 1.35rem/1.5 var(--fer-copy); color:#ecd9ca; }
 .fer-outcomes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px 20px; list-style:none; margin-top:24px; padding-top:20px; border-top:1px solid #b28b605c; color:#eaca9e; font:italic 1.65rem/1.3 var(--display); }
 
 /* A tangible circular piece carries the cycle, with one reflection on its metal. */
 .fer-cycle { max-width:620px; margin:auto; }
-.fer-cycle-art { position:relative; width:100%; aspect-ratio:1; isolation:isolate; }
-.fer-cycle-picture { position:absolute; inset:0; overflow:hidden; mask-image:radial-gradient(ellipse at center,#000 50%,transparent 72%); }
-.fer-cycle-picture img { width:100%; height:100%; object-fit:cover; }
-.fer-cycle-step { position:absolute; z-index:3; translate:-50% -50%; list-style:none; padding:3px 5px; text-shadow:0 1px 8px #000,0 0 14px #000,0 0 4px #000; color:#fff0dc; white-space:nowrap; }
-.fer-cycle-step strong { font:500 clamp(.88rem,3.7vw,1.5rem)/1.2 var(--display); }
-.fer-cycle-step-0 { left:50%; top:23%; }
-.fer-cycle-step-1 { left:77%; top:43%; }
-.fer-cycle-step-2 { left:65%; top:69%; }
-.fer-cycle-step-3 { left:35%; top:69%; }
-.fer-cycle-step-4 { left:23%; top:43%; }
+.fer-cycle-art { position:relative; width:100%; aspect-ratio:1; isolation:isolate; overflow:hidden; }
+.fer-rose-points { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.fer-rose-point { position:absolute; translate:-50% -50%; font-size:clamp(2.2rem,9vw,4rem); background:none; text-shadow:0 2px 5px #0e0508,0 0 8px #0e0508!important; }
+.fer-rose-point::before { content:''; position:absolute; inset:-12px; z-index:-1; background:radial-gradient(ellipse,#10060999,transparent 70%); }
+.fer-rose-point-f { left:50%; top:19.5%; color:#ffb5be; }
+.fer-rose-point-e { left:24.5%; top:64.5%; color:#ffe1a7; }
+.fer-rose-point-r { left:77.5%; top:64.5%; color:#f0f7fa; }
+.fer-rose-center { position:absolute; z-index:5; left:50%; top:46.5%; translate:-50% -50%; width:72%; text-align:center; pointer-events:none; }
+.fer-rose-center::before { content:''; position:absolute; z-index:-1; inset:-24px -8px; background:radial-gradient(ellipse,#180810c9 18%,#18081060 49%,transparent 71%); }
+.fer-rose-center .fer-rose-sum { font-size:clamp(1rem,3.5vw,1.45rem); margin-bottom:8px; gap:.15em; }
+.fer-rose-sum .fer-plus { color:#f9d8a1; font-size:.7em; }
+.fer-rose-center h3 { color:#ffe1a7; font:italic 400 clamp(1.6rem,6.6vw,3.1rem)/1.2 var(--display); letter-spacing:-.04em; text-shadow:0 2px 6px #090507,0 0 12px #090507; }
+.fer-rose-legend { display:flex; justify-content:space-between; gap:8px; margin-top:20px; padding-block:13px; border-block:1px solid #b4936170; font-size:.72rem; letter-spacing:.05em; }
+.fer-rose-legend span:first-child { color:var(--fer-f); }
+.fer-rose-legend span:nth-child(2) { color:var(--fer-e); }
+.fer-rose-legend span:last-child { color:var(--fer-r); }
+.fer-cycle-route { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; list-style:none; margin-top:24px; color:#e7c79e; font:400 .85rem/1.5 var(--display); }
+.fer-cycle-route li:not(:last-child)::after { content:'→'; margin-left:8px; color:#cfab7e; }
+.fer-cycle-route li:last-child::after { content:'↺'; margin-left:8px; color:#cfab7e; }
 .fer-cycle-reflection { display:none; position:absolute; z-index:2; inset:0; border-radius:50%; pointer-events:none; opacity:.46; mix-blend-mode:screen; background:conic-gradient(from 0deg,transparent 0deg 275deg,#fff2c711 298deg,#ffd49b80 320deg,transparent 343deg); mask-image:radial-gradient(circle,transparent 36%,#000 39%,#000 45%,transparent 48%); }
 .fer-cycle figcaption { margin-top:12px; text-align:center; color:#efddcd; font-size:1rem; line-height:1.7; }
 .fer-cycle figcaption em { display:inline-block; font-size:1.7rem; }
@@ -3410,7 +3427,7 @@ h1,h2,h3,.identity-name {
 .fer-woman { background:linear-gradient(180deg,#09060800,#38101c66,#09060800); }
 .fer-woman-grid { display:grid; gap:32px; align-items:center; }
 .fer-woman-copy .section-label { justify-content:flex-start; }
-.fer-woman-copy > p:not(.section-label) { margin-top:24px; max-width:34ch; font-size:1rem; color:#eee0d6; }
+.fer-woman-copy > p:not(.section-label) { margin-top:24px; max-width:34ch; font:400 1.4rem/1.5 var(--fer-copy); color:#eee0d6; }
 .fer-woman-copy .fer-woman-assertion { color:#eac59d!important; font:italic 1.9rem/1.2 var(--display)!important; }
 .fer-woman-art { width:min(100%,480px); margin-inline:auto; padding:9px; border:1px solid #aa835865; }
 .fer-woman-portrait { position:relative; width:100%; aspect-ratio:4/5; overflow:hidden; background:#150a0e; }
@@ -3419,16 +3436,16 @@ h1,h2,h3,.identity-name {
 .fer-woman-art figcaption { padding:13px 4px 4px; font-size:.62rem; letter-spacing:.12em; color:#e8c9ab; text-align:center; }
 
 /* Extra context uses native, keyboard-accessible disclosure. */
-.fer-questions-inner { max-width:780px; }
-.fer-questions h2 { font-size:clamp(2.4rem,10vw,4rem); }
+.fer-experience .fer-questions-inner { max-width:780px; }
+.fer-experience .fer-questions h2 { font-size:clamp(2.4rem,10vw,4rem); }
 .fer-faith-note { margin-block:20px 30px; max-width:48ch; color:#eedccf; font-size:.97rem; }
-.fer-question { border-top:1px solid #a5825850; }
-.fer-question:last-child { border-bottom:1px solid #a5825850; }
-.fer-question summary { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:60px; padding-block:15px; list-style:none; cursor:pointer; color:#efdbbe; font-size:.9rem; line-height:1.4; }
-.fer-question summary::-webkit-details-marker { display:none; }
-.fer-question summary span { font:400 1.5rem/1 var(--display); color:#dfb17b; }
-.fer-question[open] summary span { transform:rotate(45deg); }
-.fer-question > p { margin:0 0 24px; font-size:.89rem; line-height:1.8; color:#eeddd0; }
+.fer-experience .fer-question { border-top:1px solid #a5825850; }
+.fer-experience .fer-question:last-child { border-bottom:1px solid #a5825850; }
+.fer-experience .fer-question summary { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:60px; padding-block:15px; list-style:none; cursor:pointer; color:#efdbbe; font-size:.9rem; line-height:1.4; }
+.fer-experience .fer-question summary::-webkit-details-marker { display:none; }
+.fer-experience .fer-question summary span { font:400 1.5rem/1 var(--display); color:#dfb17b; }
+.fer-experience .fer-question[open] summary span { transform:rotate(45deg); }
+.fer-experience .fer-question > p { margin:0 0 24px; font-size:.89rem; line-height:1.8; color:#eeddd0; }
 .fer-references ul { list-style:none; margin:-6px 0 20px; }
 .fer-references a { display:inline-flex; align-items:center; min-height:44px; font-size:.8rem; color:#efcca0; text-decoration:underline; text-underline-offset:4px; }
 
@@ -3446,33 +3463,38 @@ h1,h2,h3,.identity-name {
 @media(min-width:600px) {
   .fer-chapter { padding-block:90px; }
   .fer-opening { padding-block:56px 60px; }
-  .fer-opening-summary { font-size:1.08rem; }
-  .fer-force { grid-template-columns:75px minmax(0,1fr); gap:24px; }
-  .fer-force-letter { font-size:6.7rem; }
-  .fer-cycle-step strong { font-size:1.5rem; }
+  .fer-opening-summary { font-size:1.55rem; }
+  .fer-force { grid-template-columns:80px minmax(0,1fr) 150px; gap:24px; }
+  .fer-force-letter { font-size:5.5rem; }
+  .fer-force h3 { font-size:1.55rem; }
+  .fer-force-declaration { font-size:1.5rem; }
 }
 @media(min-width:900px) {
   .fer-opening { padding-block:58px 70px; }
-  .fer-opening h1 { font-size:5.4rem; }
-  .fer-opening-summary { font-size:1.12rem; }
+  .fer-opening-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(35px,5vw,80px); align-items:center; }
+  .fer-opening-art { max-width:520px; }
+  .fer-opening h1 { font-size:clamp(2.9rem,4.3vw,4.2rem); }
+  .fer-opening-summary { font-size:1.5rem; }
+  .fer-opening-letters { font-size:clamp(6rem,9vw,8rem); }
   .fer-chapter { padding-block:100px; }
   .fer-section-heading { margin-bottom:46px; }
-  .fer-forces-grid,.fer-union-grid,.fer-woman-grid { grid-template-columns:minmax(0,1.06fr) minmax(0,1fr); gap:clamp(40px,6vw,100px); }
-  .fer-forces-grid { align-items:center; }
-  .fer-force { padding-block:20px; }
-  .fer-force-meaning { font-size:.95rem; }
+  .fer-union-grid,.fer-woman-grid { grid-template-columns:minmax(0,1.06fr) minmax(0,1fr); gap:clamp(40px,6vw,100px); }
+  .fer-force { padding-block:28px; }
+  .fer-force-meaning { font-size:1.4rem; }
   .fer-woman-grid { grid-template-columns:minmax(0,1fr) minmax(0,.9fr); }
   .fer-woman-art { justify-self:end; }
   .fer-closing-actions { flex-direction:row; justify-content:center; }
 }
 @media(max-width:359px) {
   .fer-opening { padding-top:30px; }
-  .fer-opening-summary { font-size:.95rem; line-height:1.8; }
+  .fer-opening-summary { font-size:1.3rem; line-height:1.45; }
   .fer-opening-brand { font-size:.58rem; letter-spacing:.13em; }
   .fer-opening-actions .button { font-size:.62rem; }
-  .fer-force { grid-template-columns:48px minmax(0,1fr); gap:14px; }
-  .fer-force-letter { font-size:4.8rem; }
-  .fer-force h3 { font-size:1.4rem; }
+  .fer-force { grid-template-columns:40px minmax(0,1fr) 73px; gap:9px; }
+  .fer-force-letter { font-size:3.8rem; }
+  .fer-force h3 { font-size:1.02rem; }
+  .fer-force-meaning { font-size:1.18rem; }
+  .fer-force-declaration { padding-left:8px; font-size:1rem; }
   .fer-outcomes { font-size:1.4rem; }
 }
 @media(prefers-reduced-motion:no-preference) {
@@ -3484,12 +3506,11 @@ h1,h2,h3,.identity-name {
 .motion-toggle:checked ~ .site-experience .fer-cycle-reflection { display:none!important; }
 @media(forced-colors:active) {
   .fer-cycle-reflection { display:none; }
-  .fer-cycle-step { background:Canvas; color:CanvasText; text-shadow:none; }
+  .fer-rose-center h3 { background:Canvas; color:CanvasText; text-shadow:none; }
   .fer-force { border-color:CanvasText; }
 }
 
-/* The two material studies remain whole. Three restrained lights gather at
-   the real artwork’s center; there are no mismatched moving image cutouts. */
+/* One intact scene per chapter. Camera, smoke and light share its coordinates. */
 .fer-artifact {
   position:relative;
   display:block;
@@ -3498,76 +3519,63 @@ h1,h2,h3,.identity-name {
   isolation:isolate;
   overflow:hidden;
   contain:paint;
-  background:#090607;
-  box-shadow:0 24px 65px #000a;
+  background:#10080a;
+  box-shadow:0 12px 36px #0005;
 }
-.fer-artifact > * { position:absolute; inset:0; }
-.fer-artifact-complete {
-  z-index:1;
-  display:block;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-}
-.fer-artifact-threads,
-.fer-energy,
-.fer-artifact-core,
-.fer-artifact-gleam { display:none; }
+.fer-artifact-scene,.fer-artifact-scene > * { position:absolute; inset:0; }
+.fer-artifact-scene { transform-origin:50% 52%; }
+.fer-artifact-complete { z-index:1; display:block; width:100%; height:100%; }
+.fer-artifact-complete img { width:100%; height:100%; object-fit:cover; }
+.fer-artifact::after { content:''; position:absolute; z-index:5; inset:0; pointer-events:none; box-shadow:inset 0 0 22px 6px #10080a65; }
+.fer-artifact-threads,.fer-energy,.fer-artifact-core,.fer-artifact-gleam,.fer-artifact-smoke { display:none; }
 .fer-artifact-legend {
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:7px;
-  width:100%;
-  margin:10px auto 0;
-  padding:10px 0;
+  margin:16px auto 0;
+  padding:12px 0;
   border-top:1px solid #a9784d70;
   border-bottom:1px solid #a9784d70;
 }
-.fer-artifact-legend span { display:flex; flex-direction:column; align-items:flex-start; color:#e0c5a8; }
+.fer-artifact-legend span { display:flex; flex-direction:column; align-items:flex-start; }
 .fer-artifact-legend span:nth-child(2) { align-items:center; text-align:center; }
 .fer-artifact-legend span:last-child { align-items:flex-end; text-align:right; }
-.fer-artifact-legend b { color:#fff0d5; font:italic 1.8rem/1 var(--display); }
-.fer-artifact-legend strong,
-.fer-artifact-legend small { font-size:.55rem; line-height:1.4; letter-spacing:.1em; }
-.fer-artifact-legend strong { margin-top:5px; color:#f5e6d3; }
-.fer-artifact-legend small { margin-top:2px; color:#d4aa7a; }
-.fer-artifact-legend span:first-child b,
-.fer-artifact-legend span:first-child strong { color:var(--fer-f); }
-.fer-artifact-legend span:nth-child(2) b,
-.fer-artifact-legend span:nth-child(2) strong { color:var(--fer-e); }
-.fer-artifact-legend span:nth-child(3) b,
-.fer-artifact-legend span:nth-child(3) strong { color:var(--fer-r); }
-@media(max-width:359px) {
-  .fer-artifact-legend strong,.fer-artifact-legend small { font-size:.47rem; }
-}
+.fer-artifact-legend b { font:italic 2.2rem/1 var(--display); }
+.fer-artifact-legend strong { margin-top:6px; font-size:.6rem; line-height:1.4; letter-spacing:.09em; }
+.fer-artifact-legend span:first-child { color:var(--fer-f); }
+.fer-artifact-legend span:nth-child(2) { color:var(--fer-e); }
+.fer-artifact-legend span:last-child { color:var(--fer-r); }
 
-/* Pause and reduced-motion views retain the complete physical artwork. */
+/* Pause retains the scene and every word, with all decorative overlays hidden. */
 .motion-toggle:checked ~ .site-experience .fer-artifact-threads,
 .motion-toggle:checked ~ .site-experience .fer-energy,
 .motion-toggle:checked ~ .site-experience .fer-artifact-core,
-.motion-toggle:checked ~ .site-experience .fer-artifact-gleam {
-  display:none!important;
-}
+.motion-toggle:checked ~ .site-experience .fer-artifact-gleam,
+.motion-toggle:checked ~ .site-experience .fer-artifact-smoke { display:none!important; }
 
 @media(prefers-reduced-motion:no-preference) {
   .fer-artifact { --fer-cycle:5s; }
-  .fer-artifact-complete { animation:fer-material-awaken var(--fer-cycle) ease-in-out infinite; }
-  .fer-artifact-threads {
+  .fer-artifact-scene { animation:fer-camera-breathe 8s ease-in-out infinite alternate; }
+  .fer-artifact-smoke {
     display:block;
     z-index:2;
-    width:100%;
-    height:100%;
+    inset:-7%;
     pointer-events:none;
+    opacity:.19;
+    background:url('/psikopata/psikopapa/assets/atmosphere/cover-smoke-mobile.webp') center/cover;
     mix-blend-mode:screen;
+    mask-image:radial-gradient(ellipse at center,transparent 24%,#000 68%);
+    animation:fer-material-smoke 5.2s ease-in-out infinite alternate;
   }
+  .fer-artifact-threads { display:block; z-index:3; width:100%; height:100%; pointer-events:none; mix-blend-mode:screen; }
   .fer-thread {
     fill:none;
     stroke:currentColor;
-    stroke-width:5;
+    stroke-width:2.4;
     stroke-linecap:round;
     stroke-dasharray:430;
     stroke-dashoffset:430;
-    filter:drop-shadow(0 0 5px currentColor);
+    filter:drop-shadow(0 0 3px currentColor);
     opacity:0;
   }
   .fer-thread-f { color:#f26b7a; animation:fer-trace-f var(--fer-cycle) ease-in-out infinite; }
@@ -3575,39 +3583,45 @@ h1,h2,h3,.identity-name {
   .fer-thread-r { color:#d6e6ec; animation:fer-trace-r var(--fer-cycle) ease-in-out infinite; }
   .fer-energy {
     display:block;
-    z-index:2;
+    z-index:3;
     inset:auto;
     left:var(--origin-x);
     top:var(--origin-y);
-    width:32%;
+    width:14%;
     aspect-ratio:1;
     border-radius:50%;
-    background:radial-gradient(circle,#fff9ead9 0%,var(--energy-tint) 25%,transparent 68%);
-    filter:blur(2px);
+    background:radial-gradient(circle,#fff4d5b0 0%,var(--energy-tint) 25%,transparent 69%);
+    filter:blur(3px);
     mix-blend-mode:screen;
     translate:-50% -50%;
     opacity:0;
     pointer-events:none;
   }
-  .fer-energy-f { --energy-tint:#ed3a5cc4; animation:fer-gather-f var(--fer-cycle) ease-in-out infinite; }
-  .fer-energy-e { --energy-tint:#f2b967c4; animation:fer-gather-e var(--fer-cycle) ease-in-out infinite; }
-  .fer-energy-r { --energy-tint:#d8ecf4c4; animation:fer-gather-r var(--fer-cycle) ease-in-out infinite; }
-  .fer-artifact-interlace .fer-energy-f { --origin-x:28%; --origin-y:65%; }
-  .fer-artifact-interlace .fer-energy-e { --origin-x:76%; --origin-y:67%; }
-  .fer-artifact-interlace .fer-energy-r { --origin-x:50%; --origin-y:25%; }
-  .fer-artifact-seal .fer-energy-f { --origin-x:50%; --origin-y:19%; }
-  .fer-artifact-seal .fer-energy-e { --origin-x:22%; --origin-y:69%; }
-  .fer-artifact-seal .fer-energy-r { --origin-x:79%; --origin-y:69%; }
+  .fer-energy-f { --energy-tint:#ed3a5c80; animation:fer-gather-f var(--fer-cycle) ease-in-out infinite; }
+  .fer-energy-e { --energy-tint:#f2b96780; animation:fer-gather-e var(--fer-cycle) ease-in-out infinite; }
+  .fer-energy-r { --energy-tint:#d8ecf480; animation:fer-gather-r var(--fer-cycle) ease-in-out infinite; }
+  .fer-artifact-interlace { --core-y:53.5%; }
+  .fer-artifact-interlace .fer-energy-f { --origin-x:28.5%; --origin-y:69.5%; }
+  .fer-artifact-interlace .fer-energy-e { --origin-x:76.5%; --origin-y:70.5%; }
+  .fer-artifact-interlace .fer-energy-r { --origin-x:50%; --origin-y:21.5%; }
+  .fer-artifact-seal { --core-y:49.5%; }
+  .fer-artifact-seal .fer-energy-f { --origin-x:50%; --origin-y:23%; }
+  .fer-artifact-seal .fer-energy-e { --origin-x:23.5%; --origin-y:67%; }
+  .fer-artifact-seal .fer-energy-r { --origin-x:76.5%; --origin-y:67%; }
+  .fer-artifact-rose { --core-y:46.5%; }
+  .fer-artifact-rose .fer-energy-f { --origin-x:50%; --origin-y:19.5%; }
+  .fer-artifact-rose .fer-energy-e { --origin-x:24.5%; --origin-y:64.5%; }
+  .fer-artifact-rose .fer-energy-r { --origin-x:77.5%; --origin-y:64.5%; }
   .fer-artifact-core {
     display:block;
-    z-index:3;
+    z-index:4;
     inset:auto;
     left:50%;
-    top:51%;
-    width:27%;
+    top:var(--core-y);
+    width:21%;
     aspect-ratio:1;
     border-radius:50%;
-    background:radial-gradient(circle,#fff4cfb5 0 5%,#f9c37296 20%,#c43a4b48 43%,transparent 70%);
+    background:radial-gradient(circle,#fff4cf7c 0 5%,#f9c37260 20%,#c43a4b25 43%,transparent 70%);
     filter:blur(4px);
     mix-blend-mode:screen;
     translate:-50% -50%;
@@ -3615,74 +3629,74 @@ h1,h2,h3,.identity-name {
     pointer-events:none;
     animation:fer-heart var(--fer-cycle) ease-in-out infinite;
   }
-  .fer-artifact-seal .fer-artifact-core {
-    top:49%;
-    background:radial-gradient(circle,#fff4cf9c 0 4%,#ec496da8 18%,#99132a52 43%,transparent 70%);
-  }
+  .fer-artifact-rose .fer-artifact-core { width:34%; opacity:0; }
   .fer-artifact-gleam {
     display:block;
     z-index:4;
     pointer-events:none;
-    background:linear-gradient(106deg,transparent 24%,#fff8e43d 44%,#fff4d0c0 50%,#f6cc6c66 56%,transparent 76%);
-    mask-image:radial-gradient(ellipse 47% 45% at 50% 50%,#000 40%,transparent 100%);
+    background:linear-gradient(106deg,transparent 24%,#fff8e414 44%,#fff4d068 50%,#f6cc6c33 56%,transparent 76%);
+    mask-image:radial-gradient(ellipse at 50% 55%,#000 38%,transparent 71%);
     mix-blend-mode:screen;
     opacity:0;
     animation:fer-metal-gleam var(--fer-cycle) ease-in-out infinite;
   }
 }
-
+@keyframes fer-camera-breathe {
+  from { transform:scale(1.005) translateY(0); }
+  to { transform:scale(1.035) translateY(-.7%); }
+}
+@keyframes fer-material-smoke {
+  from { transform:translate(-2%,2%) scale(1.08) rotate(-2deg); opacity:.14; }
+  to { transform:translate(3%,-3%) scale(1.14) rotate(2deg); opacity:.26; }
+}
 @keyframes fer-trace-f {
   0%,8% { stroke-dashoffset:430; opacity:0; }
-  15% { opacity:.62; }
-  62% { stroke-dashoffset:0; opacity:.72; }
+  15% { opacity:.45; }
+  62% { stroke-dashoffset:0; opacity:.55; }
   74%,100% { stroke-dashoffset:0; opacity:0; }
 }
 @keyframes fer-trace-e {
   0%,17% { stroke-dashoffset:430; opacity:0; }
-  25% { opacity:.58; }
-  62% { stroke-dashoffset:0; opacity:.7; }
+  25% { opacity:.4; }
+  62% { stroke-dashoffset:0; opacity:.5; }
   74%,100% { stroke-dashoffset:0; opacity:0; }
 }
 @keyframes fer-trace-r {
   0%,26% { stroke-dashoffset:430; opacity:0; }
-  34% { opacity:.58; }
-  62% { stroke-dashoffset:0; opacity:.7; }
+  34% { opacity:.4; }
+  62% { stroke-dashoffset:0; opacity:.5; }
   74%,100% { stroke-dashoffset:0; opacity:0; }
 }
 @keyframes fer-gather-f {
-  0%,5% { left:var(--origin-x); top:var(--origin-y); scale:.55; opacity:0; }
-  12%,30% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.84; }
-  62% { left:50%; top:51%; scale:.65; opacity:.9; }
-  74%,100% { left:50%; top:51%; scale:.3; opacity:0; }
+  0%,5% { left:var(--origin-x); top:var(--origin-y); scale:.6; opacity:0; }
+  12%,30% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.55; }
+  62% { left:50%; top:var(--core-y); scale:.7; opacity:.65; }
+  74%,100% { left:50%; top:var(--core-y); scale:.3; opacity:0; }
 }
 @keyframes fer-gather-e {
-  0%,14% { left:var(--origin-x); top:var(--origin-y); scale:.55; opacity:0; }
-  23%,34% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.8; }
-  62% { left:50%; top:51%; scale:.65; opacity:.9; }
-  74%,100% { left:50%; top:51%; scale:.3; opacity:0; }
+  0%,14% { left:var(--origin-x); top:var(--origin-y); scale:.6; opacity:0; }
+  23%,34% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.5; }
+  62% { left:50%; top:var(--core-y); scale:.7; opacity:.65; }
+  74%,100% { left:50%; top:var(--core-y); scale:.3; opacity:0; }
 }
 @keyframes fer-gather-r {
-  0%,22% { left:var(--origin-x); top:var(--origin-y); scale:.55; opacity:0; }
-  31%,40% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.8; }
-  62% { left:50%; top:51%; scale:.65; opacity:.9; }
-  74%,100% { left:50%; top:51%; scale:.3; opacity:0; }
+  0%,22% { left:var(--origin-x); top:var(--origin-y); scale:.6; opacity:0; }
+  31%,40% { left:var(--origin-x); top:var(--origin-y); scale:.85; opacity:.5; }
+  62% { left:50%; top:var(--core-y); scale:.7; opacity:.65; }
+  74%,100% { left:50%; top:var(--core-y); scale:.3; opacity:0; }
 }
 @keyframes fer-heart {
-  0%,56% { scale:.5; opacity:0; }
-  66% { scale:1.05; opacity:.78; }
-  80% { scale:1.32; opacity:.35; }
+  0%,56% { scale:.65; opacity:0; }
+  66% { scale:1.05; opacity:.62; }
+  80% { scale:1.32; opacity:.25; }
   94%,100% { scale:1.42; opacity:0; }
 }
 @keyframes fer-metal-gleam {
-  0%,59% { transform:translateX(-70%); opacity:0; }
-  65% { opacity:.74; }
-  82% { transform:translateX(70%); opacity:.58; }
-  91%,100% { transform:translateX(70%); opacity:0; }
-}
-@keyframes fer-material-awaken {
-  0%,100% { filter:brightness(.88) saturate(.94); }
-  62%,83% { filter:brightness(1.09) saturate(1.08); }
+  0%,59% { transform:translateX(-65%); opacity:0; }
+  65% { opacity:.55; }
+  82% { transform:translateX(65%); opacity:.35; }
+  91%,100% { transform:translateX(65%); opacity:0; }
 }
 @media(forced-colors:active) {
-  .fer-artifact-threads,.fer-energy,.fer-artifact-core,.fer-artifact-gleam { display:none; }
+  .fer-artifact-threads,.fer-energy,.fer-artifact-core,.fer-artifact-gleam,.fer-artifact-smoke { display:none; }
 }
