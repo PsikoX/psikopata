@@ -296,6 +296,9 @@ fn main() -> Result<()> {
     if std::env::args().any(|v| v == "--motion") {
         return audit_motion(&mut browser);
     }
+    if std::env::args().any(|v| v == "--pointer") {
+        return audit_pointer(&mut browser);
+    }
     if std::env::args().any(|v| v == "--performance") {
         browser.navigate("about:blank")?;
         browser.call(
@@ -798,7 +801,7 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             .style(".smoke-atmosphere", "opacity")?
             .parse::<f64>()?;
         browser.current_viewport(&format!("continuity-{width}-fer.png"))?;
-        let closing = browser.node("#seven-title")?;
+        let closing = browser.node("#contact-title")?;
         browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":closing}))?;
         thread::sleep(Duration::from_millis(250));
         let opacity_closing = browser
@@ -911,6 +914,97 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         output_path("motion-report.json"),
         serde_json::to_string_pretty(&reports)?,
     )?;
+    Ok(())
+}
+
+fn audit_pointer(browser: &mut Browser) -> Result<()> {
+    let width = 1440;
+    let height = 1000;
+    browser.call(
+        "Emulation.setDeviceMetricsOverride",
+        json!({"width":width,"height":height,"deviceScaleFactor":1,"mobile":false}),
+    )?;
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
+    )?;
+    browser.navigate("http://127.0.0.1:8080/")?;
+    let hero = browser.box_rect(".hero-content")?;
+    browser.call(
+        "Input.dispatchMouseEvent",
+        json!({"type":"mouseMoved","x":(hero.0+hero.2)/2,"y":(hero.1+hero.3)/2,"button":"none"}),
+    )?;
+    thread::sleep(Duration::from_millis(550));
+    let hero_hover = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
+    browser.current_viewport("mouse-smoke-hero.png")?;
+    let picture = browser.node(".muse-karen .muse-image-link > picture")?;
+    browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":picture}))?;
+    thread::sleep(Duration::from_millis(350));
+    browser.call(
+        "Input.dispatchMouseEvent",
+        json!({"type":"mouseMoved","x":0,"y":0,"button":"none"}),
+    )?;
+    thread::sleep(Duration::from_millis(350));
+    let idle = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
+    browser.current_viewport("mouse-smoke-idle.png")?;
+    let karen = browser.box_rect(".muse-karen .muse-image-link")?;
+    browser.call("Input.dispatchMouseEvent",json!({"type":"mouseMoved","x":(karen.0+karen.2)/2,"y":(karen.1+karen.3)/2,"button":"none"}))?;
+    thread::sleep(Duration::from_millis(550));
+    let hover = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
+    let karen_smoke = browser.box_rect(".mouse-smoke")?;
+    browser.current_viewport("mouse-smoke-karen.png")?;
+    let zoe = browser.box_rect(".muse-zoe .muse-image-link")?;
+    browser.call(
+        "Input.dispatchMouseEvent",
+        json!({"type":"mouseMoved","x":(zoe.0+zoe.2)/2,"y":(zoe.1+zoe.3)/2,"button":"none"}),
+    )?;
+    thread::sleep(Duration::from_millis(550));
+    let zoe_smoke = browser.box_rect(".mouse-smoke")?;
+    browser.current_viewport("mouse-smoke-zoe.png")?;
+    let pointer_events = browser.style(".mouse-smoke", "pointer-events")?;
+    let toggle = browser.node("#pause-motion")?;
+    browser.call("DOM.focus", json!({"nodeId":toggle}))?;
+    browser.space()?;
+    let paused_display = browser.style(".mouse-smoke", "display")?;
+    let toggle = browser.node("#pause-motion")?;
+    browser.call("DOM.focus", json!({"nodeId":toggle}))?;
+    browser.space()?;
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
+    )?;
+    let reduced_display = browser.style(".mouse-smoke", "display")?;
+    browser.call(
+        "Emulation.setDeviceMetricsOverride",
+        json!({"width":390,"height":844,"deviceScaleFactor":1,"mobile":true}),
+    )?;
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
+    )?;
+    browser.navigate("http://127.0.0.1:8080/")?;
+    let mobile_display = browser.style(".mouse-smoke", "display")?;
+    let no_scripts = !browser.events.iter().any(|event| {
+        event["method"] == "Network.requestWillBeSent" && event["params"]["type"] == "Script"
+    });
+    let report = json!({"hero_hover_opacity":hero_hover,"idle_opacity":idle,"hover_opacity":hover,"karen_smoke_bounds":karen_smoke,"zoe_smoke_bounds":zoe_smoke,"pointer_events":pointer_events,"paused_display":paused_display,"reduced_motion_display":reduced_display,"mobile_display":mobile_display,"script_requests":!no_scripts as u8});
+    println!("{report}");
+    fs::write(
+        output_path("pointer-report.json"),
+        serde_json::to_string_pretty(&report)?,
+    )?;
+    if hero_hover < 0.3
+        || idle > 0.01
+        || hover < 0.3
+        || zoe_smoke.0 < karen_smoke.0 + 250
+        || pointer_events != "none"
+        || paused_display != "none"
+        || reduced_display != "none"
+        || mobile_display != "none"
+        || !no_scripts
+    {
+        return Err("Pointer smoke did not respond to hover".into());
+    }
     Ok(())
 }
 

@@ -1,5 +1,5 @@
 use crate::{
-    components::{BrandText, ButtonLink, ResponsiveImage, SectionHeading, SectionLabel},
+    components::{BrandText, ResponsiveImage, SectionHeading, SectionLabel},
     content,
 };
 use dioxus::prelude::*;
@@ -27,14 +27,6 @@ pub fn Community() -> Element {
                         p { class: "community-whatsapp-pending", span { class: "whatsapp-mark", "aria-hidden": "true" } "{content::copy::COMMUNITY_WHATSAPP_PENDING}" }
                     }
                 }
-            }
-        }
-        section { class: "seven-section section-space", id: "las-7", "aria-labelledby": "seven-title",
-            div { class: "container seven-inner",
-                SectionLabel { number: "08", label: content::copy::SEVEN.label }
-                div { class: "seven-heading", SectionHeading { id: "seven-title", lines: content::copy::SEVEN.heading } div { h3 { "{content::copy::SEVEN_PROMISE[0]}" br {} "{content::copy::SEVEN_PROMISE[1]}" br {} "{content::copy::SEVEN_PROMISE[2]}" } p { class: "body-copy", "{content::copy::SEVEN.paragraphs[0]}" } } }
-                ol { class: "seven-slots", "aria-label": "Las siete posiciones del programa inicial", for number in 1..=7 { li { span { "0{number}" } span { "aria-hidden": "true", "✦" } } } }
-                div { class: "seven-bottom", p { "{content::copy::SEVEN_CLOSING}" } ButtonLink { href: "#contact", label: "DESCUBRIR EL PRÓXIMO CAPÍTULO", secondary: true } }
             }
         }
     }

@@ -49,10 +49,6 @@
   letter-spacing:-.015em;
 }
 
-.seven-heading h2 em {
-  font-style:normal;
-}
-
 .cinematic-universe {
   position:relative;
   isolation:isolate;
@@ -120,6 +116,72 @@
   inset:0;
   /* Keep fine smoke vivid at the edges, and reading areas deeply black. */
   background:linear-gradient(90deg,transparent,#080708ad 16%,#080708b8 48%,#08070885 77%,transparent);
+}
+
+.mouse-smoke {
+  display:none;
+}
+
+@media(min-width:900px) and (prefers-reduced-motion:no-preference) {
+  .mouse-smoke {
+    position:fixed;
+    left:50vw;
+    top:50vh;
+    z-index:4;
+    width:clamp(240px,34vw,480px);
+    aspect-ratio:1;
+    translate:-50% -50%;
+    pointer-events:none;
+    opacity:0;
+    overflow:hidden;
+    mix-blend-mode:screen;
+    contain:paint;
+    transition:opacity .25s ease,left .42s cubic-bezier(.2,.7,.2,1),top .42s cubic-bezier(.2,.7,.2,1);
+  }
+  .mouse-smoke::before,.mouse-smoke::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    background-image:url('/assets/atmosphere/cover-smoke-desktop.webp');
+    background-repeat:no-repeat;
+    mask-image:radial-gradient(ellipse at center,#000 4%,#000c 32%,transparent 72%);
+    animation:mouse-smoke-drift 3.5s ease-in-out infinite alternate;
+  }
+  .mouse-smoke::before {
+    background-size:230% auto;
+    background-position:0% 76%;
+    opacity:.78;
+  }
+  .mouse-smoke::after {
+    background-size:260% auto;
+    background-position:100% 30%;
+    opacity:.42;
+    animation-direction:alternate-reverse;
+  }
+  @keyframes mouse-smoke-drift {
+    from { transform:translate3d(-4%,4%,0) rotate(-5deg) scale(.96); }
+    to { transform:translate3d(5%,-4%,0) rotate(5deg) scale(1.06); }
+  }
+  .cinematic-universe :is(.hero-fer,.hero-content,.hero-song,.fer-inner,.universe-grid > *,.section-heading,.muse-card,.music-heading,.track-entry,.alter-grid > *,.creation-heading,.creation-board > *,.education-grid > *,.energy-inner,.community-grid > *,.community-access > *,.contact-inner):hover {
+    anchor-name:--mouse-smoke-target;
+  }
+  .cinematic-universe:has(:is(.hero-fer,.hero-content,.hero-song,.fer-inner,.universe-grid > *,.section-heading,.muse-card,.music-heading,.track-entry,.alter-grid > *,.creation-heading,.creation-board > *,.education-grid > *,.energy-inner,.community-grid > *,.community-access > *,.contact-inner):hover) .mouse-smoke {
+    opacity:.43;
+  }
+  @supports(position-anchor:--mouse-smoke-target) {
+    .mouse-smoke {
+      display:block;
+      position-anchor:--mouse-smoke-target;
+      left:anchor(center);
+      top:anchor(center);
+    }
+  }
+}
+
+@media(pointer:coarse) {
+  .mouse-smoke {
+    display:none;
+  }
 }
 
 @media(max-width:899px) {
@@ -207,11 +269,6 @@
 .energy-section {
   border:0;
   background:linear-gradient(180deg,transparent,#08070866 30%,#08070888 68%,transparent);
-}
-
-.seven-section {
-  border:0;
-  background:transparent;
 }
 
 .fer-section {
@@ -318,6 +375,10 @@
 }
 
 .motion-toggle:checked ~ .site-experience .smoke-live {
+  display:none;
+}
+
+.motion-toggle:checked ~ .site-experience .mouse-smoke {
   display:none;
 }
 
@@ -492,7 +553,7 @@
       38%,62% { scale:1.055; translate:0 -7px; }
       100% { scale:.97; translate:0 0; }
     }
-    .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.seven-heading,.fer-question,.fer-word,.fer-chapter-copy {
+    .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.fer-question,.fer-word,.fer-chapter-copy {
       animation:chapter-arrival linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 62%;
@@ -502,7 +563,7 @@
       animation-timeline:view();
       animation-range:entry 0% cover 32%;
     }
-    .identity-ladder li,.learning-list li,.track-entry,.seven-slots li {
+    .identity-ladder li,.learning-list li,.track-entry {
       animation:line-arrival linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 90%;
@@ -543,7 +604,7 @@
     .cinematic-universe {
       timeline-scope:--closing;
     }
-    .seven-section {
+    .contact-section {
       view-timeline-name:--closing;
       view-timeline-axis:block;
     }

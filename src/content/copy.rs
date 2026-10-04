@@ -116,15 +116,6 @@ pub const COMMUNITY_WHATSAPP_HEADING: &str = "La conversación sigue entre nosot
 pub const COMMUNITY_WHATSAPP_BODY: &str = "Pregunta, comparte y crea con la comunidad PSIKOPAPA.";
 pub const COMMUNITY_WHATSAPP_ACTION: &str = "ENTRAR A LA COMUNIDAD";
 pub const COMMUNITY_WHATSAPP_PENDING: &str = "Acceso por invitación. Enlace oficial próximamente.";
-pub const SEVEN: SectionCopy = SectionCopy {
-    label: "EL PRIMER CAPÍTULO",
-    heading: &[Line::emphasized("LAS ", "7", "")],
-    paragraphs: &[
-        "Aprender. Probar. Crear. Dar feedback. Mejorar el sistema y abrir el camino para las que vienen.",
-    ],
-};
-pub const SEVEN_PROMISE: [&str; 3] = ["Siete mujeres.", "Siete historias.", "Un experimento."];
-pub const SEVEN_CLOSING: &str = "El comienzo se escribe juntas.";
 pub const FER_LABEL: &str = "EL CONCEPTO";
 pub const FER_QUESTION: &str = "¿Qué coño es este concepto?";
 pub const FER_STATUS: &str = "UN PROYECTO EN DESARROLLO.";

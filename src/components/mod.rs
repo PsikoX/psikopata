@@ -2,7 +2,7 @@ use crate::models::{HeadingLine, Image};
 use dioxus::prelude::*;
 
 mod motion;
-pub use motion::{MotionControl, SmokeAtmosphere};
+pub use motion::{MotionControl, MouseSmoke, SmokeAtmosphere};
 
 pub fn image_srcset(image: Image) -> String {
     let stem = image.stem;

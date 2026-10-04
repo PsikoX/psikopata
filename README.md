@@ -74,7 +74,7 @@ O gerador valida o domínio antes de gerar canonical, Open Graph e sitemap. Um b
 
 As rotas são `/`, `/fer/` e `404.html`. A navegação entre secções utiliza âncoras nativas. Os disclosures de navegação, música e contacto usam `details`/`summary`; o estado pertence ao navegador e não necessita de código de cliente. As animações usam CSS, com alternativas estáticas e suporte a movimento reduzido. `src/styles/motion.css` concentra a atmosfera, as máscaras editoriais, o parallax e as transições entre páginas.
 
-O início prolonga o fumo das capas num fundo partilhado por todas as secções. Uma textura gerada com as referências originais conserva os filamentos e o vermelho luminoso; duas camadas reutilizam a imagem com movimento CSS. Um único vídeo local adiciona curls reais sobre as margens da fotografia, abaixo dos textos. O navegador escolhe o WebP e o MP4 adequados ao viewport através de fontes nativas. O checkbox “PAUSAR EFECTOS” oculta o vídeo, congela as texturas no ponto atual e desativa as restantes animações CSS. Movimento reduzido mantém a textura estática sem solicitar MP4. O foco permanece no viewport, e o footer reserva espaço para o controlo. A intensidade diminui perto de LAS 7 nos browsers com suporte às timelines CSS usadas. Os conteúdos continuam visíveis sem esse suporte. O URL do CSS inclui uma impressão do seu conteúdo para carregar o estilo atualizado após cada publicação.
+O início prolonga o fumo das capas num fundo partilhado por todas as secções. Uma textura gerada com as referências originais conserva os filamentos e o vermelho luminoso; duas camadas reutilizam a imagem com movimento CSS. Um único vídeo local adiciona curls reais sobre as margens da fotografia, abaixo dos textos. O navegador escolhe o WebP e o MP4 adequados ao viewport através de fontes nativas. Em ecrãs desktop, uma camada leve da mesma textura acompanha o elemento editorial sob o rato através de hover e CSS Anchor Positioning, sem capturar cliques. O checkbox “PAUSAR EFECTOS” oculta o vídeo e a camada de hover, congela as texturas no ponto atual e desativa as restantes animações CSS. Movimento reduzido mantém a textura estática sem solicitar MP4. O foco permanece no viewport, e o footer reserva espaço para o controlo. A intensidade diminui perto do contacto nos browsers com suporte às timelines CSS usadas. Os conteúdos continuam visíveis sem esse suporte. O URL do CSS inclui uma impressão do seu conteúdo para carregar o estilo atualizado após cada publicação.
 
 ## Conteúdo e fontes reais
 
@@ -93,7 +93,7 @@ A referência discreta à Seeta aponta para a sua [página na Google Play](https
 
 Depois de alterar o conteúdo, regenerar e publicar o Site.
 
-LAS 7 apresenta as sete posições conceptuais do programa. Não afirma inscrições, vagas restantes ou participantes confirmadas. O AI Lab apresenta as áreas criativas do projeto; não simula uma ferramenta de geração ou pedidos enviados.
+O AI Lab apresenta as áreas criativas do projeto; não simula uma ferramenta de geração ou pedidos enviados.
 
 As quatro imagens do briefing foram preservadas como JPEG e reencodadas em WebP nas larguras 160, 320, 480, 800 e 1280. Os enquadramentos editoriais são CSS; os rostos não foram retocados nem substituídos. Novas imagens e informações pessoais devem corresponder ao conteúdo autorizado pela participante.
 
@@ -125,9 +125,10 @@ Executar os checks nativos, sem avaliar JavaScript no navegador:
 ```sh
 cargo run --locked --manifest-path tools/browser-audit/Cargo.toml
 cargo run --locked --manifest-path tools/browser-audit/Cargo.toml -- --motion
+cargo run --locked --manifest-path tools/browser-audit/Cargo.toml -- --pointer
 cargo run --locked --manifest-path tools/browser-audit/Cargo.toml -- --performance
 ```
 
-Os relatórios e screenshots ficam em `docs/qa/`. A auditoria verifica dimensões, nomes acessíveis, recursos, ausência de requests JavaScript, disclosures por teclado, texto a 200% e movimento reduzido. `--motion` verifica reprodução nativa e seleção responsiva do vídeo e das texturas, a escala dos cartões durante o scroll e os pixels da borda a mudarem enquanto o brilho percorre os cartões Karen e Zoe, pausa e reativação por teclado, estabilidade dos pixels pausados e textura estática com movimento reduzido. Uma captura adicional congela as texturas CSS para provar que os curls do vídeo mudam de forma no primeiro ecrã. Precisa de ImageMagick para ler os pixels das screenshots; a comparação exclui a scrollbar animada do browser. A medição de performance é de laboratório, na preview local, com rede e CPU limitadas; começa numa página vazia e com cache limpo. Não representa dados de utilização real nem certificação WCAG.
+Os relatórios e screenshots ficam em `docs/qa/`. A auditoria verifica dimensões, nomes acessíveis, recursos, ausência de requests JavaScript, disclosures por teclado, texto a 200% e movimento reduzido. `--motion` verifica reprodução nativa e seleção responsiva do vídeo e das texturas, a escala dos cartões durante o scroll e os pixels da borda a mudarem enquanto o brilho percorre os cartões Karen e Zoe, pausa e reativação por teclado, estabilidade dos pixels pausados e textura estática com movimento reduzido. `--pointer` verifica o fumo de hover no hero e nas muses, a deslocação entre Karen e Zoe e a desativação por pausa ou movimento reduzido. Uma captura adicional congela as texturas CSS para provar que os curls do vídeo mudam de forma no primeiro ecrã. Precisa de ImageMagick para ler os pixels das screenshots; a comparação exclui a scrollbar animada do browser. A medição de performance é de laboratório, na preview local, com rede e CPU limitadas; começa numa página vazia e com cache limpo. Não representa dados de utilização real nem certificação WCAG.
 
 Os resultados executados estão descritos em `docs/QA.md`.

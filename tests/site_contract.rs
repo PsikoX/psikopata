@@ -192,6 +192,8 @@ fn fer_is_intact_and_follows_the_opening() {
         vec![("F", "FETICHE"), ("E", "EDUCACIÓN"), ("R", "RELIGIÓN")]
     );
     let html = render_page(Route::Home, SiteConfig::new("").unwrap());
+    assert!(!html.contains("LAS 7"));
+    assert!(!html.contains("las-7"));
     assert!(html.find("id=\"hero-title\"").unwrap() < html.find("id=\"fer\"").unwrap());
     let mut previous = 0;
     for id in [
@@ -203,7 +205,7 @@ fn fer_is_intact_and_follows_the_opening() {
         "creation",
         "education",
         "community",
-        "las-7",
+        "contact",
     ] {
         let position = html.find(&format!("id=\"{id}\"")).unwrap();
         assert!(position > previous, "narrative order at {id}");
@@ -267,7 +269,10 @@ fn unknown_audio_and_social_urls_do_not_become_pretend_actions() {
             })
             .count()
     );
-    assert_eq!(doc.select(&select(".seven-slots li")).count(), 7);
+    assert_eq!(
+        doc.select(&select(".seven-section, .seven-slots")).count(),
+        0
+    );
     let community = doc.select(&select(".community-access")).next().unwrap();
     assert_eq!(community.select(&select(".whatsapp-mark")).count(), 1);
     assert_eq!(
@@ -444,6 +449,7 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
     assert!(css.contains("url('/psikopata/psikopapa/assets/fonts/"));
     assert!(css.contains("url('/psikopata/psikopapa/assets/icons/whatsapp.svg')"));
     assert!(css.contains("url('/psikopata/psikopapa/assets/icons/spotify.svg')"));
+    assert!(css.contains("url('/psikopata/psikopapa/assets/atmosphere/cover-smoke-desktop.webp')"));
     assert!(!css.contains("url('/assets/"));
     for invalid in [
         "psikopapa",

@@ -39,6 +39,13 @@ pub fn SmokeAtmosphere() -> Element {
     }
 }
 
+/// A decorative smoke accent is positioned by CSS on hovered editorial blocks.
+/// It never receives pointer events or covers links for hit testing.
+#[component]
+pub fn MouseSmoke() -> Element {
+    rsx! { div { class: "mouse-smoke", "aria-hidden": "true" } }
+}
+
 /// A native checkbox pauses CSS motion without any client-side code.
 #[component]
 pub fn MotionControl() -> Element {

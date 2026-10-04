@@ -35,7 +35,7 @@ Executado `tools/browser-audit --motion`, com JavaScript desativado, a 390×844 
 - Uma captura adicional congelou as duas texturas CSS para isolar o movimento real do vídeo. Após dois segundos, cerca de **20%** dos pixels amostrados nas margens mudaram no mobile e **10%** no desktop. A contagem usa uma diferença RGB somada de pelo menos 18 e exclui o header e a scrollbar.
 - Space no checkbox ocultou o vídeo, congelou as texturas e desativou as restantes animações CSS. Os pixels do conteúdo ficaram estáveis após a pausa. A reativação por teclado voltou a mostrar o vídeo e a mover as texturas.
 - Com movimento reduzido, não ocorreram requests MP4; o fumo ficou estático e o controlo de pausa oculto.
-- Cormorant Garamond LightItalic confirmou o itálico real do hero. A revelação das imagens abriu; a atmosfera permanece intensa no FER inicial e fica mais discreta perto de LAS 7.
+- Cormorant Garamond LightItalic confirmou o itálico real do hero. A revelação das imagens abriu; a atmosfera permanece intensa no FER inicial e fica mais discreta perto do contacto.
 - O foco por teclado aproximou o cartão da muse em mobile e desktop; no desktop, o hover ampliou-o mais. Movimento reduzido mantém os cartões estáticos.
 - Nenhum overflow horizontal ou request de JavaScript nas duas larguras.
 - Foram inspecionadas as capturas do hero, FER inicial, Muses e Educação em mobile e desktop para verificar tonalidade, continuidade e leitura.
@@ -58,3 +58,9 @@ Os eventos originais estão em `qa/performance-report.json`. O LCP foi calculado
 As quatro faixas e o perfil Apple Music do artista foram confirmados no catálogo Apple Music Venezuela. Áudios locais, links diretos Spotify/YouTube Music, convite real da comunidade WhatsApp, fotografia do grupo e canal de contacto não foram fornecidos. O cartão de comunidade mostra uma imagem editorial identificada como tal e comunica que o acesso é por convite. Não foram criadas biografias, inscrições, disponibilidade comercial ou confirmações de ações externas.
 
 Após a inclusão do teaser musical mobile, Seeta, lançamentos e cartão de comunidade, repetiu-se a auditoria em Chromium com JavaScript desativado: 320, 360, 390, 430, 768, 1024, 1440 e 1920 px sem overflow ou recursos falhados. A verificação a 200% de texto no viewport de 390 px também passou. Houve uma regressão inicial de overflow no link Seeta; a largura do link foi corrigida antes deste resultado final.
+
+## Atualização — 2026-10-04
+
+- LAS 7 foi removida da página, navegação, copy e estilos. O contacto segue agora a comunidade; o convite na página FER aponta para a comunidade.
+- Em desktop, o hover acende uma camada leve do fumo vermelho original junto ao bloco editorial sob o rato. O fumo deslocou-se entre os cartões Karen e Zoe na auditoria `--pointer`; não recebe cliques e desaparece com pausa ou movimento reduzido. A camada fica desativada no mobile.
+- A auditoria responsiva passou novamente de 320 a 1920 px, sem overflow, scripts ou recursos falhados. `--motion` passou em 390 e 1440 px com o novo ponto de redução do fumo perto do contacto.

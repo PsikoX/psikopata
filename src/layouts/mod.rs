@@ -15,13 +15,13 @@ pub fn Header() -> Element {
                 }
                 div { class: "header-end",
                     span { class: "locale", "ES / VE" }
-                    a { class: "header-invitation", href: "/#las-7", "LAS 7" span { "aria-hidden": "true", " ✦" } }
+                    a { class: "header-invitation", href: "/fer/", "DESCUBRIR FER" span { "aria-hidden": "true", " ✦" } }
                     details { class: "mobile-menu",
                         summary { "aria-label": "Abrir o cerrar la navegación", span { "MENÚ" } span { class: "menu-symbol", "aria-hidden": "true", "+" } }
                         nav { "aria-label": "Navegación móvil",
                             for link in content::TOP_NAV { a { href: link.href, "{link.label}" } }
                             a { href: "/#education", "EDUCACIÓN" }
-                            a { href: "/#las-7", "LAS 7" }
+                            a { href: "/#community", "COMUNIDAD" }
                             a { href: "/fer/", "DESCUBRIR FER" }
                         }
                     }
@@ -79,5 +79,5 @@ pub fn Contact() -> Element {
 
 #[component]
 pub fn ClosingInvitation() -> Element {
-    rsx! { div { class: "fer-return", ButtonLink { href: "/#las-7", label: "CONOCER LAS 7", secondary: true } } }
+    rsx! { div { class: "fer-return", ButtonLink { href: "/#community", label: "EXPLORAR LA COMUNIDAD", secondary: true } } }
 }
