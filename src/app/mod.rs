@@ -34,7 +34,7 @@ impl Route {
     pub fn title(self) -> &'static str {
         match self {
             Self::Home => "PSIKOPAPA — Tu belleza tiene poder",
-            Self::Fer => "FER — Fetiche. Educación. Religión. | PSIKOPAPA",
+            Self::Fer => "FER — El Tridente de la Prosperidad | PSIKOPAPA",
             Self::NotFound => "Fuera de escena — PSIKOPAPA",
         }
     }
@@ -42,7 +42,7 @@ impl Route {
         match self {
             Self::Home => content::DESCRIPTION,
             Self::Fer => {
-                "Descubre FER: Fetiche, Educación y Religión. Deseo, conocimiento y fe dentro del universo PSIKOPAPA. Un proyecto en desarrollo."
+                "FER: Fetiche, Educación y Religión. Tres fuerzas convergen en el Tridente de la Prosperidad: energía, capacidad y dirección dentro del universo PSIKOPAPA."
             }
             Self::NotFound => "La página que buscas no existe. Vuelve al universo PSIKOPAPA.",
         }

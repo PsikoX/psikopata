@@ -4,6 +4,8 @@ Website oficial de PSIKOPAPA. **FER — Fetiche, Educação e Religião** aparec
 
 A aplicação é construída em Rust. Dioxus compõe as páginas e `dioxus-ssr` gera HTML estático durante o build. Há uma exceção autorizada: um pequeno script local desenha um fio de fumo vermelho a partir da ponta do rato ou do dedo no ecrã. Todo o conteúdo e a navegação funcionam sem esse script. Não há runtime WASM, hidratação ou serviços externos de frontend. A preview local também é Rust, através de Axum.
 
+A rota `/fer/` apresenta **FER — Fetiche, Educação e Religião: o Tridente da Prosperidade**. A narrativa passa por vértices independentes, três correntes, convergência, expansão, circuito circular, mulher no centro e manifesto final. A prosperidade é descrita como metáfora filosófica de abundância criada, sem prometer resultados. FER não é apresentado como uma nova religião. Os textos editáveis da experiência estão em `src/content/fer.rs`; os componentes Rust em `src/pages/fer.rs` e o desenho e movimento em `src/styles/fer.css`. A imagem da mulher usa a capa autorizada de Karen, enquadrada por CSS sem alterar o ficheiro original. O movimento funciona sem JavaScript, respeita o controlo de pausa e a preferência de movimento reduzido.
+
 ## Executar
 
 Instalar Rust stable com rustup. A toolchain está fixada em `rust-toolchain.toml`; Cargo utiliza o lockfile incluído.

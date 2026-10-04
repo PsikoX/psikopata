@@ -1,4 +1,10 @@
-pub const CSS: &str = concat!(include_str!("site.css"), "\n", include_str!("motion.css"));
+pub const CSS: &str = concat!(
+    include_str!("site.css"),
+    "\n",
+    include_str!("motion.css"),
+    "\n",
+    include_str!("fer.css")
+);
 
 /// A changed stylesheet gets a new browser cache key after publication.
 pub fn css_href() -> String {

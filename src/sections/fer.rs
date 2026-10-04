@@ -12,6 +12,7 @@ pub fn FerReveal() -> Element {
                 p { class: "fer-question", "{content::copy::FER_QUESTION}" }
                 h2 { class: "fer-word", id: "fer-title", "FER" }
                 p { class: "fer-meaning", span { "FETICHE" } span { "EDUCACIÓN" } span { "RELIGIÓN" } }
+                p { class: "fer-trident", "EL TRIDENTE DE LA PROSPERIDAD" }
                 p { class: "fer-status", "{content::copy::FER_STATUS}" }
                 ButtonLink { href: "/fer/", label: "DESCUBRIR FER", secondary: true }
             }

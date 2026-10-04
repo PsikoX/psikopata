@@ -293,6 +293,9 @@ fn main() -> Result<()> {
         "Emulation.setEmulatedMedia",
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
+    if std::env::args().any(|v| v == "--fer-review") {
+        return audit_fer(&mut browser);
+    }
     if std::env::args().any(|v| v == "--motion") {
         return audit_motion(&mut browser);
     }
@@ -600,6 +603,115 @@ fn main() -> Result<()> {
     }) {
         return Err("Browser audit found issues; inspect browser-report.json".into());
     }
+    Ok(())
+}
+
+fn audit_fer(browser: &mut Browser) -> Result<()> {
+    for (width, height) in [(320, 812), (390, 844), (768, 1024), (1440, 1000)] {
+        browser.call(
+            "Emulation.setDeviceMetricsOverride",
+            json!({"width":width,"height":height,"deviceScaleFactor":1,"mobile":width<600}),
+        )?;
+        browser.navigate("http://127.0.0.1:8080/fer/")?;
+        let metrics = browser.call("Page.getLayoutMetrics", json!({}))?;
+        let content_width = metrics["cssContentSize"]["width"]
+            .as_f64()
+            .ok_or("missing content width")?;
+        let failed: Vec<_> = browser
+            .events
+            .iter()
+            .filter(|event| {
+                event["method"] == "Network.responseReceived"
+                    && event["params"]["response"]["status"]
+                        .as_f64()
+                        .unwrap_or(0.0)
+                        >= 400.0
+            })
+            .map(|event| event["params"]["response"]["url"].clone())
+            .collect();
+        let scripts = browser
+            .events
+            .iter()
+            .filter(|event| {
+                event["method"] == "Network.requestWillBeSent"
+                    && event["params"]["type"] == "Script"
+            })
+            .count();
+        let tree = browser.call("Accessibility.getFullAXTree", json!({}))?;
+        let unnamed_actions = tree["nodes"]
+            .as_array()
+            .ok_or("no accessibility nodes")?
+            .iter()
+            .filter(|node| {
+                node["ignored"] == false
+                    && matches!(node["role"]["value"].as_str(), Some("link" | "button"))
+                    && node["name"]["value"]
+                        .as_str()
+                        .unwrap_or("")
+                        .trim()
+                        .is_empty()
+            })
+            .count();
+        browser.screenshot(
+            &format!("fer-review-{width}-viewport.png"),
+            false,
+            width,
+            height,
+        )?;
+        browser.screenshot(&format!("fer-review-{width}-full.png"), true, width, height)?;
+        println!(
+            "{}",
+            json!({"width":width,"content_width":content_width,"overflow":content_width>width as f64+1.0,"failed_resources":failed,"script_requests":scripts,"unnamed_actions":unnamed_actions})
+        );
+        if content_width > width as f64 + 1.0
+            || !failed.is_empty()
+            || scripts > 0
+            || unnamed_actions > 0
+        {
+            return Err(format!("FER audit failed at width {width}").into());
+        }
+    }
+    browser.call(
+        "Emulation.setDeviceMetricsOverride",
+        json!({"width":390,"height":844,"deviceScaleFactor":1,"mobile":true}),
+    )?;
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
+    )?;
+    browser.navigate("http://127.0.0.1:8080/fer/")?;
+    let first = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
+    thread::sleep(Duration::from_millis(450));
+    let second = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
+    let running = browser.style(".fer-vertex-core", "animation-name")?;
+    println!(
+        "{}",
+        json!({"motion":"normal","stream_first":first,"stream_second":second,"core_animation":running})
+    );
+    if first == second || !running.contains("fer-heartbeat") {
+        return Err("FER energy streams did not move".into());
+    }
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
+    )?;
+    let reduced = browser.style(".fer-vertex-core", "animation-name")?;
+    if reduced != "none" {
+        return Err(format!("FER reduced-motion animation still running: {reduced}").into());
+    }
+    let frame = browser.call("Page.getFrameTree", json!({}))?["frameTree"]["frame"]["id"].clone();
+    let sheet =
+        browser.call("CSS.createStyleSheet", json!({"frameId":frame}))?["styleSheetId"].clone();
+    browser.call(
+        "CSS.setStyleSheetText",
+        json!({"styleSheetId":sheet,"text":"html {font-size:200%}"}),
+    )?;
+    browser.screenshot("fer-review-390-text-200.png", false, 390, 844)?;
+    browser.screenshot("fer-review-390-text-200-full.png", true, 390, 844)?;
+    let zoom_width = browser.call("Page.getLayoutMetrics", json!({}))?["cssContentSize"]["width"]
+        .as_f64()
+        .ok_or("missing text zoom width")?;
+    println!("{}", json!({"text_zoom":"200%","content_width":zoom_width}));
     Ok(())
 }
 

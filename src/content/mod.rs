@@ -1,6 +1,7 @@
 use crate::models::{Chapter, Image, Muse, NavLink, Release, Track};
 
 pub mod copy;
+pub mod fer;
 
 pub const BRAND: &str = "PSIKOPAPA";
 pub const LANG: &str = "es-VE";

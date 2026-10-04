@@ -235,6 +235,15 @@ fn fer_is_intact_and_follows_the_opening() {
     ] {
         assert!(fer.contains(term));
     }
+    let fer_doc = Html::parse_document(&fer);
+    assert_eq!(fer_doc.select(&select(".fer-vertex")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-force-current")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-reactor-input")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-bloom-outcome")).count(), 6);
+    assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 10);
+    assert_eq!(fer_doc.select(&select(".fer-woman-art img")).count(), 1);
+    assert!(fer.contains("FER no es una nueva religión"));
+    assert!(fer.contains("metáfora filosófica"));
 }
 
 #[test]
@@ -378,15 +387,13 @@ fn ambient_motion_keeps_textures_decorative_and_has_a_keyboard_control() {
     assert_eq!(control.value().attr("type"), Some("checkbox"));
     assert!(!control.value().attr("aria-label").unwrap().is_empty());
     assert_eq!(home.select(&select("label[for='pause-motion']")).count(), 1);
-    for route in [Route::Fer, Route::NotFound] {
-        let doc = Html::parse_document(&render_page(route, SiteConfig::new("").unwrap()));
-        assert_eq!(
-            doc.select(&select(".smoke-atmosphere")).count(),
-            0,
-            "no unneeded smoke textures on other routes"
-        );
-        assert_eq!(doc.select(&select("video")).count(), 0);
-    }
+    let fer = Html::parse_document(&render_page(Route::Fer, SiteConfig::new("").unwrap()));
+    assert_eq!(fer.select(&select(".smoke-atmosphere")).count(), 1);
+    assert_eq!(fer.select(&select("video")).count(), 1);
+    let not_found =
+        Html::parse_document(&render_page(Route::NotFound, SiteConfig::new("").unwrap()));
+    assert_eq!(not_found.select(&select(".smoke-atmosphere")).count(), 0);
+    assert_eq!(not_found.select(&select("video")).count(), 0);
 }
 
 #[test]

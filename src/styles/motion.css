@@ -505,7 +505,7 @@
       38%,62% { scale:1.055; translate:0 -7px; }
       100% { scale:.97; translate:0 0; }
     }
-    .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.fer-question,.fer-word,.fer-chapter-copy {
+    .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.fer-question,.fer-word {
       animation:chapter-arrival linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 62%;
