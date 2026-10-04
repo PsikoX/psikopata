@@ -610,6 +610,7 @@ h2 em {
   aspect-ratio:1/1.1;
   overflow:hidden;
   background:#210912;
+  border:1px solid #ad8b5b66;
 }
 
 .muse-image-link::before {
@@ -617,13 +618,11 @@ h2 em {
   position:absolute;
   inset:0;
   z-index:5;
-  padding:2px;
+  border:3px solid transparent;
+  border-image-source:conic-gradient(from var(--muse-rim-angle,0deg),transparent 0deg 255deg,#b5824600 267deg,#e9c88c 300deg,#fff7d6 327deg,#e9c88c 343deg,transparent 360deg);
+  border-image-slice:1;
   pointer-events:none;
-  background:conic-gradient(from var(--muse-rim-angle,0deg),transparent 0deg 265deg,#9b704771 295deg,#e9c88c 322deg,#fff0bf 338deg,transparent 360deg),linear-gradient(#ad8b5b4d,#ad8b5b4d);
-  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  -webkit-mask-composite:xor;
-  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
-  mask-composite:exclude;
+  filter:drop-shadow(0 0 6px #e9c88cbb);
 }
 
 .muse-image-link picture {
@@ -2617,7 +2616,7 @@ h1,h2,h3,.identity-name {
 /* The cover's luminous red filaments continue through the entire page. */
 @property --muse-rim-angle {
   syntax:'<angle>';
-  inherits:true;
+  inherits:false;
   initial-value:0deg;
 }
 
@@ -3026,6 +3025,13 @@ h1,h2,h3,.identity-name {
   .muse-image-link {
     transition:box-shadow .5s cubic-bezier(.18,.78,.24,1);
   }
+  .muse-image-link::before {
+    animation:muse-rim-travel 4.2s linear infinite;
+  }
+  @keyframes muse-rim-travel {
+    from { --muse-rim-angle:0deg; }
+    to { --muse-rim-angle:360deg; }
+  }
   .muse-image-link::after {
     content:'';
     position:absolute;
@@ -3097,10 +3103,9 @@ h1,h2,h3,.identity-name {
       animation-range:entry 0% exit 100%;
     }
     @keyframes muse-scroll-near {
-      0% { scale:.91; translate:0 24px; --muse-rim-angle:0deg; }
-      38% { scale:1.055; translate:0 -7px; --muse-rim-angle:137deg; }
-      62% { scale:1.055; translate:0 -7px; --muse-rim-angle:223deg; }
-      100% { scale:.97; translate:0 0; --muse-rim-angle:360deg; }
+      0% { scale:.91; translate:0 24px; }
+      38%,62% { scale:1.055; translate:0 -7px; }
+      100% { scale:.97; translate:0 0; }
     }
     .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.seven-heading,.fer-question,.fer-word,.fer-chapter-copy {
       animation:chapter-arrival linear both;
