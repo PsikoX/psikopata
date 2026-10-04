@@ -660,26 +660,26 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         )?;
         browser.screenshot(&format!("fer-review-{width}-full.png"), true, width, height)?;
         if width == 390 {
-            let seal = browser.call(
-                "Runtime.evaluate",
-                json!({"expression":"(() => { const image = document.querySelector('.fer-artifact-seal .fer-artifact-complete'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
-            )?["result"]["value"]
-                .clone();
-            if seal["complete"] != true || seal["width"].as_u64().unwrap_or(0) == 0 {
-                return Err(format!("FER seal image did not load: {seal}").into());
-            }
-            browser.call(
-                "Runtime.evaluate",
-                json!({"expression":"document.querySelector('.fer-artifact-interlace').scrollIntoView()"}),
-            )?;
-            thread::sleep(Duration::from_millis(500));
-            browser.current_viewport("fer-review-390-interlace.png")?;
             let interlace = browser.call(
                 "Runtime.evaluate",
                 json!({"expression":"(() => { const images = [...document.querySelectorAll('.fer-artifact-interlace img')]; return images.every(image => image.complete && image.naturalWidth > 0); })()","returnByValue":true}),
-            )?["result"]["value"].clone();
+            )?["result"]["value"]
+                .clone();
             if interlace != true {
-                return Err("FER interlace images did not load".into());
+                return Err("FER opening interlace images did not load".into());
+            }
+            browser.call(
+                "Runtime.evaluate",
+                json!({"expression":"document.querySelector('.fer-artifact-seal').scrollIntoView()"}),
+            )?;
+            thread::sleep(Duration::from_millis(500));
+            browser.current_viewport("fer-review-390-seal.png")?;
+            let seal = browser.call(
+                "Runtime.evaluate",
+                json!({"expression":"(() => { const image = document.querySelector('.fer-artifact-seal .fer-artifact-complete'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
+            )?["result"]["value"].clone();
+            if seal["complete"] != true || seal["width"].as_u64().unwrap_or(0) == 0 {
+                return Err(format!("FER convergence seal image did not load: {seal}").into());
             }
         }
         println!(

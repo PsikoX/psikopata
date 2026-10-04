@@ -27,9 +27,9 @@ pub fn FerSeal() -> Element {
                 width: "1254",
                 height: "1254",
                 alt: "",
-                loading: "eager",
+                loading: "lazy",
                 decoding: "async",
-                "fetchpriority": "high",
+                "fetchpriority": "low",
             }
             span { class: "fer-artifact-light", "aria-hidden": "true" }
         }
@@ -45,10 +45,10 @@ pub fn FerInterlace() -> Element {
             role: "img",
             "aria-label": "Tres bandas de esmalte rojo, marfil con una cruz y oro se entrelazan y revelan un centro luminoso",
             div { class: "fer-artifact-shadow", "aria-hidden": "true" }
-            img { class: "fer-band fer-band-red", src: "/assets/images/fer-interlace-red.webp", width: "1254", height: "1254", alt: "", loading: "lazy", decoding: "async" }
-            img { class: "fer-band fer-band-ivory", src: "/assets/images/fer-interlace-ivory.webp", width: "1254", height: "1254", alt: "", loading: "lazy", decoding: "async" }
-            img { class: "fer-band fer-band-gold", src: "/assets/images/fer-interlace-gold.webp", width: "1254", height: "1254", alt: "", loading: "lazy", decoding: "async" }
-            img { class: "fer-artifact-complete", src: "/assets/images/fer-interlace.webp", width: "1254", height: "1254", alt: "", loading: "lazy", decoding: "async" }
+            img { class: "fer-band fer-band-red", src: "/assets/images/fer-interlace-red.webp", width: "1254", height: "1254", alt: "", loading: "eager", decoding: "async" }
+            img { class: "fer-band fer-band-ivory", src: "/assets/images/fer-interlace-ivory.webp", width: "1254", height: "1254", alt: "", loading: "eager", decoding: "async" }
+            img { class: "fer-band fer-band-gold", src: "/assets/images/fer-interlace-gold.webp", width: "1254", height: "1254", alt: "", loading: "eager", decoding: "async" }
+            img { class: "fer-artifact-complete", src: "/assets/images/fer-interlace.webp", width: "1254", height: "1254", alt: "", loading: "eager", decoding: "async", "fetchpriority": "high" }
             span { class: "fer-artifact-light", "aria-hidden": "true" }
         }
     }

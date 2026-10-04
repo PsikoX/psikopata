@@ -230,11 +230,31 @@
 }
 
 @supports(background-clip:text) {
-  .fer-word {
-    background:linear-gradient(145deg,#fff4e6 16%,#d8b39e 46%,#fff0dd 67%,#bb7c81 95%);
+  .fer-glyph-f {
+    background:linear-gradient(145deg,#fff0df 0%,#f26b7a 34%,#a81235 77%,#ffd3c7 100%);
     background-clip:text;
     -webkit-background-clip:text;
     color:transparent;
+  }
+  .fer-glyph-e {
+    background:linear-gradient(145deg,#fff2cd 0%,#dfb979 36%,#9b652d 77%,#fff2cc 100%);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+  .fer-glyph-r {
+    background:linear-gradient(145deg,#fffdf4 0%,#d7e7eb 38%,#889da7 77%,#fffefa 100%);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+}
+
+@media(forced-colors:active) {
+  .fer-glyph {
+    background:none!important;
+    color:CanvasText!important;
+    text-shadow:none!important;
   }
 }
 
@@ -654,10 +674,15 @@
   font-size:clamp(3.75rem,7vw,5.5rem);
   font-weight:500;
   line-height:.9;
-  letter-spacing:-.055em;
-  color:#f5dfc7;
-  text-shadow:0 0 18px #b31c397a;
+  letter-spacing:0;
+  white-space:nowrap;
 }
+
+.hero-fer strong .fer-glyph + .fer-glyph { margin-left:.015em; }
+
+.hero-fer-terms span:first-child { color:var(--fer-f); }
+.hero-fer-terms span:nth-child(2) { color:var(--fer-e); }
+.hero-fer-terms span:nth-child(3) { color:var(--fer-r); }
 
 .hero-fer-terms {
   display:grid;
@@ -777,7 +802,7 @@
     padding:12px 13px;
   }
   .hero-fer strong {
-    font-size:clamp(2.75rem,15vw,4.75rem);
+    font-size:clamp(2rem,15vw,4.75rem);
   }
   .hero-content {
     padding-top:18px;

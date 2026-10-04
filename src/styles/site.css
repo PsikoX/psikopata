@@ -32,6 +32,9 @@
   --silver:#e0d4cb;
   --muted:#c5b5aa;
   --gold:#d7b88a;
+  --fer-f:#f26b7a;
+  --fer-e:#e9c18a;
+  --fer-r:#d6e6ec;
   --brand-ink:#efc09e;
   --line:#36262e;
   --display:Cormorant,Georgia,serif;
@@ -40,6 +43,19 @@
   scroll-behavior:smooth;
   scroll-padding-top:2rem;
 }
+
+/* The three letters keep their own colour across the entire universe. */
+.fer-glyph {
+  display:inline-block;
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:500;
+  line-height:.9;
+  letter-spacing:-.055em;
+}
+.fer-glyph-f { color:var(--fer-f); text-shadow:0 1px 0 #ffd4d2,0 0 25px #d62c4d75; }
+.fer-glyph-e { color:var(--fer-e); text-shadow:0 1px 0 #ffebbf,0 0 25px #b67c3670; }
+.fer-glyph-r { color:var(--fer-r); text-shadow:0 1px 0 #fff,0 0 25px #a5c8d655; }
 
 *,*::before,*::after {
   box-sizing:border-box;
@@ -1224,12 +1240,16 @@ summary::-webkit-details-marker {
 
 .fer-word {
   font-family:var(--display);
-  font-size:clamp(8rem,34vw,21.875rem);
-  letter-spacing:-.075em;
-  line-height:1.12;
+  font-size:clamp(6rem,30vw,21.875rem);
+  letter-spacing:0;
+  line-height:1;
   margin:20px 0 0;
-  padding-right:.075em;
-  color:var(--paper);
+  padding-inline:.07em;
+  white-space:nowrap;
+}
+
+.fer-word .fer-glyph + .fer-glyph {
+  margin-left:.03em;
 }
 
 .fer-meaning {
@@ -1247,6 +1267,10 @@ summary::-webkit-details-marker {
   color:var(--red);
   margin-right:24px;
 }
+
+.fer-meaning span:first-child { color:var(--fer-f); }
+.fer-meaning span:nth-child(2) { color:var(--fer-e); }
+.fer-meaning span:nth-child(3) { color:var(--fer-r); }
 
 .fer-trident {
   margin-top:23px;

@@ -263,6 +263,22 @@ fn fer_is_intact_and_follows_the_opening() {
         fer_doc.select(&select(".fer-artifact-interlace")).count(),
         1
     );
+    assert!(
+        fer.find("fer-artifact-interlace").unwrap() < fer.find("fer-artifact-seal").unwrap(),
+        "the interlace must open the story before the seal converges"
+    );
+    assert_eq!(
+        fer_doc
+            .select(&select(".fer-arrival-wordmark .fer-glyph"))
+            .count(),
+        3
+    );
+    assert_eq!(
+        fer_doc
+            .select(&select(".fer-finale-letters .fer-glyph"))
+            .count(),
+        3
+    );
     assert_eq!(
         fer_doc.select(&select(".fer-artifact-legend span")).count(),
         6

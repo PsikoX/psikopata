@@ -4,9 +4,9 @@
   position:relative;
   isolation:isolate;
   overflow:clip;
-  --fer-rose:#f15b70;
-  --fer-amber:#dbac72;
-  --fer-ivory:#e9e4d6;
+  --fer-rose:var(--fer-f);
+  --fer-amber:var(--fer-e);
+  --fer-ivory:var(--fer-r);
   --fer-ink:#0b0709;
   background:#090608;
 }
@@ -69,7 +69,7 @@
 .fer-scroll-cue,
 .fer-vertices figcaption,
 .fer-force-role,
-.fer-interlace-figure figcaption,
+.fer-convergence-figure figcaption,
 .fer-bloom-outcomes,
 .fer-cycle-index,
 .fer-woman-token,
@@ -93,12 +93,14 @@
   font-weight:400;
 }
 
-.fer-arrival h1 > span {
+.fer-arrival-wordmark {
+  display:inline-flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:.025em;
   font-size:clamp(5rem,35vw,19rem);
-  letter-spacing:-.1em;
-  padding-right:.1em;
-  color:#f7eee7;
-  text-shadow:0 2px 1px #8e3b4a,0 14px 38px #d31a4852;
+  padding-inline:.06em;
+  white-space:nowrap;
 }
 
 .fer-arrival h1 em {
@@ -203,9 +205,9 @@
   border-bottom:1px solid #b58d7c35;
 }
 
-.fer-force-0 { --force:#e72f58; --force-rgb:231,47,88; }
-.fer-force-1 { --force:#dcb17c; --force-rgb:220,177,124; }
-.fer-force-2 { --force:#e7dfd6; --force-rgb:231,223,214; }
+.fer-force-0 { --force:var(--fer-f); --force-rgb:242,107,122; }
+.fer-force-1 { --force:var(--fer-e); --force-rgb:233,193,138; }
+.fer-force-2 { --force:var(--fer-r); --force-rgb:214,230,236; }
 
 .fer-force::before {
   content:'';
@@ -604,12 +606,12 @@
   text-align:center;
 }
 
-.fer-cycle-center span {
+.fer-cycle-center > .fer-cycle-wordmark {
   font:italic min(2.7rem,7vw)/.8 var(--display);
-  letter-spacing:-.08em;
-  padding-right:.08em;
-  text-shadow:0 0 30px #eb48607d;
+  white-space:nowrap;
 }
+
+.fer-cycle-wordmark .fer-glyph + .fer-glyph { margin-left:.015em; }
 
 .fer-cycle-center small {
   display:none;
@@ -794,8 +796,8 @@
   box-shadow:0 0 19px #be2f4c61;
 }
 
-.fer-declaration-1 .fer-declaration-letter { color:#e1b985; }
-.fer-declaration-2 .fer-declaration-letter { color:#eee6db; }
+.fer-declaration-1 .fer-declaration-letter { color:var(--fer-e); }
+.fer-declaration-2 .fer-declaration-letter { color:var(--fer-r); }
 .fer-declaration-result .fer-declaration-letter { color:#f7d8b3; }
 
 .fer-declaration-words {
@@ -856,7 +858,7 @@
   text-shadow:0 0 35px #ed4a6773;
 }
 
-.fer-finale-letters span {
+.fer-finale-letters .fer-plus {
   display:inline-block;
   padding-inline:.13em;
   color:var(--fer-amber);
@@ -943,7 +945,7 @@
 
 @media(min-width:900px) {
   .fer-arrival { padding-top:46px; padding-bottom:115px; }
-  .fer-arrival h1 > span { font-size:19rem; }
+  .fer-arrival-wordmark { font-size:19rem; }
   .fer-arrival h1 em { max-width:none; }
   .fer-arrival-lead { margin-top:36px; }
   .fer-vertices { margin-top:46px; }
@@ -987,7 +989,7 @@
   .fer-cycle-step-7 { left:14%; top:63%; }
   .fer-cycle-step-8 { left:14%; top:37%; }
   .fer-cycle-step-9 { left:26%; top:20%; }
-  .fer-cycle-center span { font-size:8.5rem; }
+  .fer-cycle-center > .fer-cycle-wordmark { font-size:8.5rem; }
   .fer-cycle-center { width:auto; height:auto; border:0; background:none; box-shadow:none; }
   .fer-cycle-center small { display:block; font-size:.68rem; }
   .fer-cycle figcaption { bottom:16px; }
@@ -1082,7 +1084,7 @@
       animation-timeline:view();
       animation-range:entry 0% entry 65%;
     }
-    .fer-interlace-figure,.fer-bloom-stage,.fer-cycle {
+    .fer-convergence-figure,.fer-bloom-stage,.fer-cycle {
       animation:fer-visual-arrival linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 74%;

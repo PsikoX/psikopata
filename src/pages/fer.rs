@@ -25,7 +25,7 @@ pub fn Fer() -> Element {
     }
 }
 
-/// Visual 01: three tangible vertices assemble into the FER seal.
+/// Visual 01: three sculptural bands join around a transforming nucleus.
 #[component]
 fn Arrival() -> Element {
     rsx! {
@@ -34,13 +34,20 @@ fn Arrival() -> Element {
                 a { class: "text-link fer-back", href: "/#fer", "← VOLVER AL UNIVERSO" }
                 SectionLabel { number: "F / E / R", label: "UN SISTEMA EN MOVIMIENTO" }
                 p { class: "fer-arrival-prelude", "TE HICIERON CREER QUE TENÍAS QUE ELEGIR." }
-                h1 { id: "fer-page-title", span { "FER" } em { "El Tridente de la Prosperidad" } }
+                h1 { id: "fer-page-title", "aria-label": "FER, El Tridente de la Prosperidad",
+                    span { class: "fer-arrival-wordmark",
+                        span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
+                        span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
+                        span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
+                    }
+                    em { "El Tridente de la Prosperidad" }
+                }
                 p { class: "fer-arrival-lead", "Deseo. Conocimiento. Fe. Tres fuerzas humanas. Una pregunta: ¿qué pasa cuando dejas de separarlas?" }
                 a { class: "fer-scroll-cue", href: "#fer-vertices", "DESCUBRE EL SISTEMA" span { "aria-hidden": "true", "↓" } }
             }
-            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión forman un triángulo alrededor de un núcleo central",
+            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Tres bandas de Fetiche, Educación y Religión se entrelazan alrededor de un núcleo central",
                 div { class: "fer-vertices-stage",
-                    FerSeal {}
+                    FerInterlace {}
                 }
                 div { class: "fer-artifact-legend",
                     for force in content::fer::FORCES {
@@ -49,12 +56,12 @@ fn Arrival() -> Element {
                 }
                 figcaption { "TRES FUERZAS. UN CENTRO POR REVELAR." }
                 div { class: "fer-artifact-provenance",
-                    p { "El esquema de tres vértices y un centro aparece en el Scutum Fidei medieval. Este sello es una creación artística del FER, no un objeto histórico." }
+                    p { "Tres bandas se encuentran. La triquetra aparece en manuscritos medievales; esta pieza es una creación artística del FER, no un objeto histórico." }
                     a {
-                        href: "https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg",
+                        href: "https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg",
                         target: "_blank",
                         rel: "noopener noreferrer",
-                        "VER EL MANUSCRITO HISTÓRICO ↗"
+                        "VER LA TRIQUETRA DEL MANUSCRITO ↗"
                     }
                 }
             }
@@ -96,7 +103,7 @@ fn Forces() -> Element {
     }
 }
 
-/// Visual 03: three sculptural bands join around a transforming nucleus.
+/// Visual 03: three tangible vertices assemble into the FER seal.
 #[component]
 fn Convergence() -> Element {
     rsx! {
@@ -105,20 +112,22 @@ fn Convergence() -> Element {
                 SectionLabel { number: "02 / 04", label: "LA CONVERGENCIA" }
                 h2 { id: "fer-convergence-title", "No basta querer." br {} "No basta saber." br {} em { "No basta creer." } }
                 p { class: "fer-convergence-intro", "Cuando la energía encuentra capacidad y dirección, empieza la transformación." }
-                figure { class: "fer-interlace-figure", "aria-label": "Tres bandas se entrelazan para formar el Tridente de la Prosperidad",
-                    FerInterlace {}
+                figure { class: "fer-convergence-figure", "aria-label": "Tres medallones forman un triángulo y revelan un núcleo hexagonal",
+                    FerSeal {}
                     div { class: "fer-artifact-legend",
                         for force in content::fer::FORCES {
                             span { b { "{force.letter}" } strong { "{force.name}" } small { "{force.role}" } }
                         }
                     }
                     figcaption { "ENERGÍA + CAPACIDAD + DIRECCIÓN" }
-                    a {
-                        class: "fer-interlace-source",
-                        href: "https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg",
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        "TRIQUETRA EN UN MANUSCRITO MEDIEVAL ↗"
+                    div { class: "fer-artifact-provenance",
+                        p { "El esquema de tres vértices y un centro aparece en el Scutum Fidei medieval. Este sello es una creación artística del FER, no un objeto histórico." }
+                        a {
+                            href: "https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg",
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                            "VER EL MANUSCRITO HISTÓRICO ↗"
+                        }
                     }
                 }
             }
@@ -170,7 +179,14 @@ fn Circuit() -> Element {
                     ol { for (index, step) in content::fer::CYCLE.iter().enumerate() {
                         li { class: "fer-cycle-step fer-cycle-step-{index}", span { class: "fer-cycle-index", "{index}" } strong { "{step}" } }
                     } }
-                    div { class: "fer-cycle-center", "aria-hidden": "true", span { "FER" } small { "SE MUEVE CONTIGO" } }
+                    div { class: "fer-cycle-center", "aria-hidden": "true",
+                        span { class: "fer-cycle-wordmark",
+                            span { class: "fer-glyph fer-glyph-f", "F" }
+                            span { class: "fer-glyph fer-glyph-e", "E" }
+                            span { class: "fer-glyph fer-glyph-r", "R" }
+                        }
+                        small { "SE MUEVE CONTIGO" }
+                    }
                     figcaption { "Y vuelve a empezar. Con más conciencia que antes." }
                 }
             }
@@ -234,7 +250,13 @@ fn Closing() -> Element {
     rsx! {
         section { class: "fer-finale section-space", "aria-labelledby": "fer-finale-title",
             div { class: "container",
-                p { class: "fer-finale-letters", "F" span { "+" } "E" span { "+" } "R" }
+                p { class: "fer-finale-letters", "aria-label": "F más E más R",
+                    span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
+                    span { class: "fer-plus", "aria-hidden": "true", "+" }
+                    span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
+                    span { class: "fer-plus", "aria-hidden": "true", "+" }
+                    span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
+                }
                 h2 { id: "fer-finale-title", "EL TRIDENTE" br {} em { "DE LA PROSPERIDAD." } }
                 p { "El deseo da energía. El conocimiento da capacidad. La fe da dirección. Cuando se encuentran, nace el FER." }
                 p { class: "fer-finale-brand", "UNA IDEA DEL UNIVERSO " BrandText { text: "PSIKOPAPA" } }

@@ -8,4 +8,4 @@ Abrir `index.html` para ver as direções escolhidas A e C em movimento. Os meda
 
 O [Magen David](https://en.wikipedia.org/wiki/Star_of_David) é um hexagrama formado por dois triângulos e um símbolo de identidade judaica. Foi estudado como referência geométrica e histórica, mas não aplicado como logótipo de FER nestes estudos.
 
-As imagens dos mockups foram geradas para explorar a direção artística. As fontes históricas e geológicas estão indicadas separadamente; nenhuma imagem gerada é apresentada como fotografia de um artefacto real.
+As imagens dos mockups foram geradas para explorar a direção artística. O entrelaçado C aparece primeiro e o selo A depois; cada montagem dura seis segundos. As fontes históricas e geológicas estão indicadas separadamente; nenhuma imagem gerada é apresentada como fotografia de um artefacto real.

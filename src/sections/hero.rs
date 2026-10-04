@@ -11,7 +11,11 @@ pub fn Hero() -> Element {
             div { class: "hero-media", ResponsiveImage { image: content::KAREN, class: "hero-picture", sizes: content::HERO_IMAGE_SIZES, eager: true } }
             div { class: "hero-shade", "aria-hidden": "true" }
             a { class: "hero-fer", href: "#fer", "aria-label": "FER: Fetiche, Educación y Religión",
-                strong { "FER" }
+                strong { "aria-label": "FER",
+                    span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
+                    span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
+                    span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
+                }
                 span { class: "hero-fer-terms",
                     for chapter in content::FER_CHAPTERS { span { "{chapter.title}" } }
                 }

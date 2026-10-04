@@ -28,7 +28,7 @@ O controlo nativo “PAUSAR EFECTOS” oculta o vídeo, congela as texturas e de
 
 ## Selo e entrelaçado do FER
 
-O selo triangular e a escultura entrelaçada foram gerados como propostas artísticas. As três bandas da escultura foram isoladas com `image_gen` a partir do estudo visual e convertidas para WebP com transparência. O selo completo tem 398 KiB; a escultura completa, 257 KiB; as três bandas comprimidas somam cerca de 580 KiB. As imagens de cada banda usam carregamento diferido. A animação desloca e roda camadas com CSS; a imagem completa permanece disponível como estado estático para movimento reduzido e para o controlo de pausa. Nenhuma das imagens é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
+O selo triangular e a escultura entrelaçada foram gerados como propostas artísticas. As três bandas da escultura foram isoladas com `image_gen` a partir do estudo visual e convertidas para WebP com transparência. O selo completo tem 398 KiB; a escultura completa, 257 KiB; as três bandas comprimidas somam cerca de 580 KiB. As bandas da peça de abertura carregam de imediato para que a animação comece sem atraso; o selo da convergência usa carregamento diferido. A animação desloca e roda camadas com CSS; a imagem completa permanece disponível como estado estático para movimento reduzido e para o controlo de pausa. Nenhuma das imagens é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
 
 ## Tipografia e transições
 
