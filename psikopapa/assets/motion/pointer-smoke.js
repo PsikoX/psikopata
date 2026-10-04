@@ -1,16 +1,17 @@
-// The only browser script: draw a short red smoke filament from the pointer tip.
+// The only browser script: draw a short red smoke filament from a mouse or finger.
 (() => {
-  const stage = document.querySelector('.cinematic-universe');
-  const canvas = stage?.querySelector('.mouse-smoke');
+  const canvas = document.querySelector('.mouse-smoke');
   const context = canvas?.getContext('2d', { alpha: true });
-  if (!stage || !context) return;
+  if (!context) return;
 
-  const allowed = matchMedia('(min-width: 900px) and (prefers-reduced-motion: no-preference)');
+  const allowed = matchMedia('(prefers-reduced-motion: no-preference)');
   const pause = document.getElementById('pause-motion');
   const points = [];
   const lifetime = 560;
   const maximumLength = 115;
   let frame = 0;
+  let activeTouchId = null;
+  let lastTouchAt = -Infinity;
 
   const clear = () => {
     if (frame) cancelAnimationFrame(frame);
@@ -80,11 +81,9 @@
     if (points.length) frame = requestAnimationFrame(draw);
   };
 
-  stage.addEventListener('pointermove', (event) => {
-    if (!allowed.matches || pause?.checked || event.pointerType !== 'mouse') return clear();
-    const now = performance.now();
+  const addPoint = (x, y, now) => {
     const last = points[points.length - 1];
-    const distance = last ? Math.hypot(event.clientX - last.x, event.clientY - last.y) : 0;
+    const distance = last ? Math.hypot(x - last.x, y - last.y) : 0;
     if (distance > 180) points.length = 0;
     const previous = points[points.length - 1];
     if (previous && distance > 1 && distance <= 180) {
@@ -92,20 +91,60 @@
       for (let step = 1; step <= steps; step++) {
         const fraction = step / steps;
         points.push({
-          x: previous.x + (event.clientX - previous.x) * fraction,
-          y: previous.y + (event.clientY - previous.y) * fraction,
+          x: previous.x + (x - previous.x) * fraction,
+          y: previous.y + (y - previous.y) * fraction,
           time: now,
         });
       }
     } else if (!previous) {
-      points.push({ x: event.clientX, y: event.clientY, time: now });
+      points.push({ x, y, time: now });
     }
     trim(now);
     if (!frame) frame = requestAnimationFrame(draw);
+  };
+
+  document.addEventListener('pointermove', (event) => {
+    if (event.pointerType !== 'mouse' || activeTouchId !== null) return;
+    if (!allowed.matches || pause?.checked) return clear();
+    addPoint(event.clientX, event.clientY, performance.now());
   }, { passive: true });
 
-  stage.addEventListener('pointerleave', clear);
-  window.addEventListener('scroll', clear, { passive: true });
+  document.addEventListener('touchstart', (event) => {
+    if (!allowed.matches || pause?.checked || activeTouchId !== null) return;
+    const touch = event.changedTouches[0];
+    if (!touch) return;
+    clear();
+    activeTouchId = touch.identifier;
+    lastTouchAt = performance.now();
+    // A tiny exposed wisp remains visible beside the finger after a quick tap.
+    points.push({ x: touch.clientX - 9, y: touch.clientY + 19, time: lastTouchAt });
+    points.push({ x: touch.clientX - 4, y: touch.clientY + 11, time: lastTouchAt });
+    points.push({ x: touch.clientX, y: touch.clientY + 3, time: lastTouchAt });
+    frame = requestAnimationFrame(draw);
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (event) => {
+    if (activeTouchId === null || !allowed.matches || pause?.checked) return;
+    const touch = Array.from(event.touches).find(item => item.identifier === activeTouchId);
+    if (!touch) return;
+    lastTouchAt = performance.now();
+    addPoint(touch.clientX, touch.clientY, lastTouchAt);
+  }, { passive: true });
+
+  const finishTouch = (event) => {
+    if (Array.from(event.changedTouches).some(item => item.identifier === activeTouchId)) {
+      activeTouchId = null;
+      lastTouchAt = performance.now();
+    }
+  };
+  window.addEventListener('touchend', finishTouch, { passive: true });
+  window.addEventListener('touchcancel', finishTouch, { passive: true });
+  document.documentElement.addEventListener('pointerleave', (event) => {
+    if (event.pointerType === 'mouse') clear();
+  });
+  window.addEventListener('scroll', () => {
+    if (performance.now() - lastTouchAt > lifetime) clear();
+  }, { passive: true });
   window.addEventListener('resize', resize);
   allowed.addEventListener('change', resize);
   pause?.addEventListener('change', clear);
