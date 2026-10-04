@@ -652,11 +652,32 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         let overflow =
             metrics["cssContentSize"]["width"].as_f64().unwrap_or(0.0) > width as f64 + 1.0;
 
+        let muse_heading = browser.node("#muses-title")?;
+        browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":muse_heading}))?;
+        browser.call("Input.dispatchMouseEvent", json!({"type":"mouseWheel","x":width/2,"y":height/2,"deltaX":0,"deltaY":-(height as i64)/2}))?;
+        thread::sleep(Duration::from_millis(250));
+        let muse_scale_enter = browser.style(".muse-karen", "scale")?;
+        let muse_gold_enter = browser.style(".muse-karen", "--muse-rim-angle")?;
+        browser.current_viewport(&format!("muse-card-{width}-scroll-entry.png"))?;
         let picture = browser.node(".muse-image-link > picture")?;
         browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":picture}))?;
         thread::sleep(Duration::from_millis(250));
+        let muse_scale_near = browser.style(".muse-karen", "scale")?;
+        let muse_gold_near = browser.style(".muse-karen", "--muse-rim-angle")?;
         let curtain = browser.style(".muse-image-link > picture", "clip-path")?;
+        browser.current_viewport(&format!("muse-card-{width}-scroll-near.png"))?;
+        browser.call(
+            "Input.dispatchMouseEvent",
+            json!({"type":"mouseWheel","x":width/2,"y":height/2,"deltaX":0,"deltaY":height/3}),
+        )?;
+        thread::sleep(Duration::from_millis(350));
+        let muse_gold_past = browser.style(".muse-karen", "--muse-rim-angle")?;
         browser.current_viewport(&format!("continuity-{width}-muses.png"))?;
+        let scale_enter = muse_scale_enter.parse::<f64>()?;
+        let scale_near = muse_scale_near.parse::<f64>()?;
+        let gold_enter = muse_gold_enter.trim_end_matches("deg").parse::<f64>()?;
+        let gold_near = muse_gold_near.trim_end_matches("deg").parse::<f64>()?;
+        let gold_past = muse_gold_past.trim_end_matches("deg").parse::<f64>()?;
         let muse_link = browser.node(".muse-image-link")?;
         browser.call("DOM.focus", json!({"nodeId":muse_link}))?;
         thread::sleep(Duration::from_millis(550));
@@ -732,10 +753,10 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             .events
             .iter()
             .any(|e| e["method"] == "Network.requestWillBeSent" && e["params"]["type"] == "Script");
-        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
+        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_enter":muse_gold_enter,"muse_gold_near":muse_gold_near,"muse_gold_past":muse_gold_past,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
         println!(
             "{}",
-            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
+            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_enter":muse_gold_enter,"muse_gold_near":muse_gold_near,"muse_gold_past":muse_gold_past,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
         );
         reports.push(report);
         if !moving
@@ -749,6 +770,9 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             || paused_state != "paused"
             || paused_animation != "none"
             || italic != "italic"
+            || scale_near < scale_enter + 0.05
+            || gold_near < gold_enter + 20.0
+            || gold_past < gold_near + 20.0
             || muse_focus_transform == "none"
             || muse_hover_transform
                 .as_ref()

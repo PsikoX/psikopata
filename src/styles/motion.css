@@ -1,4 +1,10 @@
 /* The cover's luminous red filaments continue through the entire page. */
+@property --muse-rim-angle {
+  syntax:'<angle>';
+  inherits:true;
+  initial-value:0deg;
+}
+
 .brand {
   font-weight:600;
 }
@@ -468,6 +474,17 @@
       animation:opening-depth linear both;
       animation-timeline:--opening;
       animation-range:exit 0% exit 100%;
+    }
+    .muse-card {
+      animation:muse-scroll-near linear both;
+      animation-timeline:view();
+      animation-range:entry 0% exit 100%;
+    }
+    @keyframes muse-scroll-near {
+      0% { scale:.91; translate:0 24px; --muse-rim-angle:0deg; }
+      38% { scale:1.055; translate:0 -7px; --muse-rim-angle:137deg; }
+      62% { scale:1.055; translate:0 -7px; --muse-rim-angle:223deg; }
+      100% { scale:.97; translate:0 0; --muse-rim-angle:360deg; }
     }
     .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.seven-heading,.fer-question,.fer-word,.fer-chapter-copy {
       animation:chapter-arrival linear both;
