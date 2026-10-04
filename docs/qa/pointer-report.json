@@ -1,22 +1,40 @@
 {
-  "hero_hover_opacity": 0.43,
-  "hover_opacity": 0.43,
-  "idle_opacity": 0.0,
+  "first_cursor": [
+    168,
+    400
+  ],
+  "first_opacity": 0.558627,
+  "first_smoke_center": [
+    168,
+    400
+  ],
+  "idle_opacity": 0.00137951,
   "karen_smoke_bounds": [
-    155,
-    278,
-    635,
-    758
+    200,
+    284,
+    588,
+    672
   ],
   "mobile_display": "none",
+  "muse_hover_opacity": 0.56,
   "paused_display": "none",
   "pointer_events": "none",
   "reduced_motion_display": "none",
-  "script_requests": 0,
+  "same_block_cursor_travel": 1104,
+  "same_block_smoke_travel": 1104,
+  "script_requests_on_desktop": 1,
+  "second_cursor": [
+    1272,
+    400
+  ],
+  "second_smoke_center": [
+    1272,
+    400
+  ],
   "zoe_smoke_bounds": [
-    806,
-    278,
-    1286,
-    758
+    851,
+    284,
+    1239,
+    672
   ]
 }

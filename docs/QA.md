@@ -64,3 +64,9 @@ Após a inclusão do teaser musical mobile, Seeta, lançamentos e cartão de com
 - LAS 7 foi removida da página, navegação, copy e estilos. O contacto segue agora a comunidade; o convite na página FER aponta para a comunidade.
 - Em desktop, o hover acende uma camada leve do fumo vermelho original junto ao bloco editorial sob o rato. O fumo deslocou-se entre os cartões Karen e Zoe na auditoria `--pointer`; não recebe cliques e desaparece com pausa ou movimento reduzido. A camada fica desativada no mobile.
 - A auditoria responsiva passou novamente de 320 a 1920 px, sem overflow, scripts ou recursos falhados. `--motion` passou em 390 e 1440 px com o novo ponto de redução do fumo perto do contacto.
+
+## Correção do fumo do rato — 2026-10-04
+
+- A auditoria anterior media apenas mudanças entre blocos. Não demonstrava movimento dentro do mesmo bloco; a crítica do utilizador estava correta.
+- Com a exceção autorizada de um script local, a auditoria `--pointer` passou a testar dois pontos no mesmo bloco do hero. O centro do fumo correspondeu a cada posição do rato e percorreu os mesmos 1104 px. O pedido do único script foi confirmado.
+- A camada mantém `pointer-events:none`, desaparece ao fazer scroll, com “PAUSAR EFECTOS” e com movimento reduzido, e não aparece no mobile. A versão sem JavaScript continua legível e navegável.

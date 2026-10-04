@@ -124,19 +124,25 @@
 
 @media(min-width:900px) and (prefers-reduced-motion:no-preference) {
   .mouse-smoke {
+    display:block;
     position:fixed;
-    left:50vw;
-    top:50vh;
+    left:0;
+    top:0;
     z-index:4;
-    width:clamp(240px,34vw,480px);
+    width:clamp(220px,27vw,390px);
     aspect-ratio:1;
     translate:-50% -50%;
+    transform:translate3d(var(--pointer-x, -600px),var(--pointer-y, -600px),0);
     pointer-events:none;
     opacity:0;
     overflow:hidden;
     mix-blend-mode:screen;
     contain:paint;
-    transition:opacity .25s ease,left .42s cubic-bezier(.2,.7,.2,1),top .42s cubic-bezier(.2,.7,.2,1);
+    will-change:transform,opacity;
+    transition:opacity .25s ease,transform .18s ease-out;
+  }
+  .mouse-smoke.is-active {
+    opacity:.56;
   }
   .mouse-smoke::before,.mouse-smoke::after {
     content:'';
@@ -145,36 +151,23 @@
     background-image:url('/assets/atmosphere/cover-smoke-desktop.webp');
     background-repeat:no-repeat;
     mask-image:radial-gradient(ellipse at center,#000 4%,#000c 32%,transparent 72%);
+    filter:brightness(1.2) saturate(1.15);
     animation:mouse-smoke-drift 3.5s ease-in-out infinite alternate;
   }
   .mouse-smoke::before {
     background-size:230% auto;
     background-position:0% 76%;
-    opacity:.78;
+    opacity:.88;
   }
   .mouse-smoke::after {
     background-size:260% auto;
     background-position:100% 30%;
-    opacity:.42;
+    opacity:.5;
     animation-direction:alternate-reverse;
   }
   @keyframes mouse-smoke-drift {
     from { transform:translate3d(-4%,4%,0) rotate(-5deg) scale(.96); }
     to { transform:translate3d(5%,-4%,0) rotate(5deg) scale(1.06); }
-  }
-  .cinematic-universe :is(.hero-fer,.hero-content,.hero-song,.fer-inner,.universe-grid > *,.section-heading,.muse-card,.music-heading,.track-entry,.alter-grid > *,.creation-heading,.creation-board > *,.education-grid > *,.energy-inner,.community-grid > *,.community-access > *,.contact-inner):hover {
-    anchor-name:--mouse-smoke-target;
-  }
-  .cinematic-universe:has(:is(.hero-fer,.hero-content,.hero-song,.fer-inner,.universe-grid > *,.section-heading,.muse-card,.music-heading,.track-entry,.alter-grid > *,.creation-heading,.creation-board > *,.education-grid > *,.energy-inner,.community-grid > *,.community-access > *,.contact-inner):hover) .mouse-smoke {
-    opacity:.43;
-  }
-  @supports(position-anchor:--mouse-smoke-target) {
-    .mouse-smoke {
-      display:block;
-      position-anchor:--mouse-smoke-target;
-      left:anchor(center);
-      top:anchor(center);
-    }
   }
 }
 

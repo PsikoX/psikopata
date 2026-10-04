@@ -297,6 +297,10 @@ fn main() -> Result<()> {
         return audit_motion(&mut browser);
     }
     if std::env::args().any(|v| v == "--pointer") {
+        browser.call(
+            "Emulation.setScriptExecutionDisabled",
+            json!({"value":false}),
+        )?;
         return audit_pointer(&mut browser);
     }
     if std::env::args().any(|v| v == "--performance") {
@@ -929,21 +933,42 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
     )?;
     browser.navigate("http://127.0.0.1:8080/")?;
+    let script_requests = browser
+        .events
+        .iter()
+        .filter(|event| {
+            event["method"] == "Network.requestWillBeSent" && event["params"]["type"] == "Script"
+        })
+        .count();
     let hero = browser.box_rect(".hero-content")?;
+    let y = hero.1 + (hero.3 - hero.1) / 3;
+    let x1 = hero.0 + 80;
+    let x2 = hero.2 - 80;
     browser.call(
         "Input.dispatchMouseEvent",
-        json!({"type":"mouseMoved","x":(hero.0+hero.2)/2,"y":(hero.1+hero.3)/2,"button":"none"}),
+        json!({"type":"mouseMoved","x":x1,"y":y,"button":"none"}),
     )?;
-    thread::sleep(Duration::from_millis(550));
-    let hero_hover = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
-    browser.current_viewport("mouse-smoke-hero.png")?;
+    thread::sleep(Duration::from_millis(350));
+    let first_opacity = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
+    let first_smoke = browser.box_rect(".mouse-smoke")?;
+    browser.current_viewport("mouse-smoke-first.png")?;
+    browser.call(
+        "Input.dispatchMouseEvent",
+        json!({"type":"mouseMoved","x":x2,"y":y,"button":"none"}),
+    )?;
+    thread::sleep(Duration::from_millis(350));
+    let second_smoke = browser.box_rect(".mouse-smoke")?;
+    browser.current_viewport("mouse-smoke-second.png")?;
+    let first_center = (
+        (first_smoke.0 + first_smoke.2) / 2,
+        (first_smoke.1 + first_smoke.3) / 2,
+    );
+    let second_center = (
+        (second_smoke.0 + second_smoke.2) / 2,
+        (second_smoke.1 + second_smoke.3) / 2,
+    );
     let picture = browser.node(".muse-karen .muse-image-link > picture")?;
     browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":picture}))?;
-    thread::sleep(Duration::from_millis(350));
-    browser.call(
-        "Input.dispatchMouseEvent",
-        json!({"type":"mouseMoved","x":0,"y":0,"button":"none"}),
-    )?;
     thread::sleep(Duration::from_millis(350));
     let idle = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
     browser.current_viewport("mouse-smoke-idle.png")?;
@@ -984,16 +1009,20 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
     )?;
     browser.navigate("http://127.0.0.1:8080/")?;
     let mobile_display = browser.style(".mouse-smoke", "display")?;
-    let no_scripts = !browser.events.iter().any(|event| {
-        event["method"] == "Network.requestWillBeSent" && event["params"]["type"] == "Script"
-    });
-    let report = json!({"hero_hover_opacity":hero_hover,"idle_opacity":idle,"hover_opacity":hover,"karen_smoke_bounds":karen_smoke,"zoe_smoke_bounds":zoe_smoke,"pointer_events":pointer_events,"paused_display":paused_display,"reduced_motion_display":reduced_display,"mobile_display":mobile_display,"script_requests":!no_scripts as u8});
+    let report = json!({"first_cursor":[x1,y],"first_smoke_center":first_center,"second_cursor":[x2,y],"second_smoke_center":second_center,"same_block_cursor_travel":x2-x1,"same_block_smoke_travel":second_center.0-first_center.0,"first_opacity":first_opacity,"idle_opacity":idle,"muse_hover_opacity":hover,"karen_smoke_bounds":karen_smoke,"zoe_smoke_bounds":zoe_smoke,"pointer_events":pointer_events,"paused_display":paused_display,"reduced_motion_display":reduced_display,"mobile_display":mobile_display,"script_requests_on_desktop":script_requests});
     println!("{report}");
     fs::write(
         output_path("pointer-report.json"),
         serde_json::to_string_pretty(&report)?,
     )?;
-    if hero_hover < 0.3
+    if first_opacity < 0.3
+        || script_requests != 1
+        || x2 - x1 < 250
+        || (first_center.0 - x1).abs() > 16
+        || (first_center.1 - y).abs() > 16
+        || (second_center.0 - x2).abs() > 16
+        || (second_center.1 - y).abs() > 16
+        || second_center.0 - first_center.0 < 250
         || idle > 0.01
         || hover < 0.3
         || zoe_smoke.0 < karen_smoke.0 + 250
@@ -1001,9 +1030,8 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         || paused_display != "none"
         || reduced_display != "none"
         || mobile_display != "none"
-        || !no_scripts
     {
-        return Err("Pointer smoke did not respond to hover".into());
+        return Err("Pointer smoke did not track movement inside the same block".into());
     }
     Ok(())
 }

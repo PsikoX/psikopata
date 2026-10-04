@@ -199,6 +199,9 @@ fn Document(route: Route, config: SiteConfig) -> Element {
                 }
                 link { rel: "preload", href: "/assets/fonts/cormorant-garamond-latin.woff2", r#as: "font", r#type: "font/woff2", crossorigin: "anonymous" }
                 link { rel: "stylesheet", href: styles::css_href() }
+                if route == Route::Home {
+                    script { src: "/assets/motion/pointer-smoke.js", defer: true }
+                }
             }
             body { class: if route == Route::Home { "page-home" } else { "page-inner" },
                 a { class: "skip-link", href: "#main", "Saltar al contenido" }

@@ -39,7 +39,7 @@ pub fn SmokeAtmosphere() -> Element {
     }
 }
 
-/// A decorative smoke accent is positioned by CSS on hovered editorial blocks.
+/// A decorative smoke accent follows CSS coordinates set by the pointer script.
 /// It never receives pointer events or covers links for hit testing.
 #[component]
 pub fn MouseSmoke() -> Element {

@@ -43,7 +43,18 @@ fn every_page_is_readable_without_javascript_and_has_distinct_seo() {
         );
         assert_eq!(doc.select(&select("h1")).count(), 1, "one h1 for {route:?}");
         assert_eq!(doc.select(&select("main")).count(), 1);
-        assert_eq!(doc.select(&select("script, iframe")).count(), 0);
+        assert_eq!(doc.select(&select("iframe")).count(), 0);
+        let scripts: Vec<_> = doc.select(&select("script")).collect();
+        if route == Route::Home {
+            assert_eq!(scripts.len(), 1);
+            assert_eq!(
+                scripts[0].value().attr("src"),
+                Some("/assets/motion/pointer-smoke.js")
+            );
+            assert!(scripts[0].inner_html().is_empty(), "no inline script");
+        } else {
+            assert!(scripts.is_empty());
+        }
         assert!(!html.contains("javascript:") && !html.contains("onclick="));
         assert!(titles.insert(doc.select(&select("title")).next().unwrap().inner_html()));
         for field in [
@@ -417,7 +428,9 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
     for route in Route::ALL {
         let html = render_page(route, config.clone());
         let doc = Html::parse_document(&html);
-        for element in doc.select(&select("a[href], link[href], img[src], source[src]")) {
+        for element in doc.select(&select(
+            "a[href], link[href], img[src], source[src], script[src]",
+        )) {
             let path = element
                 .value()
                 .attr("href")
@@ -443,7 +456,7 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
                 );
             }
         }
-        assert!(!html.contains("<script"));
+        assert!(!html.contains("javascript:"));
     }
     let css = prefix_local_urls(styles::CSS, &config.base_path);
     assert!(css.contains("url('/psikopata/psikopapa/assets/fonts/"));

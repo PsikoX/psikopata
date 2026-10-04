@@ -20,8 +20,8 @@ fn main() -> Result<(), Box<dyn Error>> {
     )?;
     for route in Route::ALL {
         let html = render_page(route, config.clone());
-        if html.contains("<script") || html.contains("javascript:") {
-            return Err("Executable JavaScript is not permitted".into());
+        if html.contains("javascript:") || html.contains("<script>") {
+            return Err("Inline JavaScript is not permitted".into());
         }
         let path = output.join(route.output_path());
         fs::create_dir_all(path.parent().ok_or("Output path has no parent")?)?;
@@ -58,10 +58,10 @@ fn main() -> Result<(), Box<dyn Error>> {
     }
     fs::write(
         output.join("_headers"),
-        "/*\n  Content-Security-Policy: default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self' https:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n/assets/*\n  Cache-Control: public, max-age=3600\n",
+        "/*\n  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self' https:; object-src 'none'; frame-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'\n  X-Content-Type-Options: nosniff\n  Referrer-Policy: strict-origin-when-cross-origin\n  Permissions-Policy: camera=(), microphone=(), geolocation=()\n/assets/*\n  Cache-Control: public, max-age=3600\n",
     )?;
     fs::write(output.join(".nojekyll"), "")?;
-    tracing::info!(directory = %output.display(), "Static Rust build complete; no JavaScript or WASM runtime");
+    tracing::info!(directory = %output.display(), "Static Rust build complete; one optional pointer script");
     Ok(())
 }
 

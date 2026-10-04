@@ -19,7 +19,7 @@ async fn main() -> Result<(), Box<dyn Error>> {
     if !directory.join("index.html").exists() {
         return Err("Run cargo run --bin build-site before starting preview".into());
     }
-    let app = Router::new().fallback_service(ServeDir::new(&directory).not_found_service(ServeFile::new(directory.join("404.html")))).layer(SetResponseHeaderLayer::overriding(header::CONTENT_SECURITY_POLICY, HeaderValue::from_static("default-src 'self'; script-src 'none'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self' https:; object-src 'none'; base-uri 'self'"))).layer(SetResponseHeaderLayer::overriding(header::X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"))).route("/health", axum::routing::get(|| async { "ok".into_response() }));
+    let app = Router::new().fallback_service(ServeDir::new(&directory).not_found_service(ServeFile::new(directory.join("404.html")))).layer(SetResponseHeaderLayer::overriding(header::CONTENT_SECURITY_POLICY, HeaderValue::from_static("default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self'; font-src 'self'; media-src 'self' https:; object-src 'none'; base-uri 'self'"))).layer(SetResponseHeaderLayer::overriding(header::X_CONTENT_TYPE_OPTIONS, HeaderValue::from_static("nosniff"))).route("/health", axum::routing::get(|| async { "ok".into_response() }));
     let listener = tokio::net::TcpListener::bind(address).await?;
     tracing::info!(url = %format!("http://{address}"), "PSIKOPAPA preview ready");
     axum::serve(listener, app).await?;

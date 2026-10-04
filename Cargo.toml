@@ -3,7 +3,7 @@ name = "psikopapa"
 version = "0.1.0"
 edition = "2024"
 rust-version = "1.85"
-description = "The PSIKOPAPA universe, authored and rendered entirely in Rust."
+description = "The PSIKOPAPA universe, rendered in Rust with one optional pointer effect script."
 publish = false
 default-run = "build-site"
 
