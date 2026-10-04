@@ -3415,7 +3415,7 @@ h1,h2,h3,.identity-name {
   transform:translateY(5px);
 }
 
-/* 01 — the vertices are independent; light already starts travelling in. */
+/* 01 — an aged compass gives the trident a tangible, navigable world. */
 .fer-vertices {
   margin-top:20px;
 }
@@ -3426,149 +3426,79 @@ h1,h2,h3,.identity-name {
   aspect-ratio:1;
   margin-inline:auto;
   isolation:isolate;
-  border-radius:50%;
-  background:
-    radial-gradient(circle at 50% 52%,#9c28411e 0 10%,transparent 35%),
-    radial-gradient(circle at 50% 50%,#39202775 0 40%,#11090dcc 66%,transparent 73%);
 }
 
 .fer-vertices-stage::before {
   content:'';
   position:absolute;
+  z-index:-1;
   inset:8%;
   border-radius:50%;
-  background:conic-gradient(from 27deg,transparent 0 7%,#e8c3980a 13%,transparent 19% 35%,#ae1e351e 43%,transparent 48% 70%,#e8c3980b 77%,transparent 85%);
-  filter:blur(18px);
+  background:#a83a2770;
+  filter:blur(55px);
   pointer-events:none;
 }
 
-.fer-seal {
+.fer-compass-image {
+  display:block;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  border-radius:3px;
+  box-shadow:0 26px 65px #000a,0 0 45px #9a421d18;
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 62%,#000 78%,transparent 99%);
+  mask-image:radial-gradient(ellipse at center,#000 62%,#000 78%,transparent 99%);
+}
+
+.fer-compass-threads {
   position:absolute;
   inset:0;
   width:100%;
   height:100%;
-  z-index:1;
-  overflow:visible;
   pointer-events:none;
-  filter:drop-shadow(0 0 18px #b832434d);
 }
 
-.fer-seal-plate-glow {
-  fill:#1f0c12;
-  fill-opacity:.38;
-  stroke:#bd8b664d;
-  stroke-width:1;
+.fer-compass-triangle-shadow {
+  stroke:#100708;
+  stroke-width:5;
+  opacity:.85;
 }
 
-.fer-seal-rim-outer,.fer-seal-rim-inner {
-  stroke:#d1a77d;
-  stroke-width:1.5;
-  opacity:.65;
-}
-
-.fer-seal-rim-inner { stroke:#9d6572; stroke-width:.9; opacity:.65; }
-
-.fer-seal-rim-ticks,.fer-seal-rim-dashes {
-  stroke:#edcaa0;
-  stroke-width:7;
-  stroke-dasharray:1 13;
-  opacity:.7;
-}
-
-.fer-seal-rim-dashes {
-  stroke:#c1656d;
-  stroke-width:2.5;
-  stroke-dasharray:2 10;
-  opacity:.5;
-}
-
-.fer-seal-compass {
-  stroke:#cf9b75;
-  stroke-width:1.3;
-  opacity:.72;
-}
-
-.fer-seal-triangle-glow {
-  stroke:#ec385d;
-  stroke-width:12;
-  opacity:.25;
-  filter:blur(8px);
-}
-
-.fer-seal-triangle-gold {
-  stroke:#e9c598;
-  stroke-width:3.1;
+.fer-compass-triangle-edge {
+  stroke:#d6a971;
+  stroke-width:1.7;
   stroke-linejoin:round;
-  filter:drop-shadow(0 0 6px #f23b62);
+  opacity:.82;
 }
 
-.fer-seal-triangle-fine {
-  stroke:#e0a4a0;
-  stroke-width:.85;
-  opacity:.72;
-}
-
-.fer-seal-triangle-inner {
-  stroke:#9a3b4e;
-  stroke-width:1.3;
-  opacity:.7;
-}
-
-.fer-seal-geometry {
-  stroke:#ab766c;
-  stroke-width:.75;
+.fer-compass-triangle-inset {
+  stroke:#fbddaa;
+  stroke-width:.55;
+  stroke-linejoin:round;
   opacity:.42;
 }
 
-.fer-seal-conduit {
-  stroke-width:2.6;
-  stroke-linecap:round;
-  stroke-dasharray:3 14;
-  filter:drop-shadow(0 0 5px currentColor);
-}
-
-.fer-seal-conduit-f { color:#fb5977; stroke:currentColor; }
-.fer-seal-conduit-e { color:#e6b374; stroke:currentColor; }
-.fer-seal-conduit-r { color:#eae3da; stroke:currentColor; }
-
-.fer-seal-flourishes {
-  stroke:#c49578;
-  stroke-width:1;
-  opacity:.63;
-}
-
-.fer-seal-corners {
-  stroke:#d8a382;
-  stroke-width:1;
-  opacity:.7;
-}
-
-.fer-seal-corners circle:nth-child(n+4) {
-  stroke-dasharray:2 7;
-  opacity:.6;
-}
-
-.fer-seal-core-geometry {
-  stroke:#e7c29a;
+.fer-compass-route {
   stroke-width:1.3;
-  filter:drop-shadow(0 0 5px #e94368);
+  stroke-dasharray:2 20;
+  stroke-linecap:round;
+  opacity:.65;
 }
 
-.fer-seal-core-ring,.fer-seal-core-dashes {
-  stroke:#cc8d86;
-  stroke-width:1.2;
+.fer-compass-route-f { stroke:#b84446; }
+.fer-compass-route-e { stroke:#dfad6e; }
+.fer-compass-route-r { stroke:#ede0bc; }
+
+.fer-compass-jewel-rim {
+  stroke:#f3d5a2;
+  stroke-width:1.4;
+  opacity:.75;
 }
 
-.fer-seal-core-dashes {
-  stroke:#d5b58f;
-  stroke-width:2;
-  stroke-dasharray:2 8;
-  opacity:.68;
-}
-
-.fer-seal-sparks {
-  fill:#f2c9a6;
-  filter:drop-shadow(0 0 6px #e52e50);
+.fer-compass-jewel-spark {
+  fill:#ffe2ae;
+  opacity:.52;
+  filter:drop-shadow(0 0 5px #fdc77d);
 }
 
 .fer-vertex {
@@ -3582,73 +3512,151 @@ h1,h2,h3,.identity-name {
   transform:translate(-50%,-50%);
 }
 
-.fer-vertex-0 { left:50%; top:8.7%; --v:#f05b75; }
-.fer-vertex-1 { left:18%; top:79%; --v:#deb077; }
-.fer-vertex-2 { left:82%; top:79%; --v:#e5dfd3; }
+.fer-vertex-0 { left:50%; top:12%; --v:#e8bba6; }
+.fer-vertex-1 { left:17%; top:83.5%; --v:#f2d5a2; }
+.fer-vertex-2 { left:83%; top:83.5%; --v:#f2e6d5; }
 
 .fer-vertex-glyph {
+  position:relative;
   display:grid;
   place-items:center;
-  width:57px;
-  height:57px;
-  position:relative;
-  border:2px solid var(--v);
+  width:54px;
+  height:54px;
+  border:1px solid #ecc693;
   border-radius:50%;
-  background:radial-gradient(circle at 42% 29%,#57252b 0%,#1a0d13 37%,#060407 75%);
-  box-shadow:0 0 0 3px #180b0f,0 0 0 4px #bb91747a,0 0 21px color-mix(in srgb,var(--v),transparent 42%),inset 0 0 18px #da6c6a51;
+  background:radial-gradient(circle at 38% 24%,#865942,#352115 38%,#130d0c 76%);
+  box-shadow:0 0 0 3px #140c0a,0 0 0 4px #9e704b,0 6px 15px #000c,inset 0 2px 5px #f1c7916b;
   color:var(--v);
-  font:italic min(2.7rem,10vw)/.9 var(--display);
-  text-shadow:0 1px #fff8,0 0 10px color-mix(in srgb,var(--v),transparent 45%);
+  font:italic min(2.55rem,10vw)/.9 var(--display);
+  text-shadow:0 1px 2px #000,0 0 7px #ffe1b252;
+}
+
+.fer-vertex-0 .fer-vertex-glyph {
+  background:radial-gradient(circle at 40% 26%,#793637,#371417 42%,#130909 77%);
+}
+
+.fer-vertex-2 .fer-vertex-glyph {
+  background:radial-gradient(circle at 40% 26%,#8a7761,#3a2e27 43%,#120d0a 77%);
 }
 
 .fer-vertex-glyph::after {
   content:'';
   position:absolute;
   inset:5px;
-  border:1px dashed color-mix(in srgb,var(--v),transparent 50%);
+  border:1px solid #d8ac7970;
   border-radius:50%;
+}
+
+.fer-vertex-name,
+.fer-vertex-role {
+  padding:2px 4px;
+  background:#10090bdf;
+  text-shadow:0 1px 3px #000;
 }
 
 .fer-vertex-name {
   margin-top:8px;
-  color:#fff4eb;
+  color:#fff4e5;
   font-size:.64rem;
   font-weight:700;
   letter-spacing:.11em;
 }
 
 .fer-vertex-role {
-  margin-top:3px;
+  margin-top:1px;
   color:var(--v);
   font-size:.53rem;
   font-weight:700;
   letter-spacing:.1em;
 }
 
-.fer-vertex-core {
-  position:absolute;
-  z-index:2;
-  left:50%;
-  top:52%;
-  width:38px;
-  height:38px;
-  transform:translate(-50%,-50%);
-  border:2px solid #f4c3a5;
-  border-radius:50%;
-  box-shadow:0 0 0 5px #11080cee,0 0 0 6px #d3a485a8,0 0 28px #ed4461b8,0 0 70px #c9283d78;
-  background:radial-gradient(circle,#fff7e9 0 10%,#f4bd99 15%,#ce3956 40%,#530f25 71%,#14090f 90%);
-}
-
-.fer-vertex-core span {
-  position:absolute;
-  inset:-16px;
-  border:1px dashed #f0c6a491;
-  border-radius:50%;
-}
-
 .fer-vertices figcaption {
-  color:#d5b7ae;
+  margin-top:10px;
+  color:#dfbc98;
   line-height:1.5;
+}
+
+.fer-compass-provenance {
+  display:grid;
+  gap:20px;
+  width:min(100%,700px);
+  margin:24px auto 0;
+  padding:18px 0;
+  border-top:1px solid #ac785650;
+  border-bottom:1px solid #ac785650;
+  text-align:left;
+}
+
+.fer-compass-provenance-kicker {
+  color:#e6b27a;
+  font-size:.65rem;
+  font-weight:700;
+  letter-spacing:.18em;
+}
+
+.fer-compass-provenance-copy p {
+  max-width:54ch;
+  margin-top:9px;
+  color:#e4d0bd;
+  font-size:.86rem;
+  line-height:1.55;
+}
+
+.fer-compass-source {
+  display:inline-block;
+  margin-top:12px;
+  color:#d4a471;
+  font-size:.61rem;
+  font-weight:700;
+  letter-spacing:.12em;
+  text-decoration:underline;
+  text-decoration-color:#bd895b80;
+  text-underline-offset:4px;
+}
+
+.fer-compass-source:hover,
+.fer-compass-source:focus-visible {
+  color:#ffe1af;
+}
+
+.fer-compass-archive {
+  display:flex;
+  align-items:center;
+  gap:13px;
+  min-height:80px;
+  color:#f1ddc7;
+}
+
+.fer-compass-archive img {
+  width:74px;
+  height:94px;
+  flex:none;
+  object-fit:cover;
+  object-position:center;
+  border:1px solid #c4986d;
+  filter:sepia(.6) brightness(.88);
+}
+
+.fer-compass-archive span {
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+}
+
+.fer-compass-archive strong {
+  font-size:.69rem;
+  letter-spacing:.11em;
+}
+
+.fer-compass-archive small {
+  color:#c8af98;
+  font-size:.64rem;
+  line-height:1.4;
+}
+
+.fer-compass-archive:hover strong,
+.fer-compass-archive:focus-visible strong {
+  color:#f2b379;
 }
 
 /* 02 — distinct currents, with the words still carrying the meaning. */
@@ -4548,10 +4556,11 @@ h1,h2,h3,.identity-name {
   .fer-back { margin-bottom:62px; }
   .fer-vertices-stage { width:520px; }
   .fer-vertex { width:155px; }
-  .fer-vertex-glyph { width:76px; height:76px; font-size:3.5rem; }
+  .fer-vertex-glyph { width:68px; height:68px; font-size:3.1rem; }
   .fer-vertex-name { font-size:.76rem; }
   .fer-vertex-role { font-size:.62rem; }
-  .fer-vertex-core { width:42px; height:42px; }
+  .fer-compass-provenance { grid-template-columns:minmax(0,1fr) auto; align-items:center; gap:30px; padding-block:22px; }
+  .fer-compass-archive { min-width:235px; }
   .fer-force-inner { grid-template-columns:210px 1fr; gap:28px; padding-block:58px; }
   .fer-force-current { height:225px; }
   .fer-current-halo { width:190px; }
@@ -4654,20 +4663,15 @@ h1,h2,h3,.identity-name {
 }
 
 @media(prefers-reduced-motion:no-preference) {
-  .fer-vertex-core,.fer-reactor-nucleus,.fer-bloom-core {
+  .fer-reactor-nucleus,.fer-bloom-core {
     animation:fer-heartbeat 4.8s ease-in-out infinite;
   }
-  .fer-seal-dial {
-    transform-origin:50% 50%;
-    transform-box:view-box;
-    animation:fer-seal-turn 72s linear infinite;
+  .fer-compass-route {
+    animation:fer-compass-flow 5.2s linear infinite;
   }
-  .fer-seal-conduit {
-    animation:fer-seal-flow 3.4s linear infinite;
-  }
-  .fer-seal-conduit-e { animation-delay:-1.1s; }
-  .fer-seal-conduit-r { animation-delay:-2.2s; }
-  .fer-seal-sparks { animation:fer-seal-glimmer 4.6s ease-in-out infinite; }
+  .fer-compass-route-e { animation-delay:-1.7s; }
+  .fer-compass-route-r { animation-delay:-3.4s; }
+  .fer-compass-jewel-spark { animation:fer-compass-glimmer 5s ease-in-out infinite; }
   .fer-bloom-ring-two,.fer-woman-orbit-one {
     animation:fer-orbit 36s linear infinite;
   }
@@ -4703,17 +4707,13 @@ h1,h2,h3,.identity-name {
   to { rotate:360deg; }
 }
 
-@keyframes fer-seal-turn {
-  to { transform:rotate(360deg); }
+@keyframes fer-compass-flow {
+  to { stroke-dashoffset:-66; }
 }
 
-@keyframes fer-seal-flow {
-  to { stroke-dashoffset:-51; }
-}
-
-@keyframes fer-seal-glimmer {
-  0%,100% { opacity:.45; }
-  50% { opacity:1; }
+@keyframes fer-compass-glimmer {
+  0%,100% { opacity:.25; }
+  50% { opacity:.85; }
 }
 
 @keyframes fer-current-travel {
@@ -4780,14 +4780,14 @@ h1,h2,h3,.identity-name {
 }
 
 @media(prefers-reduced-motion:reduce) {
-  .fer-vertex-core,.fer-reactor-nucleus,.fer-bloom-core {
+  .fer-reactor-nucleus,.fer-bloom-core {
     filter:brightness(1.2);
   }
 }
 
 @media(forced-colors:active) {
   .fer-experience .smoke-atmosphere,
-  .fer-seal,.fer-reactor-lines,
+  .fer-compass-threads,.fer-reactor-lines,
   .fer-bloom-stage,.fer-woman-orbit {
     display:none;
   }
