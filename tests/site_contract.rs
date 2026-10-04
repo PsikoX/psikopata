@@ -47,9 +47,11 @@ fn every_page_is_readable_without_javascript_and_has_distinct_seo() {
         let scripts: Vec<_> = doc.select(&select("script")).collect();
         if route == Route::Home {
             assert_eq!(scripts.len(), 1);
-            assert_eq!(
-                scripts[0].value().attr("src"),
-                Some("/assets/motion/pointer-smoke.js")
+            assert!(
+                scripts[0]
+                    .value()
+                    .attr("src")
+                    .is_some_and(|src| src.starts_with("/assets/motion/pointer-smoke.js?v="))
             );
             assert!(scripts[0].inner_html().is_empty(), "no inline script");
         } else {
@@ -462,7 +464,6 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
     assert!(css.contains("url('/psikopata/psikopapa/assets/fonts/"));
     assert!(css.contains("url('/psikopata/psikopapa/assets/icons/whatsapp.svg')"));
     assert!(css.contains("url('/psikopata/psikopapa/assets/icons/spotify.svg')"));
-    assert!(css.contains("url('/psikopata/psikopapa/assets/atmosphere/cover-smoke-desktop.webp')"));
     assert!(!css.contains("url('/assets/"));
     for invalid in [
         "psikopapa",

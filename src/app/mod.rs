@@ -171,6 +171,13 @@ pub fn render_page(route: Route, config: SiteConfig) -> String {
     prefix_local_urls(&html, &base_path)
 }
 
+fn pointer_script_href() -> String {
+    use std::hash::{DefaultHasher, Hash, Hasher};
+    let mut hash = DefaultHasher::new();
+    include_str!("../../assets/motion/pointer-smoke.js").hash(&mut hash);
+    format!("/assets/motion/pointer-smoke.js?v={:016x}", hash.finish())
+}
+
 #[component]
 fn Document(route: Route, config: SiteConfig) -> Element {
     let canonical = config.canonical(route);
@@ -200,7 +207,7 @@ fn Document(route: Route, config: SiteConfig) -> Element {
                 link { rel: "preload", href: "/assets/fonts/cormorant-garamond-latin.woff2", r#as: "font", r#type: "font/woff2", crossorigin: "anonymous" }
                 link { rel: "stylesheet", href: styles::css_href() }
                 if route == Route::Home {
-                    script { src: "/assets/motion/pointer-smoke.js", defer: true }
+                    script { src: pointer_script_href(), defer: true }
                 }
             }
             body { class: if route == Route::Home { "page-home" } else { "page-inner" },

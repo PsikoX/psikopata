@@ -12,7 +12,7 @@
 
 ## Chromium
 
-A auditoria em Rust utiliza comandos nativos DOM, Accessibility, Input, Emulation, Network, Media e PerformanceTimeline. Não utiliza `Runtime.evaluate` nem helpers JavaScript.
+A auditoria em Rust utiliza comandos DOM, Accessibility, Input, Emulation, Network, Media e PerformanceTimeline. O teste específico `--pointer` usa `Runtime.evaluate` apenas para medir os píxeis do canvas; o restante não precisa dessa avaliação.
 
 Foram verificados o início a 320, 360, 390, 430, 768, 1024, 1440 e 1920 px e a página FER a 390 e 1440 px, com JavaScript desativado e movimento reduzido:
 
@@ -70,3 +70,9 @@ Após a inclusão do teaser musical mobile, Seeta, lançamentos e cartão de com
 - A auditoria anterior media apenas mudanças entre blocos. Não demonstrava movimento dentro do mesmo bloco; a crítica do utilizador estava correta.
 - Com a exceção autorizada de um script local, a auditoria `--pointer` passou a testar dois pontos no mesmo bloco do hero. O centro do fumo correspondeu a cada posição do rato e percorreu os mesmos 1104 px. O pedido do único script foi confirmado.
 - A camada mantém `pointer-events:none`, desaparece ao fazer scroll, com “PAUSAR EFECTOS” e com movimento reduzido, e não aparece no mobile. A versão sem JavaScript continua legível e navegável.
+
+## Rasto fino — 2026-10-04
+
+- O efeito grande junto ao rato foi substituído por um fio luminoso vermelho, com filamentos suaves, que sai da ponta da seta e dura até 560 ms. O rasto usa no máximo 115 px de percurso.
+- No teste do hero, o canvas desenhou uma linha de aproximadamente 85 × 14 px terminada na coordenada do cursor. Após 700 ms, não restou nenhum píxel; sobre Karen voltou a aparecer. Pausa, movimento reduzido e mobile não exibiram o efeito.
+- O script e o CSS têm URL versionado pelo conteúdo para evitar que o navegador continue a usar o efeito anterior em cache.

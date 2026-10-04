@@ -39,11 +39,11 @@ pub fn SmokeAtmosphere() -> Element {
     }
 }
 
-/// A decorative smoke accent follows CSS coordinates set by the pointer script.
+/// A narrow smoke trail is drawn behind the native pointer on this decorative canvas.
 /// It never receives pointer events or covers links for hit testing.
 #[component]
 pub fn MouseSmoke() -> Element {
-    rsx! { div { class: "mouse-smoke", "aria-hidden": "true" } }
+    rsx! { canvas { class: "mouse-smoke", "aria-hidden": "true" } }
 }
 
 /// A native checkbox pauses CSS motion without any client-side code.

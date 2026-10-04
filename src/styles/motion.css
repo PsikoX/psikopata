@@ -126,48 +126,13 @@
   .mouse-smoke {
     display:block;
     position:fixed;
-    left:0;
-    top:0;
+    inset:0;
     z-index:4;
-    width:clamp(220px,27vw,390px);
-    aspect-ratio:1;
-    translate:-50% -50%;
-    transform:translate3d(var(--pointer-x, -600px),var(--pointer-y, -600px),0);
+    width:100vw;
+    height:100vh;
     pointer-events:none;
-    opacity:0;
-    overflow:hidden;
     mix-blend-mode:screen;
     contain:paint;
-    will-change:transform,opacity;
-    transition:opacity .25s ease,transform .18s ease-out;
-  }
-  .mouse-smoke.is-active {
-    opacity:.56;
-  }
-  .mouse-smoke::before,.mouse-smoke::after {
-    content:'';
-    position:absolute;
-    inset:0;
-    background-image:url('/assets/atmosphere/cover-smoke-desktop.webp');
-    background-repeat:no-repeat;
-    mask-image:radial-gradient(ellipse at center,#000 4%,#000c 32%,transparent 72%);
-    filter:brightness(1.2) saturate(1.15);
-    animation:mouse-smoke-drift 3.5s ease-in-out infinite alternate;
-  }
-  .mouse-smoke::before {
-    background-size:230% auto;
-    background-position:0% 76%;
-    opacity:.88;
-  }
-  .mouse-smoke::after {
-    background-size:260% auto;
-    background-position:100% 30%;
-    opacity:.5;
-    animation-direction:alternate-reverse;
-  }
-  @keyframes mouse-smoke-drift {
-    from { transform:translate3d(-4%,4%,0) rotate(-5deg) scale(.96); }
-    to { transform:translate3d(5%,-4%,0) rotate(5deg) scale(1.06); }
   }
 }
 

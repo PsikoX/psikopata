@@ -941,56 +941,43 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         })
         .count();
     let hero = browser.box_rect(".hero-content")?;
-    let y = hero.1 + (hero.3 - hero.1) / 3;
-    let x1 = hero.0 + 80;
-    let x2 = hero.2 - 80;
-    browser.call(
-        "Input.dispatchMouseEvent",
-        json!({"type":"mouseMoved","x":x1,"y":y,"button":"none"}),
-    )?;
-    thread::sleep(Duration::from_millis(350));
-    let first_opacity = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
-    let first_smoke = browser.box_rect(".mouse-smoke")?;
-    browser.current_viewport("mouse-smoke-first.png")?;
-    browser.call(
-        "Input.dispatchMouseEvent",
-        json!({"type":"mouseMoved","x":x2,"y":y,"button":"none"}),
-    )?;
-    thread::sleep(Duration::from_millis(350));
-    let second_smoke = browser.box_rect(".mouse-smoke")?;
-    browser.current_viewport("mouse-smoke-second.png")?;
-    let first_center = (
-        (first_smoke.0 + first_smoke.2) / 2,
-        (first_smoke.1 + first_smoke.3) / 2,
-    );
-    let second_center = (
-        (second_smoke.0 + second_smoke.2) / 2,
-        (second_smoke.1 + second_smoke.3) / 2,
-    );
+    let y = hero.1 + (hero.3 - hero.1) * 2 / 3;
+    let x1 = (hero.0 + hero.2) / 2 - 60;
+    let x2 = x1 + 120;
+    for step in 0..=15 {
+        browser.call(
+            "Input.dispatchMouseEvent",
+            json!({"type":"mouseMoved","x":x1+step*8,"y":y,"button":"none"}),
+        )?;
+        thread::sleep(Duration::from_millis(16));
+    }
+    thread::sleep(Duration::from_millis(45));
+    let trail = canvas_ink(browser)?;
+    browser.current_viewport("mouse-smoke-line.png")?;
+    thread::sleep(Duration::from_millis(700));
+    let idle = canvas_ink(browser)?;
     let picture = browser.node(".muse-karen .muse-image-link > picture")?;
     browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":picture}))?;
-    thread::sleep(Duration::from_millis(350));
-    let idle = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
-    browser.current_viewport("mouse-smoke-idle.png")?;
+    thread::sleep(Duration::from_millis(200));
     let karen = browser.box_rect(".muse-karen .muse-image-link")?;
-    browser.call("Input.dispatchMouseEvent",json!({"type":"mouseMoved","x":(karen.0+karen.2)/2,"y":(karen.1+karen.3)/2,"button":"none"}))?;
-    thread::sleep(Duration::from_millis(550));
-    let hover = browser.style(".mouse-smoke", "opacity")?.parse::<f64>()?;
-    let karen_smoke = browser.box_rect(".mouse-smoke")?;
-    browser.current_viewport("mouse-smoke-karen.png")?;
-    let zoe = browser.box_rect(".muse-zoe .muse-image-link")?;
-    browser.call(
-        "Input.dispatchMouseEvent",
-        json!({"type":"mouseMoved","x":(zoe.0+zoe.2)/2,"y":(zoe.1+zoe.3)/2,"button":"none"}),
-    )?;
-    thread::sleep(Duration::from_millis(550));
-    let zoe_smoke = browser.box_rect(".mouse-smoke")?;
-    browser.current_viewport("mouse-smoke-zoe.png")?;
+    let card_y = (karen.1 + karen.3) / 2;
+    let card_x = (karen.0 + karen.2) / 2;
+    for step in 0..=8 {
+        browser.call(
+            "Input.dispatchMouseEvent",
+            json!({"type":"mouseMoved","x":card_x-32+step*8,"y":card_y,"button":"none"}),
+        )?;
+        thread::sleep(Duration::from_millis(16));
+    }
+    thread::sleep(Duration::from_millis(40));
+    let card_trail = canvas_ink(browser)?;
+    browser.current_viewport("mouse-smoke-card-line.png")?;
     let pointer_events = browser.style(".mouse-smoke", "pointer-events")?;
     let toggle = browser.node("#pause-motion")?;
     browser.call("DOM.focus", json!({"nodeId":toggle}))?;
     browser.space()?;
     let paused_display = browser.style(".mouse-smoke", "display")?;
+    let paused_ink = canvas_ink(browser)?;
     let toggle = browser.node("#pause-motion")?;
     browser.call("DOM.focus", json!({"nodeId":toggle}))?;
     browser.space()?;
@@ -999,6 +986,7 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
     let reduced_display = browser.style(".mouse-smoke", "display")?;
+    let reduced_ink = canvas_ink(browser)?;
     browser.call(
         "Emulation.setDeviceMetricsOverride",
         json!({"width":390,"height":844,"deviceScaleFactor":1,"mobile":true}),
@@ -1009,31 +997,58 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
     )?;
     browser.navigate("http://127.0.0.1:8080/")?;
     let mobile_display = browser.style(".mouse-smoke", "display")?;
-    let report = json!({"first_cursor":[x1,y],"first_smoke_center":first_center,"second_cursor":[x2,y],"second_smoke_center":second_center,"same_block_cursor_travel":x2-x1,"same_block_smoke_travel":second_center.0-first_center.0,"first_opacity":first_opacity,"idle_opacity":idle,"muse_hover_opacity":hover,"karen_smoke_bounds":karen_smoke,"zoe_smoke_bounds":zoe_smoke,"pointer_events":pointer_events,"paused_display":paused_display,"reduced_motion_display":reduced_display,"mobile_display":mobile_display,"script_requests_on_desktop":script_requests});
+    let mobile_ink = canvas_ink(browser)?;
+    let report = json!({"cursor_tip":[x2,y],"trail":trail,"idle":idle,"card_trail":card_trail,"pointer_events":pointer_events,"paused_display":paused_display,"paused_ink":paused_ink,"reduced_motion_display":reduced_display,"reduced_ink":reduced_ink,"mobile_display":mobile_display,"mobile_ink":mobile_ink,"script_requests_on_desktop":script_requests});
     println!("{report}");
     fs::write(
         output_path("pointer-report.json"),
         serde_json::to_string_pretty(&report)?,
     )?;
-    if first_opacity < 0.3
-        || script_requests != 1
-        || x2 - x1 < 250
-        || (first_center.0 - x1).abs() > 16
-        || (first_center.1 - y).abs() > 16
-        || (second_center.0 - x2).abs() > 16
-        || (second_center.1 - y).abs() > 16
-        || second_center.0 - first_center.0 < 250
-        || idle > 0.01
-        || hover < 0.3
-        || zoe_smoke.0 < karen_smoke.0 + 250
+    if script_requests != 1
+        || trail["count"].as_u64().unwrap_or(0) < 100
+        || trail["left"].as_i64().unwrap_or(-1) < i64::from(x2 - 140)
+        || trail["right"].as_i64().unwrap_or(-1) > i64::from(x2 + 18)
+        || trail["right"].as_i64().unwrap_or(-1) < i64::from(x2 - 8)
+        || trail["bottom"].as_i64().unwrap_or(-1) - trail["top"].as_i64().unwrap_or(-1) > 40
+        || idle["count"] != 0
+        || card_trail["count"].as_u64().unwrap_or(0) < 40
         || pointer_events != "none"
         || paused_display != "none"
+        || paused_ink["count"] != 0
         || reduced_display != "none"
+        || reduced_ink["width"] != 0
         || mobile_display != "none"
+        || mobile_ink["width"] != 0
     {
-        return Err("Pointer smoke did not track movement inside the same block".into());
+        return Err("Pointer trail must be narrow, start at the cursor, and fade away".into());
     }
     Ok(())
+}
+
+fn canvas_ink(browser: &mut Browser) -> Result<Value> {
+    let result = browser.call(
+        "Runtime.evaluate",
+        json!({"returnByValue":true,"expression":r#"(() => {
+            const canvas = document.querySelector('canvas.mouse-smoke');
+            const width = canvas.width;
+            const height = canvas.height;
+            if (!width || !height) return { count: 0, width, height, left: -1, top: -1, right: -1, bottom: -1 };
+            const pixels = canvas.getContext('2d').getImageData(0, 0, width, height).data;
+            let count = 0, left = width, top = height, right = -1, bottom = -1;
+            for (let y = 0; y < height; y++) for (let x = 0; x < width; x++) {
+                if (pixels[(y * width + x) * 4 + 3] > 4) {
+                    count++;
+                    left = Math.min(left, x); top = Math.min(top, y);
+                    right = Math.max(right, x); bottom = Math.max(bottom, y);
+                }
+            }
+            return { count, width, height, left, top, right, bottom };
+        })()"#}),
+    )?;
+    if !result["exceptionDetails"].is_null() {
+        return Err(format!("canvas inspection failed: {}", result["exceptionDetails"]).into());
+    }
+    Ok(result["result"]["value"].clone())
 }
 
 fn moving_edge_fraction(a: &str, b: &str, width: u32, height: u32) -> Result<f64> {

@@ -1,40 +1,65 @@
 {
-  "first_cursor": [
-    168,
-    400
+  "card_trail": {
+    "bottom": 484,
+    "count": 613,
+    "height": 1000,
+    "left": 354,
+    "right": 423,
+    "top": 470,
+    "width": 1440
+  },
+  "cursor_tip": [
+    773,
+    710
   ],
-  "first_opacity": 0.558627,
-  "first_smoke_center": [
-    168,
-    400
-  ],
-  "idle_opacity": 0.00137951,
-  "karen_smoke_bounds": [
-    200,
-    284,
-    588,
-    672
-  ],
+  "idle": {
+    "bottom": -1,
+    "count": 0,
+    "height": 1000,
+    "left": 1440,
+    "right": -1,
+    "top": 1000,
+    "width": 1440
+  },
   "mobile_display": "none",
-  "muse_hover_opacity": 0.56,
+  "mobile_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 0,
+    "left": -1,
+    "right": -1,
+    "top": -1,
+    "width": 0
+  },
   "paused_display": "none",
+  "paused_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 1000,
+    "left": 1440,
+    "right": -1,
+    "top": 1000,
+    "width": 1440
+  },
   "pointer_events": "none",
+  "reduced_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 0,
+    "left": -1,
+    "right": -1,
+    "top": -1,
+    "width": 0
+  },
   "reduced_motion_display": "none",
-  "same_block_cursor_travel": 1104,
-  "same_block_smoke_travel": 1104,
   "script_requests_on_desktop": 1,
-  "second_cursor": [
-    1272,
-    400
-  ],
-  "second_smoke_center": [
-    1272,
-    400
-  ],
-  "zoe_smoke_bounds": [
-    851,
-    284,
-    1239,
-    672
-  ]
+  "trail": {
+    "bottom": 716,
+    "count": 745,
+    "height": 1000,
+    "left": 692,
+    "right": 777,
+    "top": 702,
+    "width": 1440
+  }
 }
