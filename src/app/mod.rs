@@ -1,5 +1,5 @@
 use crate::{
-    components::{MotionControl, image_srcset},
+    components::{MotionControl, MouseSmoke, image_srcset},
     content,
     layouts::{Footer, Header},
     pages::{fer::Fer, home::Home, not_found::NotFound},
@@ -217,6 +217,7 @@ fn Document(route: Route, config: SiteConfig) -> Element {
                     Header {}
                     main { id: "main", tabindex: "-1", match route { Route::Home => rsx! { Home {} }, Route::Fer => rsx! { Fer {} }, Route::NotFound => rsx! { NotFound {} } } }
                     Footer {}
+                    if route == Route::Home { MouseSmoke {} }
                 }
             }
     }

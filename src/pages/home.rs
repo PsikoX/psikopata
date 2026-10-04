@@ -1,5 +1,5 @@
 use crate::{
-    components::{MouseSmoke, SmokeAtmosphere},
+    components::SmokeAtmosphere,
     layouts::Contact,
     sections::{
         alter_ego::AlterEgo, community::Community, creation::Creation, education::Education,
@@ -15,7 +15,6 @@ pub fn Home() -> Element {
             SmokeAtmosphere {}
             Hero {} FerReveal {} Universe {} Muses {} Music {} AlterEgo {}
             Creation {} Education {} Community {} Contact {}
-            MouseSmoke {}
         }
     }
 }

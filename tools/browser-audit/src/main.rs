@@ -992,13 +992,68 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         json!({"width":390,"height":844,"deviceScaleFactor":1,"mobile":true}),
     )?;
     browser.call(
+        "Emulation.setTouchEmulationEnabled",
+        json!({"enabled":true,"maxTouchPoints":1}),
+    )?;
+    browser.call(
         "Emulation.setEmulatedMedia",
         json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
     )?;
     browser.navigate("http://127.0.0.1:8080/")?;
     let mobile_display = browser.style(".mouse-smoke", "display")?;
     let mobile_ink = canvas_ink(browser)?;
-    let report = json!({"cursor_tip":[x2,y],"trail":trail,"idle":idle,"card_trail":card_trail,"pointer_events":pointer_events,"paused_display":paused_display,"paused_ink":paused_ink,"reduced_motion_display":reduced_display,"reduced_ink":reduced_ink,"mobile_display":mobile_display,"mobile_ink":mobile_ink,"script_requests_on_desktop":script_requests});
+    let menu = browser.box_rect(".mobile-menu summary")?;
+    let tap_x = (menu.0 + menu.2) / 2;
+    let tap_y = (menu.1 + menu.3) / 2;
+    browser.call(
+        "Input.dispatchTouchEvent",
+        json!({"type":"touchStart","touchPoints":[{"x":tap_x,"y":tap_y,"id":1}]}),
+    )?;
+    thread::sleep(Duration::from_millis(60));
+    let tap_ink = canvas_ink(browser)?;
+    browser.current_viewport("touch-smoke-tap.png")?;
+    browser.call(
+        "Input.dispatchTouchEvent",
+        json!({"type":"touchEnd","touchPoints":[]}),
+    )?;
+    thread::sleep(Duration::from_millis(120));
+    let menu_node = browser.node(".mobile-menu")?;
+    let menu_opened = browser.call("DOM.getAttributes", json!({"nodeId":menu_node}))?["attributes"]
+        .as_array()
+        .ok_or("no menu attributes")?
+        .iter()
+        .any(|attribute| attribute == "open");
+    browser.call(
+        "Input.dispatchTouchEvent",
+        json!({"type":"touchStart","touchPoints":[{"x":260,"y":720,"id":2}]}),
+    )?;
+    for step in 1..=12 {
+        browser.call(
+            "Input.dispatchTouchEvent",
+            json!({"type":"touchMove","touchPoints":[{"x":260,"y":720-step*20,"id":2}]}),
+        )?;
+        thread::sleep(Duration::from_millis(16));
+    }
+    thread::sleep(Duration::from_millis(45));
+    let scroll_ink = canvas_ink(browser)?;
+    browser.current_viewport("touch-smoke-scroll.png")?;
+    browser.call(
+        "Input.dispatchTouchEvent",
+        json!({"type":"touchEnd","touchPoints":[]}),
+    )?;
+    thread::sleep(Duration::from_millis(160));
+    let scrolled = browser.call("Page.getLayoutMetrics", json!({}))?["cssLayoutViewport"]["pageY"]
+        .as_f64()
+        .unwrap_or(0.0);
+    thread::sleep(Duration::from_millis(700));
+    let touch_idle = canvas_ink(browser)?;
+    browser.call(
+        "Emulation.setEmulatedMedia",
+        json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
+    )?;
+    let mobile_reduced_display = browser.style(".mouse-smoke", "display")?;
+    let mobile_reduced_ink = canvas_ink(browser)?;
+    let report = json!({"cursor_tip":[x2,y],"trail":trail,"idle":idle,"card_trail":card_trail,"pointer_events":pointer_events,"paused_display":paused_display,"paused_ink":paused_ink,"reduced_motion_display":reduced_display,"reduced_ink":reduced_ink,"mobile_display":mobile_display,"mobile_ink":mobile_ink,"tap_ink":tap_ink,"menu_opened":menu_opened,"scroll_ink":scroll_ink,"scrolled_pixels":scrolled,"touch_idle":touch_idle,"mobile_reduced_display":mobile_reduced_display,"mobile_reduced_ink":mobile_reduced_ink,"script_requests_on_desktop":script_requests});
     println!("{report}");
     fs::write(
         output_path("pointer-report.json"),
@@ -1017,8 +1072,15 @@ fn audit_pointer(browser: &mut Browser) -> Result<()> {
         || paused_ink["count"] != 0
         || reduced_display != "none"
         || reduced_ink["width"] != 0
-        || mobile_display != "none"
-        || mobile_ink["width"] != 0
+        || mobile_display != "block"
+        || mobile_ink["width"] != 390
+        || tap_ink["count"].as_u64().unwrap_or(0) < 25
+        || !menu_opened
+        || scroll_ink["count"].as_u64().unwrap_or(0) < 80
+        || scrolled < 40.0
+        || touch_idle["count"] != 0
+        || mobile_reduced_display != "none"
+        || mobile_reduced_ink["width"] != 0
     {
         return Err("Pointer trail must be narrow, start at the cursor, and fade away".into());
     }

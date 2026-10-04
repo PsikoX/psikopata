@@ -76,3 +76,8 @@ Após a inclusão do teaser musical mobile, Seeta, lançamentos e cartão de com
 - O efeito grande junto ao rato foi substituído por um fio luminoso vermelho, com filamentos suaves, que sai da ponta da seta e dura até 560 ms. O rasto usa no máximo 115 px de percurso.
 - No teste do hero, o canvas desenhou uma linha de aproximadamente 85 × 14 px terminada na coordenada do cursor. Após 700 ms, não restou nenhum píxel; sobre Karen voltou a aparecer. Pausa, movimento reduzido e mobile não exibiram o efeito.
 - O script e o CSS têm URL versionado pelo conteúdo para evitar que o navegador continue a usar o efeito anterior em cache.
+
+## Toque no mobile — 2026-10-04
+
+- O mesmo fio aparece ao tocar no ecrã, incluindo o menu, e acompanha o dedo durante o arrasto. Os listeners de toque são passivos e o canvas tem `pointer-events:none`.
+- No Chromium a 390 × 844, o toque no menu desenhou o rasto e abriu o menu. O arrasto manteve uma linha estreita e fez scroll de 225 px; após largar o dedo, o canvas voltou a ficar vazio. Com movimento reduzido, o canvas ficou oculto e sem memória alocada.

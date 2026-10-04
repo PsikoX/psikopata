@@ -39,7 +39,7 @@ pub fn SmokeAtmosphere() -> Element {
     }
 }
 
-/// A narrow smoke trail is drawn behind the native pointer on this decorative canvas.
+/// A narrow smoke trail follows the mouse or a finger on this decorative canvas.
 /// It never receives pointer events or covers links for hit testing.
 #[component]
 pub fn MouseSmoke() -> Element {

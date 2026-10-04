@@ -1,7 +1,7 @@
 {
   "card_trail": {
-    "bottom": 484,
-    "count": 613,
+    "bottom": 483,
+    "count": 506,
     "height": 1000,
     "left": 354,
     "right": 423,
@@ -10,7 +10,7 @@
   },
   "cursor_tip": [
     773,
-    710
+    731
   ],
   "idle": {
     "bottom": -1,
@@ -21,8 +21,19 @@
     "top": 1000,
     "width": 1440
   },
-  "mobile_display": "none",
+  "menu_opened": true,
+  "mobile_display": "block",
   "mobile_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 844,
+    "left": 390,
+    "right": -1,
+    "top": 844,
+    "width": 390
+  },
+  "mobile_reduced_display": "none",
+  "mobile_reduced_ink": {
     "bottom": -1,
     "count": 0,
     "height": 0,
@@ -53,13 +64,41 @@
   },
   "reduced_motion_display": "none",
   "script_requests_on_desktop": 1,
+  "scroll_ink": {
+    "bottom": 606,
+    "count": 966,
+    "height": 844,
+    "left": 253,
+    "right": 266,
+    "top": 494,
+    "width": 390
+  },
+  "scrolled_pixels": 225.0,
+  "tap_ink": {
+    "bottom": 56,
+    "count": 311,
+    "height": 844,
+    "left": 328,
+    "right": 346,
+    "top": 32,
+    "width": 390
+  },
+  "touch_idle": {
+    "bottom": -1,
+    "count": 0,
+    "height": 844,
+    "left": 390,
+    "right": -1,
+    "top": 844,
+    "width": 390
+  },
   "trail": {
-    "bottom": 716,
-    "count": 745,
+    "bottom": 737,
+    "count": 600,
     "height": 1000,
-    "left": 692,
+    "left": 701,
     "right": 777,
-    "top": 702,
+    "top": 722,
     "width": 1440
   }
 }
