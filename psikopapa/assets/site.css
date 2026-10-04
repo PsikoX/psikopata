@@ -32,6 +32,9 @@
   --silver:#e0d4cb;
   --muted:#c5b5aa;
   --gold:#d7b88a;
+  --fer-f:#f26b7a;
+  --fer-e:#e9c18a;
+  --fer-r:#d6e6ec;
   --brand-ink:#efc09e;
   --line:#36262e;
   --display:Cormorant,Georgia,serif;
@@ -40,6 +43,19 @@
   scroll-behavior:smooth;
   scroll-padding-top:2rem;
 }
+
+/* The three letters keep their own colour across the entire universe. */
+.fer-glyph {
+  display:inline-block;
+  font-family:var(--display);
+  font-style:italic;
+  font-weight:500;
+  line-height:.9;
+  letter-spacing:-.055em;
+}
+.fer-glyph-f { color:var(--fer-f); text-shadow:0 1px 0 #ffd4d2,0 0 25px #d62c4d75; }
+.fer-glyph-e { color:var(--fer-e); text-shadow:0 1px 0 #ffebbf,0 0 25px #b67c3670; }
+.fer-glyph-r { color:var(--fer-r); text-shadow:0 1px 0 #fff,0 0 25px #a5c8d655; }
 
 *,*::before,*::after {
   box-sizing:border-box;
@@ -1224,12 +1240,16 @@ summary::-webkit-details-marker {
 
 .fer-word {
   font-family:var(--display);
-  font-size:clamp(8rem,34vw,21.875rem);
-  letter-spacing:-.075em;
-  line-height:1.12;
+  font-size:clamp(6rem,30vw,21.875rem);
+  letter-spacing:0;
+  line-height:1;
   margin:20px 0 0;
-  padding-right:.075em;
-  color:var(--paper);
+  padding-inline:.07em;
+  white-space:nowrap;
+}
+
+.fer-word .fer-glyph + .fer-glyph {
+  margin-left:.03em;
 }
 
 .fer-meaning {
@@ -1247,6 +1267,10 @@ summary::-webkit-details-marker {
   color:var(--red);
   margin-right:24px;
 }
+
+.fer-meaning span:first-child { color:var(--fer-f); }
+.fer-meaning span:nth-child(2) { color:var(--fer-e); }
+.fer-meaning span:nth-child(3) { color:var(--fer-r); }
 
 .fer-trident {
   margin-top:23px;
@@ -2592,11 +2616,31 @@ h1,h2,h3,.identity-name {
 }
 
 @supports(background-clip:text) {
-  .fer-word {
-    background:linear-gradient(145deg,#fff4e6 16%,#d8b39e 46%,#fff0dd 67%,#bb7c81 95%);
+  .fer-glyph-f {
+    background:linear-gradient(145deg,#fff0df 0%,#f26b7a 34%,#a81235 77%,#ffd3c7 100%);
     background-clip:text;
     -webkit-background-clip:text;
     color:transparent;
+  }
+  .fer-glyph-e {
+    background:linear-gradient(145deg,#fff2cd 0%,#dfb979 36%,#9b652d 77%,#fff2cc 100%);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+  .fer-glyph-r {
+    background:linear-gradient(145deg,#fffdf4 0%,#d7e7eb 38%,#889da7 77%,#fffefa 100%);
+    background-clip:text;
+    -webkit-background-clip:text;
+    color:transparent;
+  }
+}
+
+@media(forced-colors:active) {
+  .fer-glyph {
+    background:none!important;
+    color:CanvasText!important;
+    text-shadow:none!important;
   }
 }
 
@@ -3016,10 +3060,15 @@ h1,h2,h3,.identity-name {
   font-size:clamp(3.75rem,7vw,5.5rem);
   font-weight:500;
   line-height:.9;
-  letter-spacing:-.055em;
-  color:#f5dfc7;
-  text-shadow:0 0 18px #b31c397a;
+  letter-spacing:0;
+  white-space:nowrap;
 }
+
+.hero-fer strong .fer-glyph + .fer-glyph { margin-left:.015em; }
+
+.hero-fer-terms span:first-child { color:var(--fer-f); }
+.hero-fer-terms span:nth-child(2) { color:var(--fer-e); }
+.hero-fer-terms span:nth-child(3) { color:var(--fer-r); }
 
 .hero-fer-terms {
   display:grid;
@@ -3139,7 +3188,7 @@ h1,h2,h3,.identity-name {
     padding:12px 13px;
   }
   .hero-fer strong {
-    font-size:clamp(2.75rem,15vw,4.75rem);
+    font-size:clamp(2rem,15vw,4.75rem);
   }
   .hero-content {
     padding-top:18px;
@@ -3280,9 +3329,9 @@ h1,h2,h3,.identity-name {
   position:relative;
   isolation:isolate;
   overflow:clip;
-  --fer-rose:#f15b70;
-  --fer-amber:#dbac72;
-  --fer-ivory:#e9e4d6;
+  --fer-rose:var(--fer-f);
+  --fer-amber:var(--fer-e);
+  --fer-ivory:var(--fer-r);
   --fer-ink:#0b0709;
   background:#090608;
 }
@@ -3345,7 +3394,7 @@ h1,h2,h3,.identity-name {
 .fer-scroll-cue,
 .fer-vertices figcaption,
 .fer-force-role,
-.fer-interlace-figure figcaption,
+.fer-convergence-figure figcaption,
 .fer-bloom-outcomes,
 .fer-cycle-index,
 .fer-woman-token,
@@ -3369,12 +3418,14 @@ h1,h2,h3,.identity-name {
   font-weight:400;
 }
 
-.fer-arrival h1 > span {
+.fer-arrival-wordmark {
+  display:inline-flex;
+  align-items:baseline;
+  justify-content:center;
+  gap:.025em;
   font-size:clamp(5rem,35vw,19rem);
-  letter-spacing:-.1em;
-  padding-right:.1em;
-  color:#f7eee7;
-  text-shadow:0 2px 1px #8e3b4a,0 14px 38px #d31a4852;
+  padding-inline:.06em;
+  white-space:nowrap;
 }
 
 .fer-arrival h1 em {
@@ -3479,9 +3530,9 @@ h1,h2,h3,.identity-name {
   border-bottom:1px solid #b58d7c35;
 }
 
-.fer-force-0 { --force:#e72f58; --force-rgb:231,47,88; }
-.fer-force-1 { --force:#dcb17c; --force-rgb:220,177,124; }
-.fer-force-2 { --force:#e7dfd6; --force-rgb:231,223,214; }
+.fer-force-0 { --force:var(--fer-f); --force-rgb:242,107,122; }
+.fer-force-1 { --force:var(--fer-e); --force-rgb:233,193,138; }
+.fer-force-2 { --force:var(--fer-r); --force-rgb:214,230,236; }
 
 .fer-force::before {
   content:'';
@@ -3880,12 +3931,12 @@ h1,h2,h3,.identity-name {
   text-align:center;
 }
 
-.fer-cycle-center span {
+.fer-cycle-center > .fer-cycle-wordmark {
   font:italic min(2.7rem,7vw)/.8 var(--display);
-  letter-spacing:-.08em;
-  padding-right:.08em;
-  text-shadow:0 0 30px #eb48607d;
+  white-space:nowrap;
 }
+
+.fer-cycle-wordmark .fer-glyph + .fer-glyph { margin-left:.015em; }
 
 .fer-cycle-center small {
   display:none;
@@ -4070,8 +4121,8 @@ h1,h2,h3,.identity-name {
   box-shadow:0 0 19px #be2f4c61;
 }
 
-.fer-declaration-1 .fer-declaration-letter { color:#e1b985; }
-.fer-declaration-2 .fer-declaration-letter { color:#eee6db; }
+.fer-declaration-1 .fer-declaration-letter { color:var(--fer-e); }
+.fer-declaration-2 .fer-declaration-letter { color:var(--fer-r); }
 .fer-declaration-result .fer-declaration-letter { color:#f7d8b3; }
 
 .fer-declaration-words {
@@ -4132,7 +4183,7 @@ h1,h2,h3,.identity-name {
   text-shadow:0 0 35px #ed4a6773;
 }
 
-.fer-finale-letters span {
+.fer-finale-letters .fer-plus {
   display:inline-block;
   padding-inline:.13em;
   color:var(--fer-amber);
@@ -4219,7 +4270,7 @@ h1,h2,h3,.identity-name {
 
 @media(min-width:900px) {
   .fer-arrival { padding-top:46px; padding-bottom:115px; }
-  .fer-arrival h1 > span { font-size:19rem; }
+  .fer-arrival-wordmark { font-size:19rem; }
   .fer-arrival h1 em { max-width:none; }
   .fer-arrival-lead { margin-top:36px; }
   .fer-vertices { margin-top:46px; }
@@ -4263,7 +4314,7 @@ h1,h2,h3,.identity-name {
   .fer-cycle-step-7 { left:14%; top:63%; }
   .fer-cycle-step-8 { left:14%; top:37%; }
   .fer-cycle-step-9 { left:26%; top:20%; }
-  .fer-cycle-center span { font-size:8.5rem; }
+  .fer-cycle-center > .fer-cycle-wordmark { font-size:8.5rem; }
   .fer-cycle-center { width:auto; height:auto; border:0; background:none; box-shadow:none; }
   .fer-cycle-center small { display:block; font-size:.68rem; }
   .fer-cycle figcaption { bottom:16px; }
@@ -4358,7 +4409,7 @@ h1,h2,h3,.identity-name {
       animation-timeline:view();
       animation-range:entry 0% entry 65%;
     }
-    .fer-interlace-figure,.fer-bloom-stage,.fer-cycle {
+    .fer-convergence-figure,.fer-bloom-stage,.fer-cycle {
       animation:fer-visual-arrival linear both;
       animation-timeline:view();
       animation-range:entry 0% entry 74%;
@@ -4438,6 +4489,12 @@ h1,h2,h3,.identity-name {
 .fer-artifact-legend small { font-size:.55rem; line-height:1.4; letter-spacing:.1em; }
 .fer-artifact-legend strong { margin-top:5px; color:#f5e6d3; }
 .fer-artifact-legend small { margin-top:2px; color:#d4aa7a; }
+.fer-artifact-legend span:first-child b,
+.fer-artifact-legend span:first-child strong { color:var(--fer-f); }
+.fer-artifact-legend span:nth-child(2) b,
+.fer-artifact-legend span:nth-child(2) strong { color:var(--fer-e); }
+.fer-artifact-legend span:nth-child(3) b,
+.fer-artifact-legend span:nth-child(3) strong { color:var(--fer-r); }
 .fer-artifact-provenance {
   width:min(100%,700px);
   margin:24px auto 0;
@@ -4453,8 +4510,7 @@ h1,h2,h3,.identity-name {
   font-size:.86rem;
   line-height:1.6;
 }
-.fer-artifact-provenance a,
-.fer-interlace-source {
+.fer-artifact-provenance a {
   display:inline-block;
   min-height:44px;
   padding-top:13px;
@@ -4464,7 +4520,7 @@ h1,h2,h3,.identity-name {
   letter-spacing:.1em;
   text-underline-offset:4px;
 }
-.fer-interlace-figure {
+.fer-convergence-figure {
   display:flex;
   flex-direction:column;
   align-items:center;
@@ -4472,9 +4528,9 @@ h1,h2,h3,.identity-name {
   margin:42px auto 0;
   text-align:center;
 }
-.fer-interlace-figure .fer-artifact { max-width:610px; }
-.fer-interlace-figure .fer-artifact-legend { width:min(100%,610px); }
-.fer-interlace-figure figcaption {
+.fer-convergence-figure .fer-artifact { max-width:610px; }
+.fer-convergence-figure .fer-artifact-legend { width:min(100%,610px); }
+.fer-convergence-figure figcaption {
   margin-top:20px;
   color:#eed4b9;
   font-size:.7rem;
@@ -4524,7 +4580,7 @@ h1,h2,h3,.identity-name {
     stroke-linejoin:round;
     stroke-dasharray:2050;
     stroke-dashoffset:2050;
-    animation:fer-seal-engrave 12s ease-in-out infinite;
+    animation:fer-seal-engrave 6s ease-in-out infinite;
   }
   .fer-seal-rail-heavy { stroke:#36160b; stroke-width:25; }
   .fer-seal-rail-light { stroke:#dfb579; stroke-width:12; }
@@ -4534,10 +4590,10 @@ h1,h2,h3,.identity-name {
     background-repeat:no-repeat;
     will-change:transform,opacity;
   }
-  .fer-seal-f { clip-path:circle(16.6% at 50% 19%); transform-origin:50% 19%; animation:fer-seal-f-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-seal-e { clip-path:circle(18% at 22% 68.5%); transform-origin:22% 68.5%; animation:fer-seal-e-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-seal-r { clip-path:circle(18% at 79% 68.5%); transform-origin:79% 68.5%; animation:fer-seal-r-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-seal-core { z-index:3; clip-path:polygon(50% 35%,62% 42%,62% 56%,50% 63%,38% 56%,38% 42%); transform-origin:50% 49%; animation:fer-seal-core-arrive 12s ease-in-out infinite; }
+  .fer-seal-f { clip-path:circle(16.6% at 50% 19%); transform-origin:50% 19%; animation:fer-seal-f-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-seal-e { clip-path:circle(18% at 22% 68.5%); transform-origin:22% 68.5%; animation:fer-seal-e-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-seal-r { clip-path:circle(18% at 79% 68.5%); transform-origin:79% 68.5%; animation:fer-seal-r-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-seal-core { z-index:3; clip-path:polygon(50% 35%,62% 42%,62% 56%,50% 63%,38% 56%,38% 42%); transform-origin:50% 49%; animation:fer-seal-core-arrive 6s ease-in-out infinite; }
   .fer-band {
     display:block;
     inset:auto;
@@ -4546,24 +4602,19 @@ h1,h2,h3,.identity-name {
     filter:drop-shadow(0 11px 14px #0009);
     will-change:transform,opacity;
   }
-  .fer-band-red { left:3.4%; top:15.8%; width:68%; height:68%; animation:fer-band-red-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-band-ivory { z-index:4; left:12.4%; top:2%; width:76%; height:76%; animation:fer-band-ivory-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-band-gold { z-index:3; left:20%; top:16%; width:70%; height:70%; animation:fer-band-gold-arrive 12s cubic-bezier(.5,0,.3,1) infinite; }
-  .fer-artifact-complete { animation:fer-artifact-resolve 12s linear infinite; }
+  .fer-band-red { left:3.4%; top:15.8%; width:68%; height:68%; animation:fer-band-red-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-band-ivory { z-index:4; left:12.4%; top:2%; width:76%; height:76%; animation:fer-band-ivory-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-band-gold { z-index:3; left:20%; top:16%; width:70%; height:70%; animation:fer-band-gold-arrive 6s cubic-bezier(.5,0,.3,1) infinite; }
+  .fer-artifact-complete { animation:fer-artifact-resolve 6s linear infinite; }
   .fer-artifact-light {
     display:block;
     z-index:6;
     pointer-events:none;
     mix-blend-mode:screen;
-    animation:fer-artifact-awaken 12s ease-out infinite;
+    animation:fer-artifact-awaken 6s ease-out infinite;
   }
   .fer-artifact-seal .fer-artifact-light { background:radial-gradient(circle at 50% 49%,#f3bb7199 0%,#9a1e2366 10%,transparent 28%); }
   .fer-artifact-interlace .fer-artifact-light { background:radial-gradient(circle at 50% 52%,#ffe0a2aa 0%,#aa1d2466 9%,transparent 27%); }
-  .fer-artifact:hover .fer-seal-rail,
-  .fer-artifact:hover .fer-seal-piece,
-  .fer-artifact:hover .fer-band,
-  .fer-artifact:hover .fer-artifact-complete,
-  .fer-artifact:hover .fer-artifact-light { animation-play-state:paused; }
 }
 @keyframes fer-seal-engrave {
   0%,37% { stroke-dashoffset:2050; opacity:0; }
