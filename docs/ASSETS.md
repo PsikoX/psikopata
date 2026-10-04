@@ -26,6 +26,10 @@ O processamento com FFmpeg ocorre apenas na preparação dos assets. A aplicaç�
 
 O controlo nativo “PAUSAR EFECTOS” oculta o vídeo, congela as texturas e desativa as restantes animações CSS. Ocultar o vídeo não garante suspender a descodificação em todos os browsers. Movimento reduzido mantém a textura estática e não seleciona fontes MP4. O FER torna a atmosfera mais discreta, preservando a continuidade visual. Nenhum rosto recebe animação ou transformação de identidade.
 
+## Selo e entrelaçado do FER
+
+O selo triangular e a escultura entrelaçada foram gerados como propostas artísticas. As três bandas da escultura foram isoladas com `image_gen` a partir do estudo visual e convertidas para WebP com transparência. O selo completo tem 398 KiB; a escultura completa, 257 KiB; as três bandas comprimidas somam cerca de 580 KiB. As imagens de cada banda usam carregamento diferido. A animação desloca e roda camadas com CSS; a imagem completa permanece disponível como estado estático para movimento reduzido e para o controlo de pausa. Nenhuma das imagens é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
+
 ## Tipografia e transições
 
 Cormorant Garamond normal e italic, pesos variáveis 400–600, são servidos localmente em WOFF2 latin. Origem: Google Fonts / Christian Thalmann. A licença SIL OFL encontra-se em `assets/fonts/Cormorant-Garamond-OFL.txt`. Manrope continua a ser a família dos textos de leitura e navegação. Apenas a Cormorant normal é pré-carregada; o browser solicita o itálico quando encontra conteúdo que o usa.

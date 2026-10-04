@@ -1,6 +1,7 @@
 use crate::{
     components::{
-        BrandText, ButtonLink, FerCompass, ResponsiveImage, SectionLabel, SmokeAtmosphere,
+        BrandText, ButtonLink, FerInterlace, FerSeal, ResponsiveImage, SectionLabel,
+        SmokeAtmosphere,
     },
     content,
     layouts::ClosingInvitation,
@@ -24,7 +25,7 @@ pub fn Fer() -> Element {
     }
 }
 
-/// Visual 01: three forces inhabit a compass rooted in historic cartography.
+/// Visual 01: three tangible vertices assemble into the FER seal.
 #[component]
 fn Arrival() -> Element {
     rsx! {
@@ -37,44 +38,23 @@ fn Arrival() -> Element {
                 p { class: "fer-arrival-lead", "Deseo. Conocimiento. Fe. Tres fuerzas humanas. Una pregunta: ¿qué pasa cuando dejas de separarlas?" }
                 a { class: "fer-scroll-cue", href: "#fer-vertices", "DESCUBRE EL SISTEMA" span { "aria-hidden": "true", "↓" } }
             }
-            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión convergen sobre una brújula hacia un núcleo central",
+            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión forman un triángulo alrededor de un núcleo central",
                 div { class: "fer-vertices-stage",
-                    FerCompass {}
-                    for (index, force) in content::fer::FORCES.iter().enumerate() {
-                        div { class: "fer-vertex fer-vertex-{index}",
-                            span { class: "fer-vertex-glyph", "{force.letter}" }
-                            span { class: "fer-vertex-name", "{force.name}" }
-                            span { class: "fer-vertex-role", "{force.role}" }
-                        }
+                    FerSeal {}
+                }
+                div { class: "fer-artifact-legend",
+                    for force in content::fer::FORCES {
+                        span { b { "{force.letter}" } strong { "{force.name}" } small { "{force.role}" } }
                     }
                 }
-                figcaption { "TRES FUERZAS. UN RUMBO AÚN POR REVELAR." }
-                div { class: "fer-compass-provenance",
-                    div { class: "fer-compass-provenance-copy",
-                        span { class: "fer-compass-provenance-kicker", "CRUZ / ORIENTE" }
-                        p { "En algunas rosas de los vientos antiguas, una cruz marcaba el este: la dirección de Jerusalén desde el Mediterráneo." }
-                        a {
-                            class: "fer-compass-source",
-                            href: "https://commons.wikimedia.org/wiki/File:Compass_rose_Cantino.svg",
-                            target: "_blank",
-                            rel: "noopener noreferrer",
-                            "REFERENCIA HISTÓRICA / CANTINO, 1502"
-                        }
-                    }
+                figcaption { "TRES FUERZAS. UN CENTRO POR REVELAR." }
+                div { class: "fer-artifact-provenance",
+                    p { "El esquema de tres vértices y un centro aparece en el Scutum Fidei medieval. Este sello es una creación artística del FER, no un objeto histórico." }
                     a {
-                        class: "fer-compass-archive",
-                        href: "https://commons.wikimedia.org/wiki/File:1865_Ordnance_Survey_of_Jerusalem_Old_City_full_map.jpg",
+                        href: "https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg",
                         target: "_blank",
                         rel: "noopener noreferrer",
-                        img {
-                            src: "/assets/images/jerusalem-survey-1865.webp",
-                            width: "520",
-                            height: "757",
-                            loading: "eager",
-                            decoding: "async",
-                            alt: "Plano topográfico real de Jerusalén del Ordnance Survey de 1865",
-                        }
-                        span { strong { "JERUSALÉN · 1865" } small { "Plano topográfico histórico" } }
+                        "VER EL MANUSCRITO HISTÓRICO ↗"
                     }
                 }
             }
@@ -116,7 +96,7 @@ fn Forces() -> Element {
     }
 }
 
-/// Visual 03: three streams actually travel towards one transforming nucleus.
+/// Visual 03: three sculptural bands join around a transforming nucleus.
 #[component]
 fn Convergence() -> Element {
     rsx! {
@@ -125,17 +105,21 @@ fn Convergence() -> Element {
                 SectionLabel { number: "02 / 04", label: "LA CONVERGENCIA" }
                 h2 { id: "fer-convergence-title", "No basta querer." br {} "No basta saber." br {} em { "No basta creer." } }
                 p { class: "fer-convergence-intro", "Cuando la energía encuentra capacidad y dirección, empieza la transformación." }
-                figure { class: "fer-reactor", "aria-label": "Las corrientes de Fetiche, Educación y Religión llegan al núcleo de la prosperidad",
-                    div { class: "fer-reactor-lines", "aria-hidden": "true",
-                        span { class: "fer-reactor-line fer-reactor-line-f" }
-                        span { class: "fer-reactor-line fer-reactor-line-e" }
-                        span { class: "fer-reactor-line fer-reactor-line-r" }
+                figure { class: "fer-interlace-figure", "aria-label": "Tres bandas se entrelazan para formar el Tridente de la Prosperidad",
+                    FerInterlace {}
+                    div { class: "fer-artifact-legend",
+                        for force in content::fer::FORCES {
+                            span { b { "{force.letter}" } strong { "{force.name}" } small { "{force.role}" } }
+                        }
                     }
-                    div { class: "fer-reactor-input fer-reactor-input-f", span { "F" } strong { "ENERGÍA" } }
-                    div { class: "fer-reactor-input fer-reactor-input-e", span { "E" } strong { "CAPACIDAD" } }
-                    div { class: "fer-reactor-input fer-reactor-input-r", span { "R" } strong { "DIRECCIÓN" } }
-                    div { class: "fer-reactor-nucleus", span { class: "fer-nucleus-rings", "aria-hidden": "true" } span { "NÚCLEO" } strong { "FER" } }
                     figcaption { "ENERGÍA + CAPACIDAD + DIRECCIÓN" }
+                    a {
+                        class: "fer-interlace-source",
+                        href: "https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg",
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        "TRIQUETRA EN UN MANUSCRITO MEDIEVAL ↗"
+                    }
                 }
             }
         }

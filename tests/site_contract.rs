@@ -164,6 +164,14 @@ fn all_images_have_real_assets_dimensions_and_text_alternatives() {
                     .as_element()
                     .is_some_and(|element| element.attr("aria-hidden") == Some("true"))
             });
+            let composite_art = image.ancestors().any(|node| {
+                node.value().as_element().is_some_and(|element| {
+                    element.attr("role") == Some("img")
+                        && element
+                            .attr("aria-label")
+                            .is_some_and(|label| !label.trim().is_empty())
+                })
+            });
             if decorative {
                 assert_eq!(value.attr("alt"), Some(""));
                 assert!(value.attr("tabindex").is_none());
@@ -171,7 +179,11 @@ fn all_images_have_real_assets_dimensions_and_text_alternatives() {
                 assert_eq!(value.attr("height"), Some("1024"));
                 assert_eq!(value.attr("fetchpriority"), Some("low"));
             } else {
-                assert!(!value.attr("alt").unwrap().trim().is_empty());
+                if composite_art {
+                    assert_eq!(value.attr("alt"), Some(""));
+                } else {
+                    assert!(!value.attr("alt").unwrap().trim().is_empty());
+                }
                 assert!(
                     value
                         .attr("width")
@@ -246,9 +258,17 @@ fn fer_is_intact_and_follows_the_opening() {
         assert!(fer.contains(term));
     }
     let fer_doc = Html::parse_document(&fer);
-    assert_eq!(fer_doc.select(&select(".fer-vertex")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-artifact-seal")).count(), 1);
+    assert_eq!(
+        fer_doc.select(&select(".fer-artifact-interlace")).count(),
+        1
+    );
+    assert_eq!(
+        fer_doc.select(&select(".fer-artifact-legend span")).count(),
+        6
+    );
     assert_eq!(fer_doc.select(&select(".fer-force-current")).count(), 3);
-    assert_eq!(fer_doc.select(&select(".fer-reactor-input")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-band")).count(), 3);
     assert_eq!(fer_doc.select(&select(".fer-bloom-outcome")).count(), 6);
     assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 10);
     assert_eq!(fer_doc.select(&select(".fer-woman-art img")).count(), 1);

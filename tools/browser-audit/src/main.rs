@@ -660,20 +660,27 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         )?;
         browser.screenshot(&format!("fer-review-{width}-full.png"), true, width, height)?;
         if width == 390 {
-            let archive = browser.call(
+            let seal = browser.call(
                 "Runtime.evaluate",
-                json!({"expression":"(() => { const image = document.querySelector('.fer-compass-archive img'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
+                json!({"expression":"(() => { const image = document.querySelector('.fer-artifact-seal .fer-artifact-complete'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
             )?["result"]["value"]
                 .clone();
-            if archive["complete"] != true || archive["width"].as_u64().unwrap_or(0) == 0 {
-                return Err(format!("FER archive image did not load: {archive}").into());
+            if seal["complete"] != true || seal["width"].as_u64().unwrap_or(0) == 0 {
+                return Err(format!("FER seal image did not load: {seal}").into());
             }
             browser.call(
                 "Runtime.evaluate",
-                json!({"expression":"window.scrollTo(0, 900)"}),
+                json!({"expression":"document.querySelector('.fer-artifact-interlace').scrollIntoView()"}),
             )?;
-            thread::sleep(Duration::from_millis(300));
-            browser.current_viewport("fer-review-390-archive.png")?;
+            thread::sleep(Duration::from_millis(500));
+            browser.current_viewport("fer-review-390-interlace.png")?;
+            let interlace = browser.call(
+                "Runtime.evaluate",
+                json!({"expression":"(() => { const images = [...document.querySelectorAll('.fer-artifact-interlace img')]; return images.every(image => image.complete && image.naturalWidth > 0); })()","returnByValue":true}),
+            )?["result"]["value"].clone();
+            if interlace != true {
+                return Err("FER interlace images did not load".into());
+            }
         }
         println!(
             "{}",
@@ -696,27 +703,42 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
     )?;
     browser.navigate("http://127.0.0.1:8080/fer/")?;
-    let first = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
-    let compass_first = browser.style(".fer-compass-route-f", "stroke-dashoffset")?;
-    thread::sleep(Duration::from_millis(450));
-    let second = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
-    let compass_second = browser.style(".fer-compass-route-f", "stroke-dashoffset")?;
-    let running = browser.style(".fer-compass-jewel-spark", "animation-name")?;
+    let first = browser.style(".fer-seal-f", "transform")?;
+    let band_first = browser.style(".fer-band-red", "transform")?;
+    thread::sleep(Duration::from_secs(2));
+    let second = browser.style(".fer-seal-f", "transform")?;
+    let band_second = browser.style(".fer-band-red", "transform")?;
+    let running = browser.style(".fer-seal-rail", "animation-name")?;
     println!(
         "{}",
-        json!({"motion":"normal","stream_first":first,"stream_second":second,"compass_first":compass_first,"compass_second":compass_second,"core_animation":running})
+        json!({"motion":"normal","seal_first":first,"seal_second":second,"band_first":band_first,"band_second":band_second,"rail_animation":running})
     );
-    if first == second || compass_first == compass_second || !running.contains("fer-compass-glimmer") {
-        return Err("FER energy streams did not move".into());
+    if first == second || band_first == band_second || !running.contains("fer-seal-engrave") {
+        return Err("FER artifacts did not move".into());
     }
+    browser.call(
+        "Runtime.evaluate",
+        json!({"expression":"document.querySelector('#pause-motion').checked = true"}),
+    )?;
+    let paused_seal = browser.style(".fer-seal-f", "display")?;
+    let paused_band = browser.style(".fer-band-red", "display")?;
+    let paused_artwork = browser.style(".fer-artifact-complete", "opacity")?;
+    if paused_seal != "none" || paused_band != "none" || paused_artwork != "1" {
+        return Err(format!("FER pause state failed: {paused_seal}, {paused_band}, {paused_artwork}").into());
+    }
+    browser.call(
+        "Runtime.evaluate",
+        json!({"expression":"document.querySelector('#pause-motion').checked = false"}),
+    )?;
     browser.call(
         "Emulation.setEmulatedMedia",
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
-    let reduced = browser.style(".fer-compass-jewel-spark", "animation-name")?;
-    let reduced_compass = browser.style(".fer-compass-route-f", "animation-name")?;
-    if reduced != "none" || reduced_compass != "none" {
-        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_compass}").into());
+    let reduced = browser.style(".fer-artifact-complete", "animation-name")?;
+    let reduced_seal = browser.style(".fer-seal-f", "display")?;
+    let reduced_band = browser.style(".fer-band-red", "display")?;
+    if reduced != "none" || reduced_seal != "none" || reduced_band != "none" {
+        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_seal}, {reduced_band}").into());
     }
     let frame = browser.call("Page.getFrameTree", json!({}))?["frameTree"]["frame"]["id"].clone();
     let sheet =

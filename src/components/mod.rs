@@ -1,9 +1,9 @@
 use crate::models::{HeadingLine, Image};
 use dioxus::prelude::*;
 
-mod fer_compass;
+mod fer_artifact;
 mod motion;
-pub use fer_compass::FerCompass;
+pub use fer_artifact::{FerInterlace, FerSeal};
 pub use motion::{MotionControl, MouseSmoke, SmokeAtmosphere};
 
 pub fn image_srcset(image: Image) -> String {
