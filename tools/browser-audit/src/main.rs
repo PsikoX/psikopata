@@ -703,25 +703,25 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"no-preference"}]}),
     )?;
     browser.navigate("http://127.0.0.1:8080/fer/")?;
-    let first = browser.style(".fer-seal-f", "transform")?;
-    let band_first = browser.style(".fer-band-red", "transform")?;
+    let first = browser.style(".fer-thread-f", "stroke-dashoffset")?;
+    let band_first = browser.style(".fer-artifact-interlace .fer-energy-f", "left")?;
     thread::sleep(Duration::from_secs(2));
-    let second = browser.style(".fer-seal-f", "transform")?;
-    let band_second = browser.style(".fer-band-red", "transform")?;
-    let running = browser.style(".fer-seal-rail", "animation-name")?;
+    let second = browser.style(".fer-thread-f", "stroke-dashoffset")?;
+    let band_second = browser.style(".fer-artifact-interlace .fer-energy-f", "left")?;
+    let running = browser.style(".fer-thread-f", "animation-name")?;
     println!(
         "{}",
-        json!({"motion":"normal","seal_first":first,"seal_second":second,"band_first":band_first,"band_second":band_second,"rail_animation":running})
+        json!({"motion":"normal","thread_first":first,"thread_second":second,"energy_first":band_first,"energy_second":band_second,"thread_animation":running})
     );
-    if first == second || band_first == band_second || !running.contains("fer-seal-engrave") {
+    if first == second || band_first == band_second || !running.contains("fer-trace-f") {
         return Err("FER artifacts did not move".into());
     }
     browser.call(
         "Runtime.evaluate",
         json!({"expression":"document.querySelector('#pause-motion').checked = true"}),
     )?;
-    let paused_seal = browser.style(".fer-seal-f", "display")?;
-    let paused_band = browser.style(".fer-band-red", "display")?;
+    let paused_seal = browser.style(".fer-artifact-threads", "display")?;
+    let paused_band = browser.style(".fer-energy-f", "display")?;
     let paused_artwork = browser.style(".fer-artifact-complete", "opacity")?;
     if paused_seal != "none" || paused_band != "none" || paused_artwork != "1" {
         return Err(format!("FER pause state failed: {paused_seal}, {paused_band}, {paused_artwork}").into());
@@ -735,8 +735,8 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
     let reduced = browser.style(".fer-artifact-complete", "animation-name")?;
-    let reduced_seal = browser.style(".fer-seal-f", "display")?;
-    let reduced_band = browser.style(".fer-band-red", "display")?;
+    let reduced_seal = browser.style(".fer-artifact-threads", "display")?;
+    let reduced_band = browser.style(".fer-energy-f", "display")?;
     if reduced != "none" || reduced_seal != "none" || reduced_band != "none" {
         return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_seal}, {reduced_band}").into());
     }

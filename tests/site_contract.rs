@@ -284,7 +284,10 @@ fn fer_is_intact_and_follows_the_opening() {
         6
     );
     assert_eq!(fer_doc.select(&select(".fer-force-current")).count(), 3);
-    assert_eq!(fer_doc.select(&select(".fer-band")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-artifact-complete")).count(), 2);
+    assert_eq!(fer_doc.select(&select(".fer-energy")).count(), 6);
+    assert_eq!(fer_doc.select(&select(".fer-thread")).count(), 6);
+    assert_eq!(fer_doc.select(&select(".fer-band")).count(), 0);
     assert_eq!(fer_doc.select(&select(".fer-bloom-outcome")).count(), 6);
     assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 10);
     assert_eq!(fer_doc.select(&select(".fer-woman-art img")).count(), 1);
