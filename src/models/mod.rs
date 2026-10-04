@@ -12,6 +12,7 @@ pub struct Track {
     pub cover: Image,
     pub audio: Option<&'static str>,
     pub spotify: Option<&'static str>,
+    pub spotify_search: &'static str,
     pub apple_music: Option<&'static str>,
     pub youtube: Option<&'static str>,
 }
@@ -28,6 +29,7 @@ pub struct Muse {
     pub image: Image,
     pub track_id: &'static str,
     pub track_title: &'static str,
+    pub spotify_search: &'static str,
 }
 
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]

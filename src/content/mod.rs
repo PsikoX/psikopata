@@ -29,6 +29,10 @@ pub const ARTIST: Image = Image {
     alt: "PSIKOPAPA con traje negro, tatuajes y un gesto irreverente entre humo rojo.",
 };
 
+pub const SPOTIFY_SEARCH_ARTIST: &str = "https://open.spotify.com/search/PSIKOPAPA";
+pub const SPOTIFY_SEARCH_KAREN: &str = "https://open.spotify.com/search/PSIKOPAPA%20Karen";
+pub const SPOTIFY_SEARCH_ZOE: &str = "https://open.spotify.com/search/PSIKOPAPA%20Zoe";
+
 // Artwork was supplied by the project owner. Names below are editorial labels
 // from those covers, not invented biographies or additional participants.
 pub const MUSES: &[Muse] = &[
@@ -37,12 +41,14 @@ pub const MUSES: &[Muse] = &[
         image: KAREN,
         track_id: "karen-mi-amor",
         track_title: "Karen",
+        spotify_search: SPOTIFY_SEARCH_KAREN,
     },
     Muse {
         name: "Zoe",
         image: ZOE_ALTERNATE,
         track_id: "zoe-la-cortada",
         track_title: "Zoe (La Cortada)",
+        spotify_search: SPOTIFY_SEARCH_ZOE,
     },
 ];
 
@@ -56,6 +62,7 @@ pub const TRACKS: &[Track] = &[
         cover: KAREN,
         audio: None,
         spotify: None,
+        spotify_search: SPOTIFY_SEARCH_KAREN,
         apple_music: Some("https://music.apple.com/ve/album/karen/6816570213?i=6816570214"),
         youtube: None,
     },
@@ -66,6 +73,7 @@ pub const TRACKS: &[Track] = &[
         cover: ZOE,
         audio: None,
         spotify: None,
+        spotify_search: SPOTIFY_SEARCH_ZOE,
         apple_music: Some(
             "https://music.apple.com/ve/album/zoe-la-cortada/6818815810?i=6818815811",
         ),
@@ -233,7 +241,7 @@ pub const SOCIAL_LINKS: &[(&str, Option<&str>)] = &[
     ("Instagram", None),
     ("TikTok", None),
     ("YouTube", None),
-    ("Spotify", None),
+    ("Buscar en Spotify", Some(SPOTIFY_SEARCH_ARTIST)),
     ("Apple Music", Some(APPLE_MUSIC_ARTIST)),
 ];
 pub const SMOKE_TEXTURE_DESKTOP: &str = "/assets/atmosphere/cover-smoke-desktop.webp";

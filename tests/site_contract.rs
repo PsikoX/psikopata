@@ -280,11 +280,39 @@ fn unknown_audio_and_social_urls_do_not_become_pretend_actions() {
         doc.select(&select(".track-platforms a")).count(),
         content::TRACKS
             .iter()
-            .map(|track| usize::from(track.spotify.is_some())
+            .map(|track| 1
                 + usize::from(track.apple_music.is_some())
                 + usize::from(track.youtube.is_some()))
             .sum::<usize>()
     );
+    assert_eq!(
+        doc.select(&select(".spotify-mark")).count(),
+        content::MUSES.len() + content::TRACKS.len()
+    );
+    for track in content::TRACKS {
+        let entry = doc
+            .select(&select(&format!("#{}", track.id)))
+            .next()
+            .unwrap();
+        let spotify = entry.select(&select(".spotify-link")).next().unwrap();
+        assert_eq!(
+            spotify.value().attr("href"),
+            Some(track.spotify.unwrap_or(track.spotify_search))
+        );
+        if track.spotify.is_none() {
+            assert!(
+                spotify
+                    .text()
+                    .collect::<String>()
+                    .contains("BUSCAR EN SPOTIFY")
+            );
+            assert!(
+                track
+                    .spotify_search
+                    .starts_with("https://open.spotify.com/search/")
+            );
+        }
+    }
 }
 
 #[test]
@@ -415,6 +443,7 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
     let css = prefix_local_urls(styles::CSS, &config.base_path);
     assert!(css.contains("url('/psikopata/psikopapa/assets/fonts/"));
     assert!(css.contains("url('/psikopata/psikopapa/assets/icons/whatsapp.svg')"));
+    assert!(css.contains("url('/psikopata/psikopapa/assets/icons/spotify.svg')"));
     assert!(!css.contains("url('/assets/"));
     for invalid in [
         "psikopapa",

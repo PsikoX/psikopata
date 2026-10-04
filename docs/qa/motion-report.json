@@ -7,10 +7,12 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.21322211680371073,
+    "isolated_video_change_fraction": 0.20709466582331856,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
+    "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
+    "muse_hover_transform": null,
     "native_playback": true,
     "pause_freezes_smoke": true,
     "pause_hides_video": true,
@@ -32,8 +34,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-mobile.webp"
     ],
-    "texture_transform_after": "matrix(1.06904, 0.0237399, -0.0237399, 1.06904, 11.7085, -32.7845)",
-    "texture_transform_before": "matrix(1.04907, 0.00849817, -0.00849817, 1.04907, 4.27169, -14.9629)",
+    "texture_transform_after": "matrix(1.06887, 0.0236097, -0.0236097, 1.06887, 11.6461, -32.6349)",
+    "texture_transform_before": "matrix(1.0489, 0.0083733, -0.0083733, 1.0489, 4.2096, -14.8141)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-mobile.mp4"
     ],
@@ -56,10 +58,12 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.10583000266453504,
+    "isolated_video_change_fraction": 0.09577937649880096,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
+    "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
+    "muse_hover_transform": "matrix(1.045, 0, 0, 1.045, 0, -10)",
     "native_playback": true,
     "pause_freezes_smoke": true,
     "pause_hides_video": true,
@@ -81,8 +85,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-desktop.webp"
     ],
-    "texture_transform_after": "matrix(1.07301, 0.0268592, -0.0268592, 1.07301, 48.7296, -43.0728)",
-    "texture_transform_before": "matrix(1.05469, 0.0127145, -0.0127145, 1.05469, 23.4718, -23.6497)",
+    "texture_transform_after": "matrix(1.0731, 0.0269268, -0.0269268, 1.0731, 48.8482, -43.164)",
+    "texture_transform_before": "matrix(1.05469, 0.0127153, -0.0127153, 1.05469, 23.4733, -23.6508)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-desktop.mp4"
     ],

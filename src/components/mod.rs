@@ -73,6 +73,21 @@ pub fn ExternalLink(href: &'static str, label: &'static str) -> Element {
 }
 
 #[component]
+pub fn SpotifyLink(
+    href: &'static str,
+    label: &'static str,
+    #[props(default = "")] class: &'static str,
+) -> Element {
+    rsx! {
+        a { class: "spotify-link {class}", href, target: "_blank", rel: "noopener noreferrer",
+            span { class: "spotify-mark", "aria-hidden": "true" }
+            span { "{label}" }
+            span { class: "sr-only", " (abre una nueva pestaña)" }
+        }
+    }
+}
+
+#[component]
 pub fn SectionHeading(id: &'static str, lines: &'static [HeadingLine]) -> Element {
     rsx! { h2 { id, class: "editorial-heading", for line in lines { span { class: "editorial-line", "{line.before}" if let Some(text) = line.emphasis { em { "{text}" } } "{line.after}" } } } }
 }

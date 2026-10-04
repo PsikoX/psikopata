@@ -82,15 +82,16 @@ Editar `src/content/copy.rs` para textos e headings. Editar `src/content/mod.rs`
 
 Os quatro lançamentos atribuídos ao perfil PSIKOPAPA na Apple Music Venezuela foram confirmados no catálogo público: “Karen”, “Zoe (La Cortada)”, “Gata 4x4” e “Flaquita (Casados por Error)”. As duas primeiras faixas acompanham as capas editoriais; as restantes aparecem numa lista de lançamentos. O site liga diretamente às faixas e ao perfil do artista.
 
-Não foram confirmados links Spotify, YouTube Music nem ficheiros de áudio das novas faixas. A interface não simula reprodução nem cria links presumidos. Ao receber dados confirmados:
+Não foram confirmados links diretos Spotify, YouTube Music nem ficheiros de áudio das novas faixas. Os botões com o ícone Spotify abrem uma pesquisa pelo artista e pela faixa e dizem explicitamente “BUSCAR EN SPOTIFY”; não simulam reprodução nem atribuem um perfil não verificado. Os cartões Karen e Zoe aproximam-se no hover, foco e toque, com um reflexo breve; o movimento é desativado quando o sistema pede redução de animações. Ao receber dados confirmados:
 
 - Acrescentar o ficheiro de áudio em `assets/media/` e definir `Track.audio`, por exemplo `Some("/assets/media/faixa.mp3")`. O player nativo aparecerá automaticamente, sem autoplay e com `preload="none"`.
 - Preencher `spotify` e `youtube` nos lançamentos apropriados.
 - Preencher `SOCIAL_LINKS`, `CONTACT_EMAIL` ou `CONTACT_WHATSAPP` com destinos oficiais.
 - Definir `COMMUNITY_WHATSAPP` com o convite real da comunidade e substituir a fotografia editorial do cartão pela fotografia autorizada do grupo.
 
-A referência discreta à Seeta aponta para a sua [página na Google Play](https://play.google.com/store/apps/details?id=com.mztech.seeta&hl=es_VE), que descreve conversas por vídeo e salas ao vivo. O site não afirma que PSIKOPAPA possui a aplicação. O cartão de comunidade usa uma imagem editorial já fornecida e o ícone WhatsApp de Simple Icons (CC0); a proveniência deste último está em `docs/licenses/simple-icons-whatsapp.txt`.
-- Regenerar e publicar o Site.
+A referência discreta à Seeta aponta para a sua [página na Google Play](https://play.google.com/store/apps/details?id=com.mztech.seeta&hl=es_VE), que descreve conversas por vídeo e salas ao vivo. O site não afirma que PSIKOPAPA possui a aplicação. O cartão de comunidade usa uma imagem editorial já fornecida e o ícone WhatsApp de Simple Icons (CC0). O ícone Spotify vem da mesma coleção; a proveniência de ambos está em `docs/licenses/`.
+
+Depois de alterar o conteúdo, regenerar e publicar o Site.
 
 LAS 7 apresenta as sete posições conceptuais do programa. Não afirma inscrições, vagas restantes ou participantes confirmadas. O AI Lab apresenta as áreas criativas do projeto; não simula uma ferramenta de geração ou pedidos enviados.
 

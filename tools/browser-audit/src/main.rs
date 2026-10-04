@@ -657,6 +657,39 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         thread::sleep(Duration::from_millis(250));
         let curtain = browser.style(".muse-image-link > picture", "clip-path")?;
         browser.current_viewport(&format!("continuity-{width}-muses.png"))?;
+        let muse_link = browser.node(".muse-image-link")?;
+        browser.call("DOM.focus", json!({"nodeId":muse_link}))?;
+        thread::sleep(Duration::from_millis(550));
+        let muse_focus_transform = browser.style(".muse-card", "transform")?;
+        browser.current_viewport(&format!("muse-card-{width}-focus.png"))?;
+        let muse_hover_transform = if width >= 900 {
+            let muse_link = browser.node(".muse-image-link")?;
+            let model = browser.call("DOM.getBoxModel", json!({"nodeId":muse_link}))?;
+            let border = model["model"]["border"].as_array().ok_or("no muse box")?;
+            let x = (border[0].as_f64().ok_or("no muse x")?
+                + border[2].as_f64().ok_or("no muse right edge")?)
+                / 2.0;
+            let y = (border[1].as_f64().ok_or("no muse y")?
+                + border[5].as_f64().ok_or("no muse bottom edge")?)
+                / 2.0;
+            browser.call(
+                "Input.dispatchMouseEvent",
+                json!({"type":"mouseMoved","x":x,"y":y,"button":"none"}),
+            )?;
+            thread::sleep(Duration::from_millis(550));
+            let transform = browser.style(".muse-card", "transform")?;
+            browser.current_viewport(&format!("muse-card-{width}-hover.png"))?;
+            browser.call(
+                "Input.dispatchMouseEvent",
+                json!({"type":"mouseMoved","x":0,"y":0,"button":"none"}),
+            )?;
+            Some(transform)
+        } else {
+            None
+        };
+        let music = browser.node(".track-entry")?;
+        browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":music}))?;
+        browser.current_viewport(&format!("continuity-{width}-music.png"))?;
         let education = browser.node("#education-title")?;
         browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":education}))?;
         thread::sleep(Duration::from_millis(250));
@@ -699,10 +732,10 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             .events
             .iter()
             .any(|e| e["method"] == "Network.requestWillBeSent" && e["params"]["type"] == "Script");
-        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
+        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
         println!(
             "{}",
-            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
+            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
         );
         reports.push(report);
         if !moving
@@ -716,6 +749,10 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             || paused_state != "paused"
             || paused_animation != "none"
             || italic != "italic"
+            || muse_focus_transform == "none"
+            || muse_hover_transform
+                .as_ref()
+                .is_some_and(|transform| transform == &muse_focus_transform)
             || overflow
             || !no_scripts
             || opacity_closing >= opacity_before

@@ -395,6 +395,56 @@
     background:#b31c3940;
     box-shadow:0 0 24px #b31c3940;
   }
+  .muse-card {
+    position:relative;
+    z-index:1;
+    transform-origin:center;
+    transition:transform .5s cubic-bezier(.18,.78,.24,1);
+  }
+  .muse-image-link {
+    transition:box-shadow .5s cubic-bezier(.18,.78,.24,1);
+  }
+  .muse-image-link::after {
+    content:'';
+    position:absolute;
+    inset:0;
+    z-index:2;
+    pointer-events:none;
+    background:linear-gradient(110deg,transparent 38%,#fff1db26 50%,transparent 62%);
+    opacity:0;
+    transform:translateX(-85%);
+    transition:opacity .45s,transform .65s cubic-bezier(.18,.78,.24,1);
+  }
+  .muse-card:focus-within {
+    z-index:4;
+    transform:translateY(-8px) scale(1.035);
+  }
+  @media(hover:hover) and (pointer:fine), (min-width:900px) {
+    .muse-card:hover {
+      z-index:4;
+      transform:translateY(-10px) scale(1.045);
+    }
+    .muse-card:hover .muse-image-link {
+      box-shadow:0 24px 55px #000b,0 0 28px #b31c3959;
+    }
+    .muse-card:hover .muse-image-link::after {
+      opacity:.75;
+      transform:translateX(70%);
+    }
+  }
+  @media(hover:none) {
+    .muse-card:active {
+      z-index:4;
+      transform:translateY(-3px) scale(1.025);
+    }
+  }
+  .muse-card:is(:focus-within,:active) .muse-image-link {
+    box-shadow:0 24px 55px #000b,0 0 28px #b31c3959;
+  }
+  .muse-card:is(:focus-within,:active) .muse-image-link::after {
+    opacity:.75;
+    transform:translateX(70%);
+  }
 
   @keyframes scene-arrival {
     from { opacity:.35; transform:translateY(22px); }

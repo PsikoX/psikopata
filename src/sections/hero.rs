@@ -39,7 +39,7 @@ pub fn Hero() -> Element {
         a { class: "mobile-music-teaser", href: "#music",
             ResponsiveImage { image: content::KAREN, sizes: "64px" }
             span { class: "mobile-music-copy", small { "HER SONG / PSIKOPAPA" } strong { "{content::TRACKS[0].title}" } }
-            span { class: "mobile-music-action", "MÚSICA" span { "aria-hidden": "true", " ↗" } }
+            span { class: "mobile-music-action", "MÚSICA" }
         }
     }
 }

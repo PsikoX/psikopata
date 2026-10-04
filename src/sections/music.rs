@@ -1,6 +1,7 @@
 use crate::{
     components::{
         BrandName, BrandText, ExternalLink, ResponsiveImage, SectionHeading, SectionLabel,
+        SpotifyLink,
     },
     content,
     models::Track,
@@ -21,7 +22,7 @@ pub fn Music() -> Element {
                     p { class: "eyebrow", BrandText { text: content::copy::MORE_RELEASES } }
                     ul {
                         for release in content::OTHER_RELEASES {
-                            li { strong { "{release.title}" } ExternalLink { href: release.apple_music, label: "APPLE MUSIC ↗" } }
+                            li { strong { "{release.title}" } ExternalLink { href: release.apple_music, label: "APPLE MUSIC" } }
                         }
                     }
                     ExternalLink { href: content::APPLE_MUSIC_ARTIST, label: content::copy::MUSIC_ARTIST_LINK }
@@ -41,9 +42,10 @@ fn TrackEntry(track: Track, number: usize) -> Element {
                 if let Some(audio) = track.audio { audio { controls: true, preload: "none", "aria-label": "Escuchar {track.title}", source { src: audio } "Tu navegador no admite audio. " a { href: audio, "Descargar la canción" } } }
                 else if track.apple_music.is_none() && track.spotify.is_none() && track.youtube.is_none() { p { class: "availability", "{content::copy::AUDIO_UNAVAILABLE}" } }
                 div { class: "track-platforms",
-                    if let Some(href) = track.spotify { ExternalLink { href, label: "ESCUCHAR EN SPOTIFY ↗" } }
-                    if let Some(href) = track.apple_music { ExternalLink { href, label: "ESCUCHAR EN APPLE MUSIC ↗" } }
-                    if let Some(href) = track.youtube { ExternalLink { href, label: "VER EN YOUTUBE ↗" } }
+                    if let Some(href) = track.spotify { SpotifyLink { href, label: "ESCUCHAR EN SPOTIFY" } }
+                    else { SpotifyLink { href: track.spotify_search, label: "BUSCAR EN SPOTIFY" } }
+                    if let Some(href) = track.apple_music { ExternalLink { href, label: "ESCUCHAR EN APPLE MUSIC" } }
+                    if let Some(href) = track.youtube { ExternalLink { href, label: "VER EN YOUTUBE" } }
                 }
             }
             details { class: "track-story", summary { "LA HISTORIA" span { "aria-hidden": "true", "+" } }

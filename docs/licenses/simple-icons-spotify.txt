@@ -1,0 +1,8 @@
+Spotify icon silhouette from Simple Icons:
+https://github.com/simple-icons/simple-icons/blob/develop/icons/spotify.svg
+
+Simple Icons distributes its icon artwork under CC0 1.0:
+https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md
+
+Spotify remains a trademark of its owner. This site uses the icon to identify
+Spotify search links; no direct PSIKOPAPA track URL has been confirmed.

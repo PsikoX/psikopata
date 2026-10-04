@@ -1,5 +1,7 @@
 use crate::{
-    components::{BrandName, ExternalLink, ResponsiveImage, SectionHeading, SectionLabel},
+    components::{
+        BrandName, ExternalLink, ResponsiveImage, SectionHeading, SectionLabel, SpotifyLink,
+    },
     content,
 };
 use dioxus::prelude::*;
@@ -21,6 +23,7 @@ pub fn Muses() -> Element {
                                 span { class: "muse-plus", "aria-hidden": "true", "+" }
                             }
                             div { class: "muse-credit", span { BrandName {} " MUSIC" } a { href: "#{muse.track_id}", "{muse.track_title}" } }
+                            SpotifyLink { href: muse.spotify_search, label: "BUSCAR EN SPOTIFY", class: "muse-spotify" }
                         }
                     }
                 }
