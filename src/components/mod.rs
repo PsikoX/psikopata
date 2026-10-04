@@ -1,7 +1,9 @@
 use crate::models::{HeadingLine, Image};
 use dioxus::prelude::*;
 
+mod fer_sigil;
 mod motion;
+pub use fer_sigil::FerSigil;
 pub use motion::{MotionControl, MouseSmoke, SmokeAtmosphere};
 
 pub fn image_srcset(image: Image) -> String {

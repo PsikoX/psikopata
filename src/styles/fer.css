@@ -147,26 +147,152 @@
 .fer-vertices-stage {
   position:relative;
   width:min(100%,365px);
-  height:335px;
+  aspect-ratio:1;
   margin-inline:auto;
+  isolation:isolate;
+  border-radius:50%;
+  background:
+    radial-gradient(circle at 50% 52%,#9c28411e 0 10%,transparent 35%),
+    radial-gradient(circle at 50% 50%,#39202775 0 40%,#11090dcc 66%,transparent 73%);
 }
 
-.fer-vertex-orbit {
+.fer-vertices-stage::before {
+  content:'';
   position:absolute;
-  left:50%;
-  top:52%;
-  width:42%;
-  aspect-ratio:1;
-  transform:translate(-50%,-50%);
-  border:1px solid #b17d6944;
+  inset:8%;
   border-radius:50%;
+  background:conic-gradient(from 27deg,transparent 0 7%,#e8c3980a 13%,transparent 19% 35%,#ae1e351e 43%,transparent 48% 70%,#e8c3980b 77%,transparent 85%);
+  filter:blur(18px);
   pointer-events:none;
 }
 
-.fer-vertex-orbit-two {
-  width:60%;
-  border-color:#aa1a3240;
-  box-shadow:0 0 30px #bb1e371a,inset 0 0 20px #bb1e3716;
+.fer-seal {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  z-index:1;
+  overflow:visible;
+  pointer-events:none;
+  filter:drop-shadow(0 0 18px #b832434d);
+}
+
+.fer-seal-plate-glow {
+  fill:#1f0c12;
+  fill-opacity:.38;
+  stroke:#bd8b664d;
+  stroke-width:1;
+}
+
+.fer-seal-rim-outer,.fer-seal-rim-inner {
+  stroke:#d1a77d;
+  stroke-width:1.5;
+  opacity:.65;
+}
+
+.fer-seal-rim-inner { stroke:#9d6572; stroke-width:.9; opacity:.65; }
+
+.fer-seal-rim-ticks,.fer-seal-rim-dashes {
+  stroke:#edcaa0;
+  stroke-width:7;
+  stroke-dasharray:1 13;
+  opacity:.7;
+}
+
+.fer-seal-rim-dashes {
+  stroke:#c1656d;
+  stroke-width:2.5;
+  stroke-dasharray:2 10;
+  opacity:.5;
+}
+
+.fer-seal-compass {
+  stroke:#cf9b75;
+  stroke-width:1.3;
+  opacity:.72;
+}
+
+.fer-seal-triangle-glow {
+  stroke:#ec385d;
+  stroke-width:12;
+  opacity:.25;
+  filter:blur(8px);
+}
+
+.fer-seal-triangle-gold {
+  stroke:#e9c598;
+  stroke-width:3.1;
+  stroke-linejoin:round;
+  filter:drop-shadow(0 0 6px #f23b62);
+}
+
+.fer-seal-triangle-fine {
+  stroke:#e0a4a0;
+  stroke-width:.85;
+  opacity:.72;
+}
+
+.fer-seal-triangle-inner {
+  stroke:#9a3b4e;
+  stroke-width:1.3;
+  opacity:.7;
+}
+
+.fer-seal-geometry {
+  stroke:#ab766c;
+  stroke-width:.75;
+  opacity:.42;
+}
+
+.fer-seal-conduit {
+  stroke-width:2.6;
+  stroke-linecap:round;
+  stroke-dasharray:3 14;
+  filter:drop-shadow(0 0 5px currentColor);
+}
+
+.fer-seal-conduit-f { color:#fb5977; stroke:currentColor; }
+.fer-seal-conduit-e { color:#e6b374; stroke:currentColor; }
+.fer-seal-conduit-r { color:#eae3da; stroke:currentColor; }
+
+.fer-seal-flourishes {
+  stroke:#c49578;
+  stroke-width:1;
+  opacity:.63;
+}
+
+.fer-seal-corners {
+  stroke:#d8a382;
+  stroke-width:1;
+  opacity:.7;
+}
+
+.fer-seal-corners circle:nth-child(n+4) {
+  stroke-dasharray:2 7;
+  opacity:.6;
+}
+
+.fer-seal-core-geometry {
+  stroke:#e7c29a;
+  stroke-width:1.3;
+  filter:drop-shadow(0 0 5px #e94368);
+}
+
+.fer-seal-core-ring,.fer-seal-core-dashes {
+  stroke:#cc8d86;
+  stroke-width:1.2;
+}
+
+.fer-seal-core-dashes {
+  stroke:#d5b58f;
+  stroke-width:2;
+  stroke-dasharray:2 8;
+  opacity:.68;
+}
+
+.fer-seal-sparks {
+  fill:#f2c9a6;
+  filter:drop-shadow(0 0 6px #e52e50);
 }
 
 .fer-vertex {
@@ -180,21 +306,31 @@
   transform:translate(-50%,-50%);
 }
 
-.fer-vertex-0 { left:50%; top:15%; --v:#f05b75; }
-.fer-vertex-1 { left:18%; top:78%; --v:#deb077; }
-.fer-vertex-2 { left:82%; top:78%; --v:#e5dfd3; }
+.fer-vertex-0 { left:50%; top:8.7%; --v:#f05b75; }
+.fer-vertex-1 { left:18%; top:79%; --v:#deb077; }
+.fer-vertex-2 { left:82%; top:79%; --v:#e5dfd3; }
 
 .fer-vertex-glyph {
   display:grid;
   place-items:center;
   width:57px;
   height:57px;
-  border:1px solid var(--v);
+  position:relative;
+  border:2px solid var(--v);
   border-radius:50%;
-  background:#170b12;
-  box-shadow:0 0 19px color-mix(in srgb,var(--v),transparent 55%),inset 0 0 22px #b51a2a2b;
+  background:radial-gradient(circle at 42% 29%,#57252b 0%,#1a0d13 37%,#060407 75%);
+  box-shadow:0 0 0 3px #180b0f,0 0 0 4px #bb91747a,0 0 21px color-mix(in srgb,var(--v),transparent 42%),inset 0 0 18px #da6c6a51;
   color:var(--v);
   font:italic min(2.7rem,10vw)/.9 var(--display);
+  text-shadow:0 1px #fff8,0 0 10px color-mix(in srgb,var(--v),transparent 45%);
+}
+
+.fer-vertex-glyph::after {
+  content:'';
+  position:absolute;
+  inset:5px;
+  border:1px dashed color-mix(in srgb,var(--v),transparent 50%);
+  border-radius:50%;
 }
 
 .fer-vertex-name {
@@ -218,46 +354,21 @@
   z-index:2;
   left:50%;
   top:52%;
-  width:30px;
-  height:30px;
+  width:38px;
+  height:38px;
   transform:translate(-50%,-50%);
-  border:1px solid #f4c3a5;
+  border:2px solid #f4c3a5;
   border-radius:50%;
-  box-shadow:0 0 25px #ed4461b8,0 0 65px #c9283d52;
-  background:radial-gradient(circle,#fff6df 0 12%,#f88a86 22%,#931631 60%,transparent 70%);
+  box-shadow:0 0 0 5px #11080cee,0 0 0 6px #d3a485a8,0 0 28px #ed4461b8,0 0 70px #c9283d78;
+  background:radial-gradient(circle,#fff7e9 0 10%,#f4bd99 15%,#ce3956 40%,#530f25 71%,#14090f 90%);
 }
 
 .fer-vertex-core span {
   position:absolute;
-  inset:-15px;
-  border:1px dashed #f0c6a45e;
+  inset:-16px;
+  border:1px dashed #f0c6a491;
   border-radius:50%;
 }
-
-.fer-vertex-beam {
-  position:absolute;
-  z-index:1;
-  height:2px;
-  transform-origin:left center;
-  background:linear-gradient(90deg,transparent,var(--beam),#fff0db);
-  box-shadow:0 0 11px var(--beam);
-}
-
-.fer-vertex-beam::after {
-  content:'';
-  position:absolute;
-  right:0;
-  top:-3px;
-  width:8px;
-  height:8px;
-  border-radius:50%;
-  background:#fff4da;
-  box-shadow:0 0 12px var(--beam);
-}
-
-.fer-beam-f { --beam:#ec3f67; left:50%; top:25%; width:27%; transform:rotate(90deg); }
-.fer-beam-e { --beam:#d9a868; left:21%; top:70%; width:44%; transform:rotate(-38deg); }
-.fer-beam-r { --beam:#d9d4c7; left:79%; top:70%; width:44%; transform:rotate(218deg); }
 
 .fer-vertices figcaption {
   color:#d5b7ae;
@@ -1159,7 +1270,7 @@
 @media(min-width:600px) {
   .fer-arrival { padding-top:54px; }
   .fer-back { margin-bottom:62px; }
-  .fer-vertices-stage { width:520px; height:440px; }
+  .fer-vertices-stage { width:520px; }
   .fer-vertex { width:155px; }
   .fer-vertex-glyph { width:76px; height:76px; font-size:3.5rem; }
   .fer-vertex-name { font-size:.76rem; }
@@ -1187,7 +1298,7 @@
   .fer-arrival h1 em { max-width:none; }
   .fer-arrival-lead { margin-top:36px; }
   .fer-vertices { margin-top:46px; }
-  .fer-vertices-stage { width:610px; height:490px; }
+  .fer-vertices-stage { width:610px; }
   .fer-force-inner { grid-template-columns:minmax(300px,42%) 1fr; gap:6%; padding-block:78px; }
   .fer-force-current { height:290px; }
   .fer-current-halo { width:225px; }
@@ -1270,16 +1381,27 @@
   .fer-vertex-core,.fer-reactor-nucleus,.fer-bloom-core {
     animation:fer-heartbeat 4.8s ease-in-out infinite;
   }
-  .fer-vertex-orbit-one,.fer-bloom-ring-two,.fer-woman-orbit-one {
+  .fer-seal-dial {
+    transform-origin:50% 50%;
+    transform-box:view-box;
+    animation:fer-seal-turn 72s linear infinite;
+  }
+  .fer-seal-conduit {
+    animation:fer-seal-flow 3.4s linear infinite;
+  }
+  .fer-seal-conduit-e { animation-delay:-1.1s; }
+  .fer-seal-conduit-r { animation-delay:-2.2s; }
+  .fer-seal-sparks { animation:fer-seal-glimmer 4.6s ease-in-out infinite; }
+  .fer-bloom-ring-two,.fer-woman-orbit-one {
     animation:fer-orbit 36s linear infinite;
   }
-  .fer-vertex-beam::after,.fer-reactor-line::after {
+  .fer-reactor-line::after {
     right:auto;
     left:0;
     animation:fer-current-travel 3.2s linear infinite;
   }
-  .fer-beam-e::after,.fer-reactor-line-e::after { animation-delay:-1s; }
-  .fer-beam-r::after,.fer-reactor-line-r::after { animation-delay:-2s; }
+  .fer-reactor-line-e::after { animation-delay:-1s; }
+  .fer-reactor-line-r::after { animation-delay:-2s; }
   .fer-current-spark { animation:fer-spark 3.1s ease-in-out infinite; }
   .fer-spark-two { animation-delay:-1.5s; }
   .fer-current-halo { animation:fer-halo 6s ease-in-out infinite; }
@@ -1303,6 +1425,19 @@
 @keyframes fer-orbit {
   from { rotate:0deg; }
   to { rotate:360deg; }
+}
+
+@keyframes fer-seal-turn {
+  to { transform:rotate(360deg); }
+}
+
+@keyframes fer-seal-flow {
+  to { stroke-dashoffset:-51; }
+}
+
+@keyframes fer-seal-glimmer {
+  0%,100% { opacity:.45; }
+  50% { opacity:1; }
 }
 
 @keyframes fer-current-travel {
@@ -1376,7 +1511,7 @@
 
 @media(forced-colors:active) {
   .fer-experience .smoke-atmosphere,
-  .fer-vertex-beams,.fer-reactor-lines,
+  .fer-seal,.fer-reactor-lines,
   .fer-bloom-stage,.fer-woman-orbit {
     display:none;
   }

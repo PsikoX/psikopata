@@ -1,5 +1,5 @@
 use crate::{
-    components::{BrandText, ButtonLink, ResponsiveImage, SectionLabel, SmokeAtmosphere},
+    components::{BrandText, ButtonLink, FerSigil, ResponsiveImage, SectionLabel, SmokeAtmosphere},
     content,
     layouts::ClosingInvitation,
 };
@@ -37,11 +37,7 @@ fn Arrival() -> Element {
             }
             figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión convergen hacia un núcleo central",
                 div { class: "fer-vertices-stage",
-                    div { class: "fer-vertex-beams", "aria-hidden": "true",
-                        span { class: "fer-vertex-beam fer-beam-f" }
-                        span { class: "fer-vertex-beam fer-beam-e" }
-                        span { class: "fer-vertex-beam fer-beam-r" }
-                    }
+                    FerSigil {}
                     for (index, force) in content::fer::FORCES.iter().enumerate() {
                         div { class: "fer-vertex fer-vertex-{index}",
                             span { class: "fer-vertex-glyph", "{force.letter}" }
@@ -50,8 +46,6 @@ fn Arrival() -> Element {
                         }
                     }
                     div { class: "fer-vertex-core", "aria-hidden": "true", span {} }
-                    span { class: "fer-vertex-orbit fer-vertex-orbit-one", "aria-hidden": "true" }
-                    span { class: "fer-vertex-orbit fer-vertex-orbit-two", "aria-hidden": "true" }
                 }
                 figcaption { "TRES FUERZAS. UN CENTRO AÚN POR REVELAR." }
             }

@@ -681,14 +681,16 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
     )?;
     browser.navigate("http://127.0.0.1:8080/fer/")?;
     let first = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
+    let seal_first = browser.style(".fer-seal-conduit-f", "stroke-dashoffset")?;
     thread::sleep(Duration::from_millis(450));
     let second = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
+    let seal_second = browser.style(".fer-seal-conduit-f", "stroke-dashoffset")?;
     let running = browser.style(".fer-vertex-core", "animation-name")?;
     println!(
         "{}",
-        json!({"motion":"normal","stream_first":first,"stream_second":second,"core_animation":running})
+        json!({"motion":"normal","stream_first":first,"stream_second":second,"seal_first":seal_first,"seal_second":seal_second,"core_animation":running})
     );
-    if first == second || !running.contains("fer-heartbeat") {
+    if first == second || seal_first == seal_second || !running.contains("fer-heartbeat") {
         return Err("FER energy streams did not move".into());
     }
     browser.call(
@@ -696,8 +698,9 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
     let reduced = browser.style(".fer-vertex-core", "animation-name")?;
-    if reduced != "none" {
-        return Err(format!("FER reduced-motion animation still running: {reduced}").into());
+    let reduced_seal = browser.style(".fer-seal-conduit-f", "animation-name")?;
+    if reduced != "none" || reduced_seal != "none" {
+        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_seal}").into());
     }
     let frame = browser.call("Page.getFrameTree", json!({}))?["frameTree"]["frame"]["id"].clone();
     let sheet =
