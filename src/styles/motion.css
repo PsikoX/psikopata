@@ -1,7 +1,7 @@
 /* The cover's luminous red filaments continue through the entire page. */
 @property --muse-rim-angle {
   syntax:'<angle>';
-  inherits:true;
+  inherits:false;
   initial-value:0deg;
 }
 
@@ -410,6 +410,13 @@
   .muse-image-link {
     transition:box-shadow .5s cubic-bezier(.18,.78,.24,1);
   }
+  .muse-image-link::before {
+    animation:muse-rim-travel 4.2s linear infinite;
+  }
+  @keyframes muse-rim-travel {
+    from { --muse-rim-angle:0deg; }
+    to { --muse-rim-angle:360deg; }
+  }
   .muse-image-link::after {
     content:'';
     position:absolute;
@@ -481,10 +488,9 @@
       animation-range:entry 0% exit 100%;
     }
     @keyframes muse-scroll-near {
-      0% { scale:.91; translate:0 24px; --muse-rim-angle:0deg; }
-      38% { scale:1.055; translate:0 -7px; --muse-rim-angle:137deg; }
-      62% { scale:1.055; translate:0 -7px; --muse-rim-angle:223deg; }
-      100% { scale:.97; translate:0 0; --muse-rim-angle:360deg; }
+      0% { scale:.91; translate:0 24px; }
+      38%,62% { scale:1.055; translate:0 -7px; }
+      100% { scale:.97; translate:0 0; }
     }
     .universe-copy,.section-heading,.music-heading,.alter-copy,.creation-heading,.education-copy,.energy-inner,.community-grid,.seven-heading,.fer-question,.fer-word,.fer-chapter-copy {
       animation:chapter-arrival linear both;

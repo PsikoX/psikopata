@@ -7,14 +7,19 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.20709466582331856,
+    "isolated_video_change_fraction": 0.188949504532996,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
     "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
-    "muse_gold_enter": "0deg",
-    "muse_gold_near": "174.735deg",
-    "muse_gold_past": "252.846deg",
+    "muse_gold_karen_a": "135.676deg",
+    "muse_gold_karen_b": "231.394deg",
+    "muse_gold_karen_changed_pixels": 3787,
+    "muse_gold_karen_travel": 95.71800000000002,
+    "muse_gold_zoe_a": "21.385deg",
+    "muse_gold_zoe_b": "118.525deg",
+    "muse_gold_zoe_changed_pixels": 4098,
+    "muse_gold_zoe_travel": 97.13999999999999,
     "muse_hover_transform": null,
     "muse_scale_enter": "0.91",
     "muse_scale_near": "1.055",
@@ -23,6 +28,7 @@
     "pause_hides_video": true,
     "pause_removes_css_animation": true,
     "paused_frames_stable": true,
+    "paused_rim_animation": "none",
     "platform_fonts": {
       "fonts": [
         {
@@ -39,8 +45,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-mobile.webp"
     ],
-    "texture_transform_after": "matrix(1.06887, 0.0236095, -0.0236095, 1.06887, 11.646, -32.6347)",
-    "texture_transform_before": "matrix(1.0489, 0.00837299, -0.00837299, 1.0489, 4.20944, -14.8137)",
+    "texture_transform_after": "matrix(1.0696, 0.0241816, -0.0241816, 1.0696, 11.92, -33.2912)",
+    "texture_transform_before": "matrix(1.04974, 0.00899491, -0.00899491, 1.04974, 4.51849, -15.5544)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-mobile.mp4"
     ],
@@ -49,6 +55,7 @@
   {
     "hero_animation": "none",
     "mode": "reduced",
+    "muse_rim_animation": "none",
     "pause_control_display": "none",
     "smoke_animation": "none",
     "video_display": "none",
@@ -63,14 +70,19 @@
     "hero_font_style": "italic",
     "horizontal_overflow": false,
     "image_reveal_clip": "inset(0%)",
-    "isolated_video_change_fraction": 0.11393551825206502,
+    "isolated_video_change_fraction": 0.1392459365840661,
     "javascript_execution": "disabled",
     "keyboard_resumes_motion": true,
     "mode": "normal",
-    "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
-    "muse_gold_enter": "0deg",
-    "muse_gold_near": "175.84deg",
-    "muse_gold_past": "246.147deg",
+    "muse_focus_transform": "matrix(1.03499, 0, 0, 1.03499, 0, -7.99883)",
+    "muse_gold_karen_a": "7.09251deg",
+    "muse_gold_karen_b": "139.955deg",
+    "muse_gold_karen_changed_pixels": 6802,
+    "muse_gold_karen_travel": 132.86248999999998,
+    "muse_gold_zoe_a": "169.933deg",
+    "muse_gold_zoe_b": "312.79deg",
+    "muse_gold_zoe_changed_pixels": 5514,
+    "muse_gold_zoe_travel": 142.85700000000003,
     "muse_hover_transform": "matrix(1.045, 0, 0, 1.045, 0, -10)",
     "muse_scale_enter": "0.91",
     "muse_scale_near": "1.055",
@@ -79,6 +91,7 @@
     "pause_hides_video": true,
     "pause_removes_css_animation": true,
     "paused_frames_stable": true,
+    "paused_rim_animation": "none",
     "platform_fonts": {
       "fonts": [
         {
@@ -95,8 +108,8 @@
     "texture_requests": [
       "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-desktop.webp"
     ],
-    "texture_transform_after": "matrix(1.0725, 0.0264527, -0.0264527, 1.0725, 47.5155, -42.5235)",
-    "texture_transform_before": "matrix(1.05314, 0.0115439, -0.0115439, 1.05314, 21.1203, -22.0123)",
+    "texture_transform_after": "matrix(1.07353, 0.0272657, -0.0272657, 1.07353, 48.9282, -43.6213)",
+    "texture_transform_before": "matrix(1.0562, 0.0138548, -0.0138548, 1.0562, 25.2743, -25.2403)",
     "video_requests": [
       "http://127.0.0.1:8080/assets/media/cover-smoke-flow-desktop.mp4"
     ],
@@ -105,6 +118,7 @@
   {
     "hero_animation": "none",
     "mode": "reduced",
+    "muse_rim_animation": "none",
     "pause_control_display": "none",
     "smoke_animation": "none",
     "video_display": "none",

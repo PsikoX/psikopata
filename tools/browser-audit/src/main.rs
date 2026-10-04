@@ -182,6 +182,50 @@ impl Browser {
             .map(str::to_owned)
             .ok_or_else(|| format!("missing computed {property}").into())
     }
+    fn pseudo_style(
+        &mut self,
+        selector: &str,
+        pseudo_type: &str,
+        property: &str,
+    ) -> Result<String> {
+        let node = self.node(selector)?;
+        let description = self.call("DOM.describeNode", json!({"nodeId":node}))?;
+        let pseudo = description["node"]["pseudoElements"]
+            .as_array()
+            .ok_or("no pseudo elements")?
+            .iter()
+            .find(|pseudo| pseudo["pseudoType"] == pseudo_type)
+            .ok_or_else(|| format!("missing {pseudo_type} for {selector}"))?;
+        let styles = self.call(
+            "CSS.getComputedStyleForNode",
+            json!({"nodeId":pseudo["nodeId"]}),
+        )?;
+        styles["computedStyle"]
+            .as_array()
+            .ok_or("no pseudo styles")?
+            .iter()
+            .find(|value| value["name"] == property)
+            .and_then(|value| value["value"].as_str())
+            .map(str::to_owned)
+            .ok_or_else(|| format!("missing computed {property} on {pseudo_type}").into())
+    }
+    fn box_rect(&mut self, selector: &str) -> Result<(i32, i32, i32, i32)> {
+        let node = self.node(selector)?;
+        let model = self.call("DOM.getBoxModel", json!({"nodeId":node}))?;
+        let border = model["model"]["border"].as_array().ok_or("no box border")?;
+        let coordinate = |index: usize| -> Result<i32> {
+            Ok(border[index]
+                .as_f64()
+                .ok_or("invalid box coordinate")?
+                .round() as i32)
+        };
+        Ok((
+            coordinate(0)?,
+            coordinate(1)?,
+            coordinate(2)?,
+            coordinate(5)?,
+        ))
+    }
     fn space(&mut self) -> Result<()> {
         self.call("Input.dispatchKeyEvent", json!({"type":"keyDown","key":" ","code":"Space","windowsVirtualKeyCode":32,"nativeVirtualKeyCode":32}))?;
         self.call("Input.dispatchKeyEvent", json!({"type":"keyUp","key":" ","code":"Space","windowsVirtualKeyCode":32,"nativeVirtualKeyCode":32}))?;
@@ -657,27 +701,38 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         browser.call("Input.dispatchMouseEvent", json!({"type":"mouseWheel","x":width/2,"y":height/2,"deltaX":0,"deltaY":-(height as i64)/2}))?;
         thread::sleep(Duration::from_millis(250));
         let muse_scale_enter = browser.style(".muse-karen", "scale")?;
-        let muse_gold_enter = browser.style(".muse-karen", "--muse-rim-angle")?;
         browser.current_viewport(&format!("muse-card-{width}-scroll-entry.png"))?;
         let picture = browser.node(".muse-image-link > picture")?;
         browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":picture}))?;
         thread::sleep(Duration::from_millis(250));
         let muse_scale_near = browser.style(".muse-karen", "scale")?;
-        let muse_gold_near = browser.style(".muse-karen", "--muse-rim-angle")?;
         let curtain = browser.style(".muse-image-link > picture", "clip-path")?;
-        browser.current_viewport(&format!("muse-card-{width}-scroll-near.png"))?;
+        let karen_rect = browser.box_rect(".muse-karen .muse-image-link")?;
+        let muse_gold_karen_a =
+            browser.pseudo_style(".muse-karen .muse-image-link", "before", "--muse-rim-angle")?;
+        browser.current_viewport(&format!("muse-card-{width}-gold-a.png"))?;
+        thread::sleep(Duration::from_millis(950));
+        let muse_gold_karen_b =
+            browser.pseudo_style(".muse-karen .muse-image-link", "before", "--muse-rim-angle")?;
+        browser.current_viewport(&format!("muse-card-{width}-gold-b.png"))?;
+        let karen_rim_changed = rim_pixels_changed(
+            &format!("muse-card-{width}-gold-a.png"),
+            &format!("muse-card-{width}-gold-b.png"),
+            width,
+            height,
+            karen_rect,
+        )?;
         browser.call(
             "Input.dispatchMouseEvent",
             json!({"type":"mouseWheel","x":width/2,"y":height/2,"deltaX":0,"deltaY":height/3}),
         )?;
         thread::sleep(Duration::from_millis(350));
-        let muse_gold_past = browser.style(".muse-karen", "--muse-rim-angle")?;
         browser.current_viewport(&format!("continuity-{width}-muses.png"))?;
         let scale_enter = muse_scale_enter.parse::<f64>()?;
         let scale_near = muse_scale_near.parse::<f64>()?;
-        let gold_enter = muse_gold_enter.trim_end_matches("deg").parse::<f64>()?;
-        let gold_near = muse_gold_near.trim_end_matches("deg").parse::<f64>()?;
-        let gold_past = muse_gold_past.trim_end_matches("deg").parse::<f64>()?;
+        let gold_karen_a = muse_gold_karen_a.trim_end_matches("deg").parse::<f64>()?;
+        let gold_karen_b = muse_gold_karen_b.trim_end_matches("deg").parse::<f64>()?;
+        let gold_karen_travel = (gold_karen_b - gold_karen_a + 360.0) % 360.0;
         let muse_link = browser.node(".muse-image-link")?;
         browser.call("DOM.focus", json!({"nodeId":muse_link}))?;
         thread::sleep(Duration::from_millis(550));
@@ -708,6 +763,27 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         } else {
             None
         };
+        let zoe_picture = browser.node(".muse-zoe .muse-image-link > picture")?;
+        browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":zoe_picture}))?;
+        thread::sleep(Duration::from_millis(250));
+        let zoe_rect = browser.box_rect(".muse-zoe .muse-image-link")?;
+        let muse_gold_zoe_a =
+            browser.pseudo_style(".muse-zoe .muse-image-link", "before", "--muse-rim-angle")?;
+        browser.current_viewport(&format!("muse-card-{width}-zoe-gold-a.png"))?;
+        thread::sleep(Duration::from_millis(950));
+        let muse_gold_zoe_b =
+            browser.pseudo_style(".muse-zoe .muse-image-link", "before", "--muse-rim-angle")?;
+        browser.current_viewport(&format!("muse-card-{width}-zoe-gold-b.png"))?;
+        let zoe_rim_changed = rim_pixels_changed(
+            &format!("muse-card-{width}-zoe-gold-a.png"),
+            &format!("muse-card-{width}-zoe-gold-b.png"),
+            width,
+            height,
+            zoe_rect,
+        )?;
+        let gold_zoe_a = muse_gold_zoe_a.trim_end_matches("deg").parse::<f64>()?;
+        let gold_zoe_b = muse_gold_zoe_b.trim_end_matches("deg").parse::<f64>()?;
+        let gold_zoe_travel = (gold_zoe_b - gold_zoe_a + 360.0) % 360.0;
         let music = browser.node(".track-entry")?;
         browser.call("DOM.scrollIntoViewIfNeeded", json!({"nodeId":music}))?;
         browser.current_viewport(&format!("continuity-{width}-music.png"))?;
@@ -735,6 +811,8 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         browser.space()?;
         thread::sleep(Duration::from_millis(150));
         let paused_state = browser.style(".smoke-field-far", "animation-play-state")?;
+        let paused_rim =
+            browser.pseudo_style(".muse-karen .muse-image-link", "before", "animation-name")?;
         let video_hidden = browser.style(".smoke-live", "display")? == "none";
         let paused_animation = browser.style(".hero-content", "animation-name")?;
         let pause_a = format!("motion-{width}-paused-a.png");
@@ -748,15 +826,17 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
         browser.call("DOM.focus", json!({"nodeId":toggle}))?;
         browser.space()?;
         let resumed = browser.style(".smoke-field-far", "animation-play-state")? == "running"
-            && browser.style(".smoke-live", "display")? != "none";
+            && browser.style(".smoke-live", "display")? != "none"
+            && browser.pseudo_style(".muse-karen .muse-image-link", "before", "animation-name")?
+                == "muse-rim-travel";
         let no_scripts = !browser
             .events
             .iter()
             .any(|e| e["method"] == "Network.requestWillBeSent" && e["params"]["type"] == "Script");
-        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_enter":muse_gold_enter,"muse_gold_near":muse_gold_near,"muse_gold_past":muse_gold_past,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
+        let report = json!({"width":width,"mode":"normal","expected_texture":expected_texture,"texture_requests":texture_requests,"expected_video":expected_video,"video_requests":video_requests,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"texture_transform_before":transform_before,"texture_transform_after":transform_after,"frames_change":moving,"comparison_region":"page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures","pause_hides_video":video_hidden,"pause_freezes_smoke":paused_state == "paused","pause_removes_css_animation":paused_animation == "none","paused_rim_animation":paused_rim,"paused_frames_stable":stable,"keyboard_resumes_motion":resumed,"hero_font_style":italic,"platform_fonts":fonts,"image_reveal_clip":curtain,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_karen_a":muse_gold_karen_a,"muse_gold_karen_b":muse_gold_karen_b,"muse_gold_karen_travel":gold_karen_travel,"muse_gold_karen_changed_pixels":karen_rim_changed,"muse_gold_zoe_a":muse_gold_zoe_a,"muse_gold_zoe_b":muse_gold_zoe_b,"muse_gold_zoe_travel":gold_zoe_travel,"muse_gold_zoe_changed_pixels":zoe_rim_changed,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing,"horizontal_overflow":overflow,"javascript_execution":"disabled","script_requests":!no_scripts as u8});
         println!(
             "{}",
-            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_enter":muse_gold_enter,"muse_gold_near":muse_gold_near,"muse_gold_past":muse_gold_past,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
+            json!({"width":width,"mode":"normal","texture_source_matches_viewport":selected,"video_source_matches_viewport":selected_video,"native_playback":played,"isolated_video_change_fraction":video_change_fraction,"frames_change":moving,"muse_scale_enter":muse_scale_enter,"muse_scale_near":muse_scale_near,"muse_gold_karen_travel":gold_karen_travel,"muse_gold_karen_changed_pixels":karen_rim_changed,"muse_gold_zoe_travel":gold_zoe_travel,"muse_gold_zoe_changed_pixels":zoe_rim_changed,"muse_focus_transform":muse_focus_transform,"muse_hover_transform":muse_hover_transform,"paused_rim_animation":paused_rim,"paused_content_stable":stable,"keyboard_resume":resumed,"overflow":overflow,"smoke_opacity_at_fer":opacity_fer,"smoke_opacity_near_closing":opacity_closing})
         );
         reports.push(report);
         if !moving
@@ -769,10 +849,13 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             || !resumed
             || paused_state != "paused"
             || paused_animation != "none"
+            || paused_rim != "none"
             || italic != "italic"
             || scale_near < scale_enter + 0.05
-            || gold_near < gold_enter + 20.0
-            || gold_past < gold_near + 20.0
+            || !(25.0..300.0).contains(&gold_karen_travel)
+            || !(25.0..300.0).contains(&gold_zoe_travel)
+            || karen_rim_changed < 80
+            || zoe_rim_changed < 80
             || muse_focus_transform == "none"
             || muse_hover_transform
                 .as_ref()
@@ -806,15 +889,18 @@ fn audit_motion(browser: &mut Browser) -> Result<()> {
             })
             .count();
         let reduced_smoke_animation = browser.style(".smoke-field-far", "animation-name")?;
+        let reduced_rim_animation =
+            browser.pseudo_style(".muse-karen .muse-image-link", "before", "animation-name")?;
         let reduced_animation = browser.style(".hero-content", "animation-name")?;
         let control_display = browser.style(".motion-control", "display")?;
         let reduced_video_display = browser.style(".smoke-live", "display")?;
-        let report = json!({"width":width,"mode":"reduced","video_requests":reduced_requests,"video_display":reduced_video_display,"smoke_animation":reduced_smoke_animation,"hero_animation":reduced_animation,"pause_control_display":control_display});
+        let report = json!({"width":width,"mode":"reduced","video_requests":reduced_requests,"video_display":reduced_video_display,"smoke_animation":reduced_smoke_animation,"muse_rim_animation":reduced_rim_animation,"hero_animation":reduced_animation,"pause_control_display":control_display});
         println!("{report}");
         reports.push(report);
         if reduced_requests != 0
             || reduced_video_display != "none"
             || reduced_smoke_animation != "none"
+            || reduced_rim_animation != "none"
             || reduced_animation != "none"
             || control_display != "none"
         {
@@ -858,6 +944,43 @@ fn moving_edge_fraction(a: &str, b: &str, width: u32, height: u32) -> Result<f64
         return Err("No smoke edge pixels were sampled".into());
     }
     Ok(changed as f64 / sampled as f64)
+}
+
+fn rim_pixels_changed(
+    a: &str,
+    b: &str,
+    width: u32,
+    height: u32,
+    (left, top, right, bottom): (i32, i32, i32, i32),
+) -> Result<usize> {
+    let pixels = |name: &str| -> Result<Vec<u8>> {
+        let image = Command::new("magick")
+            .arg(output_path(name))
+            .args(["-depth", "8", "rgba:-"])
+            .output()?;
+        if !image.status.success() || image.stdout.len() != (width * height * 4) as usize {
+            return Err("Could not decode muse rim screenshot".into());
+        }
+        Ok(image.stdout)
+    };
+    let before = pixels(a)?;
+    let after = pixels(b)?;
+    let mut changed = 0;
+    for y in top.max(0)..bottom.min(height as i32) {
+        for x in left.max(0)..right.min(width as i32) {
+            if x - left >= 7 && right - x > 7 && y - top >= 7 && bottom - y > 7 {
+                continue;
+            }
+            let offset = ((y as u32 * width + x as u32) * 4) as usize;
+            let delta: u32 = (0..3)
+                .map(|channel| before[offset + channel].abs_diff(after[offset + channel]) as u32)
+                .sum();
+            if delta >= 45 {
+                changed += 1;
+            }
+        }
+    }
+    Ok(changed)
 }
 
 fn content_pixels(filename: &str, width: u32, height: u32) -> Result<Vec<u8>> {
