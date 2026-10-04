@@ -125,3 +125,10 @@ h1 { max-width: 12ch; margin: 0; font-size: clamp(3.4rem, 11vw, 7.5rem); font-we
   .artifact-threads, .energy, .artifact-core, .artifact-gleam { display: none; }
   .artifact-complete { filter: none; animation: none; }
 }
+/* New editorial page mockups; the earlier animated symbol studies are retained. */
+.proposal { margin:70px 0; }
+.proposal-board,.proposal-matter { display:block; width:100%; height:auto; margin-top:28px; border:1px solid #a7805360; }
+.proposal-matter { max-width:920px; margin-inline:auto; }
+.proposal-link { display:inline-flex; align-items:center; min-height:48px; margin-top:25px; color:#edcda3; border-bottom:1px solid #b1885c; font:700 .75rem/1.5 Arial,sans-serif; letter-spacing:.12em; }
+.proposal-link:hover { color:#fff0d8; }
+a:focus-visible { outline:2px solid #f5dbb9; outline-offset:5px; }

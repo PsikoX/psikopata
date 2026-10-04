@@ -1,8 +1,5 @@
 /* The two material studies remain whole. Three restrained lights gather at
    the real artwork’s center; there are no mismatched moving image cutouts. */
-.fer-experience .fer-vertices-stage {
-  overflow:hidden;
-}
 .fer-artifact {
   position:relative;
   display:block;
@@ -30,7 +27,7 @@
   display:grid;
   grid-template-columns:repeat(3,minmax(0,1fr));
   gap:7px;
-  width:min(100%,365px);
+  width:100%;
   margin:10px auto 0;
   padding:10px 0;
   border-top:1px solid #a9784d70;
@@ -50,54 +47,6 @@
 .fer-artifact-legend span:nth-child(2) strong { color:var(--fer-e); }
 .fer-artifact-legend span:nth-child(3) b,
 .fer-artifact-legend span:nth-child(3) strong { color:var(--fer-r); }
-.fer-artifact-provenance {
-  width:min(100%,700px);
-  margin:24px auto 0;
-  padding:18px 0;
-  border-top:1px solid #ac785650;
-  border-bottom:1px solid #ac785650;
-  text-align:left;
-}
-.fer-artifact-provenance p {
-  max-width:70ch;
-  margin:0;
-  color:#e4d0bd;
-  font-size:.86rem;
-  line-height:1.6;
-}
-.fer-artifact-provenance a {
-  display:inline-block;
-  min-height:44px;
-  padding-top:13px;
-  color:#e5b988;
-  font-size:.62rem;
-  font-weight:700;
-  letter-spacing:.1em;
-  text-underline-offset:4px;
-}
-.fer-convergence-figure {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  width:min(100%,650px);
-  margin:42px auto 0;
-  text-align:center;
-}
-.fer-convergence-figure .fer-artifact { max-width:610px; }
-.fer-convergence-figure .fer-artifact-legend { width:min(100%,610px); }
-.fer-convergence-figure figcaption {
-  margin-top:20px;
-  color:#eed4b9;
-  font-size:.7rem;
-  font-weight:700;
-  letter-spacing:.16em;
-}
-@media(min-width:600px) {
-  .fer-vertices .fer-artifact-legend { width:520px; }
-}
-@media(min-width:900px) {
-  .fer-vertices .fer-artifact-legend { width:610px; }
-}
 @media(max-width:359px) {
   .fer-artifact-legend strong,.fer-artifact-legend small { font-size:.47rem; }
 }

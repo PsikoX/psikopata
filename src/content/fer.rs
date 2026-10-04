@@ -1,64 +1,51 @@
-//! Editorial content for the FER experience. The three names and their roles
-//! are kept together so the visual chapters cannot drift from the concept.
+//! Short explanations lead the FER story. Extra context is disclosed on demand.
 
 pub struct Force {
     pub letter: &'static str,
     pub name: &'static str,
     pub role: &'static str,
     pub declaration: &'static str,
-    pub opening: &'static str,
     pub meaning: &'static str,
-    pub subjects: &'static [&'static str],
 }
+
+pub const OPENING_SUMMARY: &str = "El deseo da energía. El conocimiento da capacidad. La fe da dirección. Cuando se encuentran, nace el FER.";
 
 pub const FORCES: &[Force] = &[
     Force {
         letter: "F",
         name: "FETICHE",
         role: "ENERGÍA",
-        declaration: "YO QUIERO.",
-        opening: "El deseo hace que mires.",
-        meaning: "Atracción, belleza, sensualidad, placer, fantasía. La curiosidad que enciende el primer movimiento. No se trata de vivir para la mirada ajena: se trata de reconocer lo que te mueve a ti.",
-        subjects: &["Deseo", "Magnetismo", "Imagen", "Alter ego"],
+        declaration: "Yo quiero.",
+        meaning: "Tu deseo, tu sensualidad, tu curiosidad. Lo que te atrae y te pone en movimiento.",
     },
     Force {
         letter: "E",
         name: "EDUCACIÓN",
         role: "CAPACIDAD",
-        declaration: "YO PUEDO.",
-        opening: "Aprender le da manos al deseo.",
-        meaning: "Conocimiento, creatividad y competencias para transformar una idea en algo real. Inteligencia artificial, tecnología, contenido y negocios: herramientas para construir lo que imaginaste.",
-        subjects: &["Conocimiento", "Tecnología", "Creación", "Negocios"],
+        declaration: "Yo puedo.",
+        meaning: "Lo que aprendes para hacer realidad una idea: creatividad, tecnología y negocios.",
     },
     Force {
         letter: "R",
         name: "RELIGIÓN",
         role: "DIRECCIÓN",
-        declaration: "SÉ POR QUÉ.",
-        opening: "La fe pregunta hacia dónde.",
-        meaning: "Conciencia, propósito, valores y disciplina. También preguntas difíciles sobre la Biblia, Cristo, las relaciones y el matrimonio. Una dimensión para decidir qué merece tu energía y qué significado tiene lo que creas.",
-        subjects: &["Fe", "Propósito", "Valores", "Matrimonio", "Conciencia"],
+        declaration: "Sé por qué.",
+        meaning: "Tu fe, tus valores y tu propósito. Lo que te ayuda a elegir hacia dónde ir.",
     },
 ];
 
 pub const OUTCOMES: &[&str] = &[
-    "CREACIÓN",
-    "RELACIONES",
-    "CONOCIMIENTO",
-    "NEGOCIOS",
-    "LIBERTAD",
-    "ABUNDANCIA",
+    "Creación",
+    "Relaciones",
+    "Conocimiento",
+    "Negocios",
+    "Libertad",
+    "Abundancia",
 ];
 
-pub const CYCLE: &[&str] = &[
-    "DESEO",
-    "ATENCIÓN",
-    "CURIOSIDAD",
-    "EDUCACIÓN",
-    "CAPACIDAD",
-    "CREACIÓN",
-    "VALOR",
-    "PROSPERIDAD",
-    "LIBERTAD",
-    "NUEVO DESEO",
-];
+/// Five readable stations around the physical ring; freedom opens a new desire.
+pub const CYCLE: &[&str] = &["Deseo", "Educación", "Creación", "Prosperidad", "Libertad"];
+
+pub const FAITH_CONTEXT: &str = "Fe, Biblia, Cristo, valores y propósito. También preguntas sobre las relaciones, el matrimonio y las decisiones de cada día. En el FER, esta fuerza da significado a lo que deseas y construyes.";
+pub const EDUCATION_CONTEXT: &str = "Inteligencia artificial, creación de contenido, vídeo, música, tecnología y emprendimiento. Aprender herramientas para convertir tus ideas en proyectos propios.";
+pub const PROSPERITY_CONTEXT: &str = "Ingresos, conocimientos, relaciones, proyectos y libertad para elegir. Energía + capacidad + dirección = prosperidad es una metáfora filosófica del FER, no una garantía de resultados.";

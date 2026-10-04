@@ -253,7 +253,7 @@ fn fer_is_intact_and_follows_the_opening() {
         "RELIGIÓN",
         "Biblia",
         "Cristo",
-        "Matrimonio",
+        "matrimonio",
     ] {
         assert!(fer.contains(term));
     }
@@ -265,32 +265,54 @@ fn fer_is_intact_and_follows_the_opening() {
     );
     assert!(
         fer.find("fer-artifact-interlace").unwrap() < fer.find("fer-artifact-seal").unwrap(),
-        "the interlace must open the story before the seal converges"
+        "the interlace must explain the forces before the seal converges"
     );
+    let opening = fer_doc
+        .select(&select(".fer-experience > section"))
+        .next()
+        .unwrap();
+    assert!(
+        opening
+            .value()
+            .classes()
+            .any(|class| class == "fer-opening")
+    );
+    let opening_text = opening.text().collect::<String>();
+    assert!(opening_text.contains("EL TRIDENTE"));
+    assert!(opening_text.contains("PROSPERIDAD"));
+    assert!(opening_text.contains(content::fer::OPENING_SUMMARY));
     assert_eq!(
         fer_doc
-            .select(&select(".fer-arrival-wordmark .fer-glyph"))
+            .select(&select(".fer-opening-letters .fer-glyph"))
             .count(),
         3
     );
     assert_eq!(
         fer_doc
-            .select(&select(".fer-finale-letters .fer-glyph"))
+            .select(&select(".fer-closing-letters .fer-glyph"))
             .count(),
         3
     );
     assert_eq!(
         fer_doc.select(&select(".fer-artifact-legend span")).count(),
-        6
+        3
     );
-    assert_eq!(fer_doc.select(&select(".fer-force-current")).count(), 3);
+    for force in content::fer::FORCES {
+        assert!(fer.contains(force.name));
+        assert!(fer.contains(force.role));
+        assert!(fer.contains(force.meaning));
+    }
     assert_eq!(fer_doc.select(&select(".fer-artifact-complete")).count(), 2);
     assert_eq!(fer_doc.select(&select(".fer-energy")).count(), 6);
     assert_eq!(fer_doc.select(&select(".fer-thread")).count(), 6);
     assert_eq!(fer_doc.select(&select(".fer-band")).count(), 0);
-    assert_eq!(fer_doc.select(&select(".fer-bloom-outcome")).count(), 6);
-    assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 10);
+    assert_eq!(fer_doc.select(&select(".fer-outcomes li")).count(), 6);
+    assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 5);
     assert_eq!(fer_doc.select(&select(".fer-woman-art img")).count(), 1);
+    assert_eq!(fer_doc.select(&select(".fer-question[open]")).count(), 0);
+    assert!(!fer.contains("fer-current-halo"));
+    assert!(!fer.contains("fer-bloom-ray"));
+    assert!(!fer.contains("fer-woman-orbit"));
     assert!(fer.contains("FER no es una nueva religión"));
     assert!(fer.contains("metáfora filosófica"));
 }

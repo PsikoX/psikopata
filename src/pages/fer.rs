@@ -3,7 +3,7 @@ use crate::{
         BrandText, ButtonLink, FerInterlace, FerSeal, ResponsiveImage, SectionLabel,
         SmokeAtmosphere,
     },
-    content,
+    content::{self, fer},
     layouts::ClosingInvitation,
 };
 use dioxus::prelude::*;
@@ -13,120 +13,75 @@ pub fn Fer() -> Element {
     rsx! {
         div { class: "fer-experience",
             SmokeAtmosphere {}
-            Arrival {}
+            Opening {}
             Forces {}
-            Convergence {}
-            Expansion {}
-            Circuit {}
+            Union {}
+            Cycle {}
             WomanAtTheCenter {}
-            Declarations {}
+            Questions {}
             Closing {}
         }
     }
 }
 
-/// Visual 01: three sculptural bands join around a transforming nucleus.
 #[component]
-fn Arrival() -> Element {
+fn FerSum(#[props(default = "")] class: &'static str) -> Element {
     rsx! {
-        section { class: "fer-arrival", "aria-labelledby": "fer-page-title",
-            div { class: "container fer-arrival-inner",
-                a { class: "text-link fer-back", href: "/#fer", "← VOLVER AL UNIVERSO" }
-                SectionLabel { number: "F / E / R", label: "UN SISTEMA EN MOVIMIENTO" }
-                p { class: "fer-arrival-prelude", "TE HICIERON CREER QUE TENÍAS QUE ELEGIR." }
-                h1 { id: "fer-page-title", "aria-label": "FER, El Tridente de la Prosperidad",
-                    span { class: "fer-arrival-wordmark",
-                        span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
-                        span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
-                        span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
-                    }
-                    em { "El Tridente de la Prosperidad" }
-                }
-                p { class: "fer-arrival-lead", "Deseo. Conocimiento. Fe. Tres fuerzas humanas. Una pregunta: ¿qué pasa cuando dejas de separarlas?" }
-                a { class: "fer-scroll-cue", href: "#fer-vertices", "DESCUBRE EL SISTEMA" span { "aria-hidden": "true", "↓" } }
-            }
-            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Tres bandas de Fetiche, Educación y Religión se entrelazan alrededor de un núcleo central",
-                div { class: "fer-vertices-stage",
-                    FerInterlace {}
-                }
-                div { class: "fer-artifact-legend",
-                    for force in content::fer::FORCES {
-                        span { b { "{force.letter}" } strong { "{force.name}" } small { "{force.role}" } }
-                    }
-                }
-                figcaption { "TRES FUERZAS. UN CENTRO POR REVELAR." }
-                div { class: "fer-artifact-provenance",
-                    p { "Tres bandas se encuentran. La triquetra aparece en manuscritos medievales; esta pieza es una creación artística del FER, no un objeto histórico." }
-                    a {
-                        href: "https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg",
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        "VER LA TRIQUETRA DEL MANUSCRITO ↗"
-                    }
+        p { class: "fer-sum {class}", "aria-label": "F más E más R",
+            span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
+            span { class: "fer-plus", "aria-hidden": "true", "+" }
+            span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
+            span { class: "fer-plus", "aria-hidden": "true", "+" }
+            span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
+        }
+    }
+}
+
+/// The former closing manifesto now explains the idea on the very first screen.
+#[component]
+fn Opening() -> Element {
+    rsx! {
+        section { class: "fer-opening", "aria-labelledby": "fer-page-title",
+            div { class: "container fer-opening-inner",
+                FerSum { class: "fer-opening-letters" }
+                h1 { id: "fer-page-title", "EL TRIDENTE" br {} em { "DE LA" br {} "PROSPERIDAD." } }
+                p { class: "fer-opening-summary", "{fer::OPENING_SUMMARY}" }
+                p { class: "fer-opening-brand", "UNA IDEA DEL UNIVERSO " BrandText { text: "PSIKOPAPA" } }
+                div { class: "fer-opening-actions",
+                    ButtonLink { href: "#fer-vertices", label: "DESCUBRIR LAS TRES FUERZAS", secondary: true }
+                    a { class: "fer-community-link", href: "/#community", "EXPLORAR LA COMUNIDAD" span { "aria-hidden": "true", " ↗" } }
                 }
             }
         }
     }
 }
 
-/// Visual 02: each current has its own color, rhythm and editorial chapter.
+/// The chosen interlace accompanies three short, concrete definitions.
 #[component]
 fn Forces() -> Element {
     rsx! {
-        section { class: "fer-forces section-space", "aria-labelledby": "fer-forces-title",
-            div { class: "container fer-section-intro",
-                SectionLabel { number: "01 / 04", label: "LAS TRES FUERZAS" }
-                h2 { id: "fer-forces-title", "Primero, la tensión." }
-                p { "Separadas, pueden impulsarte. Pero ninguna cuenta toda la historia." }
-            }
-            for (index, force) in content::fer::FORCES.iter().enumerate() {
-                article { class: "fer-force fer-force-{index}", id: force.name,
-                    div { class: "container fer-force-inner",
-                        div { class: "fer-force-current", "aria-hidden": "true",
-                            span { class: "fer-current-halo" }
-                            span { class: "fer-current-stem" }
-                            span { class: "fer-current-letter", "{force.letter}" }
-                            span { class: "fer-current-spark fer-spark-one" }
-                            span { class: "fer-current-spark fer-spark-two" }
-                        }
-                        div { class: "fer-force-copy",
-                            p { class: "fer-force-role", "{force.role} / {force.name}" }
-                            h3 { "{force.opening}" }
-                            p { class: "fer-force-declaration", "{force.declaration}" }
-                            p { class: "fer-force-meaning", "{force.meaning}" }
-                            ul { class: "fer-force-subjects", for subject in force.subjects { li { "{subject}" } } }
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-/// Visual 03: three tangible vertices assemble into the FER seal.
-#[component]
-fn Convergence() -> Element {
-    rsx! {
-        section { class: "fer-convergence section-space", id: "convergencia", "aria-labelledby": "fer-convergence-title",
+        section { class: "fer-forces fer-chapter", id: "fer-vertices", "aria-labelledby": "fer-forces-title",
             div { class: "container",
-                SectionLabel { number: "02 / 04", label: "LA CONVERGENCIA" }
-                h2 { id: "fer-convergence-title", "No basta querer." br {} "No basta saber." br {} em { "No basta creer." } }
-                p { class: "fer-convergence-intro", "Cuando la energía encuentra capacidad y dirección, empieza la transformación." }
-                figure { class: "fer-convergence-figure", "aria-label": "Tres medallones forman un triángulo y revelan un núcleo hexagonal",
-                    FerSeal {}
-                    div { class: "fer-artifact-legend",
-                        for force in content::fer::FORCES {
-                            span { b { "{force.letter}" } strong { "{force.name}" } small { "{force.role}" } }
-                        }
+                div { class: "fer-section-heading",
+                    SectionLabel { number: "01", label: "QUÉ SIGNIFICA FER" }
+                    h2 { id: "fer-forces-title", "Tres fuerzas." br {} em { "Una misma vida." } }
+                }
+                div { class: "fer-forces-grid",
+                    figure { class: "fer-vertices", "aria-label": "Fetiche, Educación y Religión, tres bandas entrelazadas en un mismo símbolo",
+                        FerInterlace {}
+                        figcaption { "TRES FUERZAS. UN MISMO CENTRO." }
                     }
-                    figcaption { "ENERGÍA + CAPACIDAD + DIRECCIÓN" }
-                    div { class: "fer-artifact-provenance",
-                        p { "El esquema de tres vértices y un centro aparece en el Scutum Fidei medieval. Este sello es una creación artística del FER, no un objeto histórico." }
-                        a {
-                            href: "https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg",
-                            target: "_blank",
-                            rel: "noopener noreferrer",
-                            "VER EL MANUSCRITO HISTÓRICO ↗"
+                    div { class: "fer-force-list",
+                        for (index, force) in fer::FORCES.iter().enumerate() {
+                            article { class: "fer-force fer-force-{index}", "aria-labelledby": "fer-force-title-{index}",
+                                span { class: "fer-force-letter", "aria-hidden": "true", "{force.letter}" }
+                                div { class: "fer-force-copy",
+                                    h3 { id: "fer-force-title-{index}", "{force.name}" }
+                                    p { class: "fer-force-role", "{force.role}" }
+                                    p { class: "fer-force-meaning", "{force.meaning}" }
+                                    p { class: "fer-force-declaration", "{force.declaration}" }
+                                }
+                            }
                         }
                     }
                 }
@@ -135,110 +90,114 @@ fn Convergence() -> Element {
     }
 }
 
-/// Visual 04: the nucleus expands into many kinds of abundance.
+/// The second chosen artifact shows the union, followed by its human meaning.
 #[component]
-fn Expansion() -> Element {
+fn Union() -> Element {
     rsx! {
-        section { class: "fer-expansion section-space", "aria-labelledby": "fer-expansion-title",
-            div { class: "container fer-expansion-heading",
-                SectionLabel { number: "03 / 04", label: "LA MANIFESTACIÓN" }
-                h2 { id: "fer-expansion-title", "Y entonces, algo se abre." }
-                p { "La prosperidad no cabe en una moneda. También es lo que aprendes, lo que construyes, a quién amas y la libertad que ganas." }
-            }
-            figure { class: "fer-bloom container", "aria-label": "La unión del FER se expande en creación, relaciones, conocimiento, negocios, libertad y abundancia",
-                div { class: "fer-bloom-stage", "aria-hidden": "true",
-                    span { class: "fer-bloom-ring fer-bloom-ring-one" }
-                    span { class: "fer-bloom-ring fer-bloom-ring-two" }
-                    span { class: "fer-bloom-ring fer-bloom-ring-three" }
-                    for ray in 0..12 { span { class: "fer-bloom-ray fer-bloom-ray-{ray}" } }
-                    span { class: "fer-bloom-core", "✦" }
-                }
-                ol { class: "fer-bloom-outcomes",
-                    for (index, outcome) in content::fer::OUTCOMES.iter().enumerate() {
-                        li { class: "fer-bloom-outcome fer-bloom-outcome-{index}", "{outcome}" }
-                    }
-                }
-                figcaption { strong { "PROSPERIDAD" } span { "Abundancia creada, no solo acumulada." } }
-            }
-            p { class: "fer-metaphor container", "Así lo imagina el FER: energía + capacidad + dirección pueden abrir caminos hacia la prosperidad. Es una metáfora filosófica, no una fórmula garantizada." }
-        }
-    }
-}
-
-/// Visual 05: a closed circuit whose final node returns to the first.
-#[component]
-fn Circuit() -> Element {
-    rsx! {
-        section { class: "fer-circuit section-space", id: "circuito", "aria-labelledby": "fer-circuit-title",
+        section { class: "fer-union fer-chapter", id: "convergencia", "aria-labelledby": "fer-union-title",
             div { class: "container",
-                SectionLabel { number: "04 / 04", label: "EL CIRCUITO" }
-                h2 { id: "fer-circuit-title", "Prosperar no es el final." em { " Es el comienzo de otra vuelta." } }
-                p { class: "fer-circuit-intro", "El deseo despierta atención. Aprender permite crear valor. La libertad deja espacio para un nuevo deseo." }
-                figure { class: "fer-cycle", "aria-label": "Ciclo del FER: del deseo a la libertad y de vuelta a un nuevo deseo",
-                    div { class: "fer-cycle-track", "aria-hidden": "true" }
-                    ol { for (index, step) in content::fer::CYCLE.iter().enumerate() {
-                        li { class: "fer-cycle-step fer-cycle-step-{index}", span { class: "fer-cycle-index", "{index}" } strong { "{step}" } }
-                    } }
-                    div { class: "fer-cycle-center", "aria-hidden": "true",
-                        span { class: "fer-cycle-wordmark",
-                            span { class: "fer-glyph fer-glyph-f", "F" }
-                            span { class: "fer-glyph fer-glyph-e", "E" }
-                            span { class: "fer-glyph fer-glyph-r", "R" }
+                div { class: "fer-section-heading",
+                    SectionLabel { number: "02", label: "CUANDO SE ENCUENTRAN" }
+                    h2 { id: "fer-union-title", "Cuando se unen," br {} em { "algo cambia." } }
+                    p { "Deseas algo. Aprendes a crearlo. Eliges para qué." }
+                }
+                div { class: "fer-union-grid",
+                    figure { class: "fer-convergence-figure", "aria-label": "Tres vértices llevan su luz hasta un núcleo común: la prosperidad",
+                        FerSeal {}
+                        div { class: "fer-artifact-legend",
+                            for force in fer::FORCES {
+                                span { b { "{force.letter}" } strong { "{force.role}" } }
+                            }
                         }
-                        small { "SE MUEVE CONTIGO" }
+                        figcaption { "ENERGÍA + CAPACIDAD + DIRECCIÓN" }
                     }
-                    figcaption { "Y vuelve a empezar. Con más conciencia que antes." }
+                    div { class: "fer-union-result",
+                        p { class: "fer-result-name", "PROSPERIDAD" }
+                        h3 { "Poder crear." br {} "Poder amar." br {} em { "Poder elegir." } }
+                        p { "Lo que construyes con las tres fuerzas puede abrir espacio para:" }
+                        ul { class: "fer-outcomes", for outcome in fer::OUTCOMES { li { "{outcome}" } } }
+                    }
                 }
             }
         }
     }
 }
 
-/// Visual 06: the woman is the subject who chooses how to use all three forces.
+/// A photographed brass ring replaces the generic digital circuit.
+#[component]
+fn Cycle() -> Element {
+    rsx! {
+        section { class: "fer-circuit fer-chapter", id: "circuito", "aria-labelledby": "fer-circuit-title",
+            div { class: "container",
+                div { class: "fer-section-heading",
+                    SectionLabel { number: "03", label: "EL CICLO CONTINÚA" }
+                    h2 { id: "fer-circuit-title", "Lo que creas" br {} em { "abre otro camino." } }
+                }
+                figure { class: "fer-cycle", "aria-label": "El ciclo del FER: deseo, educación, creación, prosperidad y libertad. La libertad abre espacio para un nuevo deseo.",
+                    div { class: "fer-cycle-art",
+                        picture { class: "fer-cycle-picture",
+                            source { "media": "(min-width: 600px)", "srcset": "/assets/images/fer-rose-cycle-1200.webp", r#type: "image/webp" }
+                            img { src: "/assets/images/fer-rose-cycle-600.webp", width: "1200", height: "800", alt: "Rosa crimson dentro de un aro de latón grabado, sobre terciopelo rojo.", loading: "lazy", decoding: "async", "fetchpriority": "low" }
+                        }
+                        span { class: "fer-cycle-reflection", "aria-hidden": "true" }
+                        ol { for (index, step) in fer::CYCLE.iter().enumerate() {
+                            li { class: "fer-cycle-step fer-cycle-step-{index}", strong { "{step}" } }
+                        } }
+                    }
+                    figcaption { "Más libertad. Nuevos deseos." br {} em { "Y vuelves a empezar." } }
+                }
+            }
+        }
+    }
+}
+
 #[component]
 fn WomanAtTheCenter() -> Element {
     rsx! {
-        section { class: "fer-woman section-space", "aria-labelledby": "fer-woman-title",
+        section { class: "fer-woman fer-chapter", "aria-labelledby": "fer-woman-title",
             div { class: "container fer-woman-grid",
                 div { class: "fer-woman-copy",
                     SectionLabel { number: "EL CENTRO", label: "ERES TÚ" }
-                    h2 { id: "fer-woman-title", "No tienes que elegir una sola versión de ti." }
-                    p { "Puedes ser sensual, inteligente, creyente, ambiciosa y creadora. Tu deseo no cancela tu fe. Tu fe no limita tu capacidad. Tú decides qué construir con las tres." }
-                    p { class: "fer-woman-assertion", "NO ERES EL OBJETO DE ESTA HISTORIA." br {} em { "ERES QUIEN LA MUEVE." } }
+                    h2 { id: "fer-woman-title", "Tu deseo." br {} "Tu inteligencia." br {} em { "Tu fe." } }
+                    p { "No tienes que elegir entre ser sensual, aprender, creer y prosperar." }
+                    p { class: "fer-woman-assertion", "Tú decides qué construir." }
                 }
                 figure { class: "fer-woman-art",
-                    span { class: "fer-woman-orbit fer-woman-orbit-one", "aria-hidden": "true" }
-                    span { class: "fer-woman-orbit fer-woman-orbit-two", "aria-hidden": "true" }
-                    ResponsiveImage { image: content::KAREN, class: "fer-woman-portrait", sizes: "(min-width: 900px) 42vw, 88vw" }
-                    span { class: "fer-woman-token fer-woman-token-f", "F · DESEO" }
-                    span { class: "fer-woman-token fer-woman-token-e", "E · SABER" }
-                    span { class: "fer-woman-token fer-woman-token-r", "R · SENTIDO" }
-                    figcaption { "Karen, en una portada del universo PSIKOPAPA." }
+                    ResponsiveImage { image: content::KAREN, class: "fer-woman-portrait", sizes: "(min-width: 900px) 480px, 90vw" }
+                    figcaption { BrandText { text: "KAREN / UNIVERSO PSIKOPAPA" } }
                 }
             }
         }
     }
 }
 
+/// Context remains available without turning the visual story into an essay.
 #[component]
-fn Declarations() -> Element {
+fn Questions() -> Element {
     rsx! {
-        section { class: "fer-declarations section-space", "aria-labelledby": "fer-declarations-title",
-            div { class: "container",
-                SectionLabel { number: "EL MANIFIESTO", label: "DE LA IDEA A LA ACCIÓN" }
-                h2 { id: "fer-declarations-title", "Tres maneras de decir: sigo." }
-                ol { class: "fer-declaration-sequence",
-                    for (index, force) in content::fer::FORCES.iter().enumerate() {
-                        li { class: "fer-declaration fer-declaration-{index}",
-                            span { class: "fer-declaration-letter", "{force.letter}" }
-                            span { class: "fer-declaration-words", strong { "{force.declaration}" } small { "{force.name} / {force.role}" } }
-                        }
-                    }
-                    li { class: "fer-declaration fer-declaration-result", span { class: "fer-declaration-letter", "✦" } span { class: "fer-declaration-words", strong { "YO PROSPERO." } small { "LA UNIÓN EN MOVIMIENTO" } } }
+        section { class: "fer-questions fer-chapter", "aria-labelledby": "fer-questions-title",
+            div { class: "container fer-questions-inner",
+                h2 { id: "fer-questions-title", "¿Y la religión?" }
+                p { class: "fer-faith-note", "FER no es una nueva religión. Es una idea filosófica que une deseo, aprendizaje y fe." }
+                details { class: "fer-question",
+                    summary { "¿Qué significa Religión aquí?" span { "aria-hidden": "true", "+" } }
+                    p { "{fer::FAITH_CONTEXT}" }
                 }
-                div { class: "fer-faith-note",
-                    h3 { "FER no es una nueva religión." }
-                    p { "Fetiche nombra lo que deseas. Educación, lo que aprendes para conseguirlo. Religión, lo que da significado y dirección a lo que haces. La fe es una de las tres dimensiones del concepto; no una etiqueta para las otras dos." }
+                details { class: "fer-question",
+                    summary { "¿Qué puedo aprender?" span { "aria-hidden": "true", "+" } }
+                    p { "{fer::EDUCATION_CONTEXT}" }
+                }
+                details { class: "fer-question",
+                    summary { "¿Qué significa prosperar?" span { "aria-hidden": "true", "+" } }
+                    p { "{fer::PROSPERITY_CONTEXT}" }
+                }
+                details { class: "fer-question fer-references",
+                    summary { "El origen de los símbolos" span { "aria-hidden": "true", "+" } }
+                    p { "Estas piezas son creaciones artísticas del FER, inspiradas en estructuras que aparecen en el arte medieval:" }
+                    ul {
+                        li { a { href: "https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg", target: "_blank", rel: "noopener noreferrer", "Triquetra: tres arcos entrelazados ↗" } }
+                        li { a { href: "https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg", target: "_blank", rel: "noopener noreferrer", "Scutum Fidei: tres vértices y un centro ↗" } }
+                    }
                 }
             }
         }
@@ -248,19 +207,15 @@ fn Declarations() -> Element {
 #[component]
 fn Closing() -> Element {
     rsx! {
-        section { class: "fer-finale section-space", "aria-labelledby": "fer-finale-title",
+        section { class: "fer-closing fer-chapter", "aria-labelledby": "fer-closing-title",
             div { class: "container",
-                p { class: "fer-finale-letters", "aria-label": "F más E más R",
-                    span { class: "fer-glyph fer-glyph-f", "aria-hidden": "true", "F" }
-                    span { class: "fer-plus", "aria-hidden": "true", "+" }
-                    span { class: "fer-glyph fer-glyph-e", "aria-hidden": "true", "E" }
-                    span { class: "fer-plus", "aria-hidden": "true", "+" }
-                    span { class: "fer-glyph fer-glyph-r", "aria-hidden": "true", "R" }
+                FerSum { class: "fer-closing-letters" }
+                h2 { id: "fer-closing-title", "Tu vida." br {} em { "Tus tres fuerzas." } }
+                p { "Desea. Aprende. Encuentra tu dirección." }
+                div { class: "fer-closing-actions",
+                    ClosingInvitation {}
+                    ButtonLink { href: "/", label: "VOLVER AL UNIVERSO", secondary: true }
                 }
-                h2 { id: "fer-finale-title", "EL TRIDENTE" br {} em { "DE LA PROSPERIDAD." } }
-                p { "El deseo da energía. El conocimiento da capacidad. La fe da dirección. Cuando se encuentran, nace el FER." }
-                p { class: "fer-finale-brand", "UNA IDEA DEL UNIVERSO " BrandText { text: "PSIKOPAPA" } }
-                div { class: "fer-finale-actions", ClosingInvitation {} ButtonLink { href: "/", label: "VOLVER AL UNIVERSO", secondary: true } }
             }
         }
     }

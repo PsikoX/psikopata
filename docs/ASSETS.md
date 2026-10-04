@@ -30,6 +30,12 @@ O controlo nativo “PAUSAR EFECTOS” oculta o vídeo, congela as texturas e de
 
 O selo triangular e a escultura entrelaçada foram gerados como propostas artísticas. O selo completo tem 398 KiB; a escultura completa, 257 KiB. As bandas isoladas permanecem no repositório como estudos de produção, mas não são carregadas pela página: não encaixavam exatamente nas imagens completas e causavam um salto visual. Cada peça mantém a mesma imagem durante toda a experiência. Luzes F/E/R e linhas SVG acompanham a matéria até ao centro, com CSS, enquanto um reflexo atravessa o metal. O entrelaçado de abertura carrega de imediato; o selo inferior utiliza carregamento diferido. Movimento reduzido e o controlo de pausa mostram a imagem completa sem overlays. Nenhuma imagem é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
 
+## Revisão editorial do FER
+
+O painel de três mockups foi gerado antes da alteração da página e está em `docs/mockups/fer/page-direction.webp` (321 KiB). Usa a captura do manifesto fornecida pelo utilizador e as peças A/C como referências. A galeria de mockups é separada da página pública; o painel não carrega na experiência principal.
+
+O aro com a rosa foi gerado como nova composição artística, usando o selo e o entrelaçado como referências de materiais e cor. O PNG de trabalho permanece em `/workspace/generated_images/`; a página recebe WebP de 600 × 400 px (62 192 bytes) em mobile e 1200 × 800 px (203 432 bytes) a partir de 600 px de viewport, com carregamento diferido. A preparação utiliza apenas redimensionamento e compressão FFmpeg. O aro permanece imóvel; um reflexo CSS acompanha o latão em seis segundos. Os cinco passos são texto HTML legível, sem texto incorporado na imagem. A versão estática mantém o ciclo e todos os seus rótulos.
+
 ## Tipografia e transições
 
 Cormorant Garamond normal e italic, pesos variáveis 400–600, são servidos localmente em WOFF2 latin. Origem: Google Fonts / Christian Thalmann. A licença SIL OFL encontra-se em `assets/fonts/Cormorant-Garamond-OFL.txt`. Manrope continua a ser a família dos textos de leitura e navegação. Apenas a Cormorant normal é pré-carregada; o browser solicita o itálico quando encontra conteúdo que o usa.
