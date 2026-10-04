@@ -659,6 +659,22 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
             height,
         )?;
         browser.screenshot(&format!("fer-review-{width}-full.png"), true, width, height)?;
+        if width == 390 {
+            let archive = browser.call(
+                "Runtime.evaluate",
+                json!({"expression":"(() => { const image = document.querySelector('.fer-compass-archive img'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
+            )?["result"]["value"]
+                .clone();
+            if archive["complete"] != true || archive["width"].as_u64().unwrap_or(0) == 0 {
+                return Err(format!("FER archive image did not load: {archive}").into());
+            }
+            browser.call(
+                "Runtime.evaluate",
+                json!({"expression":"window.scrollTo(0, 900)"}),
+            )?;
+            thread::sleep(Duration::from_millis(300));
+            browser.current_viewport("fer-review-390-archive.png")?;
+        }
         println!(
             "{}",
             json!({"width":width,"content_width":content_width,"overflow":content_width>width as f64+1.0,"failed_resources":failed,"script_requests":scripts,"unnamed_actions":unnamed_actions})
@@ -681,26 +697,26 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
     )?;
     browser.navigate("http://127.0.0.1:8080/fer/")?;
     let first = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
-    let seal_first = browser.style(".fer-seal-conduit-f", "stroke-dashoffset")?;
+    let compass_first = browser.style(".fer-compass-route-f", "stroke-dashoffset")?;
     thread::sleep(Duration::from_millis(450));
     let second = browser.pseudo_style(".fer-reactor-line-f", "after", "left")?;
-    let seal_second = browser.style(".fer-seal-conduit-f", "stroke-dashoffset")?;
-    let running = browser.style(".fer-vertex-core", "animation-name")?;
+    let compass_second = browser.style(".fer-compass-route-f", "stroke-dashoffset")?;
+    let running = browser.style(".fer-compass-jewel-spark", "animation-name")?;
     println!(
         "{}",
-        json!({"motion":"normal","stream_first":first,"stream_second":second,"seal_first":seal_first,"seal_second":seal_second,"core_animation":running})
+        json!({"motion":"normal","stream_first":first,"stream_second":second,"compass_first":compass_first,"compass_second":compass_second,"core_animation":running})
     );
-    if first == second || seal_first == seal_second || !running.contains("fer-heartbeat") {
+    if first == second || compass_first == compass_second || !running.contains("fer-compass-glimmer") {
         return Err("FER energy streams did not move".into());
     }
     browser.call(
         "Emulation.setEmulatedMedia",
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
-    let reduced = browser.style(".fer-vertex-core", "animation-name")?;
-    let reduced_seal = browser.style(".fer-seal-conduit-f", "animation-name")?;
-    if reduced != "none" || reduced_seal != "none" {
-        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_seal}").into());
+    let reduced = browser.style(".fer-compass-jewel-spark", "animation-name")?;
+    let reduced_compass = browser.style(".fer-compass-route-f", "animation-name")?;
+    if reduced != "none" || reduced_compass != "none" {
+        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_compass}").into());
     }
     let frame = browser.call("Page.getFrameTree", json!({}))?["frameTree"]["frame"]["id"].clone();
     let sheet =

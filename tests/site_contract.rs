@@ -172,8 +172,18 @@ fn all_images_have_real_assets_dimensions_and_text_alternatives() {
                 assert_eq!(value.attr("fetchpriority"), Some("low"));
             } else {
                 assert!(!value.attr("alt").unwrap().trim().is_empty());
-                assert_eq!(value.attr("width"), Some("1280"));
-                assert_eq!(value.attr("height"), Some("1280"));
+                assert!(
+                    value
+                        .attr("width")
+                        .and_then(|n| n.parse::<u32>().ok())
+                        .is_some_and(|n| n > 0)
+                );
+                assert!(
+                    value
+                        .attr("height")
+                        .and_then(|n| n.parse::<u32>().ok())
+                        .is_some_and(|n| n > 0)
+                );
                 assert!(matches!(value.attr("loading"), Some("eager" | "lazy")));
             }
             let path = value.attr("src").unwrap().trim_start_matches('/');

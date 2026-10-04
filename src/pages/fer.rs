@@ -1,5 +1,7 @@
 use crate::{
-    components::{BrandText, ButtonLink, FerSigil, ResponsiveImage, SectionLabel, SmokeAtmosphere},
+    components::{
+        BrandText, ButtonLink, FerCompass, ResponsiveImage, SectionLabel, SmokeAtmosphere,
+    },
     content,
     layouts::ClosingInvitation,
 };
@@ -22,7 +24,7 @@ pub fn Fer() -> Element {
     }
 }
 
-/// Visual 01: three separate vertices point at a dormant core.
+/// Visual 01: three forces inhabit a compass rooted in historic cartography.
 #[component]
 fn Arrival() -> Element {
     rsx! {
@@ -35,9 +37,9 @@ fn Arrival() -> Element {
                 p { class: "fer-arrival-lead", "Deseo. Conocimiento. Fe. Tres fuerzas humanas. Una pregunta: ¿qué pasa cuando dejas de separarlas?" }
                 a { class: "fer-scroll-cue", href: "#fer-vertices", "DESCUBRE EL SISTEMA" span { "aria-hidden": "true", "↓" } }
             }
-            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión convergen hacia un núcleo central",
+            figure { class: "fer-vertices container", id: "fer-vertices", "aria-label": "Fetiche, Educación y Religión convergen sobre una brújula hacia un núcleo central",
                 div { class: "fer-vertices-stage",
-                    FerSigil {}
+                    FerCompass {}
                     for (index, force) in content::fer::FORCES.iter().enumerate() {
                         div { class: "fer-vertex fer-vertex-{index}",
                             span { class: "fer-vertex-glyph", "{force.letter}" }
@@ -45,9 +47,36 @@ fn Arrival() -> Element {
                             span { class: "fer-vertex-role", "{force.role}" }
                         }
                     }
-                    div { class: "fer-vertex-core", "aria-hidden": "true", span {} }
                 }
-                figcaption { "TRES FUERZAS. UN CENTRO AÚN POR REVELAR." }
+                figcaption { "TRES FUERZAS. UN RUMBO AÚN POR REVELAR." }
+                div { class: "fer-compass-provenance",
+                    div { class: "fer-compass-provenance-copy",
+                        span { class: "fer-compass-provenance-kicker", "CRUZ / ORIENTE" }
+                        p { "En algunas rosas de los vientos antiguas, una cruz marcaba el este: la dirección de Jerusalén desde el Mediterráneo." }
+                        a {
+                            class: "fer-compass-source",
+                            href: "https://commons.wikimedia.org/wiki/File:Compass_rose_Cantino.svg",
+                            target: "_blank",
+                            rel: "noopener noreferrer",
+                            "REFERENCIA HISTÓRICA / CANTINO, 1502"
+                        }
+                    }
+                    a {
+                        class: "fer-compass-archive",
+                        href: "https://commons.wikimedia.org/wiki/File:1865_Ordnance_Survey_of_Jerusalem_Old_City_full_map.jpg",
+                        target: "_blank",
+                        rel: "noopener noreferrer",
+                        img {
+                            src: "/assets/images/jerusalem-survey-1865.webp",
+                            width: "520",
+                            height: "757",
+                            loading: "eager",
+                            decoding: "async",
+                            alt: "Plano topográfico real de Jerusalén del Ordnance Survey de 1865",
+                        }
+                        span { strong { "JERUSALÉN · 1865" } small { "Plano topográfico histórico" } }
+                    }
+                }
             }
         }
     }
