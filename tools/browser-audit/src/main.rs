@@ -676,7 +676,7 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
             browser.current_viewport("fer-review-390-seal.png")?;
             let seal = browser.call(
                 "Runtime.evaluate",
-                json!({"expression":"(() => { const image = document.querySelector('.fer-artifact-seal .fer-artifact-complete'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
+                json!({"expression":"(() => { const image = document.querySelector('.fer-artifact-seal .fer-artifact-complete img'); return {complete:image.complete,width:image.naturalWidth}; })()","returnByValue":true}),
             )?["result"]["value"].clone();
             if seal["complete"] != true || seal["width"].as_u64().unwrap_or(0) == 0 {
                 return Err(format!("FER convergence seal image did not load: {seal}").into());
@@ -705,15 +705,24 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
     browser.navigate("http://127.0.0.1:8080/fer/")?;
     let first = browser.style(".fer-thread-f", "stroke-dashoffset")?;
     let band_first = browser.style(".fer-artifact-interlace .fer-energy-f", "left")?;
+    let camera_first = browser.style(".fer-artifact-scene", "transform")?;
+    let smoke_first = browser.style(".fer-artifact-smoke", "transform")?;
     thread::sleep(Duration::from_secs(2));
     let second = browser.style(".fer-thread-f", "stroke-dashoffset")?;
     let band_second = browser.style(".fer-artifact-interlace .fer-energy-f", "left")?;
+    let camera_second = browser.style(".fer-artifact-scene", "transform")?;
+    let smoke_second = browser.style(".fer-artifact-smoke", "transform")?;
     let running = browser.style(".fer-thread-f", "animation-name")?;
     println!(
         "{}",
-        json!({"motion":"normal","thread_first":first,"thread_second":second,"energy_first":band_first,"energy_second":band_second,"thread_animation":running})
+        json!({"motion":"normal","thread_first":first,"thread_second":second,"energy_first":band_first,"energy_second":band_second,"thread_animation":running,"camera_moves":camera_first!=camera_second,"smoke_moves":smoke_first!=smoke_second})
     );
-    if first == second || band_first == band_second || !running.contains("fer-trace-f") {
+    if first == second
+        || band_first == band_second
+        || camera_first == camera_second
+        || smoke_first == smoke_second
+        || !running.contains("fer-trace-f")
+    {
         return Err("FER artifacts did not move".into());
     }
     browser.call(
@@ -723,8 +732,18 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
     let paused_seal = browser.style(".fer-artifact-threads", "display")?;
     let paused_band = browser.style(".fer-energy-f", "display")?;
     let paused_artwork = browser.style(".fer-artifact-complete", "opacity")?;
-    if paused_seal != "none" || paused_band != "none" || paused_artwork != "1" {
-        return Err(format!("FER pause state failed: {paused_seal}, {paused_band}, {paused_artwork}").into());
+    let paused_camera = browser.style(".fer-artifact-scene", "animation-name")?;
+    let paused_smoke = browser.style(".fer-artifact-smoke", "display")?;
+    if paused_seal != "none"
+        || paused_band != "none"
+        || paused_artwork != "1"
+        || paused_camera != "none"
+        || paused_smoke != "none"
+    {
+        return Err(format!(
+            "FER pause state failed: {paused_seal}, {paused_band}, {paused_artwork}"
+        )
+        .into());
     }
     browser.call(
         "Runtime.evaluate",
@@ -734,11 +753,19 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         "Emulation.setEmulatedMedia",
         json!({"features":[{"name":"prefers-reduced-motion","value":"reduce"}]}),
     )?;
-    let reduced = browser.style(".fer-artifact-complete", "animation-name")?;
+    let reduced = browser.style(".fer-artifact-scene", "animation-name")?;
     let reduced_seal = browser.style(".fer-artifact-threads", "display")?;
     let reduced_band = browser.style(".fer-energy-f", "display")?;
-    if reduced != "none" || reduced_seal != "none" || reduced_band != "none" {
-        return Err(format!("FER reduced-motion animation still running: {reduced}, {reduced_seal}, {reduced_band}").into());
+    let reduced_smoke = browser.style(".fer-artifact-smoke", "display")?;
+    if reduced != "none"
+        || reduced_seal != "none"
+        || reduced_band != "none"
+        || reduced_smoke != "none"
+    {
+        return Err(format!(
+            "FER reduced-motion animation still running: {reduced}, {reduced_seal}, {reduced_band}"
+        )
+        .into());
     }
     let frame = browser.call("Page.getFrameTree", json!({}))?["frameTree"]["frame"]["id"].clone();
     let sheet =
@@ -753,6 +780,9 @@ fn audit_fer(browser: &mut Browser) -> Result<()> {
         .as_f64()
         .ok_or("missing text zoom width")?;
     println!("{}", json!({"text_zoom":"200%","content_width":zoom_width}));
+    if zoom_width > 391.0 {
+        return Err("FER overflows horizontally at 200% text size".into());
+    }
     Ok(())
 }
 

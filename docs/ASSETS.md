@@ -28,16 +28,24 @@ O controlo nativo “PAUSAR EFECTOS” oculta o vídeo, congela as texturas e de
 
 ## Selo e entrelaçado do FER
 
-O selo triangular e a escultura entrelaçada foram gerados como propostas artísticas. O selo completo tem 398 KiB; a escultura completa, 257 KiB. As bandas isoladas permanecem no repositório como estudos de produção, mas não são carregadas pela página: não encaixavam exatamente nas imagens completas e causavam um salto visual. Cada peça mantém a mesma imagem durante toda a experiência. Luzes F/E/R e linhas SVG acompanham a matéria até ao centro, com CSS, enquanto um reflexo atravessa o metal. O entrelaçado de abertura carrega de imediato; o selo inferior utiliza carregamento diferido. Movimento reduzido e o controlo de pausa mostram a imagem completa sem overlays. Nenhuma imagem é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
+O selo triangular e a escultura entrelaçada originais permanecem como estudos arquivados. As bandas isoladas também estão arquivadas: não encaixavam exatamente nas imagens completas. A página carrega exclusivamente as novas cenas `fer-editorial-*`, preparadas a partir da direção aprovada dos mockups. Nenhuma imagem é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
 
 ## Revisão editorial do FER
 
 O painel de três mockups foi gerado antes da alteração da página e está em `docs/mockups/fer/page-direction.webp` (321 KiB). Usa a captura do manifesto fornecida pelo utilizador e as peças A/C como referências. A galeria de mockups é separada da página pública; o painel não carrega na experiência principal.
 
-O aro com a rosa foi gerado como nova composição artística, usando o selo e o entrelaçado como referências de materiais e cor. O PNG de trabalho permanece em `/workspace/generated_images/`; a página recebe WebP de 600 × 400 px (62 192 bytes) em mobile e 1200 × 800 px (203 432 bytes) a partir de 600 px de viewport, com carregamento diferido. A preparação utiliza apenas redimensionamento e compressão FFmpeg. O aro permanece imóvel; um reflexo CSS acompanha o latão em seis segundos. Os cinco passos são texto HTML legível, sem texto incorporado na imagem. A versão estática mantém o ciclo e todos os seus rótulos.
+As três cenas finais foram geradas com `image_gen`, seguindo os materiais, cores e composição dos mockups aprovados. Os PNGs de trabalho ficam em `/workspace/generated_images/`; a preparação WebP utiliza apenas redimensionamento e compressão FFmpeg. Cada imagem aparece uma vez na página, em variantes quadradas de 600 e 1200 px selecionadas pelo browser segundo viewport e densidade de pixels:
+
+| Cena | WebP 600 px | WebP 1200 px |
+|---|---:|---:|
+| Entrelaçado, `fer-editorial-interlace` | 78 174 bytes | 240 458 bytes |
+| Selo, `fer-editorial-seal` | 84 748 bytes | 254 076 bytes |
+| Rosa e Tridente, `fer-editorial-rose` | 111 462 bytes | 346 342 bytes |
+
+Na terceira cena, F/E/R circundam a rosa num Tridente triangular; **Prosperidad** é texto HTML no centro da flor. O circuito abaixo mostra desejo, criação, liberdade e novo desejo. O entrelaçado carrega de imediato e tem preload responsivo; o selo e a rosa têm carregamento diferido. Câmara, textura de fumo vermelho, linhas e luzes partilham as coordenadas de cada cena. A convergência e o brilho repetem-se em cinco segundos; a câmara respira em oito segundos e o reflexo do aro em seis. Os textos permanecem imóveis e legíveis. Pausa e movimento reduzido mantêm os objetos completos e ocultam os overlays animados. Não se adicionou runtime ou dependência de aplicação.
 
 ## Tipografia e transições
 
-Cormorant Garamond normal e italic, pesos variáveis 400–600, são servidos localmente em WOFF2 latin. Origem: Google Fonts / Christian Thalmann. A licença SIL OFL encontra-se em `assets/fonts/Cormorant-Garamond-OFL.txt`. Manrope continua a ser a família dos textos de leitura e navegação. Apenas a Cormorant normal é pré-carregada; o browser solicita o itálico quando encontra conteúdo que o usa.
+Cormorant Garamond normal e italic, pesos variáveis 400–600, são servidos localmente em WOFF2 latin. Origem: Google Fonts / Christian Thalmann. A licença SIL OFL encontra-se em `assets/fonts/Cormorant-Garamond-OFL.txt`. Manrope permanece na navegação. A página FER usa Bodoni Moda nos títulos e nas letras, com Cormorant nos textos editoriais curtos. Bodoni normal já existia; foi acrescentada a versão italic latina de 16 552 bytes, obtida de [Google Fonts](https://fonts.google.com/specimen/Bodoni+Moda), coberta por `assets/fonts/Bodoni-Moda-OFL.txt`. Cormorant normal tem preload global e Bodoni italic tem preload apenas na rota FER.
 
 As revelações, o parallax e as transições continuam a ser melhorias progressivas CSS: os conteúdos permanecem visíveis quando as timelines de scroll não são suportadas. O URL do stylesheet inclui um identificador baseado no seu conteúdo para evitar utilizar CSS anterior após uma publicação.

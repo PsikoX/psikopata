@@ -1,5 +1,5 @@
 use crate::{
-    components::{MotionControl, MouseSmoke, image_srcset},
+    components::{MotionControl, MouseSmoke, fer_material_srcset, image_srcset},
     content,
     layouts::{Footer, Header},
     pages::{fer::Fer, home::Home, not_found::NotFound},
@@ -203,6 +203,10 @@ fn Document(route: Route, config: SiteConfig) -> Element {
                 link { rel: "icon", r#type: "image/svg+xml", href: "/assets/favicon.svg" }
                 if route == Route::Home {
                     link { rel: "preload", r#as: "image", r#type: "image/webp", "imagesrcset": image_srcset(content::KAREN), "imagesizes": content::HERO_IMAGE_SIZES, "fetchpriority": "high" }
+                }
+                if route == Route::Fer {
+                    link { rel: "preload", r#as: "image", r#type: "image/webp", "imagesrcset": fer_material_srcset(&content::fer::INTERLACE), "imagesizes": content::fer::HERO_ART_SIZES, "fetchpriority": "high" }
+                    link { rel: "preload", href: "/assets/fonts/bodoni-moda-italic-latin.woff2", r#as: "font", r#type: "font/woff2", crossorigin: "anonymous" }
                 }
                 link { rel: "preload", href: "/assets/fonts/cormorant-garamond-latin.woff2", r#as: "font", r#type: "font/woff2", crossorigin: "anonymous" }
                 link { rel: "stylesheet", href: styles::css_href() }

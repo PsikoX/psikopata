@@ -3,7 +3,7 @@ use dioxus::prelude::*;
 
 mod fer_artifact;
 mod motion;
-pub use fer_artifact::{FerInterlace, FerSeal};
+pub use fer_artifact::{FerInterlace, FerRose, FerSeal, fer_material_srcset};
 pub use motion::{MotionControl, MouseSmoke, SmokeAtmosphere};
 
 pub fn image_srcset(image: Image) -> String {

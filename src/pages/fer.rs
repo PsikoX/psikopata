@@ -1,6 +1,6 @@
 use crate::{
     components::{
-        BrandText, ButtonLink, FerInterlace, FerSeal, ResponsiveImage, SectionLabel,
+        BrandText, ButtonLink, FerInterlace, FerRose, FerSeal, ResponsiveImage, SectionLabel,
         SmokeAtmosphere,
     },
     content::{self, fer},
@@ -42,7 +42,8 @@ fn FerSum(#[props(default = "")] class: &'static str) -> Element {
 fn Opening() -> Element {
     rsx! {
         section { class: "fer-opening", "aria-labelledby": "fer-page-title",
-            div { class: "container fer-opening-inner",
+            div { class: "container fer-opening-grid",
+                div { class: "fer-opening-copy",
                 FerSum { class: "fer-opening-letters" }
                 h1 { id: "fer-page-title", "EL TRIDENTE" br {} em { "DE LA" br {} "PROSPERIDAD." } }
                 p { class: "fer-opening-summary", "{fer::OPENING_SUMMARY}" }
@@ -50,6 +51,11 @@ fn Opening() -> Element {
                 div { class: "fer-opening-actions",
                     ButtonLink { href: "#fer-vertices", label: "DESCUBRIR LAS TRES FUERZAS", secondary: true }
                     a { class: "fer-community-link", href: "/#community", "EXPLORAR LA COMUNIDAD" span { "aria-hidden": "true", " ↗" } }
+                }
+                }
+                figure { class: "fer-opening-art",
+                    FerInterlace {}
+                    figcaption { "FETICHE · EDUCACIÓN · RELIGIÓN" }
                 }
             }
         }
@@ -64,13 +70,9 @@ fn Forces() -> Element {
             div { class: "container",
                 div { class: "fer-section-heading",
                     SectionLabel { number: "01", label: "QUÉ SIGNIFICA FER" }
-                    h2 { id: "fer-forces-title", "Tres fuerzas." br {} em { "Una misma vida." } }
+                    h2 { id: "fer-forces-title", "Tres fuerzas." br {} em { "Una mujer." } }
                 }
                 div { class: "fer-forces-grid",
-                    figure { class: "fer-vertices", "aria-label": "Fetiche, Educación y Religión, tres bandas entrelazadas en un mismo símbolo",
-                        FerInterlace {}
-                        figcaption { "TRES FUERZAS. UN MISMO CENTRO." }
-                    }
                     div { class: "fer-force-list",
                         for (index, force) in fer::FORCES.iter().enumerate() {
                             article { class: "fer-force fer-force-{index}", "aria-labelledby": "fer-force-title-{index}",
@@ -79,8 +81,8 @@ fn Forces() -> Element {
                                     h3 { id: "fer-force-title-{index}", "{force.name}" }
                                     p { class: "fer-force-role", "{force.role}" }
                                     p { class: "fer-force-meaning", "{force.meaning}" }
-                                    p { class: "fer-force-declaration", "{force.declaration}" }
                                 }
+                                p { class: "fer-force-declaration", "{force.declaration}" }
                             }
                         }
                     }
@@ -112,8 +114,8 @@ fn Union() -> Element {
                         figcaption { "ENERGÍA + CAPACIDAD + DIRECCIÓN" }
                     }
                     div { class: "fer-union-result",
-                        p { class: "fer-result-name", "PROSPERIDAD" }
-                        h3 { "Poder crear." br {} "Poder amar." br {} em { "Poder elegir." } }
+                        p { class: "fer-result-name", "LA UNIÓN" }
+                        h3 { "Prosperar también" br {} "es crear, amar" br {} em { "y elegir." } }
                         p { "Lo que construyes con las tres fuerzas puede abrir espacio para:" }
                         ul { class: "fer-outcomes", for outcome in fer::OUTCOMES { li { "{outcome}" } } }
                     }
@@ -123,27 +125,34 @@ fn Union() -> Element {
     }
 }
 
-/// A photographed brass ring replaces the generic digital circuit.
+/// The three vertices lead to prosperity in the rose's heart; the ring renews it.
 #[component]
 fn Cycle() -> Element {
     rsx! {
         section { class: "fer-circuit fer-chapter", id: "circuito", "aria-labelledby": "fer-circuit-title",
             div { class: "container",
                 div { class: "fer-section-heading",
-                    SectionLabel { number: "03", label: "EL CICLO CONTINÚA" }
-                    h2 { id: "fer-circuit-title", "Lo que creas" br {} em { "abre otro camino." } }
+                    SectionLabel { number: "03", label: "EL CORAZÓN DEL TRIDENTE" }
+                    h2 { id: "fer-circuit-title", "La prosperidad" br {} em { "nace en el centro." } }
                 }
-                figure { class: "fer-cycle", "aria-label": "El ciclo del FER: deseo, educación, creación, prosperidad y libertad. La libertad abre espacio para un nuevo deseo.",
+                figure { class: "fer-cycle", "aria-label": "Fetiche, Educación y Religión forman el Tridente. Prosperidad se encuentra en el corazón de la rosa. La libertad abre espacio para un nuevo deseo.",
                     div { class: "fer-cycle-art",
-                        picture { class: "fer-cycle-picture",
-                            source { "media": "(min-width: 600px)", "srcset": "/assets/images/fer-rose-cycle-1200.webp", r#type: "image/webp" }
-                            img { src: "/assets/images/fer-rose-cycle-600.webp", width: "1200", height: "800", alt: "Rosa crimson dentro de un aro de latón grabado, sobre terciopelo rojo.", loading: "lazy", decoding: "async", "fetchpriority": "low" }
-                        }
+                        FerRose {}
                         span { class: "fer-cycle-reflection", "aria-hidden": "true" }
-                        ol { for (index, step) in fer::CYCLE.iter().enumerate() {
-                            li { class: "fer-cycle-step fer-cycle-step-{index}", strong { "{step}" } }
-                        } }
+                        div { class: "fer-rose-points", "aria-hidden": "true",
+                            span { class: "fer-rose-point fer-rose-point-f fer-glyph fer-glyph-f", "F" }
+                            span { class: "fer-rose-point fer-rose-point-e fer-glyph fer-glyph-e", "E" }
+                            span { class: "fer-rose-point fer-rose-point-r fer-glyph fer-glyph-r", "R" }
+                        }
+                        div { class: "fer-rose-center",
+                            FerSum { class: "fer-rose-sum" }
+                            h3 { id: "fer-prosperity-title", "Prosperidad." }
+                        }
                     }
+                    div { class: "fer-rose-legend",
+                        for force in fer::FORCES { span { "{force.name}" } }
+                    }
+                    ol { class: "fer-cycle-route", for step in fer::CYCLE { li { "{step}" } } }
                     figcaption { "Más libertad. Nuevos deseos." br {} em { "Y vuelves a empezar." } }
                 }
             }

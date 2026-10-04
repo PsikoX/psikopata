@@ -302,12 +302,32 @@ fn fer_is_intact_and_follows_the_opening() {
         assert!(fer.contains(force.role));
         assert!(fer.contains(force.meaning));
     }
-    assert_eq!(fer_doc.select(&select(".fer-artifact-complete")).count(), 2);
-    assert_eq!(fer_doc.select(&select(".fer-energy")).count(), 6);
-    assert_eq!(fer_doc.select(&select(".fer-thread")).count(), 6);
+    assert_eq!(
+        opening.select(&select(".fer-artifact-interlace")).count(),
+        1
+    );
+    assert_eq!(fer_doc.select(&select(".fer-forces img")).count(), 0);
+    assert_eq!(fer_doc.select(&select(".fer-artifact-complete")).count(), 3);
+    assert_eq!(fer_doc.select(&select(".fer-artifact-rose")).count(), 1);
+    assert_eq!(fer_doc.select(&select(".fer-energy")).count(), 9);
+    assert_eq!(fer_doc.select(&select(".fer-thread")).count(), 9);
     assert_eq!(fer_doc.select(&select(".fer-band")).count(), 0);
     assert_eq!(fer_doc.select(&select(".fer-outcomes li")).count(), 6);
-    assert_eq!(fer_doc.select(&select(".fer-cycle-step")).count(), 5);
+    assert_eq!(fer_doc.select(&select(".fer-cycle-route li")).count(), 4);
+    let prosperity = fer_doc
+        .select(&select(
+            ".fer-cycle-art .fer-rose-center #fer-prosperity-title",
+        ))
+        .next()
+        .expect("prosperity belongs in the heart of the rose and its trident");
+    assert_eq!(prosperity.text().collect::<String>(), "Prosperidad.");
+    let art_sources: Vec<_> = fer_doc
+        .select(&select(".fer-artifact img"))
+        .map(|image| image.value().attr("src").unwrap())
+        .collect();
+    assert_eq!(art_sources.iter().collect::<HashSet<_>>().len(), 3);
+    assert!(art_sources.iter().all(|src| src.contains("fer-editorial-")));
+    assert!(!fer.contains("fer-rose-cycle-"));
     assert_eq!(fer_doc.select(&select(".fer-woman-art img")).count(), 1);
     assert_eq!(fer_doc.select(&select(".fer-question[open]")).count(), 0);
     assert!(!fer.contains("fer-current-halo"));

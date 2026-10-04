@@ -8,7 +8,7 @@ Abrir `index.html` para ver o painel com três layouts mobile, criado **antes** 
 
 A página aplicada em `/fer/` segue esta hierarquia. O contexto mais longo fica em disclosures nativos, mantendo a explicação simples para quem chega ao conceito pela primeira vez.
 
-A nova composição do ciclo usa uma rosa dentro de um aro de latão gravado. Um reflexo percorre o metal; o objeto permanece inteiro. Há cinco etapas visíveis, e a liberdade conduz a novos desejos. A peça é uma criação artística, não uma fotografia de um instrumento histórico.
+Após a aprovação deste painel, as cenas finais mantêm a mesma direção: entrelaçado, selo e rosa com Tridente, cada uma usada uma vez. A prosperidade fica no coração da rosa, com F/E/R nos três vértices. O circuito abaixo liga desejo, criação, liberdade e novo desejo. Fumo, luz e reflexos animam as cenas completas; a tipografia é Bodoni Moda com Cormorant Garamond. Os objetos são criações artísticas, sem atribuição de origem histórica.
 
 ## Símbolos selecionados
 
