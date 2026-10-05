@@ -28,7 +28,7 @@ O controlo nativo “PAUSAR EFECTOS” oculta o vídeo, congela as texturas e de
 
 ## Selo e entrelaçado do FER
 
-O selo triangular e a escultura entrelaçada originais permanecem como estudos arquivados. As bandas isoladas também estão arquivadas: não encaixavam exatamente nas imagens completas. A página carrega exclusivamente as novas cenas `fer-editorial-*`, preparadas a partir da direção aprovada dos mockups. Nenhuma imagem é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
+Os estudos substituídos do selo, entrelaçado, bússola, rosa e bandas isoladas foram removidos do projeto e da publicação. A página utiliza as cenas `fer-editorial-*`, preparadas a partir da direção aprovada dos mockups. Nenhuma imagem é apresentada como fotografia de um objeto histórico. As referências consultadas estão em `docs/fer-artifact-sources.md`.
 
 ## Revisão editorial do FER
 

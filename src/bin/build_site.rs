@@ -12,8 +12,12 @@ fn main() -> Result<(), Box<dyn Error>> {
     let root = Path::new(env!("CARGO_MANIFEST_DIR"));
     let output = root.join("dist");
     let config = SiteConfig::from_environment()?;
+    if output.exists() {
+        fs::remove_dir_all(&output)?;
+    }
     fs::create_dir_all(&output)?;
     copy_tree(&root.join("assets"), &output.join("assets"))?;
+    copy_tree(&root.join("docs/mockups/fer"), &output.join("mockups/fer"))?;
     fs::write(
         output.join("assets/site.css"),
         prefix_local_urls(styles::CSS, &config.base_path),

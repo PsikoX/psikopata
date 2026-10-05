@@ -35,9 +35,9 @@ cargo test --locked --all-features
 cargo run --release --locked --bin build-site
 ```
 
-O resultado fica em `dist/`, pronto para hosting estático. O servidor de preview e os binários Rust não fazem parte do artefacto publicado. `.openai/hosting.json` identifica o Site privado e a pasta pública `dist`.
+O resultado fica em `dist/`, pronto para hosting estático. O gerador recria essa pasta a cada build, incluindo apenas os assets e mockups atuais. O servidor de preview e os binários Rust não fazem parte do artefacto publicado.
 
-O domínio configurado está em `site-origin.txt`. É possível substituí-lo apenas para um build:
+`site-origin.txt` fica vazio para o preview local. Definir o domínio do hosting ao gerar uma publicação:
 
 ```sh
 SITE_ORIGIN=https://dominio-oficial.example cargo run --release --locked --bin build-site
@@ -45,7 +45,7 @@ SITE_ORIGIN=https://dominio-oficial.example cargo run --release --locked --bin b
 
 ## GitHub Pages
 
-Esta versão temporária está em `https://psikox.github.io/psikopata/psikopapa/`. O código está na branch [`psikopapa-source`](https://github.com/PsikoX/psikopata/tree/psikopapa-source) do repositório público `PsikoX/psikopata`. Os ficheiros estáticos gerados ficam no diretório `psikopapa/` da branch `gh-pages`, preservando a página que já ocupava a raiz desse repositório.
+Esta versão temporária está em `https://psikox.github.io/psikopata/psikopapa/`. O código Rust atual está na branch principal [`main`](https://github.com/PsikoX/psikopata) do repositório público `PsikoX/psikopata`. Para criar um ambiente Codex Cloud, selecionar esse repositório e a branch `main`. A branch `psikopapa-source` contém o mesmo código. Os ficheiros estáticos gerados ficam no diretório `psikopapa/` da branch `gh-pages`; a raiz encaminha para o site atual.
 
 Para gerar os ficheiros dessa página:
 
@@ -53,7 +53,7 @@ Para gerar os ficheiros dessa página:
 SITE_ORIGIN=https://psikox.github.io SITE_BASE_PATH=/psikopata/psikopapa cargo run --release --locked --bin build-site
 ```
 
-`SITE_BASE_PATH` ajusta a navegação, as imagens responsivas, os vídeos, as fontes, o script local, o canonical e o sitemap ao subdiretório da página. Depois do build, sincronizar `dist/` com `psikopapa/` numa cópia da branch `gh-pages` e fazer push dessa branch. O build normal do Site privado continua a usar a raiz do seu domínio. GitHub Pages serve os ficheiros gerados.
+`SITE_BASE_PATH` ajusta a navegação, as imagens responsivas, os vídeos, as fontes, o script local, o canonical e o sitemap ao subdiretório da página. Depois do build, sincronizar `dist/` com `psikopapa/` numa cópia da branch `gh-pages`, removendo os ficheiros que já não existem no output, e fazer push dessa branch. GitHub Pages serve os ficheiros gerados.
 
 O gerador valida o domínio antes de gerar canonical, Open Graph e sitemap. Um build sem origem utiliza `robots.txt` com `Disallow: /`. Os headers propostos em `dist/_headers` permitem apenas scripts locais e restringem os restantes recursos à própria origem, com exceção de áudio HTTPS. O hosting deve aplicar esses headers; a preview aplica CSP e `nosniff` diretamente.
 

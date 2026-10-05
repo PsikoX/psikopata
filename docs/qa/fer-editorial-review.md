@@ -1,6 +1,6 @@
 # FER — revisão editorial, 2026-10-04
 
-Os três mockups foram criados antes das alterações da página. Depois da aprovação do painel, as três cenas finais seguem a mesma direção: entrelaçado na entrada, selo na união e rosa no Tridente. Cada imagem aparece uma vez. O manifesto abre a experiência; as definições são curtas, e o contexto adicional fica em disclosures nativos. **Prosperidad** está no centro da rosa, com F/E/R nos vértices que convergem para ela. As imagens anteriores permanecem como estudos arquivados, sem carregamento pela página FER.
+Os três mockups foram criados antes das alterações da página. Depois da aprovação do painel, as três cenas finais seguem a mesma direção: entrelaçado na entrada, selo na união e rosa no Tridente. Cada imagem aparece uma vez. O manifesto abre a experiência; as definições são curtas, e o contexto adicional fica em disclosures nativos. **Prosperidad** está no centro da rosa, com F/E/R nos vértices que convergem para ela. Os estudos substituídos foram removidos na limpeza de 2026-10-05.
 
 Verificações executadas em Chromium com viewports emulados:
 
