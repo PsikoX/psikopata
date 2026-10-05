@@ -12,11 +12,9 @@ Após a aprovação deste painel, as cenas finais mantêm a mesma direção: ent
 
 ## Símbolos selecionados
 
-Os estudos animados anteriores permanecem em `symbols.html`:
-
-- **C, Entrelaçado:** três arcos da [triquetra num manuscrito medieval](https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg), traduzidos para uma peça material.
-- **A, Manuscrito:** três vértices e um centro, topologia observada no [Scutum Fidei medieval](https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg).
+- **Entrelaçado:** três arcos da [triquetra num manuscrito medieval](https://commons.wikimedia.org/wiki/File:Bok_Detail_77v.jpg), traduzidos para uma peça material.
+- **Selo:** três vértices e um centro, topologia observada no [Scutum Fidei medieval](https://commons.wikimedia.org/wiki/File:PetrusPictaviensis_CottonFaustinaBVII-folio42v_ScutumFidei_early13thc.jpg).
 
 As duas peças permanecem intactas; reflexos e traços de luz chegam ao núcleo em cinco segundos. O movimento utiliza CSS, respeita a preferência de movimento reduzido e o controlo de pausa da página.
 
-O estudo B, Basalto, e os antigos recortes de bandas ficam arquivados nos ficheiros. O [Magen David](https://en.wikipedia.org/wiki/Star_of_David) foi estudado como referência geométrica e histórica e não é aplicado como logótipo FER. Nenhuma imagem gerada é apresentada como fotografia de um artefacto histórico.
+Os estudos e recortes substituídos foram removidos. Este diretório mantém o painel aprovado e a galeria da direção atual. O [Magen David](https://en.wikipedia.org/wiki/Star_of_David) foi estudado como referência geométrica e histórica e não é aplicado como logótipo FER. Nenhuma imagem gerada é apresentada como fotografia de um artefacto histórico.
