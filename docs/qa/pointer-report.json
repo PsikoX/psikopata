@@ -1,0 +1,104 @@
+{
+  "card_trail": {
+    "bottom": 483,
+    "count": 506,
+    "height": 1000,
+    "left": 354,
+    "right": 423,
+    "top": 470,
+    "width": 1440
+  },
+  "cursor_tip": [
+    773,
+    731
+  ],
+  "idle": {
+    "bottom": -1,
+    "count": 0,
+    "height": 1000,
+    "left": 1440,
+    "right": -1,
+    "top": 1000,
+    "width": 1440
+  },
+  "menu_opened": true,
+  "mobile_display": "block",
+  "mobile_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 844,
+    "left": 390,
+    "right": -1,
+    "top": 844,
+    "width": 390
+  },
+  "mobile_reduced_display": "none",
+  "mobile_reduced_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 0,
+    "left": -1,
+    "right": -1,
+    "top": -1,
+    "width": 0
+  },
+  "paused_display": "none",
+  "paused_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 1000,
+    "left": 1440,
+    "right": -1,
+    "top": 1000,
+    "width": 1440
+  },
+  "pointer_events": "none",
+  "reduced_ink": {
+    "bottom": -1,
+    "count": 0,
+    "height": 0,
+    "left": -1,
+    "right": -1,
+    "top": -1,
+    "width": 0
+  },
+  "reduced_motion_display": "none",
+  "script_requests_on_desktop": 1,
+  "scroll_ink": {
+    "bottom": 606,
+    "count": 966,
+    "height": 844,
+    "left": 253,
+    "right": 266,
+    "top": 494,
+    "width": 390
+  },
+  "scrolled_pixels": 225.0,
+  "tap_ink": {
+    "bottom": 56,
+    "count": 311,
+    "height": 844,
+    "left": 328,
+    "right": 346,
+    "top": 32,
+    "width": 390
+  },
+  "touch_idle": {
+    "bottom": -1,
+    "count": 0,
+    "height": 844,
+    "left": 390,
+    "right": -1,
+    "top": 844,
+    "width": 390
+  },
+  "trail": {
+    "bottom": 737,
+    "count": 600,
+    "height": 1000,
+    "left": 701,
+    "right": 777,
+    "top": 722,
+    "width": 1440
+  }
+}

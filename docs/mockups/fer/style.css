@@ -1,0 +1,21 @@
+:root { color-scheme:dark; font-family:Georgia,serif; background:#080506; color:#f3e6d6; }
+* { box-sizing:border-box; }
+body { margin:0; background:radial-gradient(ellipse at 50% 6%,#4a0d16 0%,#17090c 31%,#080506 67%); }
+main:focus { outline:none; }
+a { color:#e3ba83; text-underline-offset:.2em; }
+a:focus-visible { outline:2px solid #f5dbb9; outline-offset:5px; }
+.wrap { width:min(100% - 34px,1100px); margin-inline:auto; }
+header { padding:40px 0 27px; border-bottom:1px solid #a9784d70; }
+.eyebrow,.meta,.source-label { font:700 .7rem/1.4 Arial,sans-serif; letter-spacing:.18em; text-transform:uppercase; color:#d4a875; }
+.eyebrow { margin:0 0 16px; }
+h1 { max-width:12ch; margin:0; font-size:clamp(3.4rem,11vw,7.5rem); font-weight:400; line-height:.87; letter-spacing:-.055em; }
+.intro { max-width:62ch; margin:22px 0 0; color:#e2cec4; font:1rem/1.6 Arial,sans-serif; }
+.proposal { margin:70px 0; }
+.proposal-board,.proposal-matter { display:block; width:100%; height:auto; margin-top:28px; border:1px solid #a7805360; }
+.proposal-matter { max-width:920px; margin-inline:auto; }
+.source-label { margin-top:25px; font-size:.62rem; }
+.proposal-link { display:inline-flex; align-items:center; min-height:48px; margin-top:25px; color:#edcda3; border-bottom:1px solid #b1885c; font:700 .75rem/1.5 Arial,sans-serif; letter-spacing:.12em; }
+.proposal-link:hover { color:#fff0d8; }
+.sources { padding:32px 0 48px; }
+.sources p { max-width:76ch; color:#bcae9f; font-size:.83rem; }
+@media(min-width:760px) { header { padding-top:58px; } }

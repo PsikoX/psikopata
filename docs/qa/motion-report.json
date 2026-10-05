@@ -1,0 +1,128 @@
+[
+  {
+    "comparison_region": "page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures",
+    "expected_texture": "cover-smoke-mobile.webp",
+    "expected_video": "cover-smoke-flow-mobile.mp4",
+    "frames_change": true,
+    "hero_font_style": "italic",
+    "horizontal_overflow": false,
+    "image_reveal_clip": "inset(0%)",
+    "isolated_video_change_fraction": 0.19020134935694707,
+    "javascript_execution": "disabled",
+    "keyboard_resumes_motion": true,
+    "mode": "normal",
+    "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
+    "muse_gold_karen_a": "142.828deg",
+    "muse_gold_karen_b": "239.959deg",
+    "muse_gold_karen_changed_pixels": 3931,
+    "muse_gold_karen_travel": 97.13099999999997,
+    "muse_gold_zoe_a": "35.6646deg",
+    "muse_gold_zoe_b": "135.662deg",
+    "muse_gold_zoe_changed_pixels": 3853,
+    "muse_gold_zoe_travel": 99.99739999999997,
+    "muse_hover_transform": null,
+    "muse_scale_enter": "0.91",
+    "muse_scale_near": "1.055",
+    "native_playback": true,
+    "pause_freezes_smoke": true,
+    "pause_hides_video": true,
+    "pause_removes_css_animation": true,
+    "paused_frames_stable": true,
+    "paused_rim_animation": "none",
+    "platform_fonts": {
+      "fonts": [
+        {
+          "familyName": "Cormorant Garamond Light",
+          "glyphCount": 12,
+          "isCustomFont": true,
+          "postScriptName": "CormorantGaramond-LightItalic"
+        }
+      ]
+    },
+    "script_requests": 0,
+    "smoke_opacity_at_fer": 1.0,
+    "smoke_opacity_near_closing": 0.45,
+    "texture_requests": [
+      "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-mobile.webp"
+    ],
+    "texture_transform_after": "matrix(1.06968, 0.0242426, -0.0242426, 1.06968, 11.9492, -33.3612)",
+    "texture_transform_before": "matrix(1.05007, 0.00924218, -0.00924218, 1.05007, 4.64124, -15.8485)",
+    "video_requests": [
+      "http://127.0.0.1:8080/assets/media/cover-smoke-flow-mobile.mp4"
+    ],
+    "width": 390
+  },
+  {
+    "hero_animation": "none",
+    "mode": "reduced",
+    "muse_rim_animation": "none",
+    "pause_control_display": "none",
+    "smoke_animation": "none",
+    "video_display": "none",
+    "video_requests": 0,
+    "width": 390
+  },
+  {
+    "comparison_region": "page content excluding the browser scrollbar; isolated video capture freezes CSS smoke textures",
+    "expected_texture": "cover-smoke-desktop.webp",
+    "expected_video": "cover-smoke-flow-desktop.mp4",
+    "frames_change": true,
+    "hero_font_style": "italic",
+    "horizontal_overflow": false,
+    "image_reveal_clip": "inset(0%)",
+    "isolated_video_change_fraction": 0.17463895550226485,
+    "javascript_execution": "disabled",
+    "keyboard_resumes_motion": true,
+    "mode": "normal",
+    "muse_focus_transform": "matrix(1.035, 0, 0, 1.035, 0, -8)",
+    "muse_gold_karen_a": "41.3827deg",
+    "muse_gold_karen_b": "182.805deg",
+    "muse_gold_karen_changed_pixels": 6570,
+    "muse_gold_karen_travel": 141.4223,
+    "muse_gold_zoe_a": "234.217deg",
+    "muse_gold_zoe_b": "17.0685deg",
+    "muse_gold_zoe_changed_pixels": 5166,
+    "muse_gold_zoe_travel": 142.8515,
+    "muse_hover_transform": "matrix(1.045, 0, 0, 1.045, 0, -9.99971)",
+    "muse_scale_enter": "0.91",
+    "muse_scale_near": "1.055",
+    "native_playback": true,
+    "pause_freezes_smoke": true,
+    "pause_hides_video": true,
+    "pause_removes_css_animation": true,
+    "paused_frames_stable": true,
+    "paused_rim_animation": "none",
+    "platform_fonts": {
+      "fonts": [
+        {
+          "familyName": "Cormorant Garamond Light",
+          "glyphCount": 12,
+          "isCustomFont": true,
+          "postScriptName": "CormorantGaramond-LightItalic"
+        }
+      ]
+    },
+    "script_requests": 0,
+    "smoke_opacity_at_fer": 1.0,
+    "smoke_opacity_near_closing": 0.45,
+    "texture_requests": [
+      "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-desktop.webp"
+    ],
+    "texture_transform_after": "matrix(1.07388, 0.0275479, -0.0275479, 1.07388, 49.9378, -44.0019)",
+    "texture_transform_before": "matrix(1.05751, 0.0148518, -0.0148518, 1.05751, 27.3439, -26.6273)",
+    "video_requests": [
+      "http://127.0.0.1:8080/assets/media/cover-smoke-flow-desktop.mp4"
+    ],
+    "width": 1440
+  },
+  {
+    "hero_animation": "none",
+    "mode": "reduced",
+    "muse_rim_animation": "none",
+    "pause_control_display": "none",
+    "smoke_animation": "none",
+    "video_display": "none",
+    "video_requests": 0,
+    "width": 1440
+  }
+]

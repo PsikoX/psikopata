@@ -1,0 +1,38 @@
+[package]
+name = "psikopapa"
+version = "0.1.0"
+edition = "2024"
+rust-version = "1.85"
+description = "The PSIKOPAPA universe, rendered in Rust with one optional pointer effect script."
+publish = false
+default-run = "build-site"
+
+[features]
+default = []
+preview = ["dep:axum", "dep:tokio", "dep:tower-http"]
+
+[dependencies]
+dioxus = { version = "0.7", default-features = false, features = ["macro", "html", "signals"] }
+dioxus-ssr = "0.7"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", default-features = false, features = ["fmt", "ansi"] }
+axum = { version = "0.8", optional = true, default-features = false, features = ["http1", "tokio"] }
+tokio = { version = "1", optional = true, features = ["macros", "rt-multi-thread", "net"] }
+tower-http = { version = "0.6", optional = true, features = ["fs", "set-header"] }
+
+[dev-dependencies]
+scraper = { version = "0.24", default-features = false }
+
+[[bin]]
+name = "build-site"
+path = "src/bin/build_site.rs"
+
+[[bin]]
+name = "preview"
+path = "src/bin/preview.rs"
+required-features = ["preview"]
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+strip = true

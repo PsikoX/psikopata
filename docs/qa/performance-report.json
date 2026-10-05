@@ -1,0 +1,433 @@
+{
+  "conditions": {
+    "cache": "cold",
+    "cpu_slowdown": 4,
+    "download_bytes_per_second": 200000,
+    "javascript": "disabled",
+    "latency_ms": 150,
+    "motion": "normal",
+    "viewport": "390x844"
+  },
+  "document_request": {
+    "documentURL": "http://127.0.0.1:8080/",
+    "frameId": "2953CAF36A6CF0EF47E0DE56678AC781",
+    "hasUserGesture": false,
+    "initiator": {
+      "type": "other"
+    },
+    "loaderId": "70BD901280B5102D803127FFD87BDB1A",
+    "redirectHasExtraInfo": false,
+    "request": {
+      "headers": {
+        "Upgrade-Insecure-Requests": "1",
+        "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/151.0.0.0 Safari/537.36",
+        "sec-ch-ua": "\"Chromium\";v=\"151\", \"Not=A?Brand\";v=\"99\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Linux\""
+      },
+      "initialPriority": "VeryHigh",
+      "isSameSite": true,
+      "method": "GET",
+      "mixedContentType": "none",
+      "referrerPolicy": "strict-origin-when-cross-origin",
+      "url": "http://127.0.0.1:8080/"
+    },
+    "requestId": "70BD901280B5102D803127FFD87BDB1A",
+    "timestamp": 17408.065958,
+    "type": "Document",
+    "wallTime": 1791043436.390451
+  },
+  "paint_events": [
+    {
+      "frameId": "2953CAF36A6CF0EF47E0DE56678AC781",
+      "lcpDetails": {
+        "loadTime": 0,
+        "nodeId": 423,
+        "renderTime": 1791043438.3538,
+        "size": 33480
+      },
+      "name": "",
+      "time": 1791043438.3538,
+      "type": "largest-contentful-paint"
+    },
+    {
+      "frameId": "2953CAF36A6CF0EF47E0DE56678AC781",
+      "layoutShiftDetails": {
+        "hadRecentInput": false,
+        "lastInputTime": 1791043438.2461002,
+        "sources": [
+          {
+            "currentRect": {
+              "height": 44,
+              "width": 165.5,
+              "x": 208.5,
+              "y": 784
+            },
+            "nodeId": 282,
+            "previousRect": {
+              "height": 44,
+              "width": 176.28125,
+              "x": 197.5,
+              "y": 784
+            }
+          },
+          {
+            "currentRect": {
+              "height": 44,
+              "width": 150.84375,
+              "x": 170,
+              "y": 689.578125
+            },
+            "nodeId": 428,
+            "previousRect": {
+              "height": 44,
+              "width": 163.734375,
+              "x": 173.265625,
+              "y": 689.578125
+            }
+          },
+          {
+            "currentRect": {
+              "height": 35,
+              "width": 16.203125,
+              "x": 353.796875,
+              "y": 21.25
+            },
+            "nodeId": 41,
+            "previousRect": {
+              "height": 35,
+              "width": 16.390625,
+              "x": 353.609375,
+              "y": 24.25
+            }
+          },
+          {
+            "currentRect": {
+              "height": 22,
+              "width": 15.328125,
+              "x": 20,
+              "y": 386
+            },
+            "nodeId": 42,
+            "previousRect": {
+              "height": 22,
+              "width": 15.328125,
+              "x": 20,
+              "y": 389
+            }
+          }
+        ],
+        "value": 0.000636493783688366
+      },
+      "name": "",
+      "time": 1791043439.319,
+      "type": "layout-shift"
+    },
+    {
+      "frameId": "2953CAF36A6CF0EF47E0DE56678AC781",
+      "lcpDetails": {
+        "loadTime": 1791043439.3707,
+        "nodeId": 416,
+        "renderTime": 1791043439.4338,
+        "size": 195000,
+        "url": "http://127.0.0.1:8080/assets/images/karen-mi-amor-800.webp"
+      },
+      "name": "",
+      "time": 1791043439.4338,
+      "type": "largest-contentful-paint"
+    },
+    {
+      "frameId": "2953CAF36A6CF0EF47E0DE56678AC781",
+      "layoutShiftDetails": {
+        "hadRecentInput": false,
+        "lastInputTime": 1791043438.2461002,
+        "sources": [
+          {
+            "currentRect": {
+              "height": 51,
+              "width": 370,
+              "x": 0,
+              "y": 470.75
+            },
+            "nodeId": 28,
+            "previousRect": {
+              "height": 51,
+              "width": 370,
+              "x": 0,
+              "y": 473.75
+            }
+          }
+        ],
+        "value": 0.0002157581642543795
+      },
+      "name": "",
+      "time": 1791043440.0595,
+      "type": "layout-shift"
+    }
+  ],
+  "performance_metrics": {
+    "metrics": [
+      {
+        "name": "Timestamp",
+        "value": 17413.271897
+      },
+      {
+        "name": "AudioHandlers",
+        "value": 0
+      },
+      {
+        "name": "AudioWorkletProcessors",
+        "value": 0
+      },
+      {
+        "name": "Documents",
+        "value": 8
+      },
+      {
+        "name": "Frames",
+        "value": 8
+      },
+      {
+        "name": "JSEventListeners",
+        "value": 0
+      },
+      {
+        "name": "LayoutObjects",
+        "value": 704
+      },
+      {
+        "name": "MediaKeySessions",
+        "value": 0
+      },
+      {
+        "name": "MediaKeys",
+        "value": 0
+      },
+      {
+        "name": "Nodes",
+        "value": 940
+      },
+      {
+        "name": "Resources",
+        "value": 21
+      },
+      {
+        "name": "ContextLifecycleStateObservers",
+        "value": 21
+      },
+      {
+        "name": "V8PerContextDatas",
+        "value": 0
+      },
+      {
+        "name": "WorkerGlobalScopes",
+        "value": 0
+      },
+      {
+        "name": "UACSSResources",
+        "value": 7
+      },
+      {
+        "name": "RTCPeerConnections",
+        "value": 0
+      },
+      {
+        "name": "ResourceFetchers",
+        "value": 8
+      },
+      {
+        "name": "AdSubframes",
+        "value": 0
+      },
+      {
+        "name": "DetachedScriptStates",
+        "value": 0
+      },
+      {
+        "name": "ArrayBufferContents",
+        "value": 0
+      },
+      {
+        "name": "LayoutCount",
+        "value": 19
+      },
+      {
+        "name": "RecalcStyleCount",
+        "value": 62
+      },
+      {
+        "name": "LayoutDuration",
+        "value": 0.228683
+      },
+      {
+        "name": "RecalcStyleDuration",
+        "value": 0.185629
+      },
+      {
+        "name": "DevToolsCommandDuration",
+        "value": 0.000031
+      },
+      {
+        "name": "ScriptDuration",
+        "value": 0
+      },
+      {
+        "name": "V8CompileDuration",
+        "value": 0
+      },
+      {
+        "name": "TaskDuration",
+        "value": 1.09316
+      },
+      {
+        "name": "TaskOtherDuration",
+        "value": 0.678817
+      },
+      {
+        "name": "ThreadTime",
+        "value": 4.104594
+      },
+      {
+        "name": "ProcessTime",
+        "value": 5.11
+      },
+      {
+        "name": "JSHeapUsedSize",
+        "value": 160032
+      },
+      {
+        "name": "JSHeapTotalSize",
+        "value": 786432
+      },
+      {
+        "name": "FirstMeaningfulPaint",
+        "value": 17410.027168
+      },
+      {
+        "name": "DomContentLoaded",
+        "value": 17408.350359
+      },
+      {
+        "name": "NavigationStart",
+        "value": 17408.065289
+      }
+    ]
+  },
+  "requests": [
+    {
+      "status": 200,
+      "type": "Document",
+      "url": "http://127.0.0.1:8080/"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/karen-mi-amor-800.webp"
+    },
+    {
+      "status": 200,
+      "type": "Stylesheet",
+      "url": "http://127.0.0.1:8080/assets/site.css?v=731a8f70160e757d"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/atmosphere/cover-smoke-mobile.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/karen-mi-amor-160.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/psikopapa-artist-480.webp"
+    },
+    {
+      "status": 206,
+      "type": "Media",
+      "url": "http://127.0.0.1:8080/assets/media/cover-smoke-flow-mobile.mp4"
+    },
+    {
+      "status": 200,
+      "type": "Font",
+      "url": "http://127.0.0.1:8080/assets/fonts/cormorant-garamond-latin.woff2"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/karen-mi-amor-480.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik05OCw0OXY0Yy0yNC45LDAtNDUsMjAuMS00NSw0NQoJYzAsMTgsMTAuNiwzMy42LDI1LjksNDAuOGwtMS43LDMuNmMwLjEsMCwwLjIsMC4xLDAuMywwLjFjLTAuMSwwLTAuMi0wLjEtMC4zLTAuMWwwLDBDNjAuNSwxMzQuNSw0OSwxMTcuNiw0OSw5OAoJQzQ5LDcwLjksNzAuOSw0OSw5OCw0OXoiLz4KPC9zdmc+Cg=="
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPCEtLSBHZW5lcmF0b3I6IEFkb2JlIElsbHVzdHJhdG9yIDE5LjIuMSwgU1ZHIEV4cG9ydCBQbHVnLUluIC4gU1ZHIFZlcnNpb246IDYuMDAgQnVpbGQgMCkgIC0tPgo8c3ZnIGZpbGw9IiNmZmZmZmYiIHZlcnNpb249IjEuMSIgaWQ9IkxheWVyXzEiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHg9IjBweCIgeT0iMHB4IgoJIHZpZXdCb3g9IjAgMCAxOTYgMTk2IiBzdHlsZT0iZW5hYmxlLWJhY2tncm91bmQ6bmV3IDAgMCAxOTYgMTk2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+CjxwYXRoIGNsYXNzPSJzdDAiIGQ9Ik0xNDcsOThjMCwxOS42LTExLjUsMzYuNS0yOC4yLDQ0LjRsMCwwYy0wLjEsMC0wLjIsMC4xLTAuMywwLjEKCWMwLjEsMCwwLjItMC4xLDAuMy0wLjFsLTEuNy0zLjZDMTMyLjQsMTMxLjYsMTQzLDExNiwxNDMsOThjMC0yNC45LTIwLjEtNDUtNDUtNDV2LTRDMTI1LjEsNDksMTQ3LDcwLjksMTQ3LDk4eiIvPgo8L3N2Zz4K"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0idXRmLTgiPz4KPHN2ZyB2ZXJzaW9uPSIxLjEiIGlkPSJMYXllcl8xIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB4PSIwcHgiIHk9IjBweCIKCSB2aWV3Qm94PSIwIDAgMjQgMjQiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI1NSAyNTU7IiB4bWw6c3BhY2U9InByZXNlcnZlIiBmaWxsPSJXaW5kb3ciPgo8Zz4KCTxjaXJjbGUgY3g9IjEyIiBjeT0iNiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxMiIgcj0iMiIvPgoJPGNpcmNsZSBjeD0iMTIiIGN5PSIxOCIgcj0iMiIvPgo8L2c+Cjwvc3ZnPgo="
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/zoe-la-cortada-alternate-480.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTggNXYxNGwxMS03eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTE2LjUgMTJjMC0xLjc3LTEuMDItMy4yOS0yLjUtNC4wM3YyLjIxbDIuNDUgMi40NWMuMDMtLjIuMDUtLjQxLjA1LS42M3ptMi41IDBjMCAuOTQtLjIgMS44Mi0uNTQgMi42NGwxLjUxIDEuNTFDMjAuNjMgMTQuOTEgMjEgMTMuNSAyMSAxMmMwLTQuMjgtMi45OS03Ljg2LTctOC43N3YyLjA2YzIuODkuODYgNSAzLjU0IDUgNi43MXpNNC4yNyAzTDMgNC4yNyA3LjczIDlIM3Y2aDRsNSA1di02LjczbDQuMjUgNC4yNWMtLjY3LjUyLTEuNDIuOTMtMi4yNSAxLjE4djIuMDZjMS4zOC0uMzEgMi42My0uOTUgMy42OS0xLjgxTDE5LjczIDIxIDIxIDE5LjczbC05LTlMNC4yNyAzek0xMiA0TDkuOTEgNi4wOSAxMiA4LjE4VjR6Ii8+CiAgICA8cGF0aCBkPSJNMCAwaDI0djI0SDB6IiBmaWxsPSJub25lIi8+Cjwvc3ZnPgo="
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgogICAgPHBhdGggZD0iTTcgMTRINXY1aDV2LTJIN3YtM3ptLTItNGgyVjdoM1Y1SDV2NXptMTIgN2gtM3YyaDV2LTVoLTJ2M3pNMTQgNXYyaDN2M2gyVjVoLTV6Ii8+Cjwvc3ZnPgo="
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "data:image/svg+xml;base64,PHN2ZyBmaWxsPSJXaW5kb3ciIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgd2lkdGg9IjI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogICAgPHBhdGggZD0iTTYgMTloNFY1SDZ2MTR6bTgtMTR2MTRoNFY1aC00eiIvPgogICAgPHBhdGggZD0iTTAgMGgyNHYyNEgweiIgZmlsbD0ibm9uZSIvPgo8L3N2Zz4K"
+    },
+    {
+      "status": 200,
+      "type": "Font",
+      "url": "http://127.0.0.1:8080/assets/fonts/manrope-latin.woff2"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/zoe-la-cortada-160.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/zoe-la-cortada-320.webp"
+    },
+    {
+      "status": 200,
+      "type": "Image",
+      "url": "http://127.0.0.1:8080/assets/images/karen-mi-amor-320.webp"
+    },
+    {
+      "status": 200,
+      "type": "Font",
+      "url": "http://127.0.0.1:8080/assets/fonts/cormorant-garamond-italic-latin.woff2"
+    },
+    {
+      "status": 200,
+      "type": "Other",
+      "url": "http://127.0.0.1:8080/assets/favicon.svg"
+    }
+  ]
+}

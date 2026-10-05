@@ -1,0 +1,186 @@
+@font-face { font-family:FerBodoni; src:url('/assets/fonts/bodoni-moda-latin.woff2') format('woff2'); font-style:normal; font-weight:400 600; font-display:swap; }
+@font-face { font-family:FerBodoni; src:url('/assets/fonts/bodoni-moda-italic-latin.woff2') format('woff2'); font-style:italic; font-weight:400; font-display:swap; }
+/* The approved compositions become real type, real links and distinct scenes. */
+.fer-experience {
+  position:relative;
+  isolation:isolate;
+  overflow:clip;
+  --fer-ink:#090608;
+  --fer-brass:#c29a68;
+  --display:FerBodoni,Georgia,serif;
+  --fer-copy:Cormorant,Georgia,serif;
+  background:var(--fer-ink);
+}
+.fer-experience .smoke-atmosphere { opacity:.5; }
+.fer-experience > section { position:relative; z-index:1; }
+.fer-experience h1,.fer-experience h2,.fer-experience h3 { letter-spacing:-.035em; }
+.fer-experience h2 { font-size:clamp(2.1rem,9vw,4.4rem); line-height:1.1; }
+.fer-experience .fer-glyph { font-weight:400; letter-spacing:-.02em; }
+.fer-experience em { color:#eac39c; }
+.fer-experience .section-label { justify-content:center; margin-bottom:18px; color:#e4cfb7; font-size:.65rem; }
+.fer-experience .chapter-number { color:#d3a774; font-size:.65rem; }
+.fer-experience .label-rule { background:#b18d6155; }
+.fer-experience .button-outline { border-color:#b38c63; background:#10080a66; }
+.fer-experience .button-outline:hover { border-color:#f0d4ac; background:#d8aa6a16; box-shadow:0 0 24px #b8894620; }
+.fer-chapter { padding-block:66px; }
+.fer-section-heading { max-width:760px; margin:0 auto 28px; text-align:center; }
+.fer-section-heading > p:not(.section-label) { max-width:42ch; margin:20px auto 0; color:#eee0d6; font-size:.95rem; }
+
+/* The screenshot's manifesto is the first screen, including its color roles. */
+.fer-opening {
+  padding-block:38px 48px;
+  text-align:center;
+  background:radial-gradient(ellipse at 50% 70%,#51102085,transparent 70%),linear-gradient(180deg,#09060888,#250a1499 72%,#09060800);
+}
+.fer-opening-grid { display:grid; gap:30px; }
+.fer-opening-copy { min-width:0; max-width:640px; margin:auto; }
+.fer-opening-art { width:min(100%,560px); margin:auto; }
+.fer-opening-art figcaption { padding:16px 3px 0; color:#e0b887; font-size:.63rem; letter-spacing:.12em; }
+.fer-sum { display:flex; align-items:baseline; justify-content:center; gap:.09em; font:italic clamp(4.3rem,20vw,8rem)/1 var(--display); }
+.fer-plus { color:#d7b482; font:400 .48em/1 var(--display); }
+.fer-opening h1 { margin:24px auto 0; font-size:clamp(1.9rem,9.5vw,4.2rem); line-height:1.04; letter-spacing:-.04em; }
+.fer-opening h1 em { display:inline-block; }
+.fer-opening-summary { max-width:35ch; margin:25px auto 0; font:400 1.4rem/1.48 var(--fer-copy); color:#f4e4da; text-wrap:pretty; }
+.fer-opening-brand { margin-top:26px; color:#ddc3a4; font-size:.64rem; font-weight:600; letter-spacing:.17em; }
+.fer-opening-brand .brand-name { font-size:inherit; }
+.fer-opening-actions { display:flex; flex-direction:column; align-items:center; gap:8px; margin-top:25px; }
+.fer-opening-actions .button { width:min(100%,360px); padding-inline:15px; font-size:.69rem; letter-spacing:.12em; }
+.fer-community-link { display:inline-flex; align-items:center; min-height:44px; font-size:.65rem; letter-spacing:.12em; color:#e2cbb1; }
+.fer-community-link:hover { color:#fff0d9; text-decoration:underline; text-underline-offset:5px; }
+
+/* Each definition occupies one editorial row, with no separate halo graphic. */
+.fer-forces-grid { width:min(100%,960px); margin:auto; }
+.fer-convergence-figure figcaption { margin-top:16px; font-size:.6rem; letter-spacing:.13em; text-align:center; color:#dac0a2; }
+.fer-force-list { min-width:0; }
+.fer-force { display:grid; grid-template-columns:50px minmax(0,1fr) 88px; column-gap:12px; align-items:center; padding-block:24px; border-top:1px solid #b4936170; --force-color:var(--fer-f); }
+.fer-force:last-child { border-bottom:1px solid #ad875650; }
+.fer-force-1 { --force-color:var(--fer-e); }
+.fer-force-2 { --force-color:var(--fer-r); }
+.fer-force-letter { color:var(--force-color); font:italic 4.4rem/1 var(--display); }
+.fer-force h3 { font-size:1.22rem; line-height:1.1; color:var(--force-color); letter-spacing:.025em; }
+.fer-force-role { margin-top:5px; color:#e0c7aa; font-size:.58rem; letter-spacing:.18em; }
+.fer-force-meaning { margin-top:8px; font:400 1.3rem/1.42 var(--fer-copy); color:#f0e1d5; }
+.fer-force-copy { min-width:0; overflow-wrap:anywhere; }
+.fer-force-declaration { margin:0; padding-left:12px; border-left:1px solid #b4936170; color:var(--force-color); font:italic 1.13rem/1.5 var(--display); text-align:center; }
+
+/* Union is demonstrated by the seal; prosperity has several human expressions. */
+.fer-union { background:linear-gradient(180deg,#09060800,#2d111b66 55%,#09060800); }
+.fer-union-grid { display:grid; gap:36px; align-items:center; }
+.fer-convergence-figure { width:min(100%,580px); margin-inline:auto; }
+.fer-union-result { width:min(100%,500px); margin-inline:auto; }
+.fer-result-name { color:#e5c08e; font-size:.7rem; letter-spacing:.21em; }
+.fer-union-result h3 { margin-top:16px; font-size:clamp(2rem,7vw,3.3rem); line-height:1.15; }
+.fer-union-result > p:last-of-type { max-width:35ch; margin-top:22px; font:400 1.35rem/1.5 var(--fer-copy); color:#ecd9ca; }
+.fer-outcomes { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px 20px; list-style:none; margin-top:24px; padding-top:20px; border-top:1px solid #b28b605c; color:#eaca9e; font:italic 1.65rem/1.3 var(--display); }
+
+/* A tangible circular piece carries the cycle, with one reflection on its metal. */
+.fer-cycle { max-width:620px; margin:auto; }
+.fer-cycle-art { position:relative; width:100%; aspect-ratio:1; isolation:isolate; overflow:hidden; }
+.fer-rose-points { position:absolute; inset:0; z-index:4; pointer-events:none; }
+.fer-rose-point { position:absolute; translate:-50% -50%; font-size:clamp(2.2rem,9vw,4rem); background:none; text-shadow:0 2px 5px #0e0508,0 0 8px #0e0508!important; }
+.fer-rose-point::before { content:''; position:absolute; inset:-12px; z-index:-1; background:radial-gradient(ellipse,#10060999,transparent 70%); }
+.fer-rose-point-f { left:50%; top:19.5%; color:#ffb5be; }
+.fer-rose-point-e { left:24.5%; top:64.5%; color:#ffe1a7; }
+.fer-rose-point-r { left:77.5%; top:64.5%; color:#f0f7fa; }
+.fer-rose-center { position:absolute; z-index:5; left:50%; top:46.5%; translate:-50% -50%; width:72%; text-align:center; pointer-events:none; }
+.fer-rose-center::before { content:''; position:absolute; z-index:-1; inset:-24px -8px; background:radial-gradient(ellipse,#180810c9 18%,#18081060 49%,transparent 71%); }
+.fer-rose-center .fer-rose-sum { font-size:clamp(1rem,3.5vw,1.45rem); margin-bottom:8px; gap:.15em; }
+.fer-rose-sum .fer-plus { color:#f9d8a1; font-size:.7em; }
+.fer-rose-center h3 { color:#ffe1a7; font:italic 400 clamp(1.6rem,6.6vw,3.1rem)/1.2 var(--display); letter-spacing:-.04em; text-shadow:0 2px 6px #090507,0 0 12px #090507; }
+.fer-rose-legend { display:flex; justify-content:space-between; gap:8px; margin-top:20px; padding-block:13px; border-block:1px solid #b4936170; font-size:.72rem; letter-spacing:.05em; }
+.fer-rose-legend span:first-child { color:var(--fer-f); }
+.fer-rose-legend span:nth-child(2) { color:var(--fer-e); }
+.fer-rose-legend span:last-child { color:var(--fer-r); }
+.fer-cycle-route { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:8px; list-style:none; margin-top:24px; color:#e7c79e; font:400 .85rem/1.5 var(--display); }
+.fer-cycle-route li:not(:last-child)::after { content:'→'; margin-left:8px; color:#cfab7e; }
+.fer-cycle-route li:last-child::after { content:'↺'; margin-left:8px; color:#cfab7e; }
+.fer-cycle-reflection { display:none; position:absolute; z-index:2; inset:0; border-radius:50%; pointer-events:none; opacity:.46; mix-blend-mode:screen; background:conic-gradient(from 0deg,transparent 0deg 275deg,#fff2c711 298deg,#ffd49b80 320deg,transparent 343deg); mask-image:radial-gradient(circle,transparent 36%,#000 39%,#000 45%,transparent 48%); }
+.fer-cycle figcaption { margin-top:12px; text-align:center; color:#efddcd; font-size:1rem; line-height:1.7; }
+.fer-cycle figcaption em { display:inline-block; font-size:1.7rem; }
+
+/* The authorized cover is framed as an editorial portrait, without orbiting UI. */
+.fer-woman { background:linear-gradient(180deg,#09060800,#38101c66,#09060800); }
+.fer-woman-grid { display:grid; gap:32px; align-items:center; }
+.fer-woman-copy .section-label { justify-content:flex-start; }
+.fer-woman-copy > p:not(.section-label) { margin-top:24px; max-width:34ch; font:400 1.4rem/1.5 var(--fer-copy); color:#eee0d6; }
+.fer-woman-copy .fer-woman-assertion { color:#eac59d!important; font:italic 1.9rem/1.2 var(--display)!important; }
+.fer-woman-art { width:min(100%,480px); margin-inline:auto; padding:9px; border:1px solid #aa835865; }
+.fer-woman-portrait { position:relative; width:100%; aspect-ratio:4/5; overflow:hidden; background:#150a0e; }
+.fer-woman-portrait img { position:absolute; top:-12%; left:-116%; width:210%; max-width:none; height:auto; }
+.fer-woman-portrait::after { content:''; position:absolute; inset:60% 0 0; background:linear-gradient(transparent,#090608); pointer-events:none; }
+.fer-woman-art figcaption { padding:13px 4px 4px; font-size:.62rem; letter-spacing:.12em; color:#e8c9ab; text-align:center; }
+
+/* Extra context uses native, keyboard-accessible disclosure. */
+.fer-experience .fer-questions-inner { max-width:780px; }
+.fer-experience .fer-questions h2 { font-size:clamp(2.4rem,10vw,4rem); }
+.fer-faith-note { margin-block:20px 30px; max-width:48ch; color:#eedccf; font-size:.97rem; }
+.fer-experience .fer-question { border-top:1px solid #a5825850; }
+.fer-experience .fer-question:last-child { border-bottom:1px solid #a5825850; }
+.fer-experience .fer-question summary { display:flex; justify-content:space-between; align-items:center; gap:16px; min-height:60px; padding-block:15px; list-style:none; cursor:pointer; color:#efdbbe; font-size:.9rem; line-height:1.4; }
+.fer-experience .fer-question summary::-webkit-details-marker { display:none; }
+.fer-experience .fer-question summary span { font:400 1.5rem/1 var(--display); color:#dfb17b; }
+.fer-experience .fer-question[open] summary span { transform:rotate(45deg); }
+.fer-experience .fer-question > p { margin:0 0 24px; font-size:.89rem; line-height:1.8; color:#eeddd0; }
+.fer-references ul { list-style:none; margin:-6px 0 20px; }
+.fer-references a { display:inline-flex; align-items:center; min-height:44px; font-size:.8rem; color:#efcca0; text-decoration:underline; text-underline-offset:4px; }
+
+.fer-closing { text-align:center; background:radial-gradient(ellipse at 50% 50%,#641a2960,transparent 70%); }
+.fer-closing-letters { font-size:clamp(3.8rem,17vw,7rem); }
+.fer-closing h2 { margin-top:26px; }
+.fer-closing > .container > p:not(.fer-sum) { margin-top:24px; color:#f0ddd0; }
+.fer-closing-actions { display:flex; flex-direction:column; align-items:center; gap:14px; margin-top:30px; }
+.fer-closing-actions .fer-return { margin:0; }
+.fer-closing-actions .button { width:min(100%,360px); min-width:0; font-size:.72rem; padding-inline:18px; }
+
+/* A single engraved rule joins the chapters. Content is always visible. */
+.fer-chapter::before { content:''; position:absolute; top:0; left:50%; width:min(76%,580px); height:1px; translate:-50% 0; background:linear-gradient(90deg,transparent,#b99261a0,transparent); }
+
+@media(min-width:600px) {
+  .fer-chapter { padding-block:90px; }
+  .fer-opening { padding-block:56px 60px; }
+  .fer-opening-summary { font-size:1.55rem; }
+  .fer-force { grid-template-columns:80px minmax(0,1fr) 150px; gap:24px; }
+  .fer-force-letter { font-size:5.5rem; }
+  .fer-force h3 { font-size:1.55rem; }
+  .fer-force-declaration { font-size:1.5rem; }
+}
+@media(min-width:900px) {
+  .fer-opening { padding-block:58px 70px; }
+  .fer-opening-grid { grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(35px,5vw,80px); align-items:center; }
+  .fer-opening-art { max-width:520px; }
+  .fer-opening h1 { font-size:clamp(2.9rem,4.3vw,4.2rem); }
+  .fer-opening-summary { font-size:1.5rem; }
+  .fer-opening-letters { font-size:clamp(6rem,9vw,8rem); }
+  .fer-chapter { padding-block:100px; }
+  .fer-section-heading { margin-bottom:46px; }
+  .fer-union-grid,.fer-woman-grid { grid-template-columns:minmax(0,1.06fr) minmax(0,1fr); gap:clamp(40px,6vw,100px); }
+  .fer-force { padding-block:28px; }
+  .fer-force-meaning { font-size:1.4rem; }
+  .fer-woman-grid { grid-template-columns:minmax(0,1fr) minmax(0,.9fr); }
+  .fer-woman-art { justify-self:end; }
+  .fer-closing-actions { flex-direction:row; justify-content:center; }
+}
+@media(max-width:359px) {
+  .fer-opening { padding-top:30px; }
+  .fer-opening-summary { font-size:1.3rem; line-height:1.45; }
+  .fer-opening-brand { font-size:.58rem; letter-spacing:.13em; }
+  .fer-opening-actions .button { font-size:.62rem; }
+  .fer-force { grid-template-columns:40px minmax(0,1fr) 73px; gap:9px; }
+  .fer-force-letter { font-size:3.8rem; }
+  .fer-force h3 { font-size:1.02rem; }
+  .fer-force-meaning { font-size:1.18rem; }
+  .fer-force-declaration { padding-left:8px; font-size:1rem; }
+  .fer-outcomes { font-size:1.4rem; }
+}
+@media(prefers-reduced-motion:no-preference) {
+  @supports(mask-image:radial-gradient(circle,#000,transparent)) {
+    .fer-cycle-reflection { display:block; animation:fer-brass-reflection 6s linear infinite; }
+  }
+}
+@keyframes fer-brass-reflection { to { transform:rotate(360deg); } }
+.motion-toggle:checked ~ .site-experience .fer-cycle-reflection { display:none!important; }
+@media(forced-colors:active) {
+  .fer-cycle-reflection { display:none; }
+  .fer-rose-center h3 { background:Canvas; color:CanvasText; text-shadow:none; }
+  .fer-force { border-color:CanvasText; }
+}
