@@ -2384,24 +2384,8 @@ h1,h2,h3,.identity-name {
   }
 }
 
-/* Release artwork stays intact; tactile light sits outside the faces. */
-.latest-release{position:relative;overflow:hidden;background:radial-gradient(ellipse at 28% 50%,#72192b45,transparent 65%);border-block:1px solid #d7b88a35}
-.latest-release-grid{display:grid;gap:36px;align-items:center}.latest-art{position:relative;isolation:isolate;width:100%;max-width:520px;margin:auto;padding-right:20px}.latest-art picture{position:relative;display:block;box-shadow:0 20px 40px #0008;border:1px solid #d7b88a99}.latest-art img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}.latest-disc{position:absolute;z-index:-1;inset:12% 0 12% 22%;border-radius:50%;background:repeating-radial-gradient(circle,#20171c 0 2px,#0c080b 3px 5px);border:1px solid #8c6b57;box-shadow:10px 8px 24px #0009}.latest-copy h2{font-family:var(--display);font-size:clamp(52px,8vw,104px);font-weight:400;line-height:.98;letter-spacing:-.04em;margin:20px 0 24px}.latest-copy h2 em{color:var(--gold);font-weight:400}.latest-copy time{display:block;font-size:12px;letter-spacing:.16em;color:#e5c89f;border-block:1px solid #d7b88a55;padding:14px 0}.latest-artist{font-family:var(--display);font-size:24px;letter-spacing:.12em}.latest-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}.latest-actions .text-link{border:1px solid #d7b88a;padding:16px;min-height:48px}.latest-caption{font-size:11px;letter-spacing:.16em;margin-top:28px;color:#e5c89f}.featured-music{margin-top:56px;grid-column:1/-1}.featured-music>h3{font-family:var(--display);font-size:38px;font-weight:400;margin:0 0 24px}.featured-release-grid{display:grid;gap:32px}.featured-release{min-width:0}.featured-cover{display:block;border:1px solid #d7b88a66;box-shadow:0 16px 28px #0006;transition:transform .25s ease,border-color .25s ease}.featured-cover picture,.featured-cover img{display:block;width:100%;height:auto;aspect-ratio:1}.featured-cover:hover,.featured-cover:focus-visible{transform:translateY(-5px);border-color:var(--gold)}.featured-release h4{font-family:var(--display);font-size:30px;font-weight:400;margin:18px 0 4px}.featured-release p{margin:0 0 12px;font-size:12px;letter-spacing:.12em}.featured-release>.text-link{display:inline-block;min-height:44px;margin-right:14px}.featured-release>.spotify-link{display:flex;width:fit-content;margin-top:10px}
-@media(min-width:600px){.featured-release-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(min-width:900px){.latest-release-grid{grid-template-columns:1fr 1fr;gap:80px}.featured-release-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
-@media(prefers-reduced-motion:reduce){.featured-cover{transition:none}.featured-cover:hover,.featured-cover:focus-visible{transform:none}}
-.latest-actions>a:not(.spotify-link){display:inline-flex;align-items:center;justify-content:center;border:1px solid #e5c89f;background:linear-gradient(110deg,#694423,#aa7850,#694423);padding:16px 20px;min-height:48px;font-size:12px;letter-spacing:.08em;color:#fff8ea;text-align:center}
-.featured-release>a:not(.featured-cover):not(.spotify-link){display:inline-flex;align-items:center;min-height:44px;color:#e5c89f;border-bottom:1px solid #d7b88a66;font-size:12px;letter-spacing:.08em}
-@property --release-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
-.latest-art::after{content:"";position:absolute;inset:0 20px 0 0;pointer-events:none;padding:2px;background:conic-gradient(from var(--release-angle),transparent 0deg 260deg,#a1793c 290deg,#ffefbd 310deg,transparent 335deg);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:release-reflection 4s linear infinite}
-@keyframes release-reflection{to{--release-angle:360deg}}
-@supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.latest-art{animation:release-approach linear both;animation-timeline:view();animation-range:entry 0% cover 40%}}}
-@keyframes release-approach{from{transform:scale(.96)}to{transform:scale(1)}}
-@media(max-width:599px){.featured-release-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 6px 22px;margin-inline:-6px}.featured-release{flex:0 0 86%;scroll-snap-align:start}.latest-actions>a:not(.spotify-link){width:100%}}
-@media(prefers-reduced-motion:reduce){.latest-art,.latest-art::after{animation:none;transform:none}}
-.featured-music{min-width:0;overflow:hidden}.featured-release-grid{max-width:100%}.hero-song>div{min-width:0}.hero-song strong{overflow-wrap:anywhere}
-.featured-release-grid,.featured-release{position:relative}
-@media(max-width:599px){.featured-release-grid{margin-inline:0;padding-inline:0}}
+
+.hero-song>div{min-width:0}.hero-song strong{overflow-wrap:anywhere}
 
 /* The cover's luminous red filaments continue through the entire page. */
 @property --muse-rim-angle {
@@ -3719,3 +3703,56 @@ h1,h2,h3,.identity-name {
 @media(forced-colors:active) {
   .fer-artifact-threads,.fer-energy,.fer-artifact-core,.fer-artifact-gleam,.fer-artifact-smoke { display:none; }
 }
+
+/* The approved music studies: framed artwork, velvet, engraved type and vinyl. */
+@property --release-angle { syntax:"<angle>"; initial-value:0deg; inherits:false; }
+.latest-release { position:relative; isolation:isolate; overflow:hidden; border-block:1px solid #b7804b70; background:#11070b; }
+.cinematic-universe > .latest-release::before { content:""; position:absolute; z-index:-1; inset:0; height:auto; opacity:1; animation:none; transform:none; background:linear-gradient(#0d05084a,#0d05084a),url('/psikopata/psikopapa/assets/atmosphere/release-salon-desktop.webp') center/cover; }
+.release-stage { position:relative; padding:28px 20px 36px; border:1px solid #d6a15d; border-radius:12px; box-shadow:inset 0 0 0 4px #0e0709,inset 0 0 0 5px #aa7a484d,0 25px 60px #0009; background:linear-gradient(150deg,#0a0508eb,#2c0913b8 60%,#0a0508d9); }
+.release-stage::before,.release-stage::after { content:""; position:absolute; left:50%; width:150px; height:24px; transform:translateX(-50%); background:url('/psikopata/psikopapa/assets/icons/music-ornament.svg') center/contain no-repeat; pointer-events:none; }
+.release-stage::before { top:-12px; background-color:#13070c; }.release-stage::after { bottom:8px; }
+.latest-release-grid { display:grid; gap:32px; align-items:center; }
+.latest-art { position:relative; isolation:isolate; width:100%; max-width:600px; margin:auto; padding-right:12%; }
+.latest-art picture { position:relative; z-index:1; display:block; padding:3px; background:linear-gradient(135deg,#fff0b8,#775127 24%,#e2ba73 42%,#493016 60%,#f1ce8d); box-shadow:0 20px 35px #000a,0 0 20px #dc8e3433; }
+.latest-art img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:contain; }
+.latest-disc { position:absolute; z-index:0; width:78%; aspect-ratio:1; right:0; top:11%; border-radius:50%; background:radial-gradient(circle,#b97744 0 3%,#250c16 3.5% 13%,#080508 14% 18%,transparent 18%),repeating-radial-gradient(circle,#261f21 0 1px,#090609 2px 4px,#30292c 5px 6px); border:1px solid #91715a; box-shadow:12px 14px 25px #000a; }
+.latest-art::after { content:""; position:absolute; z-index:2; inset:0 12% 0 0; padding:2px; background:conic-gradient(from var(--release-angle),transparent 0deg 240deg,#ca985d 275deg,#fff7d4 300deg,transparent 325deg); mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); mask-composite:exclude; pointer-events:none; animation:release-reflection 4s linear infinite; }
+.latest-copy { min-width:0; text-align:center; }
+.latest-copy>.eyebrow { font-size:10px; letter-spacing:.13em; color:#edc889; }
+.latest-copy h2 { font-family:FerBodoni,Georgia,serif; font-weight:400; font-size:clamp(48px,8vw,112px); line-height:1.02; letter-spacing:-.04em; color:#eac889; margin:20px 0 24px; text-shadow:0 1px 0 #fff4ce,0 6px 24px #000; }
+.latest-copy h2 em { font-weight:400; color:#f1ce86; }
+.latest-copy time { display:block; padding:14px 0; border-block:1px solid #bd8b4a88; font-size:11px; letter-spacing:.18em; color:#f4d59b; }
+.latest-artist { font-family:FerBodoni,Georgia,serif; font-size:clamp(21px,3vw,32px); letter-spacing:.15em; margin:23px 0; }
+.latest-artist .brand-name { color:#e9bc76; }
+.latest-actions { display:flex; flex-direction:column; align-items:center; gap:16px; }
+.release-apple { position:relative; display:flex; align-items:center; justify-content:center; gap:10px; min-height:52px; padding:14px 12px; width:100%; border:1px solid #e6c488; background:linear-gradient(110deg,#704b28,#b58046 50%,#67401f); box-shadow:inset 0 1px 0 #fff5d488,0 5px 18px #0007; color:#fff7e9; font-size:10px; font-weight:600; letter-spacing:.06em; transition:box-shadow .2s,transform .2s; }
+.release-apple:hover { box-shadow:inset 0 1px 0 #fff5d4,0 0 20px #c59a5140; transform:translateY(-2px); }
+.release-apple-mark { flex:0 0 20px; width:20px; height:20px; background:currentColor; mask:url('/psikopata/psikopapa/assets/icons/applemusic.svg') center/contain no-repeat; }
+.release-link-arrow { margin-left:auto; font-size:18px; line-height:1; }
+.latest-actions .spotify-link { position:relative; min-height:44px; width:auto; background:transparent; border:0; border-bottom:1px solid #c0a885; border-radius:0; }
+.latest-caption { font-family:FerBodoni,Georgia,serif; font-size:12px; letter-spacing:.12em; color:#edd2a1; margin:26px 0 14px; }
+.featured-music { grid-column:1/-1; position:relative; min-width:0; margin-top:64px; padding-top:35px; border-top:1px solid #c695555c; }
+.featured-music>.eyebrow { color:#dabc88; }
+.featured-music>h3 { font-family:FerBodoni,Georgia,serif; font-size:clamp(30px,5vw,46px); font-weight:400; color:#ecd5a7; margin:12px 0 30px; line-height:1.15; }
+.featured-release-grid { position:relative; display:grid; gap:28px; min-width:0; }
+.featured-release { position:relative; min-width:0; padding:14px; border:1px solid #bd914e; background:linear-gradient(140deg,#0c070bf0,#2c0a16d9,#0c060a); box-shadow:inset 0 0 0 3px #0e080b,inset 0 0 0 4px #ae864b66,0 18px 25px #0008; }
+.featured-release::before { content:""; position:absolute; inset:0; padding:1px; background:conic-gradient(from var(--release-angle),transparent 0deg 265deg,#ffdf99 290deg,#fff8d5 305deg,transparent 328deg); mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0); mask-composite:exclude; pointer-events:none; animation:release-reflection 5s linear infinite; }
+.featured-cover { position:relative; display:block; border:1px solid #e5b674; box-shadow:0 8px 20px #0007; transition:transform .25s; }
+.featured-cover picture,.featured-cover img { display:block; width:100%; height:auto; aspect-ratio:1; object-fit:contain; }
+.featured-cover:hover,.featured-cover:focus-visible { transform:scale(1.025); }
+.featured-release-copy { position:relative; text-align:center; padding:16px 4px 6px; }
+.featured-release h4 { font-family:FerBodoni,Georgia,serif; color:#f0d6a1; font-size:clamp(24px,3vw,34px); font-weight:400; line-height:1.2; margin:0 0 8px; }
+.featured-release p { color:#d1b897; font-size:10px; letter-spacing:.14em; margin:0 0 16px; }
+.featured-release .release-apple { min-height:48px; font-size:9px; letter-spacing:.025em; padding:12px 8px; background:#10090dd9; border-color:#c49657; }
+.featured-release .spotify-link { display:flex; width:100%; justify-content:center; margin:12px 0 0; border-color:#a7814d; background:#10090da8; font-size:9px; padding-inline:8px; }
+@keyframes release-reflection { to { --release-angle:360deg; } }
+@keyframes release-approach { from { transform:scale(.94); } to { transform:scale(1); } }
+@supports(animation-timeline:view()) { @media(prefers-reduced-motion:no-preference) { .latest-art,.featured-release { animation:release-approach linear both; animation-timeline:view(); animation-range:entry 0% cover 40%; } } }
+@media(max-width:599px) { .latest-release>.container { width:calc(100% - 24px); }.cinematic-universe > .latest-release::before { background-image:linear-gradient(#0d05084a,#0d05084a),url('/psikopata/psikopapa/assets/atmosphere/release-salon-mobile.webp'); }.featured-release-grid { display:flex; gap:20px; overflow-x:auto; scroll-snap-type:x proximity; padding:8px 0 24px; }.featured-release { flex:0 0 90%; scroll-snap-align:start; } }
+@media(min-width:600px) { .release-stage { padding:40px 32px 48px; }.featured-release-grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(min-width:900px) { .latest-release-grid { grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:48px; }.release-stage { padding:58px 48px 60px; }.latest-copy h2 { font-size:clamp(70px,7.5vw,112px); }.featured-release-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }.latest-actions .release-apple { max-width:420px; } }
+@media(prefers-reduced-motion:reduce) { .latest-art,.latest-art::after,.featured-release,.featured-release::before { animation:none; transform:none; }.release-apple,.featured-cover { transition:none; }.release-apple:hover,.featured-cover:hover,.featured-cover:focus-visible { transform:none; } }
+
+.release-stage{background:linear-gradient(150deg,#0a0508b0,#27081290 60%,#0a05085e),url('/psikopata/psikopapa/assets/atmosphere/release-salon-desktop.webp') center bottom/cover}
+@media(max-width:599px){.release-stage{background-image:linear-gradient(#0c0508a0,#19071194),url('/psikopata/psikopapa/assets/atmosphere/release-salon-mobile.webp');background-position:center bottom;background-size:cover}.cinematic-universe>.latest-release::before{background-image:linear-gradient(#0d05084a,#0d05084a),url('/psikopata/psikopapa/assets/atmosphere/release-salon-mobile.webp')}}
+@supports(background-clip:text){.latest-copy h2,.latest-copy h2 em{background:linear-gradient(115deg,#a87837 0%,#f8dfac 24%,#d9b070 43%,#fff0c6 54%,#be8a44 72%,#eac992);background-clip:text;color:transparent;text-shadow:none}}
