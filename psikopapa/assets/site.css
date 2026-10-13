@@ -2384,6 +2384,25 @@ h1,h2,h3,.identity-name {
   }
 }
 
+/* Release artwork stays intact; tactile light sits outside the faces. */
+.latest-release{position:relative;overflow:hidden;background:radial-gradient(ellipse at 28% 50%,#72192b45,transparent 65%);border-block:1px solid #d7b88a35}
+.latest-release-grid{display:grid;gap:36px;align-items:center}.latest-art{position:relative;isolation:isolate;width:100%;max-width:520px;margin:auto;padding-right:20px}.latest-art picture{position:relative;display:block;box-shadow:0 20px 40px #0008;border:1px solid #d7b88a99}.latest-art img{display:block;width:100%;height:auto;aspect-ratio:1;object-fit:contain}.latest-disc{position:absolute;z-index:-1;inset:12% 0 12% 22%;border-radius:50%;background:repeating-radial-gradient(circle,#20171c 0 2px,#0c080b 3px 5px);border:1px solid #8c6b57;box-shadow:10px 8px 24px #0009}.latest-copy h2{font-family:var(--display);font-size:clamp(52px,8vw,104px);font-weight:400;line-height:.98;letter-spacing:-.04em;margin:20px 0 24px}.latest-copy h2 em{color:var(--gold);font-weight:400}.latest-copy time{display:block;font-size:12px;letter-spacing:.16em;color:#e5c89f;border-block:1px solid #d7b88a55;padding:14px 0}.latest-artist{font-family:var(--display);font-size:24px;letter-spacing:.12em}.latest-actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px}.latest-actions .text-link{border:1px solid #d7b88a;padding:16px;min-height:48px}.latest-caption{font-size:11px;letter-spacing:.16em;margin-top:28px;color:#e5c89f}.featured-music{margin-top:56px;grid-column:1/-1}.featured-music>h3{font-family:var(--display);font-size:38px;font-weight:400;margin:0 0 24px}.featured-release-grid{display:grid;gap:32px}.featured-release{min-width:0}.featured-cover{display:block;border:1px solid #d7b88a66;box-shadow:0 16px 28px #0006;transition:transform .25s ease,border-color .25s ease}.featured-cover picture,.featured-cover img{display:block;width:100%;height:auto;aspect-ratio:1}.featured-cover:hover,.featured-cover:focus-visible{transform:translateY(-5px);border-color:var(--gold)}.featured-release h4{font-family:var(--display);font-size:30px;font-weight:400;margin:18px 0 4px}.featured-release p{margin:0 0 12px;font-size:12px;letter-spacing:.12em}.featured-release>.text-link{display:inline-block;min-height:44px;margin-right:14px}.featured-release>.spotify-link{display:flex;width:fit-content;margin-top:10px}
+@media(min-width:600px){.featured-release-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(min-width:900px){.latest-release-grid{grid-template-columns:1fr 1fr;gap:80px}.featured-release-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(prefers-reduced-motion:reduce){.featured-cover{transition:none}.featured-cover:hover,.featured-cover:focus-visible{transform:none}}
+.latest-actions>a:not(.spotify-link){display:inline-flex;align-items:center;justify-content:center;border:1px solid #e5c89f;background:linear-gradient(110deg,#694423,#aa7850,#694423);padding:16px 20px;min-height:48px;font-size:12px;letter-spacing:.08em;color:#fff8ea;text-align:center}
+.featured-release>a:not(.featured-cover):not(.spotify-link){display:inline-flex;align-items:center;min-height:44px;color:#e5c89f;border-bottom:1px solid #d7b88a66;font-size:12px;letter-spacing:.08em}
+@property --release-angle{syntax:"<angle>";initial-value:0deg;inherits:false}
+.latest-art::after{content:"";position:absolute;inset:0 20px 0 0;pointer-events:none;padding:2px;background:conic-gradient(from var(--release-angle),transparent 0deg 260deg,#a1793c 290deg,#ffefbd 310deg,transparent 335deg);mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:release-reflection 4s linear infinite}
+@keyframes release-reflection{to{--release-angle:360deg}}
+@supports(animation-timeline:view()){@media(prefers-reduced-motion:no-preference){.latest-art{animation:release-approach linear both;animation-timeline:view();animation-range:entry 0% cover 40%}}}
+@keyframes release-approach{from{transform:scale(.96)}to{transform:scale(1)}}
+@media(max-width:599px){.featured-release-grid{display:flex;overflow-x:auto;scroll-snap-type:x proximity;padding:6px 6px 22px;margin-inline:-6px}.featured-release{flex:0 0 86%;scroll-snap-align:start}.latest-actions>a:not(.spotify-link){width:100%}}
+@media(prefers-reduced-motion:reduce){.latest-art,.latest-art::after{animation:none;transform:none}}
+.featured-music{min-width:0;overflow:hidden}.featured-release-grid{max-width:100%}.hero-song>div{min-width:0}.hero-song strong{overflow-wrap:anywhere}
+.featured-release-grid,.featured-release{position:relative}
+@media(max-width:599px){.featured-release-grid{margin-inline:0;padding-inline:0}}
+
 /* The cover's luminous red filaments continue through the entire page. */
 @property --muse-rim-angle {
   syntax:'<angle>';
