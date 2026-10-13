@@ -1,5 +1,5 @@
 use crate::{
-    components::{BrandName, ExternalLink, ResponsiveImage, SpotifyLink},
+    components::{BrandName, ResponsiveImage, SpotifyLink},
     content::releases,
 };
 use dioxus::prelude::*;
@@ -9,7 +9,8 @@ pub fn LatestRelease() -> Element {
     let release = &releases::LATEST;
     rsx! {
         section { class: "latest-release section-space", id: "latest-release", "aria-labelledby": "latest-release-title",
-            div { class: "container latest-release-grid",
+            div { class: "container",
+            div { class: "release-stage latest-release-grid",
                 div { class: "latest-art",
                     span { class: "latest-disc", "aria-hidden": "true" }
                     ResponsiveImage { image: release.cover, sizes: "(min-width: 900px) 480px, calc(100vw - 40px)" }
@@ -20,11 +21,12 @@ pub fn LatestRelease() -> Element {
                     time { datetime: releases::LATEST_DATE, "{releases::LATEST_DATE_LABEL}" }
                     p { class: "latest-artist", BrandName {} }
                     div { class: "latest-actions",
-                        ExternalLink { href: release.apple_music, label: "ESCUCHAR EN APPLE MUSIC" }
+                        AppleMusicLink { href: release.apple_music }
                         SpotifyLink { href: release.spotify_search, label: "BUSCAR EN SPOTIFY" }
                     }
                     p { class: "latest-caption", "UNA HISTORIA. UNA CANCIÓN." }
                 }
+            }
             }
         }
     }
@@ -34,6 +36,7 @@ pub fn LatestRelease() -> Element {
 pub fn FeaturedMusic() -> Element {
     rsx! {
         div { class: "featured-music", "aria-labelledby": "featured-music-title",
+            p { class: "eyebrow", BrandName {} " MUSIC / SELECCIÓN" }
             h3 { id: "featured-music-title", "Canciones destacadas." }
             div { class: "featured-release-grid",
                 for release in releases::FEATURED {
@@ -41,13 +44,27 @@ pub fn FeaturedMusic() -> Element {
                         a { class: "featured-cover", href: release.apple_music, target: "_blank", rel: "noopener noreferrer", "aria-label": "Escuchar {release.title} en Apple Music",
                             ResponsiveImage { image: release.cover, sizes: "(min-width: 900px) 350px, (min-width: 600px) 45vw, calc(100vw - 40px)" }
                         }
+                        div { class: "featured-release-copy",
                         h4 { "{release.title}" }
                         p { BrandName {} }
-                        ExternalLink { href: release.apple_music, label: "APPLE MUSIC" }
+                        AppleMusicLink { href: release.apple_music }
                         SpotifyLink { href: release.spotify_search, label: "BUSCAR EN SPOTIFY" }
+                        }
                     }
                 }
             }
+        }
+    }
+}
+
+#[component]
+fn AppleMusicLink(href: &'static str) -> Element {
+    rsx! {
+        a { class: "release-apple", href, target: "_blank", rel: "noopener noreferrer",
+            span { class: "release-apple-mark", "aria-hidden": "true" }
+            "ESCUCHAR EN APPLE MUSIC"
+            span { class: "release-link-arrow", "aria-hidden": "true", "→" }
+            span { class: "sr-only", " (abre una nueva pestaña)" }
         }
     }
 }

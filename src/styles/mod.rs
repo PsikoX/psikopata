@@ -5,7 +5,9 @@ pub const CSS: &str = concat!(
     "\n",
     include_str!("fer.css"),
     "\n",
-    include_str!("fer_artifacts.css")
+    include_str!("fer_artifacts.css"),
+    "\n",
+    include_str!("releases.css")
 );
 
 /// A changed stylesheet gets a new browser cache key after publication.

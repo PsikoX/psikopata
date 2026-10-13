@@ -1,0 +1,9 @@
+Apple Music icon silhouette from Simple Icons:
+https://github.com/simple-icons/simple-icons/blob/develop/icons/applemusic.svg
+
+Simple Icons distributes its icon artwork under CC0 1.0:
+https://github.com/simple-icons/simple-icons/blob/develop/LICENSE.md
+
+Apple Music remains a trademark of its owner. This site uses the icon to identify
+
+verified Apple Music release links.
