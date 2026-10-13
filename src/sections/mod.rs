@@ -4,6 +4,7 @@ pub mod creation;
 pub mod education;
 pub mod fer;
 pub mod hero;
+pub mod latest_release;
 pub mod muses;
 pub mod music;
 pub mod universe;

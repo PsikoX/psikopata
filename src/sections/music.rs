@@ -18,6 +18,7 @@ pub fn Music() -> Element {
                     p { class: "body-copy", BrandText { text: content::copy::MUSIC.paragraphs[0] } }
                 }
                 div { class: "tracks", for (index, track) in content::TRACKS.iter().enumerate() { TrackEntry { track: *track, number: index + 1 } } }
+                crate::sections::latest_release::FeaturedMusic {}
                 div { class: "more-releases",
                     p { class: "eyebrow", BrandText { text: content::copy::MORE_RELEASES } }
                     ul {

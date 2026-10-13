@@ -405,7 +405,7 @@ fn unknown_audio_and_social_urls_do_not_become_pretend_actions() {
     );
     assert_eq!(
         doc.select(&select(".spotify-mark")).count(),
-        content::MUSES.len() + content::TRACKS.len()
+        content::MUSES.len() + content::TRACKS.len() + 1 + content::releases::FEATURED.len()
     );
     for track in content::TRACKS {
         let entry = doc
@@ -578,5 +578,50 @@ fn project_pages_keep_navigation_and_assets_inside_the_repository_path() {
                 .is_err(),
             "reject {invalid}"
         );
+    }
+}
+
+#[test]
+fn home_release_uses_verified_artwork_date_and_real_platform_destinations() {
+    let doc = Html::parse_document(&render_page(Route::Home, SiteConfig::new("").unwrap()));
+    let latest = doc.select(&select("#latest-release")).next().unwrap();
+    assert!(
+        latest
+            .text()
+            .collect::<String>()
+            .contains("ÚLTIMO LANZAMIENTO")
+    );
+    assert_eq!(
+        latest
+            .select(&select("time"))
+            .next()
+            .unwrap()
+            .value()
+            .attr("datetime"),
+        Some("2026-10-12")
+    );
+    assert!(
+        latest
+            .select(&select("img"))
+            .next()
+            .unwrap()
+            .value()
+            .attr("src")
+            .unwrap()
+            .contains("flaquita-pepita")
+    );
+    assert!(
+        latest
+            .select(&select("a"))
+            .any(|a| a.value().attr("href") == Some(content::releases::LATEST.apple_music))
+    );
+    let featured = doc.select(&select(".featured-release")).collect::<Vec<_>>();
+    assert_eq!(featured.len(), content::releases::FEATURED.len());
+    for (card, release) in featured.iter().zip(content::releases::FEATURED) {
+        assert!(
+            card.select(&select("a"))
+                .any(|a| a.value().attr("href") == Some(release.apple_music))
+        );
+        assert!(card.text().collect::<String>().contains(release.title));
     }
 }

@@ -2,6 +2,7 @@ use crate::models::{Chapter, Image, Muse, NavLink, Release, Track};
 
 pub mod copy;
 pub mod fer;
+pub mod releases;
 
 pub const BRAND: &str = "PSIKOPAPA";
 pub const LANG: &str = "es-VE";
@@ -41,7 +42,7 @@ pub const MUSES: &[Muse] = &[
         name: "Karen",
         image: KAREN,
         track_id: "karen-mi-amor",
-        track_title: "Karen",
+        track_title: "Karen Mi Amor",
         spotify_search: SPOTIFY_SEARCH_KAREN,
     },
     Muse {
@@ -58,13 +59,13 @@ pub const MUSES: &[Muse] = &[
 pub const TRACKS: &[Track] = &[
     Track {
         id: "karen-mi-amor",
-        title: "Karen",
+        title: "Karen Mi Amor",
         muse: "Karen",
         cover: KAREN,
         audio: None,
         spotify: None,
         spotify_search: SPOTIFY_SEARCH_KAREN,
-        apple_music: Some("https://music.apple.com/ve/album/karen/6816570213?i=6816570214"),
+        apple_music: Some("https://music.apple.com/ve/album/karen-mi-amor/6819114968?i=6819114969"),
         youtube: None,
     },
     Track {
